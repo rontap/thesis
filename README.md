@@ -1,2 +1,2 @@
-# thesis
+# Thesis
 ELTE IK Thesis

@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.svgRoot {
+  border:3px solid red;
+}
+
+.svgRoot .static {
+  cursor: not-allowed;
+}
+.svgRoot .draggable {
+  cursor: move;
+}

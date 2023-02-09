@@ -39,8 +39,16 @@ class Geom {
             a.y - b.y
         )
     }
+
+    static Inv(a: Point) {
+        return new Point(
+            -a.x,
+            -a.y
+        )
+    }
 }
 
+const moveableElements = ["svg", "rect", "foreignObject"];
 
 class DragHandler {
     private isDown: boolean = false;
@@ -53,13 +61,25 @@ class DragHandler {
     public currentCoord: Point = Point.Origin;
     public selected: EventTarget | null = null;
 
-    evt(action: string, evt: any) {
+    bubbleEvt(target: any): any {
 
+        if (moveableElements.includes(target.tagName)) {
+            return target;
+        } else {
+            return this.bubbleEvt(target.parentElement);
+        }
+
+    }
+
+    evt(action: string, evt: any) {
         evt.preventDefault();
+        evt.target = this.bubbleEvt(evt.target);
+
 
         if (action === Button.DOWN) {
             this.selected = evt.target;
-            this.startCoord = this.getCoords(evt.target);
+            this.startCoord = this.getCursor(evt);
+            this.startCoord = Geom.Difference(this.startCoord, this.getCoords(evt.target));
             this.isDown = true;
         }
 
@@ -67,7 +87,7 @@ class DragHandler {
             if (this.selected && this.isDown && this.ctmx) {
                 this.setCoords(
                     this.selected,
-                    Geom.Difference(this.getCursor(this.SvgElement), this.getCoords(this.selected))
+                    Geom.Difference(this.getCursor(evt), this.startCoord)
                 );
                 console.log('>>>', this.getCursor(evt));
             }
@@ -91,7 +111,7 @@ class DragHandler {
     }
 
     getCursor(evt: any) {
-
+        console.log('-#', evt)
         if (!this.ctmx) throw Error('no transform mx');
 
         return new Point(

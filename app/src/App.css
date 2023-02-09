@@ -50,3 +50,7 @@
 .svgRoot .draggable:hover {
   fill:orange;
 }
+.svgRoot div {
+  display:inline-block;
+  background:yellow;
+}

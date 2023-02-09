@@ -47,3 +47,6 @@
 .svgRoot .draggable {
   cursor: move;
 }
+.svgRoot .draggable:hover {
+  fill:orange;
+}

@@ -1,9 +1,13 @@
 import CONST from "../const";
-import Draggable from "./Draggable";
+import Draggable, {DragHandlerInst} from "./Draggable";
+import {useEffect} from "react";
 
 
 export default function Svg() {
 
+    useEffect(() => {
+        DragHandlerInst.getTransformMatrix();
+    },[])
     return (
         <svg
             {...Draggable}
@@ -15,7 +19,7 @@ export default function Svg() {
 
             </rect>
 
-            <foreignObject  x="20" y="20" width="160" height="100">
+            <foreignObject x="200" y="20" width="160" height="100">
                 <div>
                     hi
                 </div>

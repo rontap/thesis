@@ -85,19 +85,28 @@ class DragHandler {
 
         if (action === Button.MOVE) {
             if (this.selected && this.isDown && this.ctmx) {
+                const finalCoord = Geom.Difference(this.getCursor(evt), this.startCoord);
                 this.setCoords(
                     this.selected,
-                    Geom.Difference(this.getCursor(evt), this.startCoord)
+                    finalCoord
                 );
-                console.log('>>>', this.getCursor(evt));
+
+                const line: Element = document.querySelector(".data-line-0-1")!;
+
+                this.setCoords(line, finalCoord, 'x1' ,'y1');
+                this.setCoords(line, this.getCoords(
+                    document.querySelector(".f2")!
+                ), 'x2' ,'y2');
+
             }
+
+
         }
 
 
         if (action === Button.UP || action === Button.LEAVE) {
             this.isDown = false;
         }
-
 
     }
 
@@ -111,7 +120,6 @@ class DragHandler {
     }
 
     getCursor(evt: any) {
-        console.log('-#', evt)
         if (!this.ctmx) throw Error('no transform mx');
 
         return new Point(
@@ -121,14 +129,14 @@ class DragHandler {
 
     getCoords(item: any) {
         return new Point(
-            item.getAttributeNS(null, 'x'),
-            item.getAttributeNS(null, 'y')
+            Number(item.getAttributeNS(null, 'x')),
+            Number(item.getAttributeNS(null, 'y'))
         )
     }
 
-    setCoords(item: any, point: Point) {
-        item.setAttributeNS(null, 'x', point.x + EPS);
-        item.setAttributeNS(null, 'y', point.y + EPS);
+    setCoords(item: any, point: Point, xName = 'x', yName = 'y') {
+        item.setAttributeNS(null, xName, point.x + EPS);
+        item.setAttributeNS(null, yName, point.y + EPS);
     }
 }
 

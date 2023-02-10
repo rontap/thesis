@@ -53,12 +53,13 @@
     fill: orange;
 }
 
-
-
 .boxedItem {
     border: 2px solid #222;
     border-radius: 4px;
     backround: #ccc;
     width:50px;
     height:80px;
+}
+foreignObject:hover {
+    outline: 1px solid red;
 }

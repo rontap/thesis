@@ -28,10 +28,6 @@ export default function Svg(props: jsobj) {
                 {...CONST.rectSize}
                 className={"svgRoot"}
             >
-                <rect className="draggable" x="40" y="50" width="80" height="40"
-
-                      fill="#007bff">
-                </rect>
 
                 <rect className="draggable f2" x="160" y="190" width="80" height="40"
 
@@ -47,16 +43,21 @@ export default function Svg(props: jsobj) {
                     nodes.map((node: Node) => node.getSvg())
                 }
 
+                {
+                    nodes.map((node: Node) => node.getInputLines())
+                }
+
+
                 <line
                     className={"data-line-0-1"}
                     x1="0" y1="80" x2="100" y2="20" stroke="black"/>
 
-                <foreignObject x="200" y="20" width="160" height="100">
-                    <div className={"boxedItem"}>
-                        hi<br/>
-                        <button>btn</button>
-                    </div>
-                </foreignObject>
+                {/*<foreignObject x="200" y="20" width="160" height="100">*/}
+                {/*    <div className={"boxedItem"}>*/}
+                {/*        hi<br/>*/}
+                {/*        <button>btn</button>*/}
+                {/*    </div>*/}
+                {/*</foreignObject>*/}
 
 
             </svg>

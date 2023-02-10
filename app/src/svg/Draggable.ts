@@ -76,6 +76,8 @@ class DragHandler {
         evt.preventDefault();
         evt.target = this.bubbleEvt(evt.target);
 
+        const id: number = Number(evt.target.getAttribute('data-id'));
+
         if (evt.target.tagName !== 'svg') {
             evt.stopPropagation();
         }
@@ -83,7 +85,7 @@ class DragHandler {
         if (action === Button.DOWN) {
             this.selected = evt.target;
             this.startCoord = this.getCursor(evt);
-            this.startCoord = Geom.Difference(this.startCoord, this.getCoords(evt.target));
+            this.startCoord = Geom.Difference(this.startCoord, DragHandler.getCoords(evt.target));
             this.isDown = true;
         }
 
@@ -95,12 +97,22 @@ class DragHandler {
                     finalCoord
                 );
 
-                const line: Element = document.querySelector(".data-line-0-1")!;
+                // const line: Element = document.querySelector(".data-line-0-1")!;
+                //
+                // this.setCoords(line, finalCoord, 'x1', 'y1');
+                // this.setCoords(line, DragHandler.getCoords(
+                //     document.querySelector(".f2")!
+                // ), 'x2', 'y2');
 
-                this.setCoords(line, finalCoord, 'x1', 'y1');
-                this.setCoords(line, this.getCoords(
-                    document.querySelector(".f2")!
-                ), 'x2', 'y2');
+                console.log('-#', evt.target.className.baseVal, id);
+
+                document.querySelectorAll('.data-node-from-' + id).forEach(item => {
+                    this.setCoords(item, finalCoord, 'x1', 'y1');
+                })
+
+                document.querySelectorAll('.data-node-to-' + id).forEach(item => {
+                    this.setCoords(item, finalCoord, 'x2', 'y2');
+                })
 
             }
 
@@ -131,7 +143,10 @@ class DragHandler {
             (evt.clientY - this.ctmx.f) / this.ctmx.d)
     }
 
-    getCoords(item: any) {
+    static getCoords(item: any) {
+        if (!item) {
+            return Point.Origin;
+        }
         return new Point(
             Number(item.getAttributeNS(null, 'x')),
             Number(item.getAttributeNS(null, 'y'))
@@ -158,4 +173,4 @@ const EPS = 0.00001;
 window.dh = DragHandlerInst;
 
 export default Draggable;
-export {DragHandlerInst};
+export {DragHandlerInst, DragHandler};

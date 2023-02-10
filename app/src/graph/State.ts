@@ -10,18 +10,22 @@ import {Node} from "../node/Node";
 interface AppState {
     nodes: Node[]
     addNode: (node: Node) => void
+    getNodeById: (id: number) => Node | undefined
+    removeNode: (id: number) => void
 }
 
 const State = create<AppState>()(
     devtools(
         // persist(
-            (set) => ({
-                nodes: [],
-                addNode: (node: Node) => set((state) => ({nodes: state.nodes.concat(node)})),
-            }),
-            {
-                name: 'bear-storage',
-            }
+        (set, get) => ({
+            nodes: [],
+            addNode: (node: Node) => set((state) => ({nodes: state.nodes.concat(node)})),
+            getNodeById: (id: number) => get().nodes.find(item => item.ID === id),
+            removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)}))
+        }),
+        {
+            name: 'bear-storage',
+        }
         // )
     )
 );

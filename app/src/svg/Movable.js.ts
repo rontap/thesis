@@ -35,34 +35,37 @@ svgContainer.onWheel = function (e: any) {
     svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 }
 
-//
-// svgContainer.onMouseDown = function (e: any) {
-//     isPanning = true;
-//     startPoint = {x: e.x, y: e.y};
-// }
-//
-// svgContainer.onMouseMove = function (e: any) {
-//     if (isPanning) {
-//         endPoint = {x: e.x, y: e.y};
-//         var dx = (startPoint.x - endPoint.x) / scale;
-//         var dy = (startPoint.y - endPoint.y) / scale;
-//         var movedViewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
-//         svgImageAct?.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
-//     }
-// }
-//
-// svgContainer.onMouseUp = function (e: any) {
-//     if (isPanning) {
-//         endPoint = {x: e.x, y: e.y};
-//         var dx = (startPoint.x - endPoint.x) / scale;
-//         var dy = (startPoint.y - endPoint.y) / scale;
-//         viewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
-//         svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
-//         isPanning = false;
-//     }
-// }
-//
-// svgContainer.onMouseLeave = function (e: any) {
-//     isPanning = false;
-// }
+
+svgContainer.onMouseDown = function ({nativeEvent:e}: any) {
+    isPanning = true;
+    startPoint = {x: e.x, y: e.y};
+}
+
+svgContainer.onMouseMove = function ({nativeEvent:e}: any) {
+    if (isPanning) {
+
+        svgImageAct = document.querySelector(".svgRoot")!;
+        endPoint = {x: e.x, y: e.y};
+        var dx = (startPoint.x - endPoint.x) / scale;
+        var dy = (startPoint.y - endPoint.y) / scale;
+        var movedViewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
+        svgImageAct?.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
+    }
+}
+
+svgContainer.onMouseUp = function ({nativeEvent:e}: any) {
+    if (isPanning) {
+        svgImageAct = document.querySelector(".svgRoot")!;
+        endPoint = {x: e.x, y: e.y};
+        var dx = (startPoint.x - endPoint.x) / scale;
+        var dy = (startPoint.y - endPoint.y) / scale;
+        viewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
+        svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+        isPanning = false;
+    }
+}
+
+svgContainer.onMouseLeave = function (e: any) {
+    isPanning = false;
+}
 export default svgContainer;

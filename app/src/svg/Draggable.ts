@@ -76,6 +76,9 @@ class DragHandler {
         evt.preventDefault();
         evt.target = this.bubbleEvt(evt.target);
 
+        if (evt.target.tagName !== 'svg') {
+            evt.stopPropagation();
+        }
 
         if (action === Button.DOWN) {
             this.selected = evt.target;

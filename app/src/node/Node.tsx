@@ -6,12 +6,26 @@ type Params = {}
 
 export class Node {
     public nodeType: string;
+    public ID: number;
+
+    static ID = 0;
 
     constructor(nodeType: string) {
         this.nodeType = nodeType;
+        this.ID = Node.ID++;
     }
 
     instantiate() {
+
+    }
+
+    getSvg() {
+        return (<rect
+                className="draggable"
+                x="390"
+                y="210"
+                width="80" height="40" fill="red"/>
+        );
 
     }
 

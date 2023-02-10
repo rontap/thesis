@@ -72,6 +72,7 @@ class DragHandler {
     }
 
     evt(action: string, evt: any) {
+        this.getTransformMatrix();
         evt.preventDefault();
         evt.target = this.bubbleEvt(evt.target);
 
@@ -93,10 +94,10 @@ class DragHandler {
 
                 const line: Element = document.querySelector(".data-line-0-1")!;
 
-                this.setCoords(line, finalCoord, 'x1' ,'y1');
+                this.setCoords(line, finalCoord, 'x1', 'y1');
                 this.setCoords(line, this.getCoords(
                     document.querySelector(".f2")!
-                ), 'x2' ,'y2');
+                ), 'x2', 'y2');
 
             }
 

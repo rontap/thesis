@@ -104,8 +104,6 @@ class DragHandler {
                 //     document.querySelector(".f2")!
                 // ), 'x2', 'y2');
 
-                console.log('-#', evt.target.className.baseVal, id);
-
                 document.querySelectorAll('.data-node-from-' + id).forEach(item => {
                     this.setCoords(item, finalCoord, 'x1', 'y1');
                 })

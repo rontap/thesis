@@ -47,6 +47,9 @@ export default function Svg(props: jsobj) {
                     nodes.map((node: Node) => node.getInputLines())
                 }
 
+                
+                {/*<path d="M100,100 C250,100 250,250 400,250"*/}
+                {/*      style={{fill: 'transparent', stroke: 'red'}}/>*/}
 
                 <line
                     className={"data-line-0-1"}

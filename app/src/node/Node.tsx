@@ -37,6 +37,9 @@ export class Node {
     }
 
     getInputLines() {
+        // return (<path d="M100,100 C250,100 250,250 400,250"
+        //               style={{fill: 'transparent', stroke: 'red'}}/>
+        // )
         return (<line x1="0" y1="95" x2="100" y2="20"
                       className={`data-node-${this.ID} data-node-from-${this.inputs[0]}  data-node-to-${this.output}`}
                       stroke="black"/>);

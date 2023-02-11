@@ -1,5 +1,7 @@
 import State from "../graph/State";
 import Draggable, {DragHandler} from "../svg/Draggable";
+import {NodeBuilder} from "./Builder";
+import {MovableState} from "../svg/Movable.js";
 
 export {};
 
@@ -22,21 +24,34 @@ export class Node {
 
     }
 
+    get nodeProps() {
+        return NodeBuilder.getType(this.nodeType)!;
+    }
+
     getSvg() {
+        console.log(this.nodeProps, this.nodeType, NodeBuilder.rawTypes)
         return (<foreignObject key={this.ID}
-                               className={"void data-node-" + this.ID}
+                               className={`void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
-                               x="200" y="20" width="100" height="100">
+                               x="200" y="20" width="120" height="80">
             <div className={"boxedItem"}>
-                <small>{this.ID}<br/>{this.nodeType}</small>
-                <button onClick={() => this.toggleInput()}>-&gt;</button>
-                <button onClick={() => this.removeSelf()}>clear</button>
+                <small>{this.ID} | {this.nodeType}</small><br/>
+                <button onClick={() => this.preventActOnMove(this.toggleInput)}>-&gt;</button>
+                <button onClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>
             </div>
         </foreignObject>);
 
     }
 
-    addInput(id:number) {
+    preventActOnMove(fn: Function) {
+        console.log(MovableState.isPanning)
+
+        if (MovableState.isPanning) return () => false;
+
+        return fn.call(this);
+    }
+
+    addInput(id: number) {
         this.inputs.push(id);
     }
 
@@ -50,7 +65,7 @@ export class Node {
         }
     }
 
-    removeInput(id:number) {
+    removeInput(id: number) {
         this.inputs = this.inputs.filter(item => item !== id);
     }
 

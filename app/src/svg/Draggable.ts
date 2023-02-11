@@ -109,11 +109,11 @@ class DragHandler {
                 // ), 'x2', 'y2');
 
                 document.querySelectorAll('.data-node-from-' + id).forEach(item => {
-                    this.setCoords(item, finalCoord.add(50, 40), 'x1', 'y1');
+                    this.setCoords(item, finalCoord.add(103, 30), 'x1', 'y1');
                 })
 
                 document.querySelectorAll('.data-node-to-' + id).forEach(item => {
-                    this.setCoords(item, finalCoord.add(0,40), 'x2', 'y2');
+                    this.setCoords(item, finalCoord.add(0,30), 'x2', 'y2');
                 })
 
             }

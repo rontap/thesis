@@ -57,9 +57,27 @@
     border: 2px solid #222;
     border-radius: 4px;
     backround: #ccc;
-    width:50px;
-    height:80px;
+    width:100px;
+    height:60px;
 }
 foreignObject:hover {
     outline: 1px solid red;
+}
+
+.blue div {
+    border-color: #4488FF;
+}
+
+.red div {
+    border-color: #e91e63;
+}
+
+.orange div {
+    border-color: #ff693e;
+}
+
+#activeNodes {
+    position:fixed;
+    left:10px;
+    top:10px;
 }

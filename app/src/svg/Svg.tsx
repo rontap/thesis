@@ -34,10 +34,10 @@ export default function Svg(props: jsobj) {
                       fill="#5577ff">
                 </rect>
 
-                <rect className="draggable" x="350" y="210" width="80" height="40"
+                {/*<rect className="draggable" x="350" y="210" width="80" height="40"*/}
 
-                      fill="#ff77aa">
-                </rect>
+                {/*      fill="#ff77aa">*/}
+                {/*</rect>*/}
 
                 {
                     nodes.map((node: Node) => node.getSvg())

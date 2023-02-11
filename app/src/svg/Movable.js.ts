@@ -11,6 +11,14 @@ let startPoint = {x: 0, y: 0};
 let endPoint = {x: 0, y: 0};
 let scale = 1;
 
+class MovableStateClass {
+    constructor() {
+    }
+
+    isPanning: boolean = false;
+}
+
+export const MovableState = new MovableStateClass();
 // @ts-ignore
 window.wb = viewBox;
 
@@ -36,12 +44,12 @@ svgContainer.onWheel = function (e: any) {
 
 
 svgContainer.onMouseDown = function ({nativeEvent: e}: any) {
-    isPanning = true;
+    MovableState.isPanning = true;
     startPoint = {x: e.x, y: e.y};
 }
 
 svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
-    if (isPanning) {
+    if (MovableState.isPanning) {
 
         svgImageAct = document.querySelector(".svgRoot")!;
         endPoint = {x: e.x, y: e.y};
@@ -53,18 +61,22 @@ svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
 }
 
 svgContainer.onMouseUp = function ({nativeEvent: e}: any) {
-    if (isPanning) {
+    if (MovableState.isPanning) {
         svgImageAct = document.querySelector(".svgRoot")!;
         endPoint = {x: e.x, y: e.y};
         var dx = (startPoint.x - endPoint.x) / scale;
         var dy = (startPoint.y - endPoint.y) / scale;
         viewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
         svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
-        isPanning = false;
+        MovableState.isPanning = false;
     }
 }
 
 svgContainer.onMouseLeave = function (e: any) {
-    isPanning = false;
+    MovableState.isPanning = false;
+}
+
+svgContainer.onMouseEnter = function (e: any) {
+    MovableState.isPanning = false;
 }
 export default svgContainer;

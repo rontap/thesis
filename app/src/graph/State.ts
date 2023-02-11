@@ -24,10 +24,13 @@ const State = create<AppState>()(
             removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)}))
         }),
         {
-            name: 'bear-storage',
+            name: 'store',
         }
         // )
     )
 );
 
 export default State;
+
+// @ts-ignore
+window.State = State;

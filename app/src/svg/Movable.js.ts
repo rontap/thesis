@@ -18,11 +18,10 @@ const svgContainer: jsobj = {};
 
 svgContainer.onWheel = function (e: any) {
     svgImageAct = document.querySelector(".svgRoot")!;
-    console.log('-wheeler', svgImageAct, viewBox,svgImage,e);
     svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
-    var w = viewBox.w;
-    var h = viewBox.h;
-    var mx = e.nativeEvent.offsetX;//mouse x
+    let w = viewBox.w;
+    let h = viewBox.h;
+    let mx = e.nativeEvent.offsetX;//mouse x
     var my = e.nativeEvent.offsetY;
     var dw = w * Math.sign(-e.deltaY) * 0.05;
     var dh = h * Math.sign(-e.deltaY) * 0.05;
@@ -31,17 +30,17 @@ svgContainer.onWheel = function (e: any) {
     viewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w - dw, h: viewBox.h - dh};
     scale = svgSize.w / viewBox.w;
     // zoomValue.innerText = `${Math.round(scale * 100) / 100}`;
-    console.log('-wh', viewBox,scale,dx,dy);
+    console.log('-wh', viewBox, scale, dx, dy);
     svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 }
 
 
-svgContainer.onMouseDown = function ({nativeEvent:e}: any) {
+svgContainer.onMouseDown = function ({nativeEvent: e}: any) {
     isPanning = true;
     startPoint = {x: e.x, y: e.y};
 }
 
-svgContainer.onMouseMove = function ({nativeEvent:e}: any) {
+svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
     if (isPanning) {
 
         svgImageAct = document.querySelector(".svgRoot")!;
@@ -53,7 +52,7 @@ svgContainer.onMouseMove = function ({nativeEvent:e}: any) {
     }
 }
 
-svgContainer.onMouseUp = function ({nativeEvent:e}: any) {
+svgContainer.onMouseUp = function ({nativeEvent: e}: any) {
     if (isPanning) {
         svgImageAct = document.querySelector(".svgRoot")!;
         endPoint = {x: e.x, y: e.y};

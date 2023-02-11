@@ -51,9 +51,9 @@ export default function Svg(props: jsobj) {
                 {/*<path d="M100,100 C250,100 250,250 400,250"*/}
                 {/*      style={{fill: 'transparent', stroke: 'red'}}/>*/}
 
-                <line
-                    className={"data-line-0-1"}
-                    x1="0" y1="80" x2="100" y2="20" stroke="black"/>
+                {/*<line*/}
+                {/*    className={"data-line-0-1"}*/}
+                {/*    x1="0" y1="80" x2="100" y2="20" stroke="black"/>*/}
 
                 {/*<foreignObject x="200" y="20" width="160" height="100">*/}
                 {/*    <div className={"boxedItem"}>*/}

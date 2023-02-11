@@ -23,16 +23,23 @@ export class Node {
     }
 
     getSvg() {
-        return (<foreignObject
-            className={"void data-node-" + this.ID}
-            data-id={this.ID}
-            x="200" y="20" width="100" height="100">
+        return (<foreignObject key={this.ID}
+                               className={"void data-node-" + this.ID}
+                               data-id={this.ID}
+                               x="200" y="20" width="100" height="100">
             <div className={"boxedItem"}>
-                {this.ID}<br/>{this.nodeType}
-                <button>bimbm</button>
+                <small>{this.ID}<br/>{this.nodeType}</small>
+                <button onClick={() => this.addInput()}>-&gt;</button>
                 <button onClick={() => this.removeSelf()}>clear</button>
             </div>
         </foreignObject>);
+
+    }
+
+    addInput() {
+        const id = Number(window.prompt("ID?"));
+        this.inputs.push(id);
+
 
     }
 
@@ -40,13 +47,15 @@ export class Node {
         // return (<path d="M100,100 C250,100 250,250 400,250"
         //               style={{fill: 'transparent', stroke: 'red'}}/>
         // )
-        return (<line x1="0" y1="95" x2="100" y2="20"
-                      className={`data-node-${this.ID} data-node-from-${this.inputs[0]}  data-node-to-${this.output}`}
-                      stroke="black"/>);
+
+        return this.inputs.map(input => (
+            <line x1="0" y1="95" x2="100" y2="20"
+                  className={`data-line-${this.ID} data-node-from-${input}  data-node-to-${this.ID}`}
+                  stroke="black"/>))
     }
 
     removeSelf() {
-        console.log(this);
+        document.querySelector(".data-line-" + this.ID)?.remove();
         State.getState().removeNode(this.ID);
     }
 
@@ -58,7 +67,7 @@ export class Node {
         return document.querySelector(".data-node-" + id);
     }
 
-    private _inputs: Input[] = [Node.ID - 1];
+    private _inputs: Input[] = Node.ID === 1 ? [] : [Node.ID - 1];
     public get inputs(): Input[] {
         return this._inputs;
     }

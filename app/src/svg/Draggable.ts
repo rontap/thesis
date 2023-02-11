@@ -26,6 +26,10 @@ class Point {
         return new Point(0, 0);
     }
 
+    add(x: number = 0, y: number = 0) {
+        return new Point(this.x + x, this.y + y);
+    }
+
 }
 
 class Geom {
@@ -105,11 +109,11 @@ class DragHandler {
                 // ), 'x2', 'y2');
 
                 document.querySelectorAll('.data-node-from-' + id).forEach(item => {
-                    this.setCoords(item, finalCoord, 'x1', 'y1');
+                    this.setCoords(item, finalCoord.add(50, 40), 'x1', 'y1');
                 })
 
                 document.querySelectorAll('.data-node-to-' + id).forEach(item => {
-                    this.setCoords(item, finalCoord, 'x2', 'y2');
+                    this.setCoords(item, finalCoord.add(0,40), 'x2', 'y2');
                 })
 
             }

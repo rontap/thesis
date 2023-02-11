@@ -29,18 +29,29 @@ export class Node {
                                x="200" y="20" width="100" height="100">
             <div className={"boxedItem"}>
                 <small>{this.ID}<br/>{this.nodeType}</small>
-                <button onClick={() => this.addInput()}>-&gt;</button>
+                <button onClick={() => this.toggleInput()}>-&gt;</button>
                 <button onClick={() => this.removeSelf()}>clear</button>
             </div>
         </foreignObject>);
 
     }
 
-    addInput() {
-        const id = Number(window.prompt("ID?"));
+    addInput(id:number) {
         this.inputs.push(id);
+    }
 
+    toggleInput() {
+        const id = Number(window.prompt("ID?"));
+        if (this.inputs.includes(id)) {
+            this.removeInput(id)
+            ;
+        } else {
+            this.addInput(id)
+        }
+    }
 
+    removeInput(id:number) {
+        this.inputs = this.inputs.filter(item => item !== id);
     }
 
     getInputLines() {
@@ -50,13 +61,17 @@ export class Node {
 
         return this.inputs.map(input => (
             <line x1="0" y1="95" x2="100" y2="20"
+                  key={this.ID + input}
                   className={`data-line-${this.ID} data-node-from-${input}  data-node-to-${this.ID}`}
                   stroke="black"/>))
     }
 
     removeSelf() {
-        document.querySelector(".data-line-" + this.ID)?.remove();
+        console.log(document.querySelector(".data-line-" + this.ID), '<<');
         State.getState().removeNode(this.ID);
+        //document.querySelector(".data-line-" + this.ID)?.remove()
+
+
     }
 
     get selfSvg() {

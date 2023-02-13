@@ -33,7 +33,7 @@ export class Node {
         return (<foreignObject key={this.ID}
                                className={`void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
-                               x="200" y="20" width="120" height="80">
+                               x={this._randomCord} y={this._randomCord} width="120" height="80">
             <div className={"boxedItem"}>
                 <small>{this.ID} | {this.nodeType}</small><br/>
                 <button onClick={() => this.preventActOnMove(this.toggleInput)}>-&gt;</button>
@@ -69,16 +69,22 @@ export class Node {
         this.inputs = this.inputs.filter(item => item !== id);
     }
 
+    get _randomCord(): number {
+        return 200;
+        //return Math.floor(Math.random() * 500);
+    }
+
     getInputLines() {
         // return (<path d="M100,100 C250,100 250,250 400,250"
         //               style={{fill: 'transparent', stroke: 'red'}}/>
         // )
 
+
         return this.inputs.map(input => (
             <line x1="0" y1="95" x2="100" y2="20"
                   key={this.ID + input}
-                  className={`data-line-${this.ID} data-node-from-${input}  data-node-to-${this.ID}`}
-                  stroke="black"/>))
+                  className={`data-line-${this.ID} data-node-from-${input}  data-node-to-${this.ID} data-line`}
+                  stroke="white"/>))
     }
 
     removeSelf() {

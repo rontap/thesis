@@ -1,9 +1,11 @@
 const CONST = {
-    rectSize : {
-        y:0,
-        x:0,
-        height:500,
-        width:500
+    rectSize: {
+        y: 0,
+        x: 0,
+        height: 750,
+        width: 750,
+        clientWidth: 750,
+        clientHeight: 750
     }
 }
 

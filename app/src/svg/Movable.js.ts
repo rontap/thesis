@@ -1,8 +1,10 @@
 import {jsobj} from "../app/util";
+import CONST from "../const";
+import State from "../graph/State";
 
 let svgImageAct = document.querySelector(".svgRoot")!;
 //const svgContainer = document.getElementById("svgContainer");
-const svgImage = {clientWidth: 500, clientHeight: 500};
+const svgImage = CONST.rectSize;
 let viewBox = {x: 0, y: 0, w: svgImage.clientWidth, h: svgImage.clientHeight};
 svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 const svgSize = {w: svgImage.clientWidth, h: svgImage.clientHeight};
@@ -12,10 +14,20 @@ let endPoint = {x: 0, y: 0};
 let scale = 1;
 
 class MovableStateClass {
+    get zoomLevel(): number {
+        return State.getState().zoom;
+    }
+
+    set zoomLevel(zoom: number) {
+        State.setState({zoom});
+    }
+
     constructor() {
     }
 
     isPanning: boolean = false;
+
+
 }
 
 export const MovableState = new MovableStateClass();
@@ -37,8 +49,8 @@ svgContainer.onWheel = function (e: any) {
     var dy = dh * my / svgSize.h;
     viewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w - dw, h: viewBox.h - dh};
     scale = svgSize.w / viewBox.w;
-    // zoomValue.innerText = `${Math.round(scale * 100) / 100}`;
-    console.log('-wh', viewBox, scale, dx, dy);
+    MovableState.zoomLevel = scale;
+
     svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 }
 

@@ -6,6 +6,8 @@ import store from "./app/store";
 import Svg from "./svg/Svg";
 import {jsobj} from './app/util';
 import ActiveNodes from "./ui/ActiveNodes";
+import PropertyViewer from "./ui/PropertyViewer.";
+import ZoomInfo from "./ui/ZoomInfo";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -13,7 +15,8 @@ function App() {
     return (
         <div className="App">
 
-            hello
+            Hello
+            <ZoomInfo/>
 
             <nav>
                 {[...items.keys()].map(key => {
@@ -28,6 +31,8 @@ function App() {
 
             <br/>
             <ActiveNodes/>
+
+            <PropertyViewer/>
         </div>
     );
 }

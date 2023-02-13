@@ -4,7 +4,7 @@ import State from "../graph/State";
 
 export default function ActiveNodes(props: jsobj) {
     const nodes = State((state) => state.nodes)
-    return <div  id={"activeNodes"}>
+    return <div id={"activeNodes"}>
         Active Nodes <br/>
         {
             nodes.map((node: Node) => NodeListItem(node))
@@ -15,6 +15,8 @@ export default function ActiveNodes(props: jsobj) {
 function NodeListItem(node: Node) {
     return <div key={node.ID}>
         {node.ID} |
-        {node.nodeType}
+        {node.nodeType} |
+        <button>focus</button>
+        <button>×</button>
     </div>
 }

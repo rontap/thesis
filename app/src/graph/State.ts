@@ -11,7 +11,8 @@ interface AppState {
     nodes: Node[]
     addNode: (node: Node) => void
     getNodeById: (id: number) => Node | undefined
-    removeNode: (id: number) => void
+    removeNode: (id: number) => void,
+    zoom : number
 }
 
 const State = create<AppState>()(
@@ -19,6 +20,7 @@ const State = create<AppState>()(
         // persist(
         (set, get) => ({
             nodes: [],
+            zoom:1,
             addNode: (node: Node) => set((state) => ({nodes: state.nodes.concat(node)})),
             getNodeById: (id: number) => get().nodes.find(item => item.ID === id),
             removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)}))

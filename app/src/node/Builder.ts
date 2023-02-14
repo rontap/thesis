@@ -34,4 +34,15 @@ export class NodeBuilder {
         return this.types.get(name);
     }
 
+    static InstantiateNode(nodeTemplate: jsobj) {
+        switch (nodeTemplate.type) {
+            case "default":
+                return new Node(nodeTemplate, nodeTemplate.type);
+            case undefined:
+                throw Error("Node type property is required for instantiation.");
+            default:
+                throw Error("Unknown Node type: " + nodeTemplate.type);
+        }
+    }
+
 }

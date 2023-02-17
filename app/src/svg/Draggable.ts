@@ -63,7 +63,7 @@ class Geom {
     }
 }
 
-const moveableElements = ["svg", "rect", "foreignObject"];
+const moveableElements = ["svg", "foreignObject"];
 
 export {Geom};
 
@@ -131,14 +131,14 @@ class DragHandler {
 
                 document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
                     const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
-                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(finalCoord.add(103,30), toParameter))
-                    this.setCoords(item, finalCoord.add(103,30), 'x1', 'y1');
+                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(finalCoord.add(103, 30), toParameter))
+                    this.setCoords(item, finalCoord.add(103, 30), 'x1', 'y1');
                 })
 
                 document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
                     const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
-                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(fromParameter, finalCoord.add(0,30)))
-                    this.setCoords(item, finalCoord.add(0,30), 'x2', 'y2');
+                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(fromParameter, finalCoord.add(0, 30)))
+                    this.setCoords(item, finalCoord.add(0, 30), 'x2', 'y2');
                 })
 
             }

@@ -34,11 +34,8 @@ export class Line {
 
     getSvg() {
         try {
-
-
             const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(103, 30);
             const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(0, 30);
-
 
             return <>
                 <path d={Geom.bezierSvgD(fromPoint, toPoint)}

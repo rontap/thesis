@@ -13,6 +13,7 @@ let startPoint = {x: 0, y: 0};
 let endPoint = {x: 0, y: 0};
 let scale = 1;
 
+
 class MovableStateClass {
     get zoomLevel(): number {
         return State.getState().zoom;
@@ -23,35 +24,54 @@ class MovableStateClass {
     }
 
     constructor() {
+
     }
 
     isPanning: boolean = false;
 
 
+    resetZoom() {
+        viewBox = {x: 0, y: 0, w: svgImage.clientWidth, h: svgImage.clientHeight};
+        svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+        MovableState.zoomLevel = 1;
+    }
+
+    zoom(mx: number, my: number, direction: number) {
+        svgImageAct = document.querySelector(".svgRoot")!;
+        svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+        let w = viewBox.w;
+        let h = viewBox.h;
+        let dw = w * direction * 0.05;
+        let dh = h * direction * 0.05;
+        let dx = dw * mx / svgSize.w;
+        let dy = dh * my / svgSize.h;
+        viewBox = {
+            x: viewBox.x + dx,
+            y: viewBox.y + dy,
+            w: viewBox.w - dw,
+            h: viewBox.h - dh
+        };
+        scale = svgSize.w / viewBox.w;
+        MovableState.zoomLevel = scale;
+        svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+    }
+
+    zoomCenter(direction: any) {
+        svgImageAct = document.querySelector(".svgRoot")!;
+        const {width, height} = svgImageAct.getBoundingClientRect();
+        this.zoom(width / 2, height / 2, direction);
+    }
+
+
 }
 
-export const MovableState = new MovableStateClass();
 // @ts-ignore
 window.wb = viewBox;
-
+export const MovableState = new MovableStateClass();
 const svgContainer: jsobj = {};
 
 svgContainer.onWheel = function (e: any) {
-    svgImageAct = document.querySelector(".svgRoot")!;
-    svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
-    let w = viewBox.w;
-    let h = viewBox.h;
-    let mx = e.nativeEvent.offsetX;//mouse x
-    var my = e.nativeEvent.offsetY;
-    var dw = w * Math.sign(-e.deltaY) * 0.05;
-    var dh = h * Math.sign(-e.deltaY) * 0.05;
-    var dx = dw * mx / svgSize.w;
-    var dy = dh * my / svgSize.h;
-    viewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w - dw, h: viewBox.h - dh};
-    scale = svgSize.w / viewBox.w;
-    MovableState.zoomLevel = scale;
-
-    svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+    MovableState.zoom(e.nativeEvent.offsetX, e.nativeEvent.offsetY, Math.sign(-e.deltaY))
 }
 
 

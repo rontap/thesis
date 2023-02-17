@@ -29,14 +29,13 @@ function App() {
     return (
         <div className="App">
 
-            Hello
             <ZoomInfo/>
 
             <nav>
                 <BtnGroup>
                     {[...items.keys()].map(key => {
                         const elem = items.get(key)!;
-                        return <Button key={elem.name} onClick={(_:any) => NodeBuilder.New(elem.name)}>
+                        return <Button key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
                             {"Add new " + elem!.name}
                         </Button>
                     })}
@@ -44,10 +43,10 @@ function App() {
 
                 <Button onClick={addLine}>Add new line</Button>
             </nav>
-            <br/>
+
             <Svg items={items}/>
 
-            <br/>
+
             <ActiveNodes/>
 
             <PropertyViewer/>

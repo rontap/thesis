@@ -38,8 +38,9 @@
 }
 
 .svgRoot {
-    border: 3px double whitesmoke;
+    /*border: 3px double whitesmoke;*/
     border-radius: 10px;
+
 }
 
 .svgRoot .static {
@@ -96,19 +97,57 @@ svg:has(foreignObject:active div) {
     top: 10px;
 }
 
-#propertyRoot {
+#propertyRoot, #activeNodes, nav, .majorElement {
     position: fixed;
-    right: 0;
-    width: 200px;
+
     background: #263136;
     border-radius: 10px;
-    margin: 20px;
-    top: 0;
+    margin: 15px;
     border: 1px solid whitesmoke;
-    bottom: 100px;
+
+}
+
+#zoomCtn {
+    bottom: 0px;
+    left: 0px;
+
+}
+
+nav {
+    top: 0;
+    height: 100px;
+    left: 0;
+    right: 0;
+}
+
+#propertyRoot {
+    top: 120px;
+    height: 400px;
+    right: 0;
+    width: 200px;
+}
+
+#activeNodes {
+    top: 120px;
+    height: 400px;
+    left: 0;
+    width: 200px;
 }
 
 body {
     background: #263238;
     color: #eee;
+}
+
+#svgRootCont {
+    margin-top: 0px;
+
+}
+
+body {
+    overflow: hidden;
+}
+
+.no-border {
+    border: none;
 }

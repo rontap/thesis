@@ -39,7 +39,7 @@ export class Node {
             <div className={"boxedItem"}>
                 <small>{this.ID} | {this.nodeType}</small><br/>
                 <button onClick={() => this.preventActOnMove(this.toggleInput)}>-&gt;</button>
-                <button onClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>
+                <button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>
             </div>
         </foreignObject>);
 
@@ -72,8 +72,8 @@ export class Node {
     }
 
     get _randomCord(): number {
-        return 200;
-        //return Math.floor(Math.random() * 500);
+        return 400;
+        //return Math.floor(Math.random() * 500 + 200);
     }
 
     getInputLines() {

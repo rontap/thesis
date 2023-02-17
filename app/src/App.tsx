@@ -36,7 +36,7 @@ function App() {
                     {[...items.keys()].map(key => {
                         const elem = items.get(key)!;
                         return <Button key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
-                            {"Add new " + elem!.name}
+                            {"Add " + elem!.name}
                         </Button>
                     })}
                 </BtnGroup>

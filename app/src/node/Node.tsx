@@ -35,9 +35,10 @@ export class Node {
         return (<foreignObject key={this.ID}
                                className={`void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
-                               x={this._randomCord} y={this._randomCord} width="120" height="80">
+                               x={this._randomCord} y={this._randomCord} width="104" height="64">
             <div className={"boxedItem"}>
-                <small>{this.ID} | {this.nodeType}</small><br/>
+                <div className={"title"}>{this.nodeType} [{this.ID}]</div>
+                {/*<small>{this.ID} | </small><br/>*/}
                 <button onClick={() => this.preventActOnMove(this.toggleInput)}>-&gt;</button>
                 <button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>
             </div>

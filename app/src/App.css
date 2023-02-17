@@ -56,23 +56,26 @@
 }
 
 .boxedItem {
-    border: 2px solid #222;
-    border-radius: 4px;
-    backround: #ccc;
+    border: 2px solid #ccc;
+    border-radius: 5px;
     width: 100px;
     height: 60px;
 }
 
+foreignObject {
+    outline: 3px solid transparent;
+
+}
+
 foreignObject:hover {
-    outline: 1px solid red;
+    outline: 3px double whitesmoke;
 }
 
-foreignObject:active {
-    cursor: move;
-}
 
-foreignObject div {
-    background: #66666644;
+
+
+foreignObject > div {
+    background: #66666666;
 }
 
 svg:has(foreignObject:active div) {
@@ -91,6 +94,40 @@ svg:has(foreignObject:active div) {
     border-color: #ff693e;
 }
 
+.green div {
+    border-color: #4caf50;
+}
+
+.purple div {
+    border-color: #9c27b0;
+}
+
+
+.boxedItem .title {
+    font-size: 14px;
+    padding: 3px;
+    margin-bottom: 3px;
+}
+
+.orange .boxedItem .title {
+    background: #ff693e;
+}
+
+.blue .boxedItem .title {
+    background: #4488FF;
+}
+
+.red .boxedItem .title {
+    background: #e91e63;
+}
+
+
+.green .boxedItem .title {
+    background:#4caf50;
+}
+.purple .boxedItem .title {
+    background: #9c27b0;
+}
 #activeNodes {
     position: fixed;
     left: 10px;

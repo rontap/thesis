@@ -2,6 +2,7 @@ import State from "../graph/State";
 import Draggable, {DragHandler} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
+import {Line} from "./Line";
 
 export {};
 
@@ -18,6 +19,8 @@ export class Node {
     constructor(nodeType: string) {
         this.nodeType = nodeType;
         this.ID = Node.ID++;
+
+
     }
 
     instantiate() {

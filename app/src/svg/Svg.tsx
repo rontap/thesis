@@ -7,6 +7,7 @@ import State from "../graph/State";
 
 import {Node} from "../node/Node";
 import Movable from "./Movable.js";
+import {Line} from "../node/Line";
 
 export default function Svg(props: jsobj) {
 
@@ -15,6 +16,7 @@ export default function Svg(props: jsobj) {
     }, []);
 
     const nodes = State((state) => state.nodes)
+    const lines = State((state) => state.lines)
 
     console.log('->', nodes);
 
@@ -43,11 +45,15 @@ export default function Svg(props: jsobj) {
                     nodes.map((node: Node) => node.getSvg())
                 }
 
+                {/*{*/}
+                {/*    nodes.map((node: Node) => node.getInputLines())*/}
+                {/*}*/}
+
                 {
-                    nodes.map((node: Node) => node.getInputLines())
+                    lines.map((node: Line) => node.getSvg())
                 }
 
-                
+
                 {/*<path d="M100,100 C250,100 250,250 400,250"*/}
                 {/*      style={{fill: 'transparent', stroke: 'red'}}/>*/}
 

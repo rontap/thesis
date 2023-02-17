@@ -21,7 +21,6 @@ class Point {
         }
     }
 
-
     static get Origin() {
         return new Point(0, 0);
     }
@@ -36,14 +35,12 @@ class Geom {
     static Distance(a: Point, b: Point) {
 
     }
-
     static Difference(a: Point, b: Point): Point {
         return new Point(
             a.x - b.x,
             a.y - b.y
         )
     }
-
     static Inv(a: Point) {
         return new Point(
             -a.x,

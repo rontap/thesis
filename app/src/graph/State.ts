@@ -2,17 +2,19 @@ import {jsobj} from "../app/util";
 import {create} from 'zustand'
 import {devtools, persist} from 'zustand/middleware'
 import {Node} from "../node/Node";
+import {Line} from "../node/Line";
 
 // export default class State {
 //     static nodes: Node[] = [];
 // }
 
 interface AppState {
-    nodes: Node[]
+    nodes: Node[],
+    lines: Line[],
     addNode: (node: Node) => void
     getNodeById: (id: number) => Node | undefined
     removeNode: (id: number) => void,
-    zoom : number
+    zoom: number
 }
 
 const State = create<AppState>()(
@@ -20,10 +22,11 @@ const State = create<AppState>()(
         // persist(
         (set, get) => ({
             nodes: [],
-            zoom:1,
+            zoom: 1,
             addNode: (node: Node) => set((state) => ({nodes: state.nodes.concat(node)})),
             getNodeById: (id: number) => get().nodes.find(item => item.ID === id),
-            removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)}))
+            removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)})),
+            lines: []
         }),
         {
             name: 'store',
@@ -33,6 +36,7 @@ const State = create<AppState>()(
 );
 
 export default State;
-
+const {getState, setState, subscribe} = State
+export {getState, setState, subscribe};
 // @ts-ignore
 window.State = State;

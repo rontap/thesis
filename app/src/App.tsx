@@ -8,10 +8,21 @@ import {jsobj} from './app/util';
 import ActiveNodes from "./ui/ActiveNodes";
 import PropertyViewer from "./ui/PropertyViewer.";
 import ZoomInfo from "./ui/ZoomInfo";
+import State from "./graph/State";
+import {Line} from "./node/Line";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
 function App() {
+    const addLine = () => {
+        const from = Number(window.prompt('from', "1"));
+        const to = Number(window.prompt('to', "1"));
+
+        State.setState(state => {
+            return {lines: state.lines.concat(new Line(from, to))}
+        });
+    }
+
     return (
         <div className="App">
 
@@ -25,6 +36,8 @@ function App() {
                         {"Add new " + elem!.name}
                     </button>
                 })}
+
+                <button onClick={addLine}>Add new line</button>
             </nav>
             <br/>
             <Svg items={items}/>

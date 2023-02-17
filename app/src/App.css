@@ -72,8 +72,6 @@ foreignObject:hover {
 }
 
 
-
-
 foreignObject > div {
     background: #66666666;
 }
@@ -123,11 +121,13 @@ svg:has(foreignObject:active div) {
 
 
 .green .boxedItem .title {
-    background:#4caf50;
+    background: #4caf50;
 }
+
 .purple .boxedItem .title {
     background: #9c27b0;
 }
+
 #activeNodes {
     position: fixed;
     left: 10px;
@@ -168,7 +168,7 @@ nav {
     top: 120px;
     height: 400px;
     left: 0;
-    width: 200px;
+    width: 240px;
 }
 
 body {
@@ -187,4 +187,19 @@ body {
 
 .no-border {
     border: none;
+}
+
+.nodeListItem {
+
+
+    margin:5px 5px;
+}
+
+.nodeListItem .listItemDescr {
+    width:60px;
+    display: inline-block;
+}
+#activeNodes {
+    overflow: auto;
+    max-height: 400px;
 }

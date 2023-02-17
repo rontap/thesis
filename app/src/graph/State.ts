@@ -20,7 +20,7 @@ interface AppState {
 
 const State = create<AppState>()(
     devtools(
-        // persist(
+        persist(
         (set, get) => ({
             nodes: [],
             zoom: 1,
@@ -33,7 +33,7 @@ const State = create<AppState>()(
         {
             name: 'store',
         }
-        // )
+         )
     )
 );
 

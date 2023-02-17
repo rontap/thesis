@@ -8,7 +8,7 @@ import Button from "../components/Button";
 export default function ActiveNodes(props: jsobj) {
     const nodes = State((state) => state.nodes)
     return <div id={"activeNodes"}>
-        Active Nodes <br/>
+        <h3>Active Nodes</h3>
         {
             nodes.map((node: Node) => NodeListItem(node))
         }
@@ -16,9 +16,9 @@ export default function ActiveNodes(props: jsobj) {
 }
 
 function NodeListItem(node: Node) {
-    return <div key={node.ID}>
-        {node.ID} |
-        {node.nodeType} |
+    return <div key={node.ID} className={"nodeListItem"}>
+        <code>{node.ID}</code>{" | "}
+        <span className={"listItemDescr"}>{node.nodeType}</span>
         <BtnGroup>
             <Button>focus</Button>
             <Button onClick={() => getState().removeNode(node.ID)}>×</Button>

@@ -1,4 +1,5 @@
 import State from "../graph/State";
+import Button from "../components/Button";
 
 export default function ZoomInfo() {
     const zoom = State((state) => state.zoom)
@@ -8,7 +9,7 @@ export default function ZoomInfo() {
 
         {zoom != 1 && <>
             {Math.floor(zoom * 100)}%
-            <button>reset zoom</button>
+            <Button>reset zoom</Button>
         </>
         }
     </>

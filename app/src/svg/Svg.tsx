@@ -42,16 +42,16 @@ export default function Svg(props: jsobj) {
                 {/*</rect>*/}
 
                 {
+                    lines.map((node: Line) => node.getSvg())
+                }
+
+                {
                     nodes.map((node: Node) => node.getSvg())
                 }
 
                 {/*{*/}
                 {/*    nodes.map((node: Node) => node.getInputLines())*/}
                 {/*}*/}
-
-                {
-                    lines.map((node: Line) => node.getSvg())
-                }
 
 
                 {/*<path d="M100,100 C250,100 250,250 400,250"*/}

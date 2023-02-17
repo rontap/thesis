@@ -35,21 +35,37 @@ class Geom {
     static Distance(a: Point, b: Point) {
 
     }
+
     static Difference(a: Point, b: Point): Point {
         return new Point(
             a.x - b.x,
             a.y - b.y
         )
     }
+
     static Inv(a: Point) {
         return new Point(
             -a.x,
             -a.y
         )
     }
+
+    static bezierSvgD(fromPoint: Point, toPoint: Point): string {
+        const sx = fromPoint.x;
+        const ex = toPoint.x;
+        const mx = (sx + ex) / 2;
+
+        const sy = fromPoint.y;
+        const ey = toPoint.y;
+        const my = (sy + ey) / 2;
+
+        return `M${sx},${sy} C${mx},${sy} ${mx},${ey} ${ex},${ey}`
+    }
 }
 
 const moveableElements = ["svg", "rect", "foreignObject"];
+
+export {Geom};
 
 class DragHandler {
     private isDown: boolean = false;
@@ -105,11 +121,23 @@ class DragHandler {
                 //     document.querySelector(".f2")!
                 // ), 'x2', 'y2');
 
-                document.querySelectorAll('.data-node-from-' + id).forEach(item => {
-                    this.setCoords(item, finalCoord.add(103, 30), 'x1', 'y1');
+                // document.querySelectorAll('.data-node-from-' + id).forEach(item => {
+                //     this.setCoords(item, finalCoord.add(103, 30), 'x1', 'y1');
+                // })
+                //
+                // document.querySelectorAll('.data-node-to-' + id).forEach(item => {
+                //     this.setCoords(item, finalCoord.add(0, 30), 'x2', 'y2');
+                // })
+
+                document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
+                    const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
+                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(finalCoord.add(103,30), toParameter))
+                    this.setCoords(item, finalCoord.add(103,30), 'x1', 'y1');
                 })
 
-                document.querySelectorAll('.data-node-to-' + id).forEach(item => {
+                document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
+                    const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
+                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(fromParameter, finalCoord.add(0,30)))
                     this.setCoords(item, finalCoord.add(0,30), 'x2', 'y2');
                 })
 
@@ -142,13 +170,13 @@ class DragHandler {
             (evt.clientY - this.ctmx.f) / this.ctmx.d)
     }
 
-    static getCoords(item: any) {
+    static getCoords(item: any, x = 'x', y = 'y') {
         if (!item) {
             return Point.Origin;
         }
         return new Point(
-            Number(item.getAttributeNS(null, 'x')),
-            Number(item.getAttributeNS(null, 'y'))
+            Number(item.getAttributeNS(null, x)),
+            Number(item.getAttributeNS(null, y))
         )
     }
 

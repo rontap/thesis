@@ -32,7 +32,6 @@ export class Node {
     }
 
     getSvg() {
-        console.log(this.nodeProps, this.nodeType, NodeBuilder.rawTypes)
         return (<foreignObject key={this.ID}
                                className={`void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
@@ -91,7 +90,7 @@ export class Node {
     }
 
     removeSelf() {
-        console.log(document.querySelector(".data-line-" + this.ID), '<<');
+        //console.log(document.querySelector(".data-line-" + this.ID), '<<');
         State.getState().removeNode(this.ID);
         //document.querySelector(".data-line-" + this.ID)?.remove()
 

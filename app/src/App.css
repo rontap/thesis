@@ -39,7 +39,7 @@
 
 .svgRoot {
     border: 3px double whitesmoke;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 .svgRoot .static {
@@ -74,6 +74,10 @@ foreignObject div {
     background: #66666644;
 }
 
+svg:has(foreignObject:active div) {
+    cursor: move;
+}
+
 .blue div {
     border-color: #4488FF;
 }
@@ -100,7 +104,7 @@ foreignObject div {
     border-radius: 10px;
     margin: 20px;
     top: 0;
-  border:1px solid whitesmoke;
+    border: 1px solid whitesmoke;
     bottom: 100px;
 }
 

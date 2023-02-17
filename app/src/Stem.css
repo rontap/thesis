@@ -1,0 +1,52 @@
+/**/
+
+button.btn {
+
+}
+
+:root {
+    --btn-bg: #ef5350;
+    --btn-border: #c62828;
+    --btn-active: #ff9999;
+}
+
+button.btn, .btnlike {
+    background: var(--btn-bg);
+    border-radius: 4px;
+    border: none;
+    border-bottom: 4px solid var(--btn-border);
+    padding: 8px 12px;
+    min-width: 40px;
+    cursor: pointer;
+    color: white;
+    margin: 3px;
+    margin-left: 0px;
+
+
+}
+
+button[large] {
+    padding: 10px 14px;
+    min-width: 200px;
+}
+
+button.btn:active, .btnlike:active, .btnlike:focus {
+    border-top: 4px solid var(--btn-active);
+    border-bottom-width: 0px;
+    vertical-align: -4px;
+}
+
+.btnGroup .btn {
+    margin: 0 0px;
+    border-radius: 0px;
+    border-left: 1px solid  var(--btn-border);
+}
+
+.btnGroup .btn:first-child {
+    border-radius: 4px 0 0 4px;
+    border-left: none;
+}
+
+.btnGroup .btn:last-child {
+    border-radius: 0px 4px 4px 0px;
+}

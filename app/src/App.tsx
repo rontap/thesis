@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './Stem.css';
 
 import {NodeBuilder} from "./node/Builder";
 import store from "./app/store";
@@ -10,6 +11,8 @@ import PropertyViewer from "./ui/PropertyViewer.";
 import ZoomInfo from "./ui/ZoomInfo";
 import State from "./graph/State";
 import {Line} from "./node/Line";
+import BtnGroup from "./components/BtnGroup";
+import Button from "./components/Button";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -30,14 +33,16 @@ function App() {
             <ZoomInfo/>
 
             <nav>
-                {[...items.keys()].map(key => {
-                    const elem = items.get(key)!;
-                    return <button key={elem.name} onClick={_ => NodeBuilder.New(elem.name)}>
-                        {"Add new " + elem!.name}
-                    </button>
-                })}
+                <BtnGroup>
+                    {[...items.keys()].map(key => {
+                        const elem = items.get(key)!;
+                        return <Button key={elem.name} onClick={(_:any) => NodeBuilder.New(elem.name)}>
+                            {"Add new " + elem!.name}
+                        </Button>
+                    })}
+                </BtnGroup>
 
-                <button onClick={addLine}>Add new line</button>
+                <Button onClick={addLine}>Add new line</Button>
             </nav>
             <br/>
             <Svg items={items}/>

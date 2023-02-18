@@ -17,7 +17,10 @@ export default function ActiveNodes(props: jsobj) {
 
 function NodeListItem(node: Node) {
     return <div key={node.ID} className={"nodeListItem"}>
-        <code>{node.ID}</code>{" | "}
+        <code style={{width: '15px', display: 'inline-block'}}>
+            {node.ID}
+        </code>
+        {" | "}
         <span className={"listItemDescr"}>{node.nodeType}</span>
         <BtnGroup>
             <Button>focus</Button>

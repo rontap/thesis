@@ -17,7 +17,7 @@ export default function ContextMenu({items}: any) {
      * AND there is a valid tag target
      * AND its actually a context menu
      */
-    if ((evt.timeStamp !== ts || !display) && evt?.target?.tagName && evt.type === "contextmenu") {
+    if ((evt?.timeStamp !== ts || !display) && evt?.target?.tagName && evt.type === "contextmenu") {
         setDisplay(true);
         setPos({
             x: evt.pageX,

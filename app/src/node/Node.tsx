@@ -78,7 +78,7 @@ export class Node {
     get initialCoords(): Point {
         const context = getState().contextMenu
         if (context.type === "contextmenu") {
-            return DragHandlerInst.getCursor(context).subtract(110,75);
+            return DragHandlerInst.getCursor(context).subtract(110-20,75-20);
         }
         return new Point(400, 400);
     }

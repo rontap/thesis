@@ -208,3 +208,7 @@ body {
 rect:active {
     cursor: move;
 }
+
+button, h3 {
+    font-family: Bahnschrift, sans-serif;
+}

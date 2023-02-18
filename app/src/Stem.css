@@ -6,6 +6,7 @@ button.btn {
 
 :root {
     --btn-bg: #ef5350;
+    --btn-hover: #e86765;
     --btn-border: #c62828;
     --btn-active: #ff9999;
 }
@@ -36,9 +37,24 @@ button.btn:active, .btnlike:active, .btnlike:focus {
     vertical-align: -4px;
 }
 
+.btnGroup .btn:hover {
+    background: var(--btn-hover);
+    border-color: var(--btn-active) !important;
+}
+
+.btnGroup.btnVertical .btn {
+    border-bottom: 0;
+    border-right: 4px solid var(--btn-border);
+}
+
+.btnGroup.btnVertical .btn:active, .btnGroup.btnVertical .btn:active, .btnGroup.btnVertical .btn:focus {
+    border: none;
+    border-left: 4px solid var(--btn-active);
+}
+
 .btnGroup {
     display: inline-block;
-    margin:0 10px;
+    margin: 0 10px;
 }
 
 .btnGroup .btn {
@@ -54,4 +70,40 @@ button.btn:active, .btnlike:active, .btnlike:focus {
 
 .btnGroup .btn:last-child {
     border-radius: 0px 4px 4px 0px;
+}
+
+
+.btnGroup.btnVertical .btn {
+    border-radius: 0;
+}
+
+.btnGroup.btnVertical {
+    margin: 0;
+}
+
+/**
+
+ */
+#ctxMenu {
+    position: fixed;
+    border-radius: 4px;
+    min-height: 100px;
+    min-width: 150px;
+    border: 2px solid white;
+    box-shadow: 4px 2px 4px black;
+}
+
+#ctxMenu .btnGroup {
+    width: 100%;
+}
+
+#ctxMenu .btnGroup .btn {
+    display: block;
+    width: 100%;
+}
+
+.ctxTitle {
+    text-align: center;
+    background: #282c34;
+    padding: 5px 2px;
 }

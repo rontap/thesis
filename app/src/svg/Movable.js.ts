@@ -74,15 +74,21 @@ svgContainer.onWheel = function (e: any) {
     MovableState.zoom(e.nativeEvent.offsetX, e.nativeEvent.offsetY, Math.sign(-e.deltaY))
 }
 
+svgContainer.onContextMenu = function (e: any) {
+    e.preventDefault();
+    State.setState({contextMenu: e});
+}
+
 
 svgContainer.onMouseDown = function ({nativeEvent: e}: any) {
     MovableState.isPanning = true;
+
     startPoint = {x: e.x, y: e.y};
 }
 
 svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
     if (MovableState.isPanning) {
-
+        State.setState({contextMenu: e});
         svgImageAct = document.querySelector(".svgRoot")!;
         endPoint = {x: e.x, y: e.y};
         var dx = (startPoint.x - endPoint.x) / scale;
@@ -102,6 +108,11 @@ svgContainer.onMouseUp = function ({nativeEvent: e}: any) {
         svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
         MovableState.isPanning = false;
     }
+
+}
+
+svgContainer.onClick = function (e: any) {
+    State.setState({contextMenu: e});
 }
 
 svgContainer.onMouseLeave = function (e: any) {

@@ -1,5 +1,5 @@
-import State from "../graph/State";
-import Draggable, {DragHandler} from "../svg/Draggable";
+import State, {getState} from "../graph/State";
+import Draggable, {DragHandler, DragHandlerInst, Point} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
 import {Line} from "./Line";
@@ -16,10 +16,13 @@ export class Node {
 
     static ID = 1;
 
+    public coords: Point;
+
     constructor(nodeType: string) {
         this.nodeType = nodeType;
         this.ID = Node.ID++;
 
+        this.coords = this.initialCoords;
 
     }
 
@@ -35,7 +38,7 @@ export class Node {
         return (<foreignObject key={this.ID}
                                className={`void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
-                               x={this._randomCord} y={this._randomCord} width="104" height="64">
+                               x={this.coords.x} y={this.coords.y} width="104" height="64">
             <div className={"boxedItem"}>
                 <div className={"title"}>{this.nodeType} [{this.ID}]</div>
                 {/*<small>{this.ID} | </small><br/>*/}
@@ -72,15 +75,15 @@ export class Node {
         this.inputs = this.inputs.filter(item => item !== id);
     }
 
-    get _randomCord(): number {
-        return 400;
-        //return Math.floor(Math.random() * 500 + 200);
+    get initialCoords(): Point {
+        const context = getState().contextMenu
+        if (context.type === "contextmenu") {
+            return DragHandlerInst.getCursor(context).subtract(110,75);
+        }
+        return new Point(400, 400);
     }
 
     getInputLines() {
-        // return (<path d="M100,100 C250,100 250,250 400,250"
-        //               style={{fill: 'transparent', stroke: 'red'}}/>
-        // )
 
 
         return this.inputs.map(input => (

@@ -1,5 +1,5 @@
-export default function BtnGroup({children}: any) {
-    return <div className={"btnGroup"}>
+export default function BtnGroup({children, vertical}: any) {
+    return <div className={"btnGroup " + (vertical && "btnVertical")}>
         {children}
     </div>
 

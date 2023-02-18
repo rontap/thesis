@@ -15,12 +15,13 @@ interface AppState {
     getNodeById: (id: number) => Node | undefined
     removeNode: (id: number) => void,
     removeLine: (id: number) => void,
-    zoom: number
+    zoom: number,
+    contextMenu: any,
 }
 
 const State = create<AppState>()(
     devtools(
-        persist(
+        //persist(
         (set, get) => ({
             nodes: [],
             zoom: 1,
@@ -28,12 +29,13 @@ const State = create<AppState>()(
             getNodeById: (id: number) => get().nodes.find(item => item.ID === id),
             removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)})),
             removeLine: (id: number) => set((state) => ({lines: state.lines.filter(item => item.ID !== id)})),
-            lines: []
+            lines: [],
+            contextMenu: {},
         }),
         {
             name: 'store',
         }
-         )
+        //)
     )
 );
 

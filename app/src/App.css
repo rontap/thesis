@@ -192,14 +192,19 @@ body {
 .nodeListItem {
 
 
-    margin:5px 5px;
+    margin: 5px 5px;
 }
 
 .nodeListItem .listItemDescr {
-    width:60px;
+    width: 60px;
     display: inline-block;
 }
+
 #activeNodes {
     overflow: auto;
     max-height: 400px;
+}
+
+rect:active {
+    cursor: move;
 }

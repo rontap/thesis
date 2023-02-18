@@ -13,6 +13,8 @@ import State from "./graph/State";
 import {Line} from "./node/Line";
 import BtnGroup from "./components/BtnGroup";
 import Button from "./components/Button";
+import ContextMenu from "./components/ContextMenu";
+import AddNodes from "./components/AddNodes";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -29,19 +31,12 @@ function App() {
     return (
         <div className="App">
 
+            <ContextMenu  items={items}/>
             <ZoomInfo/>
-
             <nav>
 
                 <br/>
-                <BtnGroup>
-                    {[...items.keys()].map(key => {
-                        const elem = items.get(key)!;
-                        return <Button key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
-                            {"Add " + elem!.name}
-                        </Button>
-                    })}
-                </BtnGroup>
+                <AddNodes items={items}/>
 
                 <Button onClick={addLine}>Add new line</Button>
             </nav>

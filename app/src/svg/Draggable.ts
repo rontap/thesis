@@ -28,6 +28,9 @@ class Point {
     add(x: number = 0, y: number = 0) {
         return new Point(this.x + x, this.y + y);
     }
+    subtract(x: number = 0, y: number = 0) {
+        return new Point(this.x - x, this.y - y);
+    }
 
 }
 
@@ -200,4 +203,4 @@ const EPS = 0.00001;
 window.dh = DragHandlerInst;
 
 export default Draggable;
-export {DragHandlerInst, DragHandler};
+export {DragHandlerInst, DragHandler, Point};

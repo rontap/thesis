@@ -212,3 +212,17 @@ rect:active {
 button, h3 {
     font-family: Bahnschrift, sans-serif;
 }
+
+#smallGrid path {
+    transition: stroke-width .5s;
+}
+
+svg:has(rect:active) #smallGrid path {
+    stroke-width: 0px;
+}
+
+.currentBez {
+    stroke: orange;
+    stroke-width: 2;
+    fill: transparent;
+}

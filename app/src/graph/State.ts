@@ -15,8 +15,13 @@ interface AppState {
     getNodeById: (id: number) => Node | undefined
     removeNode: (id: number) => void,
     removeLine: (id: number) => void,
+    getLineBetween: (from: number, to: number) => Line | undefined
     zoom: number,
     contextMenu: any,
+    lineAddAt: {
+        id?: number,
+        evt?: any
+    }
 }
 
 const State = create<AppState>()(
@@ -25,11 +30,18 @@ const State = create<AppState>()(
         (set, get) => ({
             nodes: [],
             zoom: 1,
-            addNode: (node: Node) => set((state) => ({nodes: state.nodes.concat(node)})),
-            getNodeById: (id: number) => get().nodes.find(item => item.ID === id),
-            removeNode: (id: number) => set((state) => ({nodes: state.nodes.filter(item => item.ID !== id)})),
-            removeLine: (id: number) => set((state) => ({lines: state.lines.filter(item => item.ID !== id)})),
+            addNode: (node: Node) => set((state) =>
+                ({nodes: state.nodes.concat(node)})),
+            getNodeById: (id: number) =>
+                get().nodes.find(item => item.ID === id),
+            removeNode: (id: number) => set((state) =>
+                ({nodes: state.nodes.filter(item => item.ID !== id)})),
+            removeLine: (id: number) => set((state) =>
+                ({lines: state.lines.filter(item => item.ID !== id)})),
+            getLineBetween: (from: number, to: number) =>
+                get().lines.find(line => line.from === from && line.to === to),
             lines: [],
+            lineAddAt: {},
             contextMenu: {},
         }),
         {

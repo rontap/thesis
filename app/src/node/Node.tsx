@@ -42,7 +42,7 @@ export class Node {
             <div className={"boxedItem"}>
                 <div className={"title"}>{this.nodeType} [{this.ID}]</div>
                 {/*<small>{this.ID} | </small><br/>*/}
-                {/*<button onClick={() => this.preventActOnMove(this.toggleInput)}>-&gt;</button>*/}
+                <button  onClick={() => MovableState.beginLineAdd(this.ID)}>~</button>
                 {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
             </div>
         </foreignObject>);

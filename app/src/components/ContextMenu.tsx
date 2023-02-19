@@ -35,12 +35,23 @@ export default function ContextMenu({items}: any) {
         State.setState({contextMenu: null});
         setDisplay(false);
     }
+    //
+    // console.log(evt?.target?.tagName);
+    //
 
-
-    if (!display) return null;
+    if (!display) return <div id={"ctxMenu"} style={{top: "-10px"}} className={"hiddenCtx"}></div>;
 
     return <div id={"ctxMenu"} style={{left: pos?.x || 0, top: pos?.y || 0}} onClick={close}>
-        <div className={"ctxTitle"}>Add Items</div>
-        <AddNodes items={items} vertical/>
+        {evt?.target?.tagName === "DIV" ? NodeItems() : AddItems(items)}
     </div>
+}
+
+const AddItems = (items: Map<string, jsobj>) => {
+    return <>
+        <div className={"ctxTitle"}>Add Items</div>
+        <AddNodes items={items} vertical/></>
+}
+
+const NodeItems = () => {
+    return <div className={"ctxTitle"}>Wowie node thing</div>
 }

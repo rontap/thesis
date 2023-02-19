@@ -8,6 +8,7 @@ button.btn {
     --btn-bg: #ef5350;
     --btn-hover: #e86765;
     --btn-border: #c62828;
+    --btn-bg-disabled: #cb4240;
     --btn-active: #ff9999;
 }
 
@@ -23,15 +24,15 @@ button.btn, .btnlike {
     margin: 3px;
     margin-left: 0px;
 
-
 }
+
 
 button[large] {
     padding: 10px 14px;
     min-width: 200px;
 }
 
-button.btn:active, .btnlike:active, .btnlike:focus {
+button.btn:not([disabled]):active, .btnlike:active, .btnlike:focus {
     border-top: 4px solid var(--btn-active);
     border-bottom-width: 0px;
     vertical-align: -4px;
@@ -45,6 +46,14 @@ button.btn:active, .btnlike:active, .btnlike:focus {
 .btnGroup.btnVertical .btn {
     border-bottom: 0;
     border-right: 4px solid var(--btn-border);
+}
+
+
+button.btn[disabled],  .btn[disabled]:hover {
+    cursor: not-allowed;
+    background: var(--btn-bg-disabled);
+    border-bottom: 4px solid var(--btn-border) !important;
+
 }
 
 .btnGroup.btnVertical .btn:active, .btnGroup.btnVertical .btn:active, .btnGroup.btnVertical .btn:focus {
@@ -84,26 +93,3 @@ button.btn:active, .btnlike:active, .btnlike:focus {
 /**
 
  */
-#ctxMenu {
-    position: fixed;
-    border-radius: 4px;
-    min-height: 100px;
-    min-width: 150px;
-    border: 2px solid white;
-    box-shadow: 4px 2px 4px black;
-}
-
-#ctxMenu .btnGroup {
-    width: 100%;
-}
-
-#ctxMenu .btnGroup .btn {
-    display: block;
-    width: 100%;
-}
-
-.ctxTitle {
-    text-align: center;
-    background: #282c34;
-    padding: 5px 2px;
-}

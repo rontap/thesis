@@ -13,7 +13,32 @@ export class Line {
         this.from = from;
         this.ID = Line.ID++;
         this.to = to;
+    }
 
+    static New(from: number, to: number) {
+        if (from === to) {
+            console.error("Cannot create line between self");
+            return;
+        }
+
+        const nodeFrom = getState().getNodeById(from);
+        const nodeTo = getState().getNodeById(to);
+
+        if (!nodeFrom || !nodeTo) {
+            console.error("Cannot create line between invalid nodes", nodeFrom, nodeTo);
+            return;
+        }
+
+        const preexistingLine = getState().getLineBetween(from, to);
+        if (preexistingLine) {
+            getState().removeLine(preexistingLine.ID);
+            return;
+        }
+
+
+        State.setState(state => {
+            return {lines: state.lines.concat(new Line(from, to))}
+        });
     }
 
     getNode(id: number): Node {

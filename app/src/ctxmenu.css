@@ -1,0 +1,58 @@
+
+#ctxMenu {
+    position: fixed;
+    border-radius: 4px;
+
+    width: 150px;
+    border: 2px solid white;
+    box-shadow: 4px 2px 4px black;
+
+    max-height: 450px;
+    transition: max-height .2s, width .3s;
+    overflow: hidden;
+
+}
+
+#ctxMenu .btnGroup {
+    width: 100%;
+}
+
+#ctxMenu .btnGroup .btn {
+    display: block;
+    /*width: 100%;*/
+}
+
+#ctxMenu.hiddenCtx {
+    max-height: 80px;
+    width: 120px;
+}
+
+.ctxTitle {
+    text-align: center;
+    background: #282c34;
+    padding: 5px 2px;
+}
+
+#ctxMenu button, .ctxMenu {
+    margin: 10px;
+    border-radius: 4px;
+    border: none;
+    width: calc(100% - 20px);
+    background: #ccc;
+    color: #222;
+}
+
+#ctxMenu button:hover {
+    background: #aaa;
+    color: #111;
+}
+
+#ctxMenu button:active {
+    background: #fff;
+    color: #111;
+}
+
+#ctxMenu {
+    background: #444;
+}
+

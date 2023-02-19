@@ -8,6 +8,10 @@ const CONST = {
         width: window.innerWidth - _pad,
         clientWidth: window.innerWidth - _pad,
         clientHeight: window.innerHeight - _padh
+    },
+    zoom :{
+        min:  0.4,
+        max: 5.5
     }
 }
 

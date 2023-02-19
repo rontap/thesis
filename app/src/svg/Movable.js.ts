@@ -1,6 +1,7 @@
 import {jsobj} from "../app/util";
 import CONST from "../const";
 import State from "../graph/State";
+import {Line} from "../node/Line";
 
 let svgImageAct = document.querySelector(".svgRoot")!;
 //const svgContainer = document.getElementById("svgContainer");
@@ -23,6 +24,9 @@ class MovableStateClass {
         State.setState({zoom});
     }
 
+    public lineAdd: number = -1;
+
+
     constructor() {
 
     }
@@ -37,6 +41,11 @@ class MovableStateClass {
     }
 
     zoom(mx: number, my: number, direction: number) {
+
+        if ((MovableState.zoomLevel < CONST.zoom.min && direction === -1)
+            || (MovableState.zoomLevel > CONST.zoom.max && direction === 1)
+        ) return false;
+
         svgImageAct = document.querySelector(".svgRoot")!;
         svgImageAct?.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
         let w = viewBox.w;
@@ -60,6 +69,24 @@ class MovableStateClass {
         svgImageAct = document.querySelector(".svgRoot")!;
         const {width, height} = svgImageAct.getBoundingClientRect();
         this.zoom(width / 2, height / 2, direction);
+    }
+
+    beginLineAdd(id: number) {
+        if (this.lineAdd === -1) {
+            this.lineAdd = id;
+            return;
+        }
+
+        Line.New(this.lineAdd, id)
+
+
+        this.endLineAdd();
+
+    }
+
+    endLineAdd() {
+        State.setState({lineAddAt: {}});
+        this.lineAdd = -1;
     }
 
 
@@ -87,6 +114,7 @@ svgContainer.onMouseDown = function ({nativeEvent: e}: any) {
 }
 
 svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
+
     if (MovableState.isPanning) {
         State.setState({contextMenu: e});
         svgImageAct = document.querySelector(".svgRoot")!;
@@ -95,6 +123,10 @@ svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
         var dy = (startPoint.y - endPoint.y) / scale;
         var movedViewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
         svgImageAct?.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
+    }
+
+    if (MovableState.lineAdd > -1) {
+        State.setState({lineAddAt: {id: MovableState.lineAdd, evt: e}})
     }
 }
 

@@ -1,3 +1,6 @@
+import {useState} from "react";
+import {getState} from "../graph/State";
+
 enum Button {
     DOWN = "DOWN",
     UP = "UP",
@@ -28,6 +31,7 @@ class Point {
     add(x: number = 0, y: number = 0) {
         return new Point(this.x + x, this.y + y);
     }
+
     subtract(x: number = 0, y: number = 0) {
         return new Point(this.x - x, this.y - y);
     }
@@ -66,7 +70,7 @@ class Geom {
     }
 }
 
-const moveableElements = ["svg", "foreignObject"];
+const movableElements = ["svg", "foreignObject"];
 
 export {Geom};
 
@@ -81,26 +85,31 @@ class DragHandler {
     public currentCoord: Point = Point.Origin;
     public selected: EventTarget | null = null;
 
-    bubbleEvt(target: any): any {
-
-        if (moveableElements.includes(target.tagName)) {
+    bubbleEvt(target: any, movableElements: string[]): any {
+        if (movableElements.includes(target.tagName)) {
             return target;
         } else {
-            return this.bubbleEvt(target.parentElement);
+            return this.bubbleEvt(target.parentElement, movableElements);
         }
 
     }
 
     evt(action: string, evt: any) {
         this.getTransformMatrix();
-        evt.preventDefault();
-        evt.target = this.bubbleEvt(evt.target);
+        const canBubble: boolean = !getState().lineAddAt.id;
 
-        const id: number = Number(evt.target.getAttribute('data-id'));
+        evt.preventDefault();
+        if (canBubble) {
+            evt.target = this.bubbleEvt(evt.target, movableElements);
+        } else {
+            evt.target = this.bubbleEvt(evt.target, ["svg", "BUTTON"]);
+        }
 
         if (evt.target.tagName !== 'svg') {
             evt.stopPropagation();
         }
+
+        const id: number = Number(evt.target.getAttribute('data-id'));
 
         if (action === Button.DOWN) {
             this.selected = evt.target;

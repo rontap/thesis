@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import './Stem.css';
+import './ctxmenu.css';
 
 import {NodeBuilder} from "./node/Builder";
 import store from "./app/store";
@@ -23,15 +24,13 @@ function App() {
         const from = Number(window.prompt('from', "1"));
         const to = Number(window.prompt('to', "1"));
 
-        State.setState(state => {
-            return {lines: state.lines.concat(new Line(from, to))}
-        });
+        Line.New(from, to);
     }
 
     return (
         <div className="App">
 
-            <ContextMenu  items={items}/>
+            <ContextMenu items={items}/>
             <ZoomInfo/>
             <nav>
 

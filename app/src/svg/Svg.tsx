@@ -1,9 +1,9 @@
 import CONST from "../const";
-import Draggable, {DragHandlerInst} from "./Draggable";
+import Draggable, {DragHandler, DragHandlerInst, Geom, Point} from "./Draggable";
 import {useEffect} from "react";
 import {jsobj} from "../app/util";
 import {NTypeMap} from "../app/DynamicReader";
-import State from "../graph/State";
+import State, {getState} from "../graph/State";
 
 import {Node} from "../node/Node";
 import Movable from "./Movable.js";
@@ -66,6 +66,9 @@ export default function Svg(props: jsobj) {
                 {/*    nodes.map((node: Node) => node.getInputLines())*/}
                 {/*}*/}
 
+                {
+                    getCurrentLine()
+                }
 
                 {/*<path d="M100,100 C250,100 250,250 400,250"*/}
                 {/*      style={{fill: 'transparent', stroke: 'red'}}/>*/}
@@ -85,4 +88,24 @@ export default function Svg(props: jsobj) {
             </svg>
         </div>
     );
+}
+const getCurrentLine = () => {
+    const lineAddAt = State((state) => state.lineAddAt)
+    const node = State((state) => state.getNodeById(lineAddAt?.id || -1))
+
+    if (!node?.coords) {
+        return <></>
+    }
+
+    if (!lineAddAt.id) {
+        return <></>
+    }
+
+    const fromPoint = DragHandler.getCoords(node.selfSvg).add(103, 30);
+    const toPoint = DragHandlerInst.getCursor(lineAddAt.evt);
+
+    return <>
+        <path d={Geom.bezierSvgD(fromPoint, toPoint)}
+              className={"currentBez"}/>
+    </>
 }

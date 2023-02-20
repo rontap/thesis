@@ -98,6 +98,17 @@ button.btn[disabled], .btn[disabled]:hover {
     margin: 0;
 }
 
+button.btn.btnSmall {
+    padding: 5px 10px;
+    border-bottom-width: 2px;
+    min-width: 30px;
+}
+
+button.btn.btnSmall:not([disabled]):active, .btnlike:active, .btnlike:focus {
+    border-top-width: 2px;
+    vertical-align: -2px;
+}
+
 /**
 
  */

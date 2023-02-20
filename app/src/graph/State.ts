@@ -24,8 +24,15 @@ interface AppState {
         evt?: any
     }
     activeNode: Node | undefined,
-    setActiveNode: (id?: number | undefined) => void
+    setActiveNode: (id?: NodeID | undefined) => void,
+
+    getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => Line[]
 }
+
+export enum End { FROM, TO}
+
+type NodeID = number;
+type LineID = number;
 
 const State = create<AppState>()(
     devtools(
@@ -35,9 +42,9 @@ const State = create<AppState>()(
             zoom: 1,
             addNode: (node: Node) => set((state) =>
                 ({nodes: state.nodes.concat(node)})),
-            getNodeById: (id: number) =>
+            getNodeById: (id: NodeID) =>
                 get().nodes.find(item => item.ID === Number(id)),
-            removeNode: (id: number) => set((state) =>
+            removeNode: (id: NodeID) => set((state) =>
                 ({nodes: state.nodes.filter(item => item.ID !== Number(id))})),
             removeLine: (id: number) => set((state) =>
                 ({lines: state.lines.filter(item => item.ID !== Number(id))})),
@@ -46,6 +53,11 @@ const State = create<AppState>()(
             setActiveNode: (id) => set((state) =>
                 ({activeNode: id ? get().nodes.find(item => item.ID === Number(id)) : undefined})
             ),
+            getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => {
+                if (!id) return [];
+                const whichJunction = end === End.FROM ? "from" : "to";
+                return get().lines.filter(line => line[whichJunction] === id)
+            },
             lines: [],
             lineAddAt: {},
             contextMenu: {},

@@ -1,5 +1,5 @@
-export default function Button({children, className, ...props}: any) {
-    return <button className={"btn " + className}{...props}>
+export default function Button({children, small, className = "", ...props}: any) {
+    return <button className={(small ? "btnSmall" : "") + " btn " + className}{...props}>
         {children}
     </button>
 }

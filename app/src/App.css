@@ -276,3 +276,17 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     left: calc(50% - (81px / 2));
     bottom: -3px;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". .";
+}
+
+.gtc-2 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}

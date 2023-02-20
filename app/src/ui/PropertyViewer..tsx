@@ -1,8 +1,13 @@
-import State, {getState} from "../graph/State";
+import State, {End, getState} from "../graph/State";
 import Button from "../components/Button";
+import {Line} from "../node/Line";
+import {Node} from "../node/Node";
 
 export default function PropertyViewer() {
     const node = State((state) => state.activeNode)
+
+    const linesFrom: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.FROM);
+    const linesTo: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.TO);
 
     if (!node) return <></>;
 
@@ -16,6 +21,33 @@ export default function PropertyViewer() {
 
         <br/>
 
-        bimbam
+        <hr/>
+        <div className={"grid gtc-2"}>
+
+            <div className={"gridItem"}>
+
+                FROM
+                <br/>
+                {
+                    linesTo.map((line, i) => SingleNodeItem(getState().getNodeById(line.from), i))
+                }
+            </div>
+            <div className={"gridItem"}>
+                TO
+                <br/>
+                {
+                    linesFrom.map((line, i) => SingleNodeItem(getState().getNodeById(line.to), i))
+                }
+                <br/>
+            </div>
+        </div>
     </div>
+}
+
+const SingleNodeItem = (node: Node | undefined, i: number) => {
+    return <span key={i}><Button small>
+            {node?.nodeType} #{node?.ID}
+    </Button>
+    <br/>
+    </span>
 }

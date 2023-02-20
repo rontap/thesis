@@ -54,6 +54,11 @@ export default function Svg(props: jsobj) {
                 {/*      fill="#ff77aa">*/}
                 {/*</rect>*/}
 
+
+                {
+                    getCurrentLine()
+                }
+
                 {
                     lines.map((node: Line) => node.getSvg())
                 }
@@ -66,9 +71,6 @@ export default function Svg(props: jsobj) {
                 {/*    nodes.map((node: Node) => node.getInputLines())*/}
                 {/*}*/}
 
-                {
-                    getCurrentLine()
-                }
 
                 {/*<path d="M100,100 C250,100 250,250 400,250"*/}
                 {/*      style={{fill: 'transparent', stroke: 'red'}}/>*/}
@@ -106,6 +108,6 @@ const getCurrentLine = () => {
 
     return <>
         <path d={Geom.bezierSvgD(fromPoint, toPoint)}
-              className={"currentBez"}/>
+              className={"currentBez currentNodeActive"}/>
     </>
 }

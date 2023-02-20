@@ -3,6 +3,7 @@ import {create} from 'zustand'
 import {devtools, persist} from 'zustand/middleware'
 import {Node} from "../node/Node";
 import {Line} from "../node/Line";
+import {unwatchFile} from "fs";
 
 // export default class State {
 //     static nodes: Node[] = [];
@@ -22,6 +23,8 @@ interface AppState {
         id?: number,
         evt?: any
     }
+    activeNode: Node | undefined,
+    setActiveNode: (id?: number | undefined) => void
 }
 
 const State = create<AppState>()(
@@ -33,16 +36,20 @@ const State = create<AppState>()(
             addNode: (node: Node) => set((state) =>
                 ({nodes: state.nodes.concat(node)})),
             getNodeById: (id: number) =>
-                get().nodes.find(item => item.ID === id),
+                get().nodes.find(item => item.ID === Number(id)),
             removeNode: (id: number) => set((state) =>
-                ({nodes: state.nodes.filter(item => item.ID !== id)})),
+                ({nodes: state.nodes.filter(item => item.ID !== Number(id))})),
             removeLine: (id: number) => set((state) =>
-                ({lines: state.lines.filter(item => item.ID !== id)})),
+                ({lines: state.lines.filter(item => item.ID !== Number(id))})),
             getLineBetween: (from: number, to: number) =>
                 get().lines.find(line => line.from === from && line.to === to),
+            setActiveNode: (id) => set((state) =>
+                ({activeNode: id ? get().nodes.find(item => item.ID === Number(id)) : undefined})
+            ),
             lines: [],
             lineAddAt: {},
             contextMenu: {},
+            activeNode: undefined
         }),
         {
             name: 'store',

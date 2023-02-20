@@ -7,7 +7,7 @@
     border: 2px solid white;
     box-shadow: 4px 2px 4px black;
 
-    max-height: 450px;
+    max-height: 350px;
     transition: max-height .2s, width .3s;
     overflow: hidden;
 
@@ -23,8 +23,8 @@
 }
 
 #ctxMenu.hiddenCtx {
-    max-height: 80px;
-    width: 120px;
+    max-height: 100px;
+    width: 130px;
 }
 
 .ctxTitle {

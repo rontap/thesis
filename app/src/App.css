@@ -221,8 +221,53 @@ svg:has(rect:active) #smallGrid path {
     stroke-width: 0px;
 }
 
+svg:has(rect:active) .nodeConnection {
+    opacity: 0;
+}
+
+
+svg:not(:has(.currentNodeActive)) .nodeConnectionStart {
+    opacity: 0;
+}
+
+svg:has(.currentNodeActive) .nodeConnectionEnd {
+    opacity: 0;
+}
+
 .currentBez {
     stroke: orange;
     stroke-width: 2;
     fill: transparent;
+}
+
+.nodeConnection {
+    border: 0px solid #999;
+    width: 10px;
+    height: 16px;
+    padding: 0;
+    border-radius: 0 4px 4px 0;
+    position: absolute;
+    top: 23px;
+    z-index: 3;
+    background: #ccc;
+    transition: opacity .1s;
+    cursor: pointer;
+}
+
+.nodeConnectionStart {
+    left: 0px;
+    border-radius: 0 4px 4px 0;
+}
+
+.nodeConnectionEnd {
+    right: 0px;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.nodeConnection:hover {
+    background: #4caf50;
+}
+
+.closer {
+    float:right;
 }

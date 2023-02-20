@@ -36,13 +36,18 @@ export class Node {
 
     getSvg() {
         return (<foreignObject key={this.ID}
+                               onClick={() => getState().setActiveNode(this.ID)}
                                className={`void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
                                x={this.coords.x} y={this.coords.y} width="104" height="64">
             <div className={"boxedItem"}>
                 <div className={"title"}>{this.nodeType} [{this.ID}]</div>
                 {/*<small>{this.ID} | </small><br/>*/}
-                <button  onClick={() => MovableState.beginLineAdd(this.ID)}>~</button>
+                <button className={"nodeConnection nodeConnectionStart"}
+                        onClick={() => MovableState.finishLineAdd(this.ID)}></button>
+
+                <button className={"nodeConnection nodeConnectionEnd"}
+                        onClick={() => MovableState.beginLineAdd(this.ID)}></button>
                 {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
             </div>
         </foreignObject>);
@@ -76,9 +81,9 @@ export class Node {
     }
 
     get initialCoords(): Point {
-        const context = getState().contextMenu
-        if (context.type === "contextmenu") {
-            return DragHandlerInst.getCursor(context).subtract(110-20,75-20);
+        const context = getState().contextMenu;
+        if (context?.type === "contextmenu") {
+            return DragHandlerInst.getCursor(context).subtract(110 - 20, 75 - 20);
         }
         return new Point(400, 400);
     }

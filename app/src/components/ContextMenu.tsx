@@ -1,8 +1,10 @@
-import {useState} from "react";
-import State from "../graph/State";
+import React, {useState} from "react";
+import State, {getState} from "../graph/State";
 import {jsobj} from "../app/util";
-import {Point} from "../svg/Draggable";
+import {DragHandler, Point} from "../svg/Draggable";
 import AddNodes from "./AddNodes";
+import BtnGroup from "./BtnGroup";
+import Button from "./Button";
 
 export default function ContextMenu({items}: any) {
 
@@ -42,7 +44,7 @@ export default function ContextMenu({items}: any) {
     if (!display) return <div id={"ctxMenu"} style={{top: "-10px"}} className={"hiddenCtx"}></div>;
 
     return <div id={"ctxMenu"} style={{left: pos?.x || 0, top: pos?.y || 0}} onClick={close}>
-        {evt?.target?.tagName === "DIV" ? NodeItems() : AddItems(items)}
+        {evt?.target?.tagName === "DIV" ? NodeItems(evt) : AddItems(items)}
     </div>
 }
 
@@ -52,6 +54,16 @@ const AddItems = (items: Map<string, jsobj>) => {
         <AddNodes items={items} vertical/></>
 }
 
-const NodeItems = () => {
-    return <div className={"ctxTitle"}>Wowie node thing</div>
+const NodeItems = (evt: jsobj) => {
+    const container = DragHandler.bubbleEvt(evt.target, ["foreignObject"])
+    const id: number = container.getAttribute('data-id') || -1;
+    console.log(id);
+    return <>
+        <div className={"ctxTitle"}>Node {id}</div>
+        <BtnGroup vertical={true}>
+            <Button onClick={() => {
+                getState().removeNode(Number(id))
+            }}>Remove Node</Button>
+        </BtnGroup>
+    </>
 }

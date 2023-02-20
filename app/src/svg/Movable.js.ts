@@ -76,12 +76,11 @@ class MovableStateClass {
             this.lineAdd = id;
             return;
         }
+    }
 
+    finishLineAdd(id: number) {
         Line.New(this.lineAdd, id)
-
-
         this.endLineAdd();
-
     }
 
     endLineAdd() {
@@ -103,7 +102,15 @@ svgContainer.onWheel = function (e: any) {
 
 svgContainer.onContextMenu = function (e: any) {
     e.preventDefault();
+
+    if (MovableState.lineAdd > -1) {
+        MovableState.endLineAdd();
+        return;
+    }
+
+
     State.setState({contextMenu: e});
+
 }
 
 
@@ -145,6 +152,7 @@ svgContainer.onMouseUp = function ({nativeEvent: e}: any) {
 
 svgContainer.onClick = function (e: any) {
     State.setState({contextMenu: e});
+
 }
 
 svgContainer.onMouseLeave = function (e: any) {

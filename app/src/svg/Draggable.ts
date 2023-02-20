@@ -85,11 +85,11 @@ class DragHandler {
     public currentCoord: Point = Point.Origin;
     public selected: EventTarget | null = null;
 
-    bubbleEvt(target: any, movableElements: string[]): any {
+    static bubbleEvt(target: any, movableElements: string[]): any {
         if (movableElements.includes(target.tagName)) {
             return target;
         } else {
-            return this.bubbleEvt(target.parentElement, movableElements);
+            return DragHandler.bubbleEvt(target.parentElement, movableElements);
         }
 
     }
@@ -100,9 +100,9 @@ class DragHandler {
 
         evt.preventDefault();
         if (canBubble) {
-            evt.target = this.bubbleEvt(evt.target, movableElements);
+            evt.target = DragHandler.bubbleEvt(evt.target, movableElements);
         } else {
-            evt.target = this.bubbleEvt(evt.target, ["svg", "BUTTON"]);
+            evt.target = DragHandler.bubbleEvt(evt.target, ["svg", "BUTTON"]);
         }
 
         if (evt.target.tagName !== 'svg') {

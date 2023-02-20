@@ -38,6 +38,26 @@ export default function Svg(props: jsobj) {
                     </pattern>
                 </defs>
 
+
+                <defs>
+                    <marker
+                        id="dot"
+                        viewBox="0 0 10 10"
+                        refX="5"
+                        refY="5"
+                        markerWidth="5"
+                        markerHeight="5">
+                        <circle cx="5" cy="20" r="20" fill="red"/>
+                        {/*<animateMotion*/}
+
+                        {/*    dur="3s"*/}
+
+                        {/*    repeatCount="indefinite"*/}
+                        {/*    path={Geom.bezierSvgD(fromPoint, toPoint)}/>*/}
+
+                    </marker>
+                </defs>
+
                 <rect
                     x="-100%"
                     y="-100%"
@@ -86,6 +106,37 @@ export default function Svg(props: jsobj) {
                 {/*    </div>*/}
                 {/*</foreignObject>*/}
 
+
+                {/*<defs>*/}
+
+                {/*    <marker*/}
+                {/*        id="dot"*/}
+                {/*        viewBox="0 0 10 10"*/}
+                {/*        refX="5"*/}
+                {/*        refY="5"*/}
+                {/*        markerWidth="5"*/}
+                {/*        markerHeight="5">*/}
+                {/*        <circle cx="5" cy="5" r="5" fill="red"/>*/}
+                {/*    </marker>*/}
+                {/*</defs>*/}
+
+                {/*<polyline*/}
+                {/*    points="15,80 29,50 43,60 57,30 71,40 85,15"*/}
+                {/*    fill="none"*/}
+                {/*    stroke="grey"*/}
+                {/*    markerStart="url(#dot)"*/}
+                {/*    markerMid="url(#dot)"*/}
+                {/*    markerEnd="url(#dot)"/>*/}
+
+                {/*<path*/}
+                {/*    d="M30.367029359882025,222.74918426476106 C132.1095737779142,222.74918426476106 132.1095737779142,104.44504125761989 233.85211819594636,104.44504125761989"*/}
+                {/*    className="data-curve-from-2 data-curve-to-1" x1="30.367029359882025" y1="222.74918426476106"*/}
+                {/*    x2="233.85212819594636" y2="104.4450512576199"*/}
+                {/*    markerStart="url(#dot)"*/}
+                {/*    markerMid="url(#dot)"*/}
+                {/*    markerEnd="url(#dot)"*/}
+                {/*    style={{fill: "transparent", stroke: "whitesmoke", width: "3px"}}*/}
+                {/*    path="M30.367029359882025,222.74918426476106 C132.1095737779142,222.74918426476106 132.1095737779142,104.44504125761989 233.85211819594636,104.44504125761989"></path>*/}
 
             </svg>
         </div>

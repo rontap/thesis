@@ -16,6 +16,7 @@ import BtnGroup from "./components/BtnGroup";
 import Button from "./components/Button";
 import ContextMenu from "./components/ContextMenu";
 import AddNodes from "./components/AddNodes";
+import Recenter from "./ui/Recenter";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -32,6 +33,7 @@ function App() {
 
             <ContextMenu items={items}/>
             <ZoomInfo/>
+            <Recenter/>
             <nav>
 
                 <br/>

@@ -66,17 +66,9 @@ export class Line {
                 <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                       className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
                       x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
+                      markerMid="url(#dot)"
                       style={{fill: 'transparent', stroke: 'whitesmoke', width: '3px'}}/>
 
-
-                {/*<circle r="4" fill="#90caf9">*/}
-                {/*    <animateMotion*/}
-                {/*        className={`data-curve-from-${this.from} data-curve-to-${this.to}`}*/}
-                {/*        dur="3s"*/}
-                {/*        x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}*/}
-                {/*        repeatCount="indefinite"*/}
-                {/*        path={Geom.bezierSvgD(fromPoint, toPoint)}/>*/}
-                {/*</circle>*/}
 
                 {/*<circle r="4" fill="#90caf9">*/}
                 {/*    <animateMotion*/}

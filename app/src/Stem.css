@@ -12,6 +12,14 @@ button.btn {
     --btn-active: #ff9999;
 }
 
+.btn.blue {
+    --btn-bg: #2196f3;
+    --btn-hover: #42a5f5;
+    --btn-border: #1565c0;
+    --btn-bg-disabled: #1e88e5;
+    --btn-active: #90caf9;
+}
+
 button.btn, .btnlike {
     background: var(--btn-bg);
     border-radius: 4px;
@@ -38,8 +46,8 @@ button.btn:not([disabled]):active, .btnlike:active, .btnlike:focus {
     vertical-align: -4px;
 }
 
-.btnGroup .btn:hover {
-    background: var(--btn-hover);
+.btnGroup .btn:hover, .btn:hover {
+    background: var(--btn-hover) !important;
     border-color: var(--btn-active) !important;
 }
 
@@ -49,7 +57,7 @@ button.btn:not([disabled]):active, .btnlike:active, .btnlike:focus {
 }
 
 
-button.btn[disabled],  .btn[disabled]:hover {
+button.btn[disabled], .btn[disabled]:hover {
     cursor: not-allowed;
     background: var(--btn-bg-disabled);
     border-bottom: 4px solid var(--btn-border) !important;

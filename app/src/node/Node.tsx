@@ -3,6 +3,7 @@ import Draggable, {DragHandler, DragHandlerInst, Point} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
 import {Line} from "./Line";
+import {preventBubble} from "../app/util";
 
 export {};
 
@@ -44,10 +45,10 @@ export class Node {
                 <div className={"title"}>{this.nodeType} [{this.ID}]</div>
                 {/*<small>{this.ID} | </small><br/>*/}
                 <button className={"nodeConnection nodeConnectionStart"}
-                        onClick={() => MovableState.finishLineAdd(this.ID)}></button>
+                        onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
 
                 <button className={"nodeConnection nodeConnectionEnd"}
-                        onClick={() => MovableState.beginLineAdd(this.ID)}></button>
+                        onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
                 {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
             </div>
         </foreignObject>);

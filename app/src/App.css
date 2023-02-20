@@ -102,7 +102,7 @@ svg:has(foreignObject:active div) {
 
 
 .boxedItem .title {
-    font-size: 14px;
+    font-size: 15px;
     padding: 3px;
     margin-bottom: 3px;
 }
@@ -269,5 +269,10 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 }
 
 .closer {
-    float:right;
+    float: right;
+}
+
+#recenter {
+    left: calc(50% - (81px / 2));
+    bottom: -3px;
 }

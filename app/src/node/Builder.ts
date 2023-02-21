@@ -27,22 +27,22 @@ export class NodeBuilder {
 
     static New(nodeType: string) {
         const nodes = State.getState().nodes;
-        State.setState({nodes: nodes.concat(new Node(nodeType))})
+        State.setState({nodes: nodes.concat(new Node( nodeType))})
     }
 
     static getType(name: string) {
         return this.types.get(name);
     }
 
-    static InstantiateNode(nodeTemplate: jsobj) {
-        switch (nodeTemplate.type) {
-            case "default":
-                return new Node(nodeTemplate, nodeTemplate.type);
-            case undefined:
-                throw Error("Node type property is required for instantiation.");
-            default:
-                throw Error("Unknown Node type: " + nodeTemplate.type);
-        }
-    }
+    // static InstantiateNode(nodeTemplate: jsobj) {
+    //     switch (nodeTemplate.type) {
+    //         case "default":
+    //             return new Node(nodeTemplate, nodeTemplate.type);
+    //         case undefined:
+    //             throw Error("Node type property is required for instantiation.");
+    //         default:
+    //             throw Error("Unknown Node type: " + nodeTemplate.type);
+    //     }
+    // }
 
 }

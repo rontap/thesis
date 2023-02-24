@@ -2,6 +2,7 @@ import State, {End, getState} from "../graph/State";
 import Button from "../components/Button";
 import {Line} from "../node/Line";
 import {Node} from "../node/Node";
+import Config from "../config/Config";
 
 export default function PropertyViewer() {
     const node = State((state) => state.activeNode)
@@ -11,7 +12,7 @@ export default function PropertyViewer() {
 
     if (!node) return <></>;
 
-    return <div id={"propertyRoot"}>
+    return <div id={"propertyRoot"} className={"majorElement"}>
         <Button
             onClick={() => getState().setActiveNode()}
             className={"closer"}>×</Button>
@@ -41,6 +42,8 @@ export default function PropertyViewer() {
                 <br/>
             </div>
         </div>
+        <hr/>
+        <Config node={node}/>
     </div>
 }
 

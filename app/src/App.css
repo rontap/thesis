@@ -290,3 +290,9 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
 }
+
+.majorElement hr {
+    border: none;
+    height: 1px;
+    background: whitesmoke;
+}

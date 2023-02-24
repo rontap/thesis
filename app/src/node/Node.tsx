@@ -32,7 +32,6 @@ export class Node {
     }
 
     get nodeProps() {
-        console.log(NodeBuilder.getType(this.nodeType))
         return NodeBuilder.getType(this.nodeType)!;
     }
 

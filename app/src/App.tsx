@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 //---------------------
 import './App.css';
@@ -19,31 +19,46 @@ import ContextMenu from "./components/ContextMenu";
 import AddNodes from "./components/AddNodes";
 import Recenter from "./ui/Recenter";
 import Header from "./ui/Header";
+import NodeBlueprints from "./ui/NodeBlueprints";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
 function App() {
+    const [editor, setEditor] = useState(false);
 
 
     return (
-        <div className="App">
-
-            <ContextMenu items={items}/>
-            <ZoomInfo/>
-            <Recenter/>
+        <div className={`App`}>
             <nav>
-
                 <br/>
+                <Button
+                    className={"blue"}
+                    disabled={!editor}
+                    onClick={() => setEditor(false)}>Edit Node</Button>
+                <Button
+                    disabled={editor}
+                    className={"blue"}
+                    onClick={() => setEditor(true)}>Edit Graph</Button>
                 <Header/>
 
             </nav>
 
-            <Svg items={items}/>
+            {editor ? <>
+                <ContextMenu items={items}/>
+                <ZoomInfo/>
+                <Recenter/>
 
 
-            <ActiveNodes/>
+                <Svg items={items}/>
 
-            <PropertyViewer/>
+                <ActiveNodes/>
+                <PropertyViewer/>
+            </> : <>
+                <Svg items={items} blueprint/>
+                <NodeBlueprints items={items}/>
+            </>}
+
+
         </div>
     );
 }

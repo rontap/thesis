@@ -43,6 +43,7 @@
 
 }
 
+
 .svgRoot .static {
     cursor: not-allowed;
 }
@@ -53,6 +54,13 @@
 
 .svgRoot .draggable:hover {
     fill: orange;
+}
+
+.svgBlueprint {
+    position: fixed;
+    left: 350px;
+    top: 135px;
+
 }
 
 .boxedItem {
@@ -144,10 +152,34 @@ svg:has(foreignObject:active div) {
 
 }
 
+#nodeBlueprints {
+    width: 300px;
+    top: 120px;
+    height: 600px;
+    text-align: left;
+    padding: 15px;
+}
+
+#nodeBlueprints .nodeListItem {
+    margin: 15px 0;
+    display: block
+}
+
 #zoomCtn {
     bottom: 0px;
     left: 0px;
 
+}
+
+[center], .center {
+    text-align: center;
+}
+
+button.newBtn.btn {
+    text-align: center;
+    width: 150px;
+    margin-left: 10px;
+    display: block;
 }
 
 nav {
@@ -174,6 +206,13 @@ nav {
 body {
     background: #263238;
     color: #eee;
+    /*transition: color .8s , background .8s;*/
+}
+
+
+.btn.btn-100 {
+    min-width: 100px;
+    display: inline-block;
 }
 
 #svgRootCont {

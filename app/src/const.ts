@@ -9,6 +9,14 @@ const CONST = {
         clientWidth: window.innerWidth - _pad,
         clientHeight: window.innerHeight - _padh
     },
+    blueprintRectSize : {
+        y: 0,
+        x: 0,
+        height: 200,
+        width: 400,
+        clientWidth:  window.innerWidth,
+        clientHeight:  window.innerHeight
+    },
     zoom :{
         min:  0.4,
         max: 5.5

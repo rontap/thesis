@@ -50,6 +50,7 @@ export class Node {
                 <button className={"nodeConnection nodeConnectionEnd"}
                         onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
                 {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
+
             </div>
         </foreignObject>);
 

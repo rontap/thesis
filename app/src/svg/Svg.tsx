@@ -10,21 +10,24 @@ import Movable from "./Movable.js";
 import {Line} from "../node/Line";
 
 export default function Svg(props: jsobj) {
-
+    const {blueprint} = props;
     useEffect(() => {
         DragHandlerInst.getTransformMatrix();
     }, []);
 
-    const nodes = State((state) => state.nodes)
-    const lines = State((state) => state.lines)
+    let nodes, lines;
+
+
+    nodes = State((state) => state.nodes)
+    lines = State((state) => state.lines)
 
     return (
-        <div id={"svgRootCont"}
+        <div id={"svgRootCont"} className={blueprint && "svgBlueprint majorElement"}
              {...Movable}
         >
             <svg
                 {...Draggable}
-                {...CONST.rectSize}
+                {...(blueprint ? CONST.blueprintRectSize : CONST.rectSize)}
                 className={"svgRoot"}
             >
 

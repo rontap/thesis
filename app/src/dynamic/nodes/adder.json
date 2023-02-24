@@ -1,5 +1,12 @@
 {
   "name": "adder",
   "type": "test",
-  "className": "blue"
+  "className": "blue",
+  "inputs" : [
+    {
+      "type" : "Number",
+      "default" : ""
+    }
+  ]
+
 }

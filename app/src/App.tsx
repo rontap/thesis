@@ -24,7 +24,7 @@ import NodeBlueprints from "./ui/NodeBlueprints";
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
 function App() {
-    const [editor, setEditor] = useState(false);
+    const [graph, setGraph] = useState(true);
 
 
     return (
@@ -33,17 +33,17 @@ function App() {
                 <br/>
                 <Button
                     className={"blue"}
-                    disabled={!editor}
-                    onClick={() => setEditor(false)}>Edit Node</Button>
+                    disabled={!graph}
+                    onClick={() => setGraph(false)}>Edit Node</Button>
                 <Button
-                    disabled={editor}
+                    disabled={graph}
                     className={"blue"}
-                    onClick={() => setEditor(true)}>Edit Graph</Button>
+                    onClick={() => setGraph(true)}>Edit Graph</Button>
                 <Header/>
 
             </nav>
 
-            {editor ? <>
+            {graph ? <>
                 <ContextMenu items={items}/>
                 <ZoomInfo/>
                 <Recenter/>

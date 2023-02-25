@@ -26,11 +26,10 @@ function NodeBlueprintItem(item: jsobj) {
         {/*    {node.}*/}
         {/*</code>*/}
 
-
         <BtnGroup>
             <Button disabled className={"btn-100"}>{item.name}</Button>
-            <Button>Edit</Button>
-            <Button>Clone</Button>
+            <Button>Select</Button>
+            <Button>...</Button>
             <Button>×</Button>
             {/*<Button*/}
             {/*    onClick={() => getState().setActiveNode(node.ID)}*/}

@@ -57,7 +57,6 @@ const AddItems = (items: Map<string, jsobj>) => {
 const NodeItems = (evt: jsobj) => {
     const container = DragHandler.bubbleEvt(evt.target, ["foreignObject"])
     const id: number = container.getAttribute('data-id') || -1;
-    console.log(id);
     return <>
         <div className={"ctxTitle"}>Node {id}</div>
         <BtnGroup vertical={true}>

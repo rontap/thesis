@@ -16,6 +16,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "assert": "^2.0.0",
+    "formik": "^2.2.9",
     "fs": "^0.0.1-security",
     "install": "^0.13.0",
     "npm": "^9.4.1",

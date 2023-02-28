@@ -19,6 +19,7 @@ export default function Svg(props: jsobj) {
 
 
     nodes = State((state) => state.nodes)
+
     lines = State((state) => state.lines)
 
     return (

@@ -1,7 +1,10 @@
 import {loadJsonNodeDefinitions, NTypeMap} from "../app/DynamicReader";
+import {EdgeInvariant, EdgeLoader, edgeTypes} from "../graph/EdgeLoader";
 import {jsobj} from "../app/util";
 import {Node} from './Node';
 import State from "../graph/State";
+
+EdgeLoader();
 
 export class NodeBuilder {
     static get rawTypes(): NTypeMap {
@@ -27,7 +30,7 @@ export class NodeBuilder {
 
     static New(nodeType: string) {
         const nodes = State.getState().nodes;
-        State.setState({nodes: nodes.concat(new Node( nodeType))})
+        State.setState({nodes: nodes.concat(new Node(nodeType))})
     }
 
     static getType(name: string) {
@@ -46,3 +49,5 @@ export class NodeBuilder {
     // }
 
 }
+
+EdgeInvariant(true);

@@ -4,6 +4,7 @@ import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
 import {Line} from "./Line";
 import {preventBubble} from "../app/util";
+import {NodeEdgeRef} from "../graph/EdgeLoader";
 
 export {};
 
@@ -33,6 +34,14 @@ export class Node {
 
     get nodeProps() {
         return NodeBuilder.getType(this.nodeType)!;
+    }
+
+    get nodeOutputs(): NodeEdgeRef[] {
+        return NodeBuilder.getType(this.nodeType)?.outputs || [];
+    }
+
+    get nodeInputs(): NodeEdgeRef[] {
+        return NodeBuilder.getType(this.nodeType)?.inputs || [];
     }
 
     getSvg() {

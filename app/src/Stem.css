@@ -102,6 +102,7 @@ button.btn.btnSmall {
     padding: 5px 10px;
     border-bottom-width: 2px;
     min-width: 30px;
+    line-break: anywhere;
 }
 
 button.btn.btnSmall:not([disabled]):active, .btnlike:active, .btnlike:focus {

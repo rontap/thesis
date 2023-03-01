@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import {Line} from "../node/Line";
 import {Node} from "../node/Node";
 import Config from "../config/Config";
+import {NodeEdgeRef} from "../graph/EdgeLoader";
 
 export default function PropertyViewer() {
     const node = State((state) => state.activeNode)
@@ -11,6 +12,7 @@ export default function PropertyViewer() {
     const linesTo: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.TO);
 
     if (!node) return <></>;
+    console.log(node.nodeProps);
 
     return <div id={"propertyRoot"} className={"majorElement"}>
         <Button
@@ -24,7 +26,6 @@ export default function PropertyViewer() {
 
         <hr/>
         <div className={"grid gtc-2"}>
-
             <div className={"gridItem"}>
 
                 FROM
@@ -43,8 +44,29 @@ export default function PropertyViewer() {
             </div>
         </div>
         <hr/>
-        <Config node={node}/>
+        <div className={"grid gtc-2 gtc-m-10"}>
+            <div className={"gridItem"}>
+                INPUTS
+                <br/>
+                {node.nodeInputs?.map(ShowEdgeRef)}
+            </div>
+            <div className={"gridItem"}>
+                OUTPUTS
+                <br/>
+                {node.nodeOutputs.map(ShowEdgeRef)}
+            </div>
+        </div>
+        <hr/>
+        {/*<Config node={node}/>*/}
     </div>
+}
+
+const ShowEdgeRef = (ref: NodeEdgeRef, i: number) => {
+    return <Button small key={i} className={"w-100 blue"}>
+        {ref.name}
+        <br/>
+        [{ref.type}]
+    </Button>
 }
 
 const SingleNodeItem = (node: Node | undefined, i: number) => {

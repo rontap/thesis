@@ -200,35 +200,38 @@ button.newBtn.btn {
 
 nav {
     top: 0;
-    width:40%;
+    width: max(40%, 800px);
     left: 0;
     padding: 10px;
     text-align: left;
 }
+
 #header {
 
 
 }
+
 nav #titlemark {
-    font-size:26px;
-    color:whitesmoke;
+    font-size: 26px;
+    color: whitesmoke;
     font-weight: bold;
-    margin:0 15px 0 10px;
+    margin: 0 15px 0 10px;
     vertical-align: -8px;
 
 
     text-align: right;
     display: inline-block;
-    background:whitesmoke;
+    background: whitesmoke;
     background: -webkit-linear-gradient(0deg, whitesmoke, #d4effc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 #propertyRoot {
     top: 0px;
-    height: 400px;
+    min-height: 400px;
     right: 0;
-    width: 200px;
+    width: 310px;
 }
 
 body {
@@ -276,7 +279,7 @@ rect:active {
     cursor: move;
 }
 
-button, h3  , #titlemark{
+button, h3, #titlemark {
     font-family: Bahnschrift, sans-serif;
 }
 
@@ -354,7 +357,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 }
 
 .gtc-2 {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
 }
 
@@ -366,4 +369,11 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 
 .dnodes .btn {
     width: calc(50% - 20px);
+}
+
+.w-100 {
+    width: 100%;
+}
+.gtc-m-10 .gridItem {
+    margin:10px;
 }

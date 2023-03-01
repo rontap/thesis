@@ -9,7 +9,7 @@ import {NodeBuilder} from "./node/Builder";
 import Svg from "./svg/Svg";
 import {jsobj} from './app/util';
 import ActiveNodes from "./ui/ActiveNodes";
-import PropertyViewer from "./ui/PropertyViewer.";
+import PropertyViewer from "./ui/PropertyViewer";
 import ZoomInfo from "./ui/ZoomInfo";
 import State, {useTemporalStore} from "./graph/State";
 import {Line} from "./node/Line";

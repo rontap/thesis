@@ -1,5 +1,11 @@
 {
-  "name": "source",
+  "name": "const",
   "type": "test",
-  "className": ""
+  "className": "",
+  "outputs": [
+    {
+      "type": "boolean",
+      "name": "yass"
+    }
+  ]
 }

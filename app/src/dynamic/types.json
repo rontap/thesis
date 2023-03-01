@@ -1,0 +1,22 @@
+{
+  "connections":
+    {
+      "number": {
+        "type": "number",
+        "color": "blue"
+      },
+      "boolean": {
+        "type": "boolean",
+        "color": "red"
+      },
+      "any": {
+        "type": "any",
+        "color": "orange"
+      },
+      "fv": {
+        "type": "binary",
+        "color": "orange"
+      }
+    }
+
+}

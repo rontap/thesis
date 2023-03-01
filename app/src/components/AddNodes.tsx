@@ -4,14 +4,24 @@ import {NodeBuilder} from "../node/Builder";
 import React from "react";
 import {jsobj} from "../app/util";
 
-export default function AddNodes({items, vertical=false}: { items: Map<string, jsobj>, vertical?: boolean }) {
+export default function AddNodes({
+                                     items,
+                                     vertical = false,
+                                     onlyInner = false
+                                 }: { onlyInner?: boolean, items: Map<string, jsobj>, vertical?: boolean }) {
+    const innerItems = () => [...items.keys()].map(key => {
+        const elem = items.get(key)!;
+        return <Button key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
+            {"+ " + elem!.name}
+        </Button>
+    })
+
+    if (onlyInner) {
+        return <>{innerItems()}</>;
+    }
+
     return <BtnGroup vertical={vertical}>
-        {[...items.keys()].map(key => {
-            const elem = items.get(key)!;
-            return <Button key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
-                {"Add " + elem!.name}
-            </Button>
-        })}
+        {innerItems()}
     </BtnGroup>
 
 }

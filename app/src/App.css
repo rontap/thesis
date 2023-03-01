@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/bahnschrift');
+
+
 .App {
     text-align: center;
 }
@@ -138,8 +141,21 @@ svg:has(foreignObject:active div) {
 
 #activeNodes {
     position: fixed;
-    left: 10px;
-    top: 10px;
+    top: calc(20px + 400px + 80px);
+    height: 400px;
+    width: 260px;
+}
+
+#availableNodes {
+    position: fixed;
+    top: 80px;
+    height: 400px;
+    width: 260px;
+
+}
+
+#availableNodes .btnVertical .btn {
+    display: block;
 }
 
 #propertyRoot, #activeNodes, nav, .majorElement {
@@ -184,23 +200,35 @@ button.newBtn.btn {
 
 nav {
     top: 0;
-    height: 100px;
+    width:40%;
     left: 0;
-    right: 0;
+    padding: 10px;
+    text-align: left;
 }
+#header {
 
+
+}
+nav #titlemark {
+    font-size:26px;
+    color:whitesmoke;
+    font-weight: bold;
+    margin:0 15px 0 10px;
+    vertical-align: -8px;
+
+
+    text-align: right;
+    display: inline-block;
+    background:whitesmoke;
+    background: -webkit-linear-gradient(0deg, whitesmoke, #d4effc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 #propertyRoot {
-    top: 120px;
+    top: 0px;
     height: 400px;
     right: 0;
     width: 200px;
-}
-
-#activeNodes {
-    top: 120px;
-    height: 400px;
-    left: 0;
-    width: 240px;
 }
 
 body {
@@ -248,7 +276,7 @@ rect:active {
     cursor: move;
 }
 
-button, h3 {
+button, h3  , #titlemark{
     font-family: Bahnschrift, sans-serif;
 }
 
@@ -334,4 +362,8 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     border: none;
     height: 1px;
     background: whitesmoke;
+}
+
+.dnodes .btn {
+    width: calc(50% - 20px);
 }

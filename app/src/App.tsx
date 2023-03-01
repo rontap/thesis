@@ -20,6 +20,7 @@ import AddNodes from "./components/AddNodes";
 import Recenter from "./ui/Recenter";
 import Header from "./ui/Header";
 import NodeBlueprints from "./ui/NodeBlueprints";
+import AvailableNodes from "./ui/AvailableNodes";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -30,7 +31,7 @@ function App() {
     return (
         <div className={`App`}>
             <nav>
-                <br/>
+                <span id={"titlemark"}>FLOWSCAPE</span>
                 <Button
                     className={"blue"}
                     disabled={!graph}
@@ -51,6 +52,7 @@ function App() {
 
                 <Svg items={items}/>
 
+                <AvailableNodes items={items}/>
                 <ActiveNodes/>
                 <PropertyViewer/>
             </> : <>

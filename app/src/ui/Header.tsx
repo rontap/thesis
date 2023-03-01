@@ -24,13 +24,15 @@ export default function Header() {
     } = useTemporalStore((state) => state);
 
 
-    return <>
+    return <span id={"header"}>
         <BtnGroup>
-            <Button onClick={() => undo()}>undo</Button>
-            <Button onClick={() => redo()}>redo</Button>
+            <Button onClick={() => undo()}>Undo</Button>
+            <Button onClick={() => redo()}>Redo</Button>
         </BtnGroup>
-        <AddNodes items={items}/>
 
-        <Button onClick={addLine}>Add new line</Button>
-    </>
+
+        {/*<Button onClick={addLine}>Add new line</Button>*/}
+
+        <Button className={"blue"}>Compile</Button>
+    </span>
 };

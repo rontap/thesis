@@ -1,0 +1,17 @@
+{
+  "name": "fv_sim",
+  "type": "fv",
+  "className": "purple",
+  "inputs": [
+    {
+      "type": "fv",
+      "name": "persons"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "number",
+      "name": "fv_similarity"
+    }
+  ]
+}

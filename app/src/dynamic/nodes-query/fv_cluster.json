@@ -1,0 +1,17 @@
+{
+  "name": "fv_cluster",
+  "type": "fv",
+  "className": "purple",
+  "inputs": [
+    {
+      "type": "fv",
+      "name": "feature"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "string",
+      "name": "cluster_fieldname"
+    }
+  ]
+}

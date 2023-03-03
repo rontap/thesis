@@ -1,0 +1,26 @@
+{
+  "name": "fv_classify",
+  "type": "fv",
+  "group" : false,
+  "className": "purple",
+  "inputs": [
+    {
+      "type": "fv",
+      "name": "feature"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "number",
+      "name": "fv_similarity"
+    },
+    {
+      "type": "string",
+      "name": "class"
+    },
+    {
+      "type": "string",
+      "name": "class_fieldname"
+    }
+  ]
+}

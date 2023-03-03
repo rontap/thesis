@@ -1,0 +1,17 @@
+{
+  "name": "SQL",
+  "type": "sql",
+  "className": "red",
+  "inputs": [
+    {
+      "type": "any",
+      "name": "_"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "any",
+      "name": "_"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 {
   "name": "det_reader",
   "type": "reader",
-  "className": "white"
+  "className": "white",
+  "description": "Input detection reader thing"
 }

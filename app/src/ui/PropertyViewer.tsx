@@ -22,6 +22,7 @@ export default function PropertyViewer() {
         <br/>
         <h3>Properties of {node.ID} {node?.nodeType} </h3>
 
+        {node.nodeProps.description}
         <br/>
 
         <hr/>

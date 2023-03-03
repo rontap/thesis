@@ -1,4 +1,4 @@
-import {loadJsonNodeDefinitions, NTypeMap} from "../app/DynamicReader";
+import {loadJsonNodeDefinitions, NodeTemplate, NodeTemplateMap} from "../app/DynamicReader";
 import {EdgeInvariant, EdgeLoader, edgeTypes} from "../graph/EdgeLoader";
 import {jsobj} from "../app/util";
 import {Node} from './Node';
@@ -7,21 +7,21 @@ import State from "../graph/State";
 EdgeLoader();
 
 export class NodeBuilder {
-    static get rawTypes(): NTypeMap {
+    static get rawTypes(): NodeTemplateMap {
         return this._rawTypes;
     }
 
-    static get types(): NTypeMap {
+    static get types(): NodeTemplateMap {
         return this._types;
     }
 
-    private static _rawTypes = new Map<string, jsobj>();
-    private static _types = new Map<string, jsobj>();
+    private static _rawTypes = new Map<string, NodeTemplate>();
+    private static _types = new Map<string, NodeTemplate>();
 
     static Build() {
         this._rawTypes = loadJsonNodeDefinitions();
 
-        [...this._rawTypes.values()].map((value: jsobj) => {
+        [...this._rawTypes.values()].map((value: NodeTemplate) => {
             this._types.set(value.name, value);
         })
 

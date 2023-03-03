@@ -2,7 +2,7 @@ import CONST from "../const";
 import Draggable, {DragHandler, DragHandlerInst, Geom, Point} from "./Draggable";
 import {useEffect} from "react";
 import {jsobj} from "../app/util";
-import {NTypeMap} from "../app/DynamicReader";
+import {NodeTemplateMap} from "../app/DynamicReader";
 import State, {getState} from "../graph/State";
 
 import {Node} from "../node/Node";

@@ -1,13 +1,14 @@
 import {NodeBuilder} from "../node/Builder";
 
-export type EPrimitive = "any" | string;
-export type EType = {
-    type: EPrimitive,
+export type EdgePrimitive = "any" | string;
+export type EdgeType = {
+    type: EdgePrimitive,
     color: "red" | "green" | "orange" | "blue"
 }
-export type ETypeMap = Map<string, EType>;
+export type ETypeMap = Map<string, EdgeType>;
+
 export type NodeEdgeRef = {
-    type: EPrimitive,
+    type: EdgePrimitive,
     name?: string
 }
 /**
@@ -40,7 +41,6 @@ export function EdgeInvariant(verbose = false) {
         allEdges.forEach((edge: NodeEdgeRef) => {
                 if (!edgeTypes.get(edge.type)) {
                     log(`Node type ${edge.type} required by ${node.name} is not defined`)
-
                 }
             }
         )

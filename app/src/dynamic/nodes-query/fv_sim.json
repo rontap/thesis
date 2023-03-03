@@ -11,7 +11,7 @@
   "outputs": [
     {
       "type": "number",
-      "name": "fv_similarity"
+      "name": "sim_field_name"
     }
   ]
 }

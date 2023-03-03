@@ -6,6 +6,7 @@ type Double = number;
 type Int16 = number;
 type Int32 = number;
 type Int64 = number;
+//type any;
 
 /**
  *

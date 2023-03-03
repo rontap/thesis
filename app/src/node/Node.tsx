@@ -5,12 +5,14 @@ import {MovableState} from "../svg/Movable.js";
 import {Line} from "./Line";
 import {preventBubble} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
+import {NodeTemplate} from "../app/DynamicReader";
 
 export {};
 
 type Input = number
 type Output = number
 type Params = {}
+
 
 export class Node {
     public nodeType: string;
@@ -32,7 +34,7 @@ export class Node {
 
     }
 
-    get nodeProps() {
+    get nodeProps(): NodeTemplate {
         return NodeBuilder.getType(this.nodeType)!;
     }
 

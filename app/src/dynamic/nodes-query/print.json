@@ -1,5 +1,12 @@
 {
   "name": "print",
   "type": "writer",
-  "className": "white"
+  "className": "white",
+  "properties": {
+    "_Self": "print",
+    "print": {
+      "type": "constant",
+      "value": {}
+    }
+  }
 }

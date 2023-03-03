@@ -13,5 +13,11 @@
       "type": "number",
       "name": "sim_field_name"
     }
-  ]
+  ],
+  "properties": {
+    "_Self": "fv_sim",
+    "fv_path": {
+      "type": "path"
+    }
+  }
 }

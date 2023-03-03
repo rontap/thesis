@@ -1,22 +1,28 @@
 {
-  "connections":
-    {
-      "number": {
-        "type": "number",
-        "color": "blue"
-      },
-      "boolean": {
-        "type": "boolean",
-        "color": "red"
-      },
-      "any": {
-        "type": "any",
-        "color": "orange"
-      },
-      "fv": {
-        "type": "binary",
-        "color": "orange"
-      }
+  "connections": {
+    "number": {
+      "type": "number",
+      "color": "blue"
+    },
+    "boolean": {
+      "type": "boolean",
+      "color": "red"
+    },
+    "any": {
+      "type": "any",
+      "color": "orange"
+    },
+    "fv": {
+      "type": "binary",
+      "color": "orange"
     }
-
+  },
+  "properties": {
+    "path": {
+      "type": "string"
+    },
+    "sql": {
+      "type": "string"
+    }
+  }
 }

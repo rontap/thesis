@@ -13,5 +13,11 @@
       "type": "any",
       "name": "_"
     }
-  ]
+  ],
+  "properties": {
+    "_Self": "sql2",
+    "query": {
+      "type": "sql"
+    }
+  }
 }

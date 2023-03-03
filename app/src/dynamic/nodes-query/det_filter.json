@@ -1,5 +1,12 @@
 {
   "name": "det_filter",
   "type": "graphic",
-  "className": "green"
+  "className": "green",
+  "properties": {
+    "_Self" : "index_path",
+    "index_path": {
+      "type" : "path"
+    }
+
+  }
 }

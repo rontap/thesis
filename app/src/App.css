@@ -143,14 +143,14 @@ svg:has(foreignObject:active div) {
     position: fixed;
     top: calc(20px + 400px + 80px);
     height: 400px;
-    width: 260px;
+    width: 320px;
 }
 
 #availableNodes {
     position: fixed;
     top: 80px;
     height: 400px;
-    width: 260px;
+    width: 320px;
 
 }
 
@@ -369,6 +369,9 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 
 .dnodes .btn {
     width: calc(50% - 20px);
+}
+.dnodes .btn {
+    width: calc(33% - 10px);
 }
 
 .w-100 {

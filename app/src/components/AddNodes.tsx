@@ -11,7 +11,7 @@ export default function AddNodes({
                                  }: { onlyInner?: boolean, items: Map<string, jsobj>, vertical?: boolean }) {
     const innerItems = () => [...items.keys()].map(key => {
         const elem = items.get(key)!;
-        return <Button key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
+        return <Button small={onlyInner} key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
             {"+ " + elem!.name}
         </Button>
     })

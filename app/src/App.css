@@ -69,13 +69,22 @@
 .boxedItem {
     border: 2px solid #ccc;
     border-radius: 5px;
-    width: 100px;
-    height: 60px;
+    width: calc(100% - 4px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
 }
 
-foreignObject {
+
+foreignObject, .fo {
     outline: 3px solid transparent;
 
+}
+
+foreignObject.fo {
+    position: relative;
 }
 
 foreignObject:hover {
@@ -317,7 +326,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     padding: 0;
     border-radius: 0 4px 4px 0;
     position: absolute;
-    top: 23px;
+    top: 20px;
     z-index: 3;
     background: #ccc;
     transition: opacity .1s;
@@ -370,6 +379,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 .dnodes .btn {
     width: calc(50% - 20px);
 }
+
 .dnodes .btn {
     width: calc(33% - 10px);
 }
@@ -377,6 +387,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 .w-100 {
     width: 100%;
 }
+
 .gtc-m-10 .gridItem {
-    margin:10px;
+    margin: 10px;
 }

@@ -2,8 +2,8 @@
   "name": "print",
   "type": "writer",
   "className": "white",
-  "properties": {
-    "_Self": "print",
+  "config": {
+    "self": "print",
     "print": {
       "type": "constant",
       "value": {}

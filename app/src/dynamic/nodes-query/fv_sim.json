@@ -14,8 +14,8 @@
       "name": "sim_field_name"
     }
   ],
-  "properties": {
-    "_Self": "fv_sim",
+  "config": {
+    "self": "fv_sim",
     "fv_path": {
       "type": "path"
     }

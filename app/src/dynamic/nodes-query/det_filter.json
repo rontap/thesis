@@ -2,8 +2,8 @@
   "name": "det_filter",
   "type": "graphic",
   "className": "green",
-  "properties": {
-    "_Self" : "index_path",
+  "config": {
+    "self" : "index_path",
     "index_path": {
       "type" : "path"
     }

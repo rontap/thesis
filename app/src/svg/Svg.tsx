@@ -158,7 +158,7 @@ const getCurrentLine = () => {
         return <></>
     }
 
-    const fromPoint = DragHandler.getCoords(node.selfSvg).add(103, 30);
+    const fromPoint = DragHandler.getCoords(node.selfSvg).add(CONST.box.width, CONST.box.pointTop);
     const toPoint = DragHandlerInst.getCursor(lineAddAt.evt);
 
     return <>

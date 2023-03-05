@@ -19,7 +19,7 @@ export type NodeTemplate = {
     outputs: NodeEdgeRef[],
     inputs: NodeEdgeRef[]
 
-    properties?: jsobj
+    config?: jsobj
 }
 
 export type NodeTemplateMap = Map<string, NodeTemplate>;

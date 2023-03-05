@@ -1,6 +1,7 @@
 import State, {getState} from "../graph/State";
 import {Node} from "./Node";
 import Draggable, {DragHandler, Geom} from "../svg/Draggable";
+import CONST from "../const";
 
 export class Line {
     public to: number;
@@ -59,9 +60,10 @@ export class Line {
 
     getSvg() {
         try {
-            const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(103, 30);
-            const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(0, 30);
+            const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(CONST.box.width, CONST.box.pointTop);
+            const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(0, CONST.box.pointTop);
 
+            console.log('->', fromPoint, toPoint)
             return <>
                 <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                       className={`data-curve-from-${this.from} data-curve-to-${this.to}`}

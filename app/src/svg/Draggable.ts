@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {getState} from "../graph/State";
+import CONST from "../const";
 
 enum Button {
     DOWN = "DOWN",
@@ -143,16 +144,18 @@ class DragHandler {
 
                 document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
                     const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
-                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(finalCoord.add(103, 30), toParameter))
-                    item.setAttributeNS(null, 'path', Geom.bezierSvgD(finalCoord.add(103, 30), toParameter))
-                    this.setCoords(item, finalCoord.add(103, 30), 'x1', 'y1');
+                    const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width, CONST.box.pointTop), toParameter)
+                    item.setAttributeNS(null, 'd', bezier)
+                    item.setAttributeNS(null, 'path', bezier)
+                    this.setCoords(item, finalCoord.add(CONST.box.width, CONST.box.pointTop), 'x1', 'y1');
                 })
 
                 document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
                     const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
-                    item.setAttributeNS(null, 'd', Geom.bezierSvgD(fromParameter, finalCoord.add(0, 30)))
-                    item.setAttributeNS(null, 'path', Geom.bezierSvgD(fromParameter, finalCoord.add(0, 30)))
-                    this.setCoords(item, finalCoord.add(0, 30), 'x2', 'y2');
+                    const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(0, CONST.box.pointTop))
+                    item.setAttributeNS(null, 'd', bezier)
+                    item.setAttributeNS(null, 'path', bezier)
+                    this.setCoords(item, finalCoord.add(0, CONST.box.pointTop), 'x2', 'y2');
                 })
 
             }

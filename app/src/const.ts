@@ -20,6 +20,10 @@ const CONST = {
     zoom :{
         min:  0.4,
         max: 5.5
+    },
+    box: {
+        width: 145, //px
+        pointTop: 28
     }
 }
 

@@ -14,10 +14,13 @@
       "name": "_"
     }
   ],
-  "properties": {
-    "_Self": "sql2",
-    "query": {
-      "type": "sql"
+  "config": {
+    "self": "sql2",
+    "entrypoint": "query",
+    "data": {
+      "query": {
+        "type": "sql"
+      }
     }
   }
 }

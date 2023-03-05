@@ -3,9 +3,11 @@ import Draggable, {DragHandler, DragHandlerInst, Point} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
 import {Line} from "./Line";
-import {preventBubble} from "../app/util";
+import {jsobj, preventBubble} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
+import {ConfigPropertyViewer} from "./ConfigPropertyViewer";
+import CONST from "../const";
 
 export {};
 
@@ -22,11 +24,16 @@ export class Node {
 
     public coords: Point;
 
+    private _configParams?: jsobj;
+    private _uwConfigParams: jsobj;
+
     constructor(nodeType: string) {
         this.nodeType = nodeType;
         this.ID = Node.ID++;
 
         this.coords = this.initialCoords;
+        this._configParams = this.nodeProps?.config?.data;
+        this._uwConfigParams = this._configParams ? this._configParams[this.nodeProps?.config?.entrypoint || "content"] : {};
 
     }
 
@@ -46,12 +53,15 @@ export class Node {
         return NodeBuilder.getType(this.nodeType)?.inputs || [];
     }
 
+
     getSvg() {
+        const noProperties = Object.values(this._uwConfigParams).length;
+        const height = 60 + (noProperties * 40);
         return (<foreignObject key={this.ID}
                                onClick={() => getState().setActiveNode(this.ID)}
-                               className={`void data-node-${this.ID} ${this.nodeProps.className}`}
+                               className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
-                               x={this.coords.x} y={this.coords.y} width="104" height="64">
+                               x={this.coords.x} y={this.coords.y} width={CONST.box.width} height={height}>
             <div className={"boxedItem"}>
                 <div className={"title"}>{this.nodeType} [{this.ID}]</div>
                 {/*<small>{this.ID} | </small><br/>*/}
@@ -62,6 +72,10 @@ export class Node {
                         onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
                 {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
 
+
+                <div className={"configCtn"}>
+                    {ConfigPropertyViewer(this._uwConfigParams)}
+                </div>
             </div>
         </foreignObject>);
 

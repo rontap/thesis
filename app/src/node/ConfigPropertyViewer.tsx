@@ -8,12 +8,14 @@ export function ConfigPropertyViewer(configParams: jsobj | undefined) {
     }
 
     return <>
-        {Object.entries(configParams).map(([key, entry]) => {
-            return <span key={key}>
+        {Object.entries(configParams)
+            .filter(([key, entry]) => !entry.hide)
+            .map(([key, entry]) => {
+                return <span key={key}>
                 <Button small>{key}.{JSON.stringify(entry)}</Button>
             </span>
 
-        })
+            })
         }
     </>
 }

@@ -4,9 +4,12 @@
   "className": "white",
   "config": {
     "self": "print",
-    "print": {
-      "type": "constant",
-      "value": {}
+    "data": {
+      "print": {
+        "type": "constant",
+        "hide": true,
+        "value": {}
+      }
     }
   }
 }

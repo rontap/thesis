@@ -62,6 +62,7 @@ export class Node {
                                x={this.coords.x} y={this.coords.y} width={CONST.box.width} height={height}>
             <div className={"boxedItem"}>
                 <div className={"title"}>{this.nodeType} [{this.ID}]</div>
+
                 {/*<small>{this.ID} | </small><br/>*/}
                 <button className={"nodeConnection nodeConnectionStart"}
                         onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
@@ -69,7 +70,6 @@ export class Node {
                 <button className={"nodeConnection nodeConnectionEnd"}
                         onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
                 {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
-
 
                 <div className={"configCtn"}>
                     {ConfigPropertyViewer(this._configParams)}
@@ -80,10 +80,8 @@ export class Node {
     }
 
     preventActOnMove(fn: Function) {
-        console.log(MovableState.isPanning)
 
         if (MovableState.isPanning) return () => false;
-
         return fn.call(this);
     }
 
@@ -124,11 +122,7 @@ export class Node {
     }
 
     removeSelf() {
-        //console.log(document.querySelector(".data-line-" + this.ID), '<<');
         State.getState().removeNode(this.ID);
-        //document.querySelector(".data-line-" + this.ID)?.remove()
-
-
     }
 
     get selfSvg() {
@@ -149,22 +143,5 @@ export class Node {
     }
 
     output: Output = Node.ID;
-
-}
-
-class InputNode extends Node {
-
-    constructor(nodeType: string) {
-        super(nodeType);
-    }
-
-    public get inputs(): never {
-        throw Error("cannot get or set inputs on InputNode");
-    }
-
-    public set inputs(_) {
-        throw Error("cannot get or set inputs InputNode");
-    }
-
 
 }

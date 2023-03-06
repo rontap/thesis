@@ -157,12 +157,8 @@ class DragHandler {
                     item.setAttributeNS(null, 'path', bezier)
                     this.setCoords(item, finalCoord.add(0, CONST.box.pointTop), 'x2', 'y2');
                 })
-
             }
-
-
         }
-
 
         if (action === Button.UP || action === Button.LEAVE) {
             this.isDown = false;

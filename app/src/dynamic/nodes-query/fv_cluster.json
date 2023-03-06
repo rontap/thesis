@@ -13,5 +13,19 @@
       "type": "string",
       "name": "cluster_field_name"
     }
-  ]
+  ],
+  "config": {
+    "self": "fv_cluster2",
+    "data": {
+      "fv_field_name": {
+        "type": "string"
+      },
+      "cluster_field_name": {
+        "type": "string"
+      },
+      "threshold": {
+        "type": "number"
+      }
+    }
+  }
 }

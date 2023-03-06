@@ -22,10 +22,13 @@ export class NodeBuilder {
         this._rawTypes = loadJsonNodeDefinitions();
 
         [...this._rawTypes.values()].map((value: NodeTemplate) => {
-            this._types.set(value.name, value);
+            if (!value.hide) {
+                this._types.set(value.name, value);
+            }
+
         })
 
-        return this._rawTypes;
+        return this._types;
     }
 
     static New(nodeType: string) {

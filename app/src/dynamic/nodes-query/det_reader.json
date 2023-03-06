@@ -2,5 +2,13 @@
   "name": "det_reader",
   "type": "reader",
   "className": "white",
-  "description": "Input detection reader thing"
+  "description": "Input detection reader thing",
+  "config": {
+    "self": "det_reader",
+    "data": {
+      "index_path": {
+        "type": "path"
+      }
+    }
+  }
 }

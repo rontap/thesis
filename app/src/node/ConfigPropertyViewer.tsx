@@ -10,7 +10,7 @@ export function ConfigPropertyViewer(configParams: jsobj | undefined) {
     return <>
         {Object.entries(configParams).map(([key, entry]) => {
             return <span key={key}>
-                <Button small>{entry}</Button>
+                <Button small>{key}.{JSON.stringify(entry)}</Button>
             </span>
 
         })

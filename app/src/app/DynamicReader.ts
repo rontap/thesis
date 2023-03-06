@@ -12,6 +12,7 @@ export function loadJsonNodeDefinitions(): NodeTemplateMap {
 }
 
 export type NodeTemplate = {
+    hide?: boolean,
     name: string,
     className?: string,
     type?: string,

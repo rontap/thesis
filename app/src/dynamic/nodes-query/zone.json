@@ -1,4 +1,5 @@
 {
+  "hide": true,
   "name": "zone",
   "type": "graphic",
   "className": "green"

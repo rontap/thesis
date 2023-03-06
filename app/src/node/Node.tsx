@@ -24,16 +24,14 @@ export class Node {
 
     public coords: Point;
 
-    private _configParams?: jsobj;
-    private _uwConfigParams: jsobj;
+    private _configParams: jsobj;
 
     constructor(nodeType: string) {
         this.nodeType = nodeType;
         this.ID = Node.ID++;
 
         this.coords = this.initialCoords;
-        this._configParams = this.nodeProps?.config?.data;
-        this._uwConfigParams = this._configParams ? this._configParams[this.nodeProps?.config?.entrypoint || "content"] : {};
+        this._configParams = this.nodeProps?.config?.data || {};
 
     }
 
@@ -55,8 +53,8 @@ export class Node {
 
 
     getSvg() {
-        const noProperties = Object.values(this._uwConfigParams).length;
-        const height = 60 + (noProperties * 40);
+        const noProperties = Object.values(this._configParams).length;
+        const height = 60 + (noProperties * 45);
         return (<foreignObject key={this.ID}
                                onClick={() => getState().setActiveNode(this.ID)}
                                className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}
@@ -74,7 +72,7 @@ export class Node {
 
 
                 <div className={"configCtn"}>
-                    {ConfigPropertyViewer(this._uwConfigParams)}
+                    {ConfigPropertyViewer(this._configParams)}
                 </div>
             </div>
         </foreignObject>);

@@ -63,7 +63,6 @@ export class Line {
             const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(CONST.box.width, CONST.box.pointTop);
             const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(0, CONST.box.pointTop);
 
-            console.log('->', fromPoint, toPoint)
             return <>
                 <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                       className={`data-curve-from-${this.from} data-curve-to-${this.to}`}

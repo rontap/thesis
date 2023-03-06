@@ -31,6 +31,10 @@
     },
     "threshold": {
       "type": "number"
+    },
+    "time_ms": {
+      "type": "number",
+      "widget": "time"
     }
   }
 }

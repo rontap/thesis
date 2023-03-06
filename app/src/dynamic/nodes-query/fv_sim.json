@@ -5,7 +5,7 @@
   "inputs": [
     {
       "type": "fv",
-      "name": "persons"
+      "name": "fv_field_name"
     }
   ],
   "outputs": [
@@ -16,8 +16,14 @@
   ],
   "config": {
     "self": "fv_sim",
-    "fv_path": {
-      "type": "path"
+    "data" : {
+      "fv_path": {
+        "type": "path"
+      },
+      "threshold": {
+        "type": "threshold"
+      }
     }
+
   }
 }

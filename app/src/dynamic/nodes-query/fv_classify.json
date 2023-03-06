@@ -1,26 +1,33 @@
 {
   "name": "fv_classify",
   "type": "fv",
-  "group" : false,
+  "group": false,
   "className": "purple",
   "inputs": [
     {
       "type": "fv",
-      "name": "feature"
+      "name": "fv_field_name"
     }
   ],
   "outputs": [
     {
-      "type": "number",
-      "name": "fv_similarity"
+      "type": "string",
+      "name": "class_field_name"
     },
     {
       "type": "string",
-      "name": "class"
-    },
-    {
-      "type": "string",
-      "name": "class_fieldname"
+      "name": "class_field_name"
     }
-  ]
+  ],
+  "config": {
+    "self": "fv_classify",
+    "data": {
+      "threshold": {
+        "type": "threshold"
+      },
+      "fv_classifier_path": {
+        "type": "path"
+      }
+    }
+  }
 }

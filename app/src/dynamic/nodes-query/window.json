@@ -1,0 +1,20 @@
+{
+  "name": "window",
+  "type": "filter",
+  "className": "blue",
+  "config": {
+    "self": "window",
+    "data" : {
+      "global": {
+        "type": "boolean"
+      },
+      "len_in_milliseconds": {
+        "type": "time_ms"
+      },
+      "step_in_milliseconds": {
+        "type": "time_ms"
+      }
+    }
+
+  }
+}

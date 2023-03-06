@@ -24,7 +24,7 @@
         "type": "string"
       },
       "threshold": {
-        "type": "number"
+        "type": "threshold"
       }
     }
   }

@@ -1,5 +1,11 @@
 {
   "name": "line_cross",
   "type": "graphic",
-  "className": "green"
+  "className": "green",
+  "config": {
+    "self": "line_cross",
+    "data": {
+      "line": "draw_target(line)"
+    }
+  }
 }

@@ -12,7 +12,7 @@ export default function PropertyViewer() {
     const linesTo: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.TO);
 
     if (!node) return <></>;
-    console.log(node.nodeProps);
+
 
     return <div id={"propertyRoot"} className={"majorElement"}>
         <Button

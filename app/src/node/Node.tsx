@@ -8,13 +8,14 @@ import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
 import {ConfigPropertyViewer} from "./ConfigPropertyViewer";
 import CONST from "../const";
+import {ErrorBoundary} from "react-error-boundary";
+import Button from "../components/Button";
 
 export {};
 
 type Input = number
 type Output = number
 type Params = {}
-
 
 export class Node {
     public nodeType: string;
@@ -24,7 +25,9 @@ export class Node {
 
     public coords: Point;
 
-    private _configParams: jsobj;
+    private readonly _configParams: jsobj;
+
+    output: Output = Node.ID;
 
     constructor(nodeType: string) {
         this.nodeType = nodeType;
@@ -61,19 +64,20 @@ export class Node {
                                data-id={this.ID}
                                x={this.coords.x} y={this.coords.y} width={CONST.box.width} height={height}>
             <div className={"boxedItem"}>
-                <div className={"title"}>{this.nodeType} [{this.ID}]</div>
+                <ErrorBoundary FallbackComponent={NodeError}>
+                    <div className={"title"}>{this.nodeType} [{this.ID}]</div>
 
-                {/*<small>{this.ID} | </small><br/>*/}
-                <button className={"nodeConnection nodeConnectionStart"}
-                        onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
+                    <button className={"nodeConnection nodeConnectionStart"}
+                            onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
 
-                <button className={"nodeConnection nodeConnectionEnd"}
-                        onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
-                {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
+                    <button className={"nodeConnection nodeConnectionEnd"}
+                            onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
+                    {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
 
-                <div className={"configCtn"}>
-                    {ConfigPropertyViewer(this._configParams)}
-                </div>
+                    <div className={"configCtn"}>
+                        {ConfigPropertyViewer(this._configParams)}
+                    </div>
+                </ErrorBoundary>
             </div>
         </foreignObject>);
 
@@ -142,6 +146,12 @@ export class Node {
         this._inputs = value;
     }
 
-    output: Output = Node.ID;
 
 }
+
+const NodeError = ({resetErrorBoundary}:any) => <div className={"p-5"}>
+    This node could not be loaded.<br/>
+    <Button small onClick={resetErrorBoundary}>
+        Retry
+    </Button>
+</div>

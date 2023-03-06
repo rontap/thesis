@@ -391,3 +391,6 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 .gtc-m-10 .gridItem {
     margin: 10px;
 }
+.p-5 {
+    padding:5px;
+}

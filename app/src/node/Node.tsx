@@ -57,7 +57,7 @@ export class Node {
 
     getSvg() {
         const noProperties = Object.values(this._configParams).length;
-        const height = 60 + (noProperties * 45);
+        const height = 60 + (noProperties * 50);
         return (<foreignObject key={this.ID}
                                onClick={() => getState().setActiveNode(this.ID)}
                                className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}

@@ -391,6 +391,34 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 .gtc-m-10 .gridItem {
     margin: 10px;
 }
+
 .p-5 {
-    padding:5px;
+    padding: 5px;
+}
+
+.configPropertyListItem {
+    display: block;
+    text-align: left;
+}
+
+.configPropertyListItem .configTitle {
+    text-align: left;
+    width: 100%;
+    padding-left: 7px;
+    font-size: 15px;
+    color: #ffffffee;
+}
+
+.configCtn {
+    padding: 0 5px;
+    width: 100%;
+}
+
+.configInputItem {
+    margin: 5px;
+    width: 149px;
+    padding: 4px;
+    background: #ffffff66;
+    border: 1px solid #333;
+    border-radius: 6px;
 }

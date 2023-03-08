@@ -99,11 +99,11 @@ class DragHandler {
         this.getTransformMatrix();
         const canBubble: boolean = !getState().lineAddAt.id;
 
-        evt.preventDefault();
+        // evt.preventDefault();
         if (canBubble) {
             evt.target = DragHandler.bubbleEvt(evt.target, movableElements);
         } else {
-            evt.target = DragHandler.bubbleEvt(evt.target, ["svg", "BUTTON"]);
+            evt.target = DragHandler.bubbleEvt(evt.target, ["svg", "BUTTON", "INPUT"]);
         }
 
         if (evt.target.tagName !== 'svg') {

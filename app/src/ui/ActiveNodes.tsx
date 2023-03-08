@@ -22,6 +22,7 @@ function NodeListItem(node: Node) {
         </code>
         {" | "}
         <span className={"listItemDescr"}>{node.nodeType}</span>
+        {" "}
         <BtnGroup>
             <Button
                 onClick={() => getState().setActiveNode(node.ID)}

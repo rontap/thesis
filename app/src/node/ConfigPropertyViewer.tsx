@@ -1,5 +1,6 @@
 import {jsobj} from "../app/util";
 import Button from "../components/Button";
+import {useState} from "react";
 
 export function ConfigPropertyViewer(configParams: jsobj | undefined) {
     if (!configParams) {
@@ -11,12 +12,26 @@ export function ConfigPropertyViewer(configParams: jsobj | undefined) {
 
         {Object.entries(configParams)
             .filter(([_, entry]) => !entry.hide)
-            .map(([key, entry]) => {
-                return <span key={key}>
-                <Button small>{key}.{JSON.stringify(entry)}</Button>
-            </span>
-
-            })
+            .map(([item, value]) => <ConfigPropertyEntry key={item} item={item} entry={value}/>)
         }
     </>
+}
+
+export function ConfigPropertyEntry(props: { item: string, entry: jsobj }) {
+    const {item, entry} = props;
+    const [value, setValue] = useState(JSON.stringify(props.entry));
+    const handleChange = (newValue: any) => {
+        setValue(newValue.target.value);
+    }
+    return <span key={item} className={"configPropertyListItem"}>
+                    <span className={"configTitle"}>
+                        {item}
+                    </span>
+                    <br/>
+                    <input
+                        onChange={handleChange}
+                        value={value} className={"configInputItem"}/>
+
+                    <br/>
+            </span>
 }

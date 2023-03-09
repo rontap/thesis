@@ -99,7 +99,10 @@ class DragHandler {
         this.getTransformMatrix();
         const canBubble: boolean = !getState().lineAddAt.id;
 
-        // evt.preventDefault();
+        if (this.isDown) {
+            evt.preventDefault();
+        }
+
         if (canBubble) {
             evt.target = DragHandler.bubbleEvt(evt.target, movableElements);
         } else {

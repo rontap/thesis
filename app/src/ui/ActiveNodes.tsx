@@ -24,10 +24,12 @@ function NodeListItem(node: Node) {
         <span className={"listItemDescr"}>{node.nodeType}</span>
         {" "}
         <BtnGroup>
-            <Button
-                onClick={() => getState().setActiveNode(node.ID)}
-            >focus</Button>
-            <Button onClick={() => getState().removeNode(node.ID)}>×</Button>
+            <Button onClick={() => getState().setActiveNode(node.ID)}>
+                focus
+            </Button>
+            <Button onClick={() => getState().removeNode(node.ID)}>
+                ×
+            </Button>
         </BtnGroup>
     </div>
 }

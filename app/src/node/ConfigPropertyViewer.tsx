@@ -26,6 +26,7 @@ export function ConfigPropertyEntry(props: { item: string, entry: jsobj }) {
     return <span key={item} className={"configPropertyListItem"}>
                     <span className={"configTitle"}>
                         {item}
+                        {/*<span className={"configTypehint"}>[{entry.type}]</span>*/}
                     </span>
                     <br/>
                     <input

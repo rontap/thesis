@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import './Stem.css';
 import './ctxmenu.css';
+import './ui/styles/mat.css';
 
 import {NodeBuilder} from "./node/Builder";
 import Svg from "./svg/Svg";

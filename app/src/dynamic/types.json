@@ -10,7 +10,7 @@
     },
     "any": {
       "type": "any",
-      "color": "orange"
+      "color": "green"
     },
     "fv": {
       "type": "binary",
@@ -18,6 +18,13 @@
     },
     "string": {
       "type": "string",
+      "color": "blue"
+    },
+    "rect": {
+      "type": "drawable"
+    },
+    "time": {
+      "type": "number",
       "color": "blue"
     }
   },

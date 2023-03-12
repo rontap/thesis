@@ -6,17 +6,20 @@
   "inputs": [
     {
       "type": "fv",
-      "name": "fv_field_name"
+      "name": "features",
+      "configurable_input": "fv_field_name"
     }
   ],
   "outputs": [
     {
       "type": "string",
-      "name": "class_field_name"
+      "name": "class",
+      "configurable_input": "class_field_name"
     },
     {
-      "type": "string",
-      "name": "class_field_name"
+      "type": "number",
+      "name": "similarity ",
+      "configurable_input": "sim_field_name"
     }
   ],
   "config": {

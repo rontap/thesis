@@ -5,18 +5,20 @@
   "inputs": [
     {
       "type": "fv",
-      "name": "fv_field_name"
+      "name": "features",
+      "configurable_input": "fv_field_name"
     }
   ],
   "outputs": [
     {
       "type": "number",
-      "name": "sim_field_name"
+      "name": "confidence",
+      "configurable_input": "sim_field_name"
     }
   ],
   "config": {
     "self": "fv_sim",
-    "data" : {
+    "data": {
       "fv_path": {
         "type": "path"
       },
@@ -24,6 +26,5 @@
         "type": "threshold"
       }
     }
-
   }
 }

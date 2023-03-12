@@ -113,3 +113,23 @@ button.btn.btnSmall:not([disabled]):active, .btnlike:active, .btnlike:focus {
 /**
 
  */
+
+body .md-bc-red {
+    border-color: var(--material-color-red);
+}
+
+body .md-bc-orange {
+    border-color: var(--material-color-orange);
+}
+
+body .md-bc-blue {
+    border-color: var(--material-color-blue);
+}
+
+body .md-bc-green {
+    border-color: var(--material-color-green);
+}
+
+body .md-bc-gray {
+    border-color: var(--material-color-grey);
+}

@@ -3,13 +3,18 @@ import {NodeBuilder} from "../node/Builder";
 export type EdgePrimitive = "any" | string;
 export type EdgeType = {
     type: EdgePrimitive,
-    color: "red" | "green" | "orange" | "blue"
+    color: "red" | "green" | "orange" | "blue" | "gray"
 }
 export type ETypeMap = Map<string, EdgeType>;
 
 export type NodeEdgeRef = {
     type: EdgePrimitive,
-    name?: string
+    name?: string,
+    description?: string,
+    optional?: boolean,
+    unique?: boolean,
+    configurable_input?: string
+
 }
 /**
  * Loading dynamically what kind of edge types we have.

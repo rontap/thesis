@@ -4,6 +4,7 @@ import {Line} from "../node/Line";
 import {Node} from "../node/Node";
 import Config from "../config/Config";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
+import SingleEdgeRef from "./SingleEdgeRef";
 
 export default function PropertyViewer() {
     const node = State((state) => state.activeNode)
@@ -49,26 +50,20 @@ export default function PropertyViewer() {
             <div className={"gridItem"}>
                 INPUTS
                 <br/>
-                {node.nodeInputs?.map(ShowEdgeRef)}
+                {node.nodeInputs?.map(SingleEdgeRef)}
             </div>
             <div className={"gridItem"}>
                 OUTPUTS
                 <br/>
-                {node.nodeOutputs.map(ShowEdgeRef)}
+                {node.nodeOutputs.map(SingleEdgeRef)}
             </div>
         </div>
-        <hr/>
+        {/*<hr/>*/}
         {/*<Config node={node}/>*/}
     </div>
 }
 
-const ShowEdgeRef = (ref: NodeEdgeRef, i: number) => {
-    return <Button small key={i} className={"w-100 blue"}>
-        {ref.name}
-        <br/>
-        [{ref.type}]
-    </Button>
-}
+
 
 const SingleNodeItem = (node: Node | undefined, i: number) => {
     return <span key={i}><Button small>

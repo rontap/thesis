@@ -240,7 +240,7 @@ nav #titlemark {
     top: 0px;
     min-height: 400px;
     right: 0;
-    width: 380px;
+    width: 350px;
 }
 
 body {
@@ -423,6 +423,12 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     border-radius: 6px;
 }
 
+.configInputCb {
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-top: 12px;
+    vertical-align: -1px;
+}
 
 .edgeRef {
     border-radius: 6px;

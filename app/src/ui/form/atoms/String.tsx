@@ -1,3 +1,3 @@
 export default function String(props:any) {
-    return <input/>
+    return <input className={"configInputItem"}/>
 }

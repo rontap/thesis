@@ -1,4 +1,5 @@
 import {NodeBuilder} from "../node/Builder";
+import {jsobj} from "../app/util";
 
 export type EdgePrimitive = "any" | string;
 export type EdgeType = {
@@ -7,6 +8,28 @@ export type EdgeType = {
 }
 export type ETypeMap = Map<string, EdgeType>;
 
+export enum FormAtoms {
+    NUMBER = "number",
+    STRING = "string",
+    ANY = "any",
+    JSON = "json",
+    BOOLEAN = "boolean",
+    BINARY = "binary",
+    STATIC = "static"
+}
+
+export const IsFormAtom = (value: string) => {
+    return Object.values(FormAtoms).includes(value as FormAtoms)
+}
+
+
+export type FormRouteProps = {
+    type: FormAtoms,
+    widget?: string
+}
+
+
+export type ConfigTypeMap = Map<string, FormRouteProps>;
 export type NodeEdgeRef = {
     type: EdgePrimitive,
     name?: string,
@@ -26,7 +49,7 @@ export type NodeEdgeRef = {
 const types = require('../dynamic/types.json');
 
 const edgeTypes: ETypeMap = new Map(Object.entries(types.connections));
-
+const configTypes: ConfigTypeMap = new Map(Object.entries(types.config));
 Object.freeze(edgeTypes);
 Object.seal(edgeTypes);
 
@@ -54,6 +77,6 @@ export function EdgeInvariant(verbose = false) {
 }
 
 
-export {edgeTypes};
+export {edgeTypes, configTypes};
 // @ts-ignore
 window._EdgeTypes = edgeTypes;

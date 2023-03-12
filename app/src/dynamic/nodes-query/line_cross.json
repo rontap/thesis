@@ -5,7 +5,9 @@
   "config": {
     "self": "line_cross",
     "data": {
-      "line": "draw_target(line)"
+      "line": {
+        "type": "static"
+      }
     }
   }
 }

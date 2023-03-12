@@ -1,3 +1,3 @@
 export default function String(props: any) {
-    return <input type={"checkbox"}/>
+    return <input type={"checkbox"} className={"configInputCb"}/>
 }

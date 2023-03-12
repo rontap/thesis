@@ -1,24 +1,10 @@
 import Atoms from "./atoms";
-import {Form} from "formik";
 import React from "react";
+import {configTypes, FormAtoms, FormRouteProps, IsFormAtom} from "../../graph/EdgeLoader";
 
-enum FormAtoms {
-    NUMBER = "number",
-    STRING = "string",
-    ANY = "any",
-    JSON = "json",
-    BOOLEAN = "boolean",
-    BINARY = "binary"
-}
-
-
-export type FormRouteProps = {
-    "type": FormAtoms | string,
-    "widget": string
-}
 
 function WidgetFactory(props: FormRouteProps & { Component: JSX.Element }) {
-    const componentFromName = props.widget; // todo
+    const componentFromName = props.widget || "invalid"; // todo
     return React.createElement(componentFromName, props);
 }
 
@@ -32,7 +18,16 @@ export default function FormRouter(props: FormRouteProps) {
         return <WidgetFactory Component={getComponentFromName(props.widget)} {...props}/>
     }
 
-    switch (type) {
+    // deferring value only if its invalid
+    const typeDef = configTypes.get(type);
+    const parsedType = IsFormAtom(type) ? type : typeDef?.type;
+
+    if (!parsedType) {
+        console.error("[Form Router]", type, typeDef);
+        throw Error("[Form Router] Undefined Type " + type + " cannot be displayed");
+    }
+
+    switch (parsedType) {
         case FormAtoms.JSON:
         case FormAtoms.ANY:
         case FormAtoms.STRING:
@@ -43,6 +38,8 @@ export default function FormRouter(props: FormRouteProps) {
             return <Atoms.Checkbox {...props}/>
         case FormAtoms.BINARY:
             return <Atoms.Restricted {...props}/>
+        case FormAtoms.STATIC:
+            return <>static</>
         default:
             console.error(`[Form Route] Type ${type} is not found`);
             return <>

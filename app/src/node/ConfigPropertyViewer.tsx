@@ -1,6 +1,9 @@
 import {jsobj} from "../app/util";
 import Button from "../components/Button";
 import {useState} from "react";
+import {Form} from "formik";
+import FormRouter from "../ui/form/FormRouter";
+import {FormRouteProps} from "../graph/EdgeLoader";
 
 export function ConfigPropertyViewer(configParams: jsobj | undefined) {
     if (!configParams) {
@@ -17,7 +20,7 @@ export function ConfigPropertyViewer(configParams: jsobj | undefined) {
     </>
 }
 
-export function ConfigPropertyEntry(props: { item: string, entry: jsobj }) {
+export function ConfigPropertyEntry(props: { item: string, entry: FormRouteProps }) {
     const {item, entry} = props;
     const [value, setValue] = useState(JSON.stringify(props.entry));
     const handleChange = (newValue: any) => {
@@ -28,11 +31,13 @@ export function ConfigPropertyEntry(props: { item: string, entry: jsobj }) {
                         {item}
                         {/*<span className={"configTypehint"}>[{entry.type}]</span>*/}
                     </span>
-                    <br/>
-                    <input
-                        onChange={handleChange}
-                        value={value} className={"configInputItem"}/>
 
-                    <br/>
+                    <FormRouter
+                        {...entry}/>
+        {/*<input*/}
+        {/*    onChange={handleChange}*/}
+        {/*    value={value} className={"configInputItem"}/>*/}
+
+        <br/>
             </span>
 }

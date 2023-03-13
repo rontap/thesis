@@ -4,6 +4,6 @@ export default function Number(props: any) {
                className={"configInputItem"}
                defaultValue={42}/>
 
-        <button className={"configButtonItem"}>Open..</button>
+        {/*<button className={"configButtonItem"}>Open..</button>*/}
     </>
 }

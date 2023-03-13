@@ -415,12 +415,25 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 }
 
 .configInputItem {
-    margin: 5px;
     width: 149px;
+}
+
+.configInputItem, .configButtonItem {
+    margin: 5px;
     padding: 4px;
-    background: #ffffff66;
+    background: linear-gradient(#ffffff66, #b7b7b766); /*looks bit ugly*/
     border: 1px solid #333;
     border-radius: 6px;
+}
+
+.configButtonItem {
+    min-width: 60px;
+    background: linear-gradient(#ffffff66, #b7b7b766);
+    cursor: pointer;
+}
+.configButtonItem:active ,
+.configInputItem:focus{
+    background: linear-gradient(#b7b7b766,#ffffff66 );
 }
 
 .configInputCb {

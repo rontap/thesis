@@ -18,7 +18,7 @@
     },
     {
       "type": "number",
-      "name": "similarity ",
+      "name": "similarity",
       "configurable_input": "sim_field_name"
     }
   ],
@@ -27,9 +27,6 @@
     "data": {
       "threshold": {
         "type": "threshold"
-      },
-      "fv_classifier_path": {
-        "type": "path"
       }
     }
   }

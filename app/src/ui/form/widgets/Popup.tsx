@@ -1,14 +1,14 @@
 import {useState} from "react";
 
-export function Popup() {
-    const [display, setDisplay] = useState(false);
-
-    if (!display) {
-        return <></>;
-    }
+export default function Popup() {
+    // const [display, setDisplay] = useState(false);
+    //
+    // if (!display) {
+    //     return <>POPUP</>;
+    // }
     return <>
         <div>
-
+            hello
         </div>
     </>
 }

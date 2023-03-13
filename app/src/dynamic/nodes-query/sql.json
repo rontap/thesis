@@ -19,7 +19,8 @@
     "entrypoint": "query",
     "data": {
       "query": {
-        "type": "sql"
+        "type": "sql",
+        "widget": "Popup"
       }
     }
   }

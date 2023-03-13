@@ -59,6 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.18.0"
+    "@types/webpack-env": "^1.18.0",
+    "react-test-renderer": "^18.2.0"
   }
 }

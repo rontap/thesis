@@ -22,6 +22,7 @@ import Recenter from "./ui/Recenter";
 import Header from "./ui/Header";
 import NodeBlueprints from "./ui/NodeBlueprints";
 import AvailableNodes from "./ui/AvailableNodes";
+import BlueprintSvg from "./svg/BlueprintSvg";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -57,7 +58,7 @@ function App() {
                 <ActiveNodes/>
                 <PropertyViewer/>
             </> : <>
-                <Svg items={items} blueprint/>
+                <BlueprintSvg items={items} blueprint/>
                 <NodeBlueprints items={items}/>
             </>}
 

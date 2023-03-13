@@ -3,7 +3,7 @@ import {NodeEdgeRef} from "../graph/EdgeLoader";
 
 export function loadJsonNodeDefinitions(): NodeTemplateMap {
     // const context = require.context('../dynamic/nodes/', true, /\.(json)$/);
-    const context = require.context('../dynamic/nodes-th/', true, /\.(json)$/);
+    const context = require.context('../dynamic/nodes-query/', true, /\.(json)$/);
     let files = new Map<string, NodeTemplate>();
     context.keys().forEach((filename) => {
         files.set(filename, context(filename));
@@ -15,7 +15,7 @@ export type NodeTemplate = {
     hide?: boolean,
     name: string,
     className?: string,
-    type?: string,
+    type: string,
     description?: string,
     outputs: NodeEdgeRef[],
     inputs: NodeEdgeRef[]

@@ -18,6 +18,7 @@ interface AppState {
     getNodeById: (id: number) => Node | undefined
     removeNode: (id: number) => void,
     removeLine: (id: number) => void,
+    blueprintedNode: string,
     getLineBetween: (from: number, to: number) => Line | undefined
     zoom: number,
     contextMenu: any,
@@ -28,7 +29,8 @@ interface AppState {
     activeNode: Node | undefined,
     setActiveNode: (id?: NodeID | undefined) => void,
 
-    getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => Line[]
+    getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => Line[],
+    setBlueprintedNode: (nodeName: string) => void
 }
 
 export enum End { FROM, TO}
@@ -56,6 +58,8 @@ const State = create<AppState>()(
                 setActiveNode: (id) => set((state) =>
                     ({activeNode: id ? get().nodes.find(item => item.ID === Number(id)) : undefined})
                 ),
+                setBlueprintedNode: (nodeName: string) => set((state) =>
+                    ({blueprintedNode: nodeName})),
                 getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => {
                     if (!id) return [];
                     const whichJunction = end === End.FROM ? "from" : "to";
@@ -64,6 +68,7 @@ const State = create<AppState>()(
                 lines: [],
                 lineAddAt: {},
                 contextMenu: {},
+                blueprintedNode: "",
                 activeNode: undefined
             }),
             {

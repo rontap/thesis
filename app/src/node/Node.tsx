@@ -55,14 +55,16 @@ export class Node {
     }
 
 
-    getSvg() {
+    getSvg(blueprint: boolean = false) {
         const noProperties = Object.values(this._configParams).length;
         const height = 60 + (noProperties * 50);
         return (<foreignObject key={this.ID}
                                onClick={() => getState().setActiveNode(this.ID)}
                                className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
-                               x={this.coords.x} y={this.coords.y} width={CONST.box.width} height={height}>
+                               x={blueprint ? 10 : this.coords.x}
+                               y={blueprint ? 10 : this.coords.y}
+                               width={CONST.box.width} height={height}>
             <div className={"boxedItem"}>
                 <ErrorBoundary FallbackComponent={NodeError}>
                     <div className={"title"}>{this.nodeType} [{this.ID}]</div>
@@ -149,7 +151,7 @@ export class Node {
 
 }
 
-const NodeError = ({resetErrorBoundary}:any) => <div className={"p-5"}>
+const NodeError = ({resetErrorBoundary}: any) => <div className={"p-5"}>
     This node could not be loaded.<br/>
     <Button small onClick={resetErrorBoundary}>
         Retry

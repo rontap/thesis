@@ -28,7 +28,9 @@ function NodeBlueprintItem(item: jsobj) {
 
         <BtnGroup>
             <Button disabled className={"btn-100"}>{item.name}</Button>
-            <Button>Select</Button>
+            <Button
+                onClick={() => getState().setBlueprintedNode(item.name)}
+            >Select</Button>
             <Button>...</Button>
             <Button>×</Button>
             {/*<Button*/}

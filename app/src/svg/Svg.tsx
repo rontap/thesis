@@ -23,7 +23,7 @@ export default function Svg(props: jsobj) {
     lines = State((state) => state.lines)
 
     return (
-        <div id={"svgRootCont"} className={blueprint && "svgBlueprint majorElement"}
+        <div id={"svgRootCont"}
              {...Movable}
         >
             <svg

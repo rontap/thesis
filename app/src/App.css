@@ -62,7 +62,8 @@
 .svgBlueprint {
     position: fixed;
     left: 350px;
-    top: 135px;
+    top: 120px;
+    height:400px;
 
 }
 

@@ -63,7 +63,7 @@
     position: fixed;
     left: 350px;
     top: 120px;
-    height:400px;
+    height: 400px;
 
 }
 
@@ -178,10 +178,28 @@ svg:has(foreignObject:active div) {
 
 }
 
+#blueprintConfig {
+    top: 120px;
+    left: 670px;
+    width: 350px;
+    text-align: left;
+    max-height: 800px;
+    overflow-x: auto;
+}
+
+#blueprintConfig pre {
+
+    margin: 10px;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
 #nodeBlueprints {
     width: 300px;
     top: 120px;
-    height: 600px;
+    min-height: 600px;
+    max-height: 800px;
+    overflow-x: auto;
     text-align: left;
     padding: 15px;
 }
@@ -432,9 +450,10 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     background: linear-gradient(#ffffff66, #b7b7b766);
     cursor: pointer;
 }
-.configButtonItem:active ,
-.configInputItem:focus{
-    background: linear-gradient(#b7b7b766,#ffffff66 );
+
+.configButtonItem:active,
+.configInputItem:focus {
+    background: linear-gradient(#b7b7b766, #ffffff66);
 }
 
 .configInputCb {

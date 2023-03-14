@@ -34,5 +34,10 @@ export default function Header() {
         {/*<Button onClick={addLine}>Add new line</Button>*/}
 
         <Button className={"blue"}>Compile</Button>
+
+        <BtnGroup>
+            <Button>Import...</Button>
+            <Button>Export...</Button>
+        </BtnGroup>
     </span>
 };

@@ -256,7 +256,7 @@ nav #titlemark {
 }
 
 #propertyRoot {
-    top: 0px;
+    top: 0;
     min-height: 400px;
     right: 0;
     width: 350px;
@@ -483,4 +483,24 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 .edgeConfigurable .configInputItem {
 
     width: calc(100% - 20px);
+}
+
+
+.showCodeToggle {
+    opacity: 0;
+    transition: opacity .2s;
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    width: 17px;
+}
+
+.showCodeToggle:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+foreignObject:hover .showCodeToggle {
+    opacity: .8;
 }

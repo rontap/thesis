@@ -6,10 +6,12 @@ import {Line} from "./Line";
 import {jsobj, preventBubble} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
-import {ConfigPropertyViewer} from "./ConfigPropertyViewer";
+import {FormRoot} from "./FormRoot";
 import CONST from "../const";
 import {ErrorBoundary} from "react-error-boundary";
 import Button from "../components/Button";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCode} from '@fortawesome/free-solid-svg-icons'
 
 export {};
 
@@ -67,7 +69,11 @@ export class Node {
                                width={CONST.box.width} height={height}>
             <div className={"boxedItem"}>
                 <ErrorBoundary FallbackComponent={NodeError}>
-                    <div className={"title"}>{this.nodeType} [{this.ID}]</div>
+                    <div className={"title"}>
+                        {this.nodeType} [{this.ID}]
+
+                        <FontAwesomeIcon icon={faCode} className={"showCodeToggle"}/>
+                    </div>
 
                     <button className={"nodeConnection nodeConnectionStart"}
                             onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
@@ -77,7 +83,7 @@ export class Node {
                     {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
 
                     <div className={"configCtn"}>
-                        {ConfigPropertyViewer(this._configParams)}
+                        <FormRoot configParams={this._configParams}/>
                     </div>
                 </ErrorBoundary>
             </div>
@@ -86,28 +92,10 @@ export class Node {
     }
 
     preventActOnMove(fn: Function) {
-
         if (MovableState.isPanning) return () => false;
         return fn.call(this);
     }
 
-    addInput(id: number) {
-        this.inputs.push(id);
-    }
-
-    toggleInput() {
-        const id = Number(window.prompt("ID?"));
-        if (this.inputs.includes(id)) {
-            this.removeInput(id)
-            ;
-        } else {
-            this.addInput(id)
-        }
-    }
-
-    removeInput(id: number) {
-        this.inputs = this.inputs.filter(item => item !== id);
-    }
 
     get initialCoords(): Point {
         const context = getState().contextMenu;
@@ -117,15 +105,6 @@ export class Node {
         return new Point(400, 400);
     }
 
-    getInputLines() {
-
-
-        return this.inputs.map(input => (
-            <line x1="0" y1="95" x2="100" y2="20"
-                  key={this.ID + input}
-                  className={`data-line-${this.ID} data-node-from-${input}  data-node-to-${this.ID} data-line`}
-                  stroke="white"/>))
-    }
 
     removeSelf() {
         State.getState().removeNode(this.ID);
@@ -137,15 +116,6 @@ export class Node {
 
     static getSvgNode(id: number | string | undefined) {
         return document.querySelector(".data-node-" + id);
-    }
-
-    private _inputs: Input[] = Node.ID === 1 ? [] : [Node.ID - 1];
-    public get inputs(): Input[] {
-        return this._inputs;
-    }
-
-    public set inputs(value: Input[]) {
-        this._inputs = value;
     }
 
 

@@ -1,9 +1,15 @@
 import Atoms from "./atoms";
-import React from "react";
+import React, {useState} from "react";
 import {configTypes, FormAtoms, FormRouteProps, IsFormAtom} from "../../graph/EdgeLoader";
 import Widgets from "./widgets";
 
-function WidgetFactory(props: FormRouteProps & { Component: JSX.Element }) {
+type FormRouteComponentProps = FormRouteProps & {
+    item: string,
+    onChange?: Function
+    onChangeRoot: Function
+};
+
+function WidgetFactory(props: FormRouteComponentProps & { Component: JSX.Element }) {
 
     const componentFromName: any = Widgets[(props.widget || "Invalid")];
 
@@ -18,13 +24,19 @@ function WidgetFactory(props: FormRouteProps & { Component: JSX.Element }) {
 const getComponentFromName = (name: FormAtoms | string): JSX.Element => {
     return <></>
 }
-export default function FormRouter(props: FormRouteProps) {
+
+
+export default function FormRouter(props: FormRouteComponentProps) {
     const {type} = props;
+    const [formStore, setFormStore] = useState();
 
     if (props.widget) {
         return <WidgetFactory Component={getComponentFromName(props.widget)} {...props}/>
     }
 
+    const passProps = {...props};
+
+    passProps.onChange = (newValue: string) => props?.onChangeRoot(props.item, newValue)
     // deferring value only if its invalid
     const typeDef = configTypes.get(type);
     const parsedType = IsFormAtom(type) ? type : typeDef?.type;
@@ -38,13 +50,13 @@ export default function FormRouter(props: FormRouteProps) {
         case FormAtoms.JSON:
         case FormAtoms.ANY:
         case FormAtoms.STRING:
-            return <Atoms.String {...props}/>
+            return <Atoms.String {...passProps}/>
         case FormAtoms.NUMBER:
-            return <Atoms.Number {...props}/>
+            return <Atoms.Number {...passProps}/>
         case FormAtoms.BOOLEAN:
-            return <Atoms.Checkbox {...props}/>
+            return <Atoms.Checkbox {...passProps}/>
         case FormAtoms.BINARY:
-            return <Atoms.Restricted {...props}/>
+            return <Atoms.Restricted {...passProps}/>
         case FormAtoms.STATIC:
             return <>This is static.</>
         default:

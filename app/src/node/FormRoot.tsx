@@ -5,23 +5,28 @@ import {Form} from "formik";
 import FormRouter from "../ui/form/FormRouter";
 import {FormRouteProps} from "../graph/EdgeLoader";
 
-export function ConfigPropertyViewer(configParams: jsobj | undefined) {
+export function FormRoot({configParams}: { configParams: jsobj | undefined }) {
+    const [config, setConfig] = useState();
+
     if (!configParams) {
         console.log("[no config params found]")
         return <></>
     }
+    const onChangeRoot = (path: string, newValue: any) => {
+        console.log(path, newValue, '<< high level onchange');
+    }
 
     return <>
-
         {Object.entries(configParams)
             .filter(([_, entry]) => !entry.hide)
-            .map(([item, value]) => <ConfigPropertyEntry key={item} item={item} entry={value}/>)
+            .map(([item, value]) => <ConfigPropertyEntry onChangeRoot={onChangeRoot} key={item} item={item}
+                                                         entry={value}/>)
         }
     </>
 }
 
-export function ConfigPropertyEntry(props: { item: string, entry: FormRouteProps }) {
-    const {item, entry} = props;
+export function ConfigPropertyEntry(props: { item: string, entry: FormRouteProps, onChangeRoot: Function }) {
+    const {item, entry, onChangeRoot} = props;
     const [value, setValue] = useState(JSON.stringify(props.entry));
     const handleChange = (newValue: any) => {
         setValue(newValue.target.value);
@@ -33,10 +38,10 @@ export function ConfigPropertyEntry(props: { item: string, entry: FormRouteProps
                     </span>
 
                     <FormRouter
+                        onChangeRoot={onChangeRoot}
+                        item={item}
                         {...entry}/>
-        {/*<input*/}
-        {/*    onChange={handleChange}*/}
-        {/*    value={value} className={"configInputItem"}/>*/}
+
 
         <br/>
             </span>

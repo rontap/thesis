@@ -1,12 +1,12 @@
 {
+  "hide": true,
   "name": "det_filter",
   "type": "graphic",
   "className": "green",
   "config": {
-    "self" : "index_path",
+    "self": "index_path",
     "index_path": {
-      "type" : "path"
+      "type": "path"
     }
-
   }
 }

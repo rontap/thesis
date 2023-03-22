@@ -3,11 +3,14 @@ import {Node} from "./Node";
 import Draggable, {DragHandler, Geom} from "../svg/Draggable";
 import CONST from "../const";
 
+export type LineId = number;
+export type NodeId = number;
+
 export class Line {
-    public to: number;
-    public from: number;
+    public to: NodeId;
+    public from: NodeId;
     static ID = 1;
-    public ID: number;
+    public ID: LineId;
 
 
     constructor(from: number, to: number) {

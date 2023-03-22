@@ -2,7 +2,7 @@ import State, {getState} from "../graph/State";
 import Draggable, {DragHandler, DragHandlerInst, Point} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
-import {Line} from "./Line";
+import {Line, NodeId} from "./Line";
 import {jsobj, preventBubble} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
@@ -12,7 +12,9 @@ import {ErrorBoundary} from "react-error-boundary";
 import Button from "../components/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from '@fortawesome/free-solid-svg-icons'
+import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 
+console.log(GraphUtilInst)
 export {};
 
 type Input = number
@@ -38,9 +40,6 @@ export class Node {
         this.coords = this.initialCoords;
         this._configParams = this.nodeProps?.config?.data || {};
 
-    }
-
-    instantiate() {
 
     }
 
@@ -56,6 +55,23 @@ export class Node {
         return NodeBuilder.getType(this.nodeType)?.inputs || [];
     }
 
+    /**
+     * @description Get all nodes that have output connected
+     */
+    get prevNodes(): NodeId[] {
+        return State.getState().lines
+            .map(line => line.to)
+            .filter(id => id === this.ID);
+    }
+
+    /**
+     * @description Get all nodes that come from this node
+     */
+    get nextNodes(): NodeId[] {
+        return State.getState().lines
+            .map(line => line.from)
+            .filter(id => id === this.ID);
+    }
 
     getSvg(blueprint: boolean = false) {
         const noProperties = Object.values(this._configParams).length;

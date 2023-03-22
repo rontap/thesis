@@ -2,6 +2,8 @@ import State, {getState} from "../graph/State";
 import {Node} from "./Node";
 import Draggable, {DragHandler, Geom} from "../svg/Draggable";
 import CONST from "../const";
+import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
+import {ReactElement} from "react";
 
 export type LineId = number;
 export type NodeId = number;
@@ -61,18 +63,27 @@ export class Line {
         return this.getNode(this.to)
     }
 
-    getSvg() {
+    getSvg(): ReactElement {
         try {
             const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(CONST.box.width, CONST.box.pointTop);
             const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(0, CONST.box.pointTop);
+            const isLinePartOfInvalidPath = GraphUtilInst.circleElementsInGraph
+                .flat()
+                .some(line => line.ID === this.ID)
+
+            if (isLinePartOfInvalidPath) {
+                return <path d={Geom.bezierSvgD(fromPoint, toPoint)}
+                             className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
+                             x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
+                             style={{fill: 'transparent', stroke: '#f44336', width: '5px'}}/>
+            }
 
             return <>
                 <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                       className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
                       x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
                       markerMid="url(#dot)"
-                      style={{fill: 'transparent', stroke: 'whitesmoke', width: '3px'}}/>
-
+                      style={{fill: 'transparent', stroke: 'whitesmoke', width: '4px'}}/>
 
                 <circle r="4" fill="#90caf9">
                     <animateMotion

@@ -2,7 +2,7 @@ import State, {getState} from "../graph/State";
 import Draggable, {DragHandler, DragHandlerInst, Point} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {MovableState} from "../svg/Movable.js";
-import {Line, NodeId} from "./Line";
+import {Line, LineId, NodeId} from "./Line";
 import {jsobj, preventBubble} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
@@ -30,6 +30,10 @@ export class Node {
     public coords: Point;
 
     private readonly _configParams: jsobj;
+    private _configValues: jsobj;
+
+    public orderedNode: NodeId[] = [];
+    public _error: any = "";
 
     output: Output = Node.ID;
 
@@ -39,6 +43,16 @@ export class Node {
 
         this.coords = this.initialCoords;
         this._configParams = this.nodeProps?.config?.data || {};
+
+        const configParamKeys = Object.keys(this._configParams);
+
+        this._configValues = {};
+        configParamKeys.forEach(key => {
+            const aDefault = this._configParams[key].default;
+            if (aDefault != undefined) {
+                this._configValues[key] = aDefault;
+            }
+        })
 
 
     }
@@ -60,8 +74,9 @@ export class Node {
      */
     get prevNodes(): NodeId[] {
         return State.getState().lines
-            .map(line => line.to)
-            .filter(id => id === this.ID);
+            .filter(line => line.to === this.ID)
+            .filter(line => line.from !== this.ID)
+            .map(line => line.from);
     }
 
     /**
@@ -69,8 +84,15 @@ export class Node {
      */
     get nextNodes(): NodeId[] {
         return State.getState().lines
-            .map(line => line.from)
-            .filter(id => id === this.ID);
+            .filter(line => line.from === this.ID)
+            .filter(line => line.to !== this.ID)
+            .map(line => line.to);
+    }
+
+    get linesFromNode(): Line[] {
+        return State.getState().lines
+            .filter(line => line.from === this.ID)
+            .filter(line => line.to !== this.ID)
     }
 
     getSvg(blueprint: boolean = false) {
@@ -99,7 +121,9 @@ export class Node {
                     {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
 
                     <div className={"configCtn"}>
-                        <FormRoot configParams={this._configParams}/>
+                        <FormRoot
+                            configValues={this._configValues}
+                            configParams={this._configParams}/>
                     </div>
                 </ErrorBoundary>
             </div>

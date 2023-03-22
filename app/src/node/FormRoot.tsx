@@ -5,7 +5,8 @@ import {Form} from "formik";
 import FormRouter from "../ui/form/FormRouter";
 import {FormRouteProps} from "../graph/EdgeLoader";
 
-export function FormRoot({configParams}: { configParams: jsobj | undefined }) {
+export function FormRoot({configParams, configValues}:
+                             { configValues: jsobj, configParams: jsobj | undefined }) {
     const [config, setConfig] = useState();
 
     if (!configParams) {
@@ -13,20 +14,28 @@ export function FormRoot({configParams}: { configParams: jsobj | undefined }) {
         return <></>
     }
     const onChangeRoot = (path: string, newValue: any) => {
-        console.log(path, newValue, '<< high level onchange');
+        configValues[path] = newValue;
+        console.log(path, newValue, '<< onchange', configValues);
     }
 
     return <>
         {Object.entries(configParams)
             .filter(([_, entry]) => !entry.hide)
-            .map(([item, value]) => <ConfigPropertyEntry onChangeRoot={onChangeRoot} key={item} item={item}
-                                                         entry={value}/>)
+            .map(([item, value]) => <ConfigPropertyEntry
+                onChangeRoot={onChangeRoot}
+                key={item}
+                item={item}
+                hasDefault={value.default != undefined}
+                defaultValue={value.default}
+                entry={value}/>)
         }
     </>
 }
 
-export function ConfigPropertyEntry(props: { item: string, entry: FormRouteProps, onChangeRoot: Function }) {
-    const {item, entry, onChangeRoot} = props;
+export function ConfigPropertyEntry(props: {
+    item: string, entry: FormRouteProps, onChangeRoot: Function, hasDefault: boolean, defaultValue: any
+}) {
+    const {item, entry, onChangeRoot, defaultValue} = props;
     const [value, setValue] = useState(JSON.stringify(props.entry));
     const handleChange = (newValue: any) => {
         setValue(newValue.target.value);
@@ -40,6 +49,7 @@ export function ConfigPropertyEntry(props: { item: string, entry: FormRouteProps
                     <FormRouter
                         onChangeRoot={onChangeRoot}
                         item={item}
+                        defaultValue={defaultValue}
                         {...entry}/>
 
 

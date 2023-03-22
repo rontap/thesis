@@ -20,7 +20,8 @@
     "self": "fv_sim",
     "data": {
       "fv_path": {
-        "type": "path"
+        "type": "path",
+        "default" : "/*/"
       },
       "threshold": {
         "type": "threshold"

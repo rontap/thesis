@@ -9,7 +9,7 @@ export default function NodeBlueprintConfigEditor(props: jsobj) {
         <div id={"blueprintConfig"} className={"majorElement"}>
             <code>
                 <pre>
-                {JSON.stringify(blueprintedType, null, 2)}
+                    {JSON.stringify(blueprintedType, null, 2)}
                 </pre>
             </code>
         </div>

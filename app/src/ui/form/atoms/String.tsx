@@ -9,6 +9,8 @@ export default function String(props: any) {
         props.onChange(value);
     }
     return <>
-        <input className={"configInputItem"} onChange={onBeforeChange}/>
+        <input className={"configInputItem"}
+               defaultValue={props.defaultValue}
+               onChange={onBeforeChange}/>
     </>
 }

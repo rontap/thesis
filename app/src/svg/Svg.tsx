@@ -7,6 +7,7 @@ import State, {getState} from "../graph/State";
 import {Node} from "../node/Node";
 import Movable from "./Movable.js";
 import {Line} from "../node/Line";
+import SvgLines from "./SvgLines";
 
 export default function Svg(props: jsobj) {
     const {blueprint} = props;
@@ -14,12 +15,12 @@ export default function Svg(props: jsobj) {
         DragHandlerInst.getTransformMatrix();
     }, []);
 
-    let nodes, lines;
+    let nodes, lines, tempSvgRender;
 
 
+    console.log('rendering svg')
     nodes = State((state) => state.nodes)
 
-    lines = State((state) => state.lines)
 
     return (
         <div id={"svgRootCont"}
@@ -82,9 +83,8 @@ export default function Svg(props: jsobj) {
                     getCurrentLine()
                 }
 
-                {
-                    lines.map((node: Line) => node.getSvg())
-                }
+                <SvgLines/>
+
 
                 {
                     nodes.map((node: Node) => node.getSvg())

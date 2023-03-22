@@ -7,6 +7,7 @@ type FormRouteComponentProps = FormRouteProps & {
     item: string,
     onChange?: Function
     onChangeRoot: Function
+    defaultValue: any
 };
 
 function WidgetFactory(props: FormRouteComponentProps & { Component: JSX.Element }) {
@@ -62,7 +63,7 @@ export default function FormRouter(props: FormRouteComponentProps) {
         default:
             console.error(`[Form Route] Type ${type} is not found`);
             return <>
-                hm.
+                form type missing.
             </>
     }
 }

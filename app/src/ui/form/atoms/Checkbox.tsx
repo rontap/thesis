@@ -10,5 +10,6 @@ export default function Checkbox(props: any) {
         type={"checkbox"}
         className={"configInputCb"}
         onChange={onBeforeChange}
+        defaultChecked={!!props.defaultValue}
     />
 }

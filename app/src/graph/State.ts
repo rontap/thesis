@@ -30,7 +30,9 @@ interface AppState {
     setActiveNode: (id?: NodeID | undefined) => void,
 
     getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => Line[],
-    setBlueprintedNode: (nodeName: string) => void
+    setBlueprintedNode: (nodeName: string) => void,
+    forceSvgRender: {},
+    temporalSvgRender: () => void
 }
 
 export enum End { FROM, TO}
@@ -65,11 +67,15 @@ const State = create<AppState>()(
                     const whichJunction = end === End.FROM ? "from" : "to";
                     return get().lines.filter(line => line[whichJunction] === id)
                 },
+                temporalSvgRender: () => set((state) =>
+                    ({forceSvgRender: {}})
+                ),
                 lines: [],
                 lineAddAt: {},
                 contextMenu: {},
                 blueprintedNode: "",
-                activeNode: undefined
+                activeNode: undefined,
+                forceSvgRender: {}
             }),
             {
                 partialize: (state) => {

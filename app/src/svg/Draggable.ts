@@ -46,12 +46,8 @@ class DragHandler {
             evt.stopPropagation();
         }
 
-        let id: number = Number(evt.target.getAttribute('data-id'));
-        if (id === 0) {
-            // we are moving the cursor super fast
-            const actTarget = this.selected as HTMLElement;
-            id = Number(actTarget?.getAttribute('data-id'));
-        }
+        const actTarget = this.selected as HTMLElement;
+        let id = Number(actTarget?.getAttribute('data-id'));
 
         if (action === Button.DOWN) {
             this.selected = evt.target;
@@ -94,6 +90,7 @@ class DragHandler {
 
         if (action === Button.UP || action === Button.LEAVE) {
             this.isDown = false;
+            this.selected = null;
         }
 
     }

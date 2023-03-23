@@ -15,7 +15,9 @@ export enum FormAtoms {
     JSON = "json",
     BOOLEAN = "boolean",
     BINARY = "binary",
-    STATIC = "static"
+    STATIC = "static",
+    TEXT = "text",
+    TEXT_AREA = "textarea"
 }
 
 export const IsFormAtom = (value: string) => {

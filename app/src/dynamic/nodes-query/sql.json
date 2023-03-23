@@ -20,7 +20,7 @@
     "data": {
       "query": {
         "type": "sql",
-        "widget": "Popup"
+        "_widget": "Popup"
       }
     }
   }

@@ -52,6 +52,9 @@ export default function FormRouter(props: FormRouteComponentProps) {
         case FormAtoms.ANY:
         case FormAtoms.STRING:
             return <Atoms.String {...passProps}/>
+        case FormAtoms.TEXT:
+        case FormAtoms.TEXT_AREA:
+            return <Atoms.Textarea {...passProps}/>
         case FormAtoms.NUMBER:
             return <Atoms.Number {...passProps}/>
         case FormAtoms.BOOLEAN:

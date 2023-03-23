@@ -1,3 +1,4 @@
+import {jsobj} from "../app/util";
 
 export enum Button {
     DOWN = "DOWN",
@@ -15,23 +16,31 @@ export class Point {
         this.y = y;
     }
 
-    unwrap() {
+    toObject(): jsobj {
         return {
             x: this.x,
             y: this.y
         }
     }
 
-    static get Origin() {
+    fromObject(obj: jsobj): Point {
+        return new Point(obj.x || 0, obj.y || 0);
+    }
+
+    static get Origin(): Point {
         return new Point(0, 0);
     }
 
-    add(x: number = 0, y: number = 0) {
+    add(x: number = 0, y: number = 0): Point {
         return new Point(this.x + x, this.y + y);
     }
 
-    subtract(x: number = 0, y: number = 0) {
+    subtract(x: number = 0, y: number = 0): Point {
         return new Point(this.x - x, this.y - y);
+    }
+
+    equals(p2: Point): boolean {
+        return (p2.x === this.x && p2.y === this.y)
     }
 
 }

@@ -1,6 +1,6 @@
 import State, {getState} from "../graph/State";
 import {Node} from "./Node";
-import Draggable, {DragHandler, Geom} from "../svg/Draggable";
+import Draggable, {DragHandler, Geom, Point} from "../svg/Draggable";
 import CONST from "../const";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import {ReactElement} from "react";
@@ -42,9 +42,7 @@ export class Line {
         }
 
 
-        State.setState(state => {
-            return {lines: state.lines.concat(new Line(from, to))}
-        });
+        getState().addLine(new Line(from, to));
     }
 
     getNode(id: number): Node {
@@ -63,10 +61,33 @@ export class Line {
         return this.getNode(this.to)
     }
 
+    getSvgAnimation(fromPoint: Point, toPoint: Point) {
+        return <>
+            <circle r="4" fill="#90caf9">
+                <animateMotion
+                    className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
+                    dur="3s"
+                    x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
+                    repeatCount="indefinite"
+                    path={Geom.bezierSvgD(fromPoint, toPoint)}/>
+            </circle>
+
+            <circle r="4" fill="#90caf9">
+                <animateMotion
+                    begin="1.5s"
+                    className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
+                    dur="3s"
+                    x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
+                    repeatCount="indefinite"
+                    path={Geom.bezierSvgD(fromPoint, toPoint)}/>
+            </circle>
+        </>
+    }
+
     getSvg(): ReactElement {
         try {
-            const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(CONST.box.width, CONST.box.pointTop);
-            const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(0, CONST.box.pointTop);
+            const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
+            const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(CONST.box.padLeft, CONST.box.pointTop);
             const isLinePartOfInvalidPath = GraphUtilInst.circleElementsInGraph
                 .flat()
                 .some(line => line.ID === this.ID)
@@ -75,7 +96,7 @@ export class Line {
                 return <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                              className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
                              x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
-                             style={{fill: 'transparent', stroke: '#f44336', width: '5px'}}/>
+                             style={{fill: 'transparent', stroke: '#f44336', strokeWidth: '3px'}}/>
             }
 
             return <>
@@ -83,35 +104,14 @@ export class Line {
                       className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
                       x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
                       markerMid="url(#dot)"
-                      style={{fill: 'transparent', stroke: 'whitesmoke', width: '4px'}}/>
+                      style={{fill: 'transparent', stroke: 'whitesmoke', strokeWidth: '2px'}}/>
 
-                <circle r="4" fill="#90caf9">
-                    <animateMotion
-                        className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
-                        dur="3s"
-                        x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
-                        repeatCount="indefinite"
-                        path={Geom.bezierSvgD(fromPoint, toPoint)}/>
-                </circle>
+                {this.getSvgAnimation(fromPoint, toPoint)}
 
-                <circle r="4" fill="#90caf9">
-                    <animateMotion
-                        begin="1.5s"
-                        className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
-                        dur="3s"
-                        x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
-                        repeatCount="indefinite"
-                        path={Geom.bezierSvgD(fromPoint, toPoint)}/>
-                </circle>
-
-                {/*<line x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}*/}
-                {/*      key={this.ID}*/}
-                {/*      className={`data-line-${this.ID} data-node-from-${this.from}*/}
-                {/*           data-node-to-${this.to} data-line`}*/}
-                {/*      stroke="white"/>*/}
             </>
         } catch (e) {
             // if the line has at least one invalid input it is going to get nuked.
+            console.info('[auto-removing line]', this)
             this.removeSelf();
             return <></>
         }

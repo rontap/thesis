@@ -2,6 +2,7 @@
   "name": "print",
   "type": "writer",
   "className": "white",
+  "outputs": false,
   "config": {
     "self": "print",
     "data": {

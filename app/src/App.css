@@ -70,9 +70,9 @@
 .boxedItem {
     border: 2px solid #ccc;
     border-radius: 5px;
-    width: calc(100% - 4px);
+    width: calc(100% - 10px);
     position: absolute;
-    left: 0;
+    left: 3px;
     right: 0;
     bottom: 0;
     top: 0;
@@ -87,9 +87,15 @@ foreignObject, .fo {
 foreignObject.fo {
     position: relative;
 }
-
+foreignObject.fo {
+    border-radius: 4px;
+}
 foreignObject:hover {
-    outline: 3px double whitesmoke;
+    outline: 2px dotted whitesmoke;
+}
+
+foreignObject:active {
+    outline: 2px solid whitesmoke;
 }
 
 
@@ -343,8 +349,10 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     width: 10px;
     height: 16px;
     padding: 0;
-    border-radius: 0 4px 4px 0;
+    /*border-radius: 0 4px 4px 0;*/
+    border-radius: 8px;
     position: absolute;
+
     top: 20px;
     z-index: 3;
     background: #ccc;
@@ -353,13 +361,13 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 }
 
 .nodeConnectionStart {
-    left: 0px;
-    border-radius: 0 4px 4px 0;
+    left: -5px;
+    /*border-radius: 0 4px 4px 0;*/
 }
 
 .nodeConnectionEnd {
-    right: 0px;
-    border-radius: 4px 0px 0px 4px;
+    right:-5px;
+    /*border-radius: 4px 0px 0px 4px;*/
 }
 
 .nodeConnection:hover {

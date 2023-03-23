@@ -23,7 +23,8 @@ const CONST = {
     },
     box: {
         width: 185, //px
-        pointTop: 28
+        pointTop: 28,
+        padLeft : 5
     }
 }
 

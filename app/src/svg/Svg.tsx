@@ -157,8 +157,8 @@ const getCurrentLine = () => {
         return <></>
     }
 
-    const fromPoint = DragHandler.getCoords(node.selfSvg).add(CONST.box.width, CONST.box.pointTop);
-    const toPoint = DragHandlerInst.getCursor(lineAddAt.evt);
+    const fromPoint = DragHandler.getCoords(node.selfSvg).add(CONST.box.width+CONST.box.padLeft, CONST.box.pointTop);
+    const toPoint = DragHandlerInst.getCursor(lineAddAt.evt).add(CONST.box.padLeft,0);
 
     return <>
         <path d={Geom.bezierSvgD(fromPoint, toPoint)}

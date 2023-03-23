@@ -6,6 +6,7 @@ import {Line} from "../node/Line";
 import {unwatchFile} from "fs";
 import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
+import {GraphUtil, GraphUtilInst} from "./GraphUtil";
 
 // export default class State {
 //     static nodes: Node[] = [];
@@ -17,7 +18,9 @@ interface AppState {
     addNode: (node: Node) => void
     getNodeById: (id: number) => Node | undefined
     removeNode: (id: number) => void,
+    addLine: (line: Line) => void,
     removeLine: (id: number) => void,
+
     blueprintedNode: string,
     getLineBetween: (from: number, to: number) => Line | undefined
     zoom: number,
@@ -53,8 +56,14 @@ const State = create<AppState>()(
                     get().nodes.find(item => item.ID === Number(id)),
                 removeNode: (id: NodeID) => set((state) =>
                     ({nodes: state.nodes.filter(item => item.ID !== Number(id))})),
-                removeLine: (id: number) => set((state) =>
-                    ({lines: state.lines.filter(item => item.ID !== Number(id))})),
+                addLine: (line: Line) => {
+                    set((state) => ({lines: state.lines.concat(line)}));
+                    GraphUtilInst.detectCircles();
+                },
+                removeLine: (id: number) => {
+                    set((state) => ({lines: state.lines.filter(item => item.ID !== Number(id))}));
+                    GraphUtilInst.detectCircles();
+                },
                 getLineBetween: (from: number, to: number) =>
                     get().lines.find(line => line.from === from && line.to === to),
                 setActiveNode: (id) => set((state) =>

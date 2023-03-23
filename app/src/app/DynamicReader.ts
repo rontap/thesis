@@ -17,8 +17,10 @@ export type NodeTemplate = {
     className?: string,
     type: string,
     description?: string,
-    outputs: NodeEdgeRef[],
-    inputs: NodeEdgeRef[]
+    // false means this node cannot have outputs
+    outputs: NodeEdgeRef[] | false,
+    // false means this node cannot have inputs
+    inputs: NodeEdgeRef[] | false
 
     config?: jsobj
 }

@@ -22,6 +22,12 @@ export class GraphUtil {
             .filter(node => node.nextNodes.length === 0);
     }
 
+    detectCircles(): Line[][] {
+        this.forEachInOrder();
+        getState().temporalSvgRender();
+        return this.circleElementsInGraph;
+    }
+
     forEachInOrder() {
         getState().nodes.forEach(node => node.orderedNode = []);
         this.circleElementsInGraph = [];
@@ -35,7 +41,6 @@ export class GraphUtil {
                 this.forEachInOrderRecurse(node, node.ID, []);
             });
 
-        getState().temporalSvgRender();
 
     }
 

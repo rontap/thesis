@@ -53,8 +53,6 @@ export class Node {
                 this._configValues[key] = aDefault;
             }
         })
-
-
     }
 
     get nodeProps(): NodeTemplate {
@@ -98,13 +96,14 @@ export class Node {
     getSvg(blueprint: boolean = false) {
         const noProperties = Object.values(this._configParams).length;
         const height = 60 + (noProperties * 50);
+
         return (<foreignObject key={this.ID}
                                onClick={() => getState().setActiveNode(this.ID)}
                                className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
                                x={blueprint ? 10 : this.coords.x}
                                y={blueprint ? 10 : this.coords.y}
-                               width={CONST.box.width} height={height}>
+                               width={CONST.box.width+CONST.box.padLeft*2} height={height}>
             <div className={"boxedItem"}>
                 <ErrorBoundary FallbackComponent={NodeError}>
                     <div className={"title"}>
@@ -113,11 +112,21 @@ export class Node {
                         <FontAwesomeIcon icon={faCode} className={"showCodeToggle"}/>
                     </div>
 
-                    <button className={"nodeConnection nodeConnectionStart"}
-                            onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
+                    {
+                        this.nodeProps.inputs !== false && (
+                            <button className={"nodeConnection nodeConnectionStart"}
+                                    onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
+                        )
+                    }
 
-                    <button className={"nodeConnection nodeConnectionEnd"}
-                            onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
+                    {
+                        this.nodeProps.outputs !== false && (
+                            <button className={"nodeConnection nodeConnectionEnd"}
+                                    onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
+                        )
+                    }
+
+
                     {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
 
                     <div className={"configCtn"}>

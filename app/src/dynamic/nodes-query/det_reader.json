@@ -3,7 +3,7 @@
   "type": "reader",
   "className": "white",
   "description": "Input detection reader thing",
-  "inputs": null,
+  "inputs": false,
   "outputs": [
     {
       "type": "number",

@@ -79,18 +79,18 @@ class DragHandler {
 
                 document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
                     const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
-                    const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width, CONST.box.pointTop), toParameter)
+                    const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width+CONST.box.padLeft, CONST.box.pointTop), toParameter)
                     item.setAttributeNS(null, 'd', bezier)
                     item.setAttributeNS(null, 'path', bezier)
-                    this.setCoords(item, finalCoord.add(CONST.box.width, CONST.box.pointTop), 'x1', 'y1');
+                    this.setCoords(item, finalCoord.add(CONST.box.width+CONST.box.padLeft, CONST.box.pointTop), 'x1', 'y1');
                 })
 
                 document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
                     const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
-                    const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(0, CONST.box.pointTop))
+                    const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop))
                     item.setAttributeNS(null, 'd', bezier)
                     item.setAttributeNS(null, 'path', bezier)
-                    this.setCoords(item, finalCoord.add(0, CONST.box.pointTop), 'x2', 'y2');
+                    this.setCoords(item, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop), 'x2', 'y2');
                 })
             }
         }

@@ -28,6 +28,7 @@ class DragHandler {
     }
 
     evt(action: string, evt: any) {
+
         this.getTransformMatrix();
         const canBubble: boolean = !getState().lineAddAt.id;
 
@@ -45,7 +46,12 @@ class DragHandler {
             evt.stopPropagation();
         }
 
-        const id: number = Number(evt.target.getAttribute('data-id'));
+        let id: number = Number(evt.target.getAttribute('data-id'));
+        if (id === 0) {
+            // we are moving the cursor super fast
+            const actTarget = this.selected as HTMLElement;
+            id = Number(actTarget?.getAttribute('data-id'));
+        }
 
         if (action === Button.DOWN) {
             this.selected = evt.target;
@@ -62,36 +68,27 @@ class DragHandler {
                     finalCoord
                 );
 
-                // const line: Element = document.querySelector(".data-line-0-1")!;
-                //
-                // this.setCoords(line, finalCoord, 'x1', 'y1');
-                // this.setCoords(line, DragHandler.getCoords(
-                //     document.querySelector(".f2")!
-                // ), 'x2', 'y2');
+                // only try to render when we are sure there is an actual ID node
+                if (id > 0) {
 
-                // document.querySelectorAll('.data-node-from-' + id).forEach(item => {
-                //     this.setCoords(item, finalCoord.add(103, 30), 'x1', 'y1');
-                // })
-                //
-                // document.querySelectorAll('.data-node-to-' + id).forEach(item => {
-                //     this.setCoords(item, finalCoord.add(0, 30), 'x2', 'y2');
-                // })
+                    document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
+                        const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
+                        const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop), toParameter)
+                        item.setAttributeNS(null, 'd', bezier)
+                        item.setAttributeNS(null, 'path', bezier)
+                        this.setCoords(item, finalCoord.add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop), 'x1', 'y1');
+                    })
 
-                document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
-                    const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
-                    const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width+CONST.box.padLeft, CONST.box.pointTop), toParameter)
-                    item.setAttributeNS(null, 'd', bezier)
-                    item.setAttributeNS(null, 'path', bezier)
-                    this.setCoords(item, finalCoord.add(CONST.box.width+CONST.box.padLeft, CONST.box.pointTop), 'x1', 'y1');
-                })
+                    document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
+                        const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
+                        const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop))
+                        item.setAttributeNS(null, 'd', bezier)
+                        item.setAttributeNS(null, 'path', bezier)
+                        this.setCoords(item, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop), 'x2', 'y2');
+                    })
+                }
 
-                document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
-                    const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
-                    const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop))
-                    item.setAttributeNS(null, 'd', bezier)
-                    item.setAttributeNS(null, 'path', bezier)
-                    this.setCoords(item, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop), 'x2', 'y2');
-                })
+
             }
         }
 

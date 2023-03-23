@@ -15,7 +15,7 @@ export default function Svg(props: jsobj) {
         DragHandlerInst.getTransformMatrix();
     }, []);
 
-    let nodes, lines, tempSvgRender;
+    let nodes;
 
 
     console.log('rendering svg')

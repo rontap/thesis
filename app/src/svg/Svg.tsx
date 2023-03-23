@@ -64,6 +64,7 @@ export default function Svg(props: jsobj) {
 
                 <rect
                     x="-100%"
+                    id={"bgRectSvg"}
                     y="-100%"
                     width="1000%"
                     height="10000%" fill="url(#grid)"/>

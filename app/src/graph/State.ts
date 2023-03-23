@@ -2,7 +2,7 @@ import {jsobj} from "../app/util";
 import {create, useStore} from 'zustand'
 import {devtools, persist} from 'zustand/middleware'
 import {Node} from "../node/Node";
-import {Line} from "../node/Line";
+import {Line, LineId, NodeId} from "../node/Line";
 import {unwatchFile} from "fs";
 import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
@@ -30,9 +30,9 @@ interface AppState {
         evt?: any
     }
     activeNode: Node | undefined,
-    setActiveNode: (id?: NodeID | undefined) => void,
+    setActiveNode: (id?: NodeId | undefined) => void,
 
-    getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => Line[],
+    getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
     forceSvgRender: {},
     temporalSvgRender: () => void
@@ -40,8 +40,6 @@ interface AppState {
 
 export enum End { FROM, TO}
 
-type NodeID = number;
-type LineID = number;
 
 const State = create<AppState>()(
     devtools(
@@ -52,15 +50,15 @@ const State = create<AppState>()(
                 zoom: 1,
                 addNode: (node: Node) => set((state) =>
                     ({nodes: state.nodes.concat(node)})),
-                getNodeById: (id: NodeID) =>
+                getNodeById: (id: NodeId) =>
                     get().nodes.find(item => item.ID === Number(id)),
-                removeNode: (id: NodeID) => set((state) =>
+                removeNode: (id: NodeId) => set((state) =>
                     ({nodes: state.nodes.filter(item => item.ID !== Number(id))})),
                 addLine: (line: Line) => {
                     set((state) => ({lines: state.lines.concat(line)}));
                     GraphUtilInst.detectCircles();
                 },
-                removeLine: (id: number) => {
+                removeLine: (id: LineId) => {
                     set((state) => ({lines: state.lines.filter(item => item.ID !== Number(id))}));
                     GraphUtilInst.detectCircles();
                 },
@@ -71,7 +69,7 @@ const State = create<AppState>()(
                 ),
                 setBlueprintedNode: (nodeName: string) => set((state) =>
                     ({blueprintedNode: nodeName})),
-                getLinesAtNodeConnection: (id: NodeID | undefined, end: End) => {
+                getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => {
                     if (!id) return [];
                     const whichJunction = end === End.FROM ? "from" : "to";
                     return get().lines.filter(line => line[whichJunction] === id)
@@ -79,6 +77,8 @@ const State = create<AppState>()(
                 temporalSvgRender: () => set((state) =>
                     ({forceSvgRender: {}})
                 ),
+
+                // store store part
                 lines: [],
                 lineAddAt: {},
                 contextMenu: {},

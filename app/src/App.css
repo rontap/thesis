@@ -87,9 +87,11 @@ foreignObject, .fo {
 foreignObject.fo {
     position: relative;
 }
+
 foreignObject.fo {
     border-radius: 4px;
 }
+
 foreignObject:hover {
     outline: 2px dotted whitesmoke;
 }
@@ -294,13 +296,12 @@ body {
 }
 
 .nodeListItem {
-
-
     margin: 5px 5px;
 }
 
 .nodeListItem .listItemDescr {
-    width: 60px;
+    width: 80px;
+    margin-right: 10px;
     display: inline-block;
 }
 
@@ -309,7 +310,11 @@ body {
     max-height: 400px;
 }
 
-rect:active {
+#bgRectSvg {
+
+}
+
+#bgRectSvg:active {
     cursor: move;
 }
 
@@ -366,7 +371,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 }
 
 .nodeConnectionEnd {
-    right:-5px;
+    right: -5px;
     /*border-radius: 4px 0px 0px 4px;*/
 }
 

@@ -40,8 +40,6 @@ export class GraphUtil {
             .forEach(node => {
                 this.forEachInOrderRecurse(node, node.ID, []);
             });
-
-
     }
 
     public circleElementsInGraph: Line[][] = [];
@@ -76,6 +74,6 @@ export class GraphUtil {
 
 const GraphUtilInst = new GraphUtil();
 export {GraphUtilInst};
-console.log('-#gu');
+
 // @ts-ignore
 window._GU = GraphUtilInst;

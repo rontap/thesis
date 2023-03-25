@@ -24,6 +24,7 @@ import NodeBlueprints from "./ui/NodeBlueprints";
 import AvailableNodes from "./ui/AvailableNodes";
 import BlueprintSvg from "./svg/BlueprintSvg";
 import NodeBlueprintConfigEditor from "./node/NodeBlueprintConfigEditor";
+import Taskbar from "./ui/Taskbar";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -55,9 +56,7 @@ function App() {
 
                 <Svg items={items}/>
 
-                <AvailableNodes items={items}/>
-                <ActiveNodes/>
-                <PropertyViewer/>
+                <Taskbar items={items}/>
             </> : <>
                 <BlueprintSvg items={items} blueprint/>
                 <NodeBlueprints items={items}/>

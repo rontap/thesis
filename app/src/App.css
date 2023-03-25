@@ -164,11 +164,27 @@ svg:has(foreignObject:active div) {
     width: 320px;
 }
 
-#availableNodes {
+.draggableWrapper {
+    background: red;
+    z-index: 9;
+}
+
+#ddctx {
     position: fixed;
-    top: 80px;
-    height: 400px;
-    width: 320px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#ovl {
+    z-index: 2;
+    background: red;
+}
+
+#availableNodes {
+
 
 }
 
@@ -178,12 +194,33 @@ svg:has(foreignObject:active div) {
 
 #propertyRoot, #activeNodes, nav, .majorElement {
     position: fixed;
-
     background: #263136;
     border-radius: 10px;
     margin: 15px;
     border: 1px solid whitesmoke;
 
+}
+
+.taskbarElement {
+    position: fixed;
+    background: #263136;
+    border-radius: 10px;
+    margin: 15px;
+    border: 1px solid whitesmoke;
+    top: 80px;
+    /*width: 200px;*/
+    /*height: 200px;*/
+    max-height: 800px;
+}
+
+.taskbarHeader {
+    background: #263136;
+    background-image: radial-gradient(#61808a 1px, transparent 0);
+    background-size: 6px 6px;
+    background-position: -2px -2px;
+    margin: 3px;
+    height: 20px;
+    cursor: move;
 }
 
 #blueprintConfig {
@@ -283,7 +320,8 @@ body {
 }
 
 #svgRootCont {
-    margin-top: 0px;
+    margin-top: 47px;
+    border-top: 1px solid whitesmoke;
 
 }
 

@@ -23,7 +23,7 @@ export class Point {
         }
     }
 
-    fromObject(obj: jsobj): Point {
+    fromObject(obj: jsobj ): Point {
         return new Point(obj.x || 0, obj.y || 0);
     }
 

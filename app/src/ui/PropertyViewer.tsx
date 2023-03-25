@@ -15,7 +15,7 @@ export default function PropertyViewer() {
     if (!node) return <></>;
 
 
-    return <div id={"propertyRoot"} className={"majorElement"}>
+    return <div>
         <Button
             onClick={() => getState().setActiveNode()}
             className={"closer"}>×</Button>
@@ -62,7 +62,6 @@ export default function PropertyViewer() {
         {/*<Config node={node}/>*/}
     </div>
 }
-
 
 
 const SingleNodeItem = (node: Node | undefined, i: number) => {

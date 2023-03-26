@@ -14,6 +14,7 @@ import Button from "../components/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from '@fortawesome/free-solid-svg-icons'
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
+import NodeFC from "./NodeFC";
 
 console.log(GraphUtilInst)
 export {};
@@ -30,8 +31,8 @@ export class Node {
 
     public coords: Point;
 
-    private readonly _configParams: jsobj;
-    private _configValues: jsobj;
+    readonly _configParams: jsobj;
+    _configValues: jsobj;
 
     public orderedNode: NodeId[] = [];
     public _error: any = "";
@@ -101,58 +102,8 @@ export class Node {
     }
 
     getSvg(blueprint: boolean = false) {
-        const noProperties = Object.values(this._configParams).length;
-        const height = 60 + (noProperties * 50);
-
-        return (<foreignObject key={this.ID}
-                               xmlns="http://www.w3.org/1999/xhtml"
-                               onClick={() => getState().setActiveNode(this.ID)}
-                               className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}
-                               data-id={this.ID}
-                               x={blueprint ? 10 : this.coords.x}
-                               y={blueprint ? 10 : this.coords.y}
-                               width={CONST.box.width + CONST.box.padLeft * 2} height={height}>
-            <div className={"boxedItem"}>
-                <ErrorBoundary FallbackComponent={NodeError}>
-                    <div className={"title"}>
-                        {this.nodeType} [{this.ID}]
-
-                        <FontAwesomeIcon icon={faCode} className={"showCodeToggle"}/>
-                    </div>
-
-                    {
-                        this.nodeProps.inputs !== false && (
-                            <button className={"nodeConnection nodeConnectionStart"}
-                                    onClick={preventBubble(() => MovableState.finishLineAdd(this))}></button>
-                        )
-                    }
-
-                    {
-                        this.nodeProps.outputs !== false && (
-                            <button className={"nodeConnection nodeConnectionEnd"}
-                                    onClick={preventBubble(() => MovableState.beginLineAdd(this))}></button>
-                        )
-                    }
-
-
-                    {/*<button onDoubleClick={() => this.preventActOnMove(this.removeSelf)}>clear</button>*/}
-
-                    <div className={"configCtn"}>
-                        <FormRoot
-                            configValues={this._configValues}
-                            configParams={this._configParams}/>
-                    </div>
-                </ErrorBoundary>
-            </div>
-        </foreignObject>);
-
+        return <NodeFC Node={this} blueprint={blueprint}/>
     }
-
-    preventActOnMove(fn: Function) {
-        if (MovableState.isPanning) return () => false;
-        return fn.call(this);
-    }
-
 
     get initialCoords(): Point {
         const context = getState().contextMenu;
@@ -175,12 +126,5 @@ export class Node {
         return document.querySelector(".data-node-" + id);
     }
 
-
 }
 
-const NodeError = ({resetErrorBoundary}: any) => <div className={"p-5"}>
-    This node could not be loaded.<br/>
-    <Button small onClick={resetErrorBoundary}>
-        Retry
-    </Button>
-</div>

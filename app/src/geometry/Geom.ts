@@ -46,9 +46,9 @@ export class Point {
 }
 
 export class Geom {
-    static Distance(a: Point, b: Point) {
-        // todo
-    }
+    // static Distance(a: Point, b: Point) {
+    //     // todo
+    // }
 
     static Difference(a: Point, b: Point): Point {
         return new Point(

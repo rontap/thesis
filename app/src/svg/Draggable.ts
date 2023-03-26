@@ -30,7 +30,7 @@ class DragHandler {
     evt(action: string, evt: any) {
 
         this.getTransformMatrix();
-        const canBubble: boolean = !getState().lineAddAt.id;
+        const canBubble: boolean = !getState().lineAddAt?.ID;
 
         if (this.isDown) {
             evt.preventDefault();

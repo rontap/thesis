@@ -25,10 +25,7 @@ interface AppState {
     getLineBetween: (from: number, to: number) => Line | undefined
     zoom: number,
     contextMenu: any,
-    lineAddAt: {
-        id?: number,
-        evt?: any
-    }
+    lineAddAt: Node | undefined,
     activeNode: Node | undefined,
     setActiveNode: (id?: NodeId | undefined) => void,
 
@@ -80,7 +77,7 @@ const State = create<AppState>()(
 
                 // store store part
                 lines: [],
-                lineAddAt: {},
+                lineAddAt: undefined,
                 contextMenu: {},
                 blueprintedNode: "",
                 activeNode: undefined,

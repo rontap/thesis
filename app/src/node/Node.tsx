@@ -98,12 +98,13 @@ export class Node {
         const height = 60 + (noProperties * 50);
 
         return (<foreignObject key={this.ID}
+                               xmlns="http://www.w3.org/1999/xhtml"
                                onClick={() => getState().setActiveNode(this.ID)}
                                className={`fo void data-node-${this.ID} ${this.nodeProps.className}`}
                                data-id={this.ID}
                                x={blueprint ? 10 : this.coords.x}
                                y={blueprint ? 10 : this.coords.y}
-                               width={CONST.box.width+CONST.box.padLeft*2} height={height}>
+                               width={CONST.box.width + CONST.box.padLeft * 2} height={height}>
             <div className={"boxedItem"}>
                 <ErrorBoundary FallbackComponent={NodeError}>
                     <div className={"title"}>
@@ -115,14 +116,14 @@ export class Node {
                     {
                         this.nodeProps.inputs !== false && (
                             <button className={"nodeConnection nodeConnectionStart"}
-                                    onClick={preventBubble(() => MovableState.finishLineAdd(this.ID))}></button>
+                                    onClick={preventBubble(() => MovableState.finishLineAdd(this))}></button>
                         )
                     }
 
                     {
                         this.nodeProps.outputs !== false && (
                             <button className={"nodeConnection nodeConnectionEnd"}
-                                    onClick={preventBubble(() => MovableState.beginLineAdd(this.ID))}></button>
+                                    onClick={preventBubble(() => MovableState.beginLineAdd(this))}></button>
                         )
                     }
 

@@ -17,10 +17,7 @@ export default function Svg(props: jsobj) {
 
     let nodes;
 
-
-    console.log('rendering svg')
     nodes = State((state) => state.nodes)
-
 
     return (
         <div id={"svgRootCont"}
@@ -148,21 +145,13 @@ export default function Svg(props: jsobj) {
 }
 const getCurrentLine = () => {
     const lineAddAt = State((state) => state.lineAddAt)
-    const node = State((state) => state.getNodeById(lineAddAt?.id || -1))
 
-    if (!node?.coords) {
+    if (!lineAddAt?.ID) {
         return <></>
     }
-
-    if (!lineAddAt.id) {
-        return <></>
-    }
-
-    const fromPoint = DragHandler.getCoords(node.selfSvg).add(CONST.box.width+CONST.box.padLeft, CONST.box.pointTop);
-    const toPoint = DragHandlerInst.getCursor(lineAddAt.evt).add(CONST.box.padLeft,0);
 
     return <>
-        <path d={Geom.bezierSvgD(fromPoint, toPoint)}
+        <path d={""}
               className={"currentBez currentNodeActive"}/>
     </>
 }

@@ -1,8 +1,10 @@
 import {jsobj} from "../app/util";
 import CONST from "../const";
 import State from "../graph/State";
-import {Line} from "../node/Line";
+import {Line, NodeId} from "../node/Line";
 
+import {Node} from "../node/Node";
+import {DragHandler, DragHandlerInst, Geom} from "./Draggable";
 
 function initMovable() {
 
@@ -28,7 +30,7 @@ class MovableStateClass {
         State.setState({zoom});
     }
 
-    public lineAdd: number = -1;
+    public lineAdd: Node | undefined = undefined;
 
 
     constructor() {
@@ -75,21 +77,25 @@ class MovableStateClass {
         this.zoom(width / 2, height / 2, direction);
     }
 
-    beginLineAdd(id: number) {
-        if (this.lineAdd === -1) {
-            this.lineAdd = id;
+    beginLineAdd(node: Node) {
+        if (this.lineAdd == undefined) {
+            this.lineAdd = node;
+            State.setState({lineAddAt: node})
             return;
         }
     }
 
-    finishLineAdd(id: number) {
-        Line.New(this.lineAdd, id)
+    finishLineAdd(node: Node) {
+        if (this.lineAdd != undefined) {
+            Line.New(this.lineAdd.ID, node.ID);
+        }
+
         this.endLineAdd();
     }
 
     endLineAdd() {
-        State.setState({lineAddAt: {}});
-        this.lineAdd = -1;
+        State.setState({lineAddAt: undefined});
+        this.lineAdd = undefined;
     }
 
 
@@ -107,7 +113,7 @@ svgContainer.onWheel = function (e: any) {
 svgContainer.onContextMenu = function (e: any) {
     e.preventDefault();
 
-    if (MovableState.lineAdd > -1) {
+    if (MovableState.lineAdd) {
         MovableState.endLineAdd();
         return;
     }
@@ -146,8 +152,11 @@ svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
         svgImageAct?.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
     }
 
-    if (MovableState.lineAdd > -1) {
-        State.setState({lineAddAt: {id: MovableState.lineAdd, evt: e}})
+    if (MovableState.lineAdd) {
+        // State.setState({lineAddAt: {id: MovableState.lineAdd, evt: e}})
+
+        setLineAddCoords(MovableState.lineAdd, e);
+
     }
 }
 
@@ -161,6 +170,18 @@ svgContainer.onMouseEnter = function (e: any) {
 
 svgContainer.onMouseLeave = function (e: any) {
     MovableState.isPanning = false;
+}
+
+const setLineAddCoords = (fromNode: Node, toEvt: Event) => {
+    const fromPoint = DragHandler
+        .getCoords(fromNode.selfSvg)
+        .add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
+    const toPoint = DragHandlerInst
+        .getCursor(toEvt)
+        .add(CONST.box.padLeft, 0);
+
+    document.querySelector('.currentBez')
+        ?.setAttributeNS(null, 'd', Geom.bezierSvgD(fromPoint, toPoint))
 }
 
 export default svgContainer;

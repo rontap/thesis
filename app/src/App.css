@@ -374,11 +374,13 @@ svg:has(rect:active) .nodeConnection {
 
 
 svg:not(:has(.currentNodeActive)) .nodeConnectionStart {
-    opacity: 0;
+    /*opacity: 0;*/
+    background: #c1c1c1;
 }
 
 svg:has(.currentNodeActive) .nodeConnectionEnd {
     opacity: 0;
+    background: #c1c1c1;
 }
 
 .currentBez {

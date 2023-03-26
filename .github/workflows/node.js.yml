@@ -18,6 +18,12 @@ jobs:
           CI=false npm i
           CI=false npm ci
           CI=false npm run build
+
+      - name: Run tests 
+        run: |
+          cd app
+          npm test
+     
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:

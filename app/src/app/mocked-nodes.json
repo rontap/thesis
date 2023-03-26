@@ -1,0 +1,329 @@
+[
+  [
+    "./det_filter.json",
+    {
+      "hide": true,
+      "name": "det_filter",
+      "type": "graphic",
+      "className": "green",
+      "config": {
+        "self": "index_path",
+        "index_path": {
+          "type": "path"
+        }
+      }
+    }
+  ],
+  [
+    "./det_reader.json",
+    {
+      "name": "det_reader",
+      "type": "reader",
+      "className": "white",
+      "description": "Input detection reader thing",
+      "inputs": false,
+      "outputs": [
+        {
+          "type": "number",
+          "name": "stream_id"
+        },
+        {
+          "type": "fv",
+          "name": "features",
+          "description": "Raw CLIP Feature vector data",
+          "optional": true
+        },
+        {
+          "type": "fv",
+          "name": "face_attributes",
+          "description": "...",
+          "optional": true
+        },
+        {
+          "type": "fv",
+          "name": "vehicle_attributes",
+          "description": "...",
+          "optional": true
+        },
+        {
+          "type": "number",
+          "name": "track_id",
+          "unique": true
+        },
+        {
+          "type": "number",
+          "name": "frame_width"
+        },
+        {
+          "type": "number",
+          "name": "frame_height"
+        },
+        {
+          "type": "string",
+          "name": "obj_type"
+        },
+        {
+          "type": "rect",
+          "name": "box"
+        },
+        {
+          "type": "number",
+          "name": "confidence"
+        },
+        {
+          "type": "time",
+          "name": "frame_time"
+        }
+      ],
+      "config": {
+        "self": "det_reader",
+        "data": {
+          "index_path": {
+            "type": "path"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./dominant.json",
+    {
+      "hide": true,
+      "name": "dominant",
+      "type": "filter",
+      "className": "blue"
+    }
+  ],
+  [
+    "./filter.json",
+    {
+      "hide": true,
+      "name": "filter",
+      "type": "graphic",
+      "className": "blue"
+    }
+  ],
+  [
+    "./flatten.json",
+    {
+      "hide": true,
+      "name": "flatten",
+      "type": "filter",
+      "className": "blue"
+    }
+  ],
+  [
+    "./fv_classify.json",
+    {
+      "name": "fv_classify",
+      "type": "fv",
+      "group": false,
+      "className": "purple",
+      "inputs": [
+        {
+          "type": "fv",
+          "name": "features",
+          "configurable_input": "fv_field_name"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "class",
+          "configurable_input": "class_field_name"
+        },
+        {
+          "type": "number",
+          "name": "similarity",
+          "configurable_input": "sim_field_name"
+        }
+      ],
+      "config": {
+        "self": "fv_classify",
+        "data": {
+          "threshold": {
+            "type": "threshold"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./fv_cluster.json",
+    {
+      "name": "fv_cluster",
+      "type": "fv",
+      "className": "purple",
+      "inputs": [
+        {
+          "type": "fv",
+          "name": "feature",
+          "configurable_input": "fv_field_name"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "cluster",
+          "configurable_input": "cluster_field_name"
+        }
+      ],
+      "config": {
+        "self": "fv_cluster2",
+        "data": {
+          "threshold": {
+            "type": "threshold"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./fv_sim.json",
+    {
+      "name": "fv_sim",
+      "type": "fv",
+      "className": "purple",
+      "inputs": [
+        {
+          "type": "fv",
+          "name": "features",
+          "configurable_input": "fv_field_name"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "number",
+          "name": "confidence",
+          "configurable_input": "sim_field_name"
+        }
+      ],
+      "config": {
+        "self": "fv_sim",
+        "data": {
+          "fv_path": {
+            "type": "path",
+            "default": "/*/"
+          },
+          "threshold": {
+            "type": "threshold"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./group.json",
+    {
+      "hide": true,
+      "name": "group",
+      "type": "filter",
+      "className": "blue"
+    }
+  ],
+  [
+    "./join.json",
+    {
+      "name": "join",
+      "type": "join",
+      "className": "orange"
+    }
+  ],
+  [
+    "./line_cross.json",
+    {
+      "name": "line_cross",
+      "type": "graphic",
+      "className": "green",
+      "config": {
+        "self": "line_cross",
+        "data": {
+          "line": {
+            "type": "static"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./print.json",
+    {
+      "name": "print",
+      "type": "writer",
+      "className": "white",
+      "outputs": false,
+      "config": {
+        "self": "print",
+        "data": {
+          "print": {
+            "type": "constant",
+            "hide": true,
+            "value": {}
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./sql.json",
+    {
+      "name": "SQL",
+      "type": "sql",
+      "className": "red",
+      "inputs": [
+        {
+          "type": "any",
+          "name": "_"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "any",
+          "name": "_"
+        }
+      ],
+      "config": {
+        "self": "sql2",
+        "entrypoint": "query",
+        "data": {
+          "query": {
+            "type": "sql",
+            "_widget": "Popup"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./window.json",
+    {
+      "name": "window",
+      "type": "filter",
+      "className": "blue",
+      "config": {
+        "self": "window",
+        "data": {
+          "global": {
+            "type": "boolean"
+          },
+          "len_in_milliseconds": {
+            "type": "time_ms",
+            "default": 1000
+          },
+          "step_in_milliseconds": {
+            "type": "time_ms"
+          }
+        }
+      }
+    }
+  ],
+  [
+    "./zone.json",
+    {
+      "hide": true,
+      "name": "zone",
+      "type": "graphic",
+      "className": "green"
+    }
+  ]
+]

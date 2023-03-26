@@ -3,9 +3,16 @@ import {NodeEdgeRef} from "../graph/EdgeLoader";
 
 export function loadJsonNodeDefinitions(): NodeTemplateMap {
     // const context = require.context('../dynamic/nodes/', true, /\.(json)$/);
-    const context = require.context('../dynamic/nodes-query/', true, /\.(json)$/);
+    let context: any;
+
+    try {
+        context = require.context('../dynamic/nodes-query/', true, /\.(json)$/);
+    } catch (e) {
+        console.log("[falling back to mocked nodes]")
+        return new Map(require('./mocked-nodes.json'));
+    }
     let files = new Map<string, NodeTemplate>();
-    context.keys().forEach((filename) => {
+    context.keys().forEach((filename: string) => {
         files.set(filename, context(filename));
     });
     return files;

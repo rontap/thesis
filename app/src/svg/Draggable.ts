@@ -91,6 +91,8 @@ class DragHandler {
         if (action === Button.UP || action === Button.LEAVE) {
             const id = Number((this.selected as HTMLElement)?.getAttribute('data-id'));
             if (id && id > 0) {
+
+                console.log(id);
                 const finalCoord = Geom.Difference(this.getCursor(evt), this.startCoord);
                 getState().getNodeById(id)?.setCoords(finalCoord);
             }
@@ -102,7 +104,7 @@ class DragHandler {
 
     getTransformMatrix() {
         //@ts-ignore
-        this.ctmx = document.querySelector(".svgRoot").getScreenCTM();
+        this.ctmx = document.querySelector(".svgRoot")?.getScreenCTM();
     }
 
     get SvgElement() {

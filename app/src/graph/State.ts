@@ -18,8 +18,10 @@ interface AppState {
     addNode: (node: Node) => void
     getNodeById: (id: number) => Node | undefined
     removeNode: (id: number) => void,
-    addLine: (line: Line) => void,
+    addLine: (line: Line) => boolean,
     removeLine: (id: number) => void,
+
+    resetStore: () => void,
 
     blueprintedNode: string,
     getLineBetween: (from: number, to: number) => Line | undefined
@@ -28,7 +30,6 @@ interface AppState {
     lineAddAt: Node | undefined,
     activeNode: Node | undefined,
     setActiveNode: (id?: NodeId | undefined) => void,
-
     getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
     forceSvgRender: {},
@@ -37,14 +38,25 @@ interface AppState {
 
 export enum End { FROM, TO}
 
+const initialState = {
+    lines: [],
+    lineAddAt: undefined,
+    contextMenu: {},
+    blueprintedNode: "",
+    activeNode: undefined,
+    forceSvgRender: {},
+    nodes: [],
+    zoom: 1,
+}
+
+const actions = {}
 
 const State = create<AppState>()(
     devtools(
         temporal(
             //persist(
             (set, get) => ({
-                nodes: [],
-                zoom: 1,
+
                 addNode: (node: Node) => set((state) =>
                     ({nodes: state.nodes.concat(node)})),
                 getNodeById: (id: NodeId) =>
@@ -52,8 +64,12 @@ const State = create<AppState>()(
                 removeNode: (id: NodeId) => set((state) =>
                     ({nodes: state.nodes.filter(item => item.ID !== Number(id))})),
                 addLine: (line: Line) => {
+                    if (get().getLineBetween(line.from, line.to)) {
+                        return false;
+                    }
                     set((state) => ({lines: state.lines.concat(line)}));
                     GraphUtilInst.detectCircles();
+                    return true;
                 },
                 removeLine: (id: LineId) => {
                     set((state) => ({lines: state.lines.filter(item => item.ID !== Number(id))}));
@@ -74,14 +90,10 @@ const State = create<AppState>()(
                 temporalSvgRender: () => set((state) =>
                     ({forceSvgRender: {}})
                 ),
+                resetStore: () => set((state) => initialState),
 
-                // store store part
-                lines: [],
-                lineAddAt: undefined,
-                contextMenu: {},
-                blueprintedNode: "",
-                activeNode: undefined,
-                forceSvgRender: {}
+                // store part
+                ...initialState
             }),
             {
                 partialize: (state) => {

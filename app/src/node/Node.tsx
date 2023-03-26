@@ -75,6 +75,12 @@ export class Node {
         return NodeBuilder.getType(this.nodeType)?.inputs || [];
     }
 
+    get linesFromNode(): Line[] {
+        return State.getState().lines
+            .filter(line => line.from === this.ID)
+            .filter(line => line.to !== this.ID)
+    }
+
     /**
      * @description Get all nodes that have output connected
      */
@@ -89,16 +95,8 @@ export class Node {
      * @description Get all nodes that come from this node
      */
     get nextNodes(): NodeId[] {
-        return State.getState().lines
-            .filter(line => line.from === this.ID)
-            .filter(line => line.to !== this.ID)
-            .map(line => line.to);
-    }
-
-    get linesFromNode(): Line[] {
-        return State.getState().lines
-            .filter(line => line.from === this.ID)
-            .filter(line => line.to !== this.ID)
+        return this.linesFromNode
+            .map((line: Line) => line.to);
     }
 
     getSvg(blueprint: boolean = false) {

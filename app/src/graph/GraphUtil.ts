@@ -32,8 +32,8 @@ export class GraphUtil {
         getState().nodes.forEach(node => node.orderedNode = []);
         this.circleElementsInGraph = [];
 
-        if (this.sourceNodes.length === 0) {
-            throw Error('There are no nodes that are source nodes');
+        if (this.sourceNodes.length === 0 && this.everyNode.length !== 0) {
+            console.log('There are no nodes that are source nodes');
         }
 
         this.sourceNodes

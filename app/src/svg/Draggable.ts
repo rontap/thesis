@@ -89,6 +89,11 @@ class DragHandler {
         }
 
         if (action === Button.UP || action === Button.LEAVE) {
+            const id = Number((this.selected as HTMLElement)?.getAttribute('data-id'));
+            if (id && id > 0) {
+                const finalCoord = Geom.Difference(this.getCursor(evt), this.startCoord);
+                getState().getNodeById(id)?.setCoords(finalCoord);
+            }
             this.isDown = false;
             this.selected = null;
         }

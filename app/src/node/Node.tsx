@@ -36,7 +36,9 @@ export class Node {
     public orderedNode: NodeId[] = [];
     public _error: any = "";
 
+
     output: Output = Node.ID;
+
 
     constructor(nodeType: string) {
         this.nodeType = nodeType;
@@ -54,6 +56,10 @@ export class Node {
                 this._configValues[key] = aDefault;
             }
         })
+    }
+
+    setCoords(newCoords: Point) {
+        this.coords = newCoords;
     }
 
     get nodeProps(): NodeTemplate {

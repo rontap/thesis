@@ -14,15 +14,26 @@ function initMovable() {
 let svgImageAct = document.querySelector(".svgRoot")!;
 //const svgContainer = document.getElementById("svgContainer");
 const svgImage = CONST.rectSize;
-let viewBox = {x: 0, y: 0, w: svgImage.clientWidth, h: svgImage.clientHeight};
+let viewBox = {
+    x: 0,
+    y: 0,
+    w: svgImage.clientWidth,
+    h: svgImage.clientHeight
+};
 svgImageAct?.setAttribute('viewBox', Geom.viewBox(viewBox));
-const svgSize = {w: svgImage.clientWidth, h: svgImage.clientHeight};
+const svgSize = {
+    w: svgImage.clientWidth,
+    h: svgImage.clientHeight
+};
 let startPoint = Point.Origin;
 let endPoint = Point.Origin;
 let scale = 1;
 
-
 class MovableStateClass {
+    constructor() {
+
+    }
+
     get zoomLevel(): number {
         return State.getState().zoom;
     }
@@ -31,12 +42,8 @@ class MovableStateClass {
         State.setState({zoom});
     }
 
+
     public lineAdd: Node | undefined = undefined;
-
-
-    constructor() {
-
-    }
 
     isPanning: boolean = false;
 
@@ -49,16 +56,15 @@ class MovableStateClass {
 
     zoom(mx: number, my: number, direction: number) {
 
+        // prevent uner and over zooming.
         if ((MovableState.zoomLevel < CONST.zoom.min && direction === -1)
             || (MovableState.zoomLevel > CONST.zoom.max && direction === 1)
         ) return false;
 
         svgImageAct = document.querySelector(".svgRoot")!;
         svgImageAct?.setAttribute('viewBox', Geom.viewBox(viewBox));
-        let w = viewBox.w;
-        let h = viewBox.h;
-        let dw = w * direction * 0.05;
-        let dh = h * direction * 0.05;
+        let dw = viewBox.w * direction * CONST.zoom.speed;
+        let dh = viewBox.h * direction * CONST.zoom.speed;
         let dx = dw * mx / svgSize.w;
         let dy = dh * my / svgSize.h;
         viewBox = {
@@ -99,7 +105,6 @@ class MovableStateClass {
         this.lineAdd = undefined;
     }
 
-
 }
 
 // @ts-ignore
@@ -136,7 +141,7 @@ svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
         let dx = (startPoint.x - endPoint.x) / scale;
         let dy = (startPoint.y - endPoint.y) / scale;
         let movedViewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
-        svgImageAct?.setAttribute('viewBox', Geom.viewBox(viewBox));
+        svgImageAct?.setAttribute('viewBox', Geom.viewBox(movedViewBox));
     }
 
     if (MovableState.lineAdd) {

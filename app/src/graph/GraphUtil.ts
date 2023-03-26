@@ -66,9 +66,6 @@ export class GraphUtil {
         );
     }
 
-    detectCircle() {
-
-    }
 
 }
 

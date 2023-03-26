@@ -19,7 +19,8 @@ const CONST = {
     },
     zoom :{
         min:  0.4,
-        max: 5.5
+        max: 5.5,
+        speed:0.05
     },
     box: {
         width: 185, //px

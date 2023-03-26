@@ -23,8 +23,8 @@ export class Point {
         }
     }
 
-    fromObject(obj: jsobj ): Point {
-        return new Point(obj.x || 0, obj.y || 0);
+    static fromObject(obj: jsobj): Point {
+        return new Point(obj?.x || 0, obj?.y || 0);
     }
 
     static get Origin(): Point {
@@ -47,7 +47,7 @@ export class Point {
 
 export class Geom {
     static Distance(a: Point, b: Point) {
-
+        // todo
     }
 
     static Difference(a: Point, b: Point): Point {
@@ -71,8 +71,10 @@ export class Geom {
 
         const sy = fromPoint.y;
         const ey = toPoint.y;
-        const my = (sy + ey) / 2;
-
         return `M${sx},${sy} C${mx},${sy} ${mx},${ey} ${ex},${ey}`
+    }
+
+    static viewBox(viewBox: jsobj) {
+        return `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
     }
 }

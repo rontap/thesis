@@ -1,6 +1,7 @@
 import State, {getState} from "../graph/State";
-import Draggable, {DragHandler, DragHandlerInst, Point} from "../svg/Draggable";
+import Draggable, {DragHandler, DragHandlerInst} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
+import {Geom, Point} from "../geometry/Geom";
 import {MovableState} from "../svg/Movable.js";
 import {Line, LineId, NodeId} from "./Line";
 import {jsobj, preventBubble} from "../app/util";

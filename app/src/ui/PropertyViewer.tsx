@@ -2,7 +2,6 @@ import State, {End, getState} from "../graph/State";
 import Button from "../components/Button";
 import {Line} from "../node/Line";
 import {Node} from "../node/Node";
-import Config from "../config/Config";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import SingleEdgeRef from "./SingleEdgeRef";
 
@@ -58,6 +57,7 @@ export default function PropertyViewer() {
                 {node.nodeOutputs.map(SingleEdgeRef)}
             </div>
         </div>
+        <br/>
         {/*<hr/>*/}
         {/*<Config node={node}/>*/}
     </div>

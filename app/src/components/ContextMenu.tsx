@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import State, {getState} from "../graph/State";
 import {jsobj} from "../app/util";
-import {DragHandler, Point} from "../svg/Draggable";
+import {DragHandler} from "../svg/Draggable";
 import AddNodes from "./AddNodes";
 import BtnGroup from "./BtnGroup";
 import Button from "./Button";
+import {Geom, Point} from "../geometry/Geom";
 
 export default function ContextMenu({items}: any) {
 

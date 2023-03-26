@@ -6,7 +6,7 @@ import {jsobj} from "../app/util";
 import {DndContext, DragEndEvent, useDndMonitor, useDraggable, useDroppable} from '@dnd-kit/core';
 import {isDraft} from "@reduxjs/toolkit";
 import {stat} from "fs";
-import {Point} from "../svg/Geom";
+import {Point} from "../geometry/Geom";
 
 
 const taskbarStyles = {

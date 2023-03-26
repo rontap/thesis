@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {getState} from "../graph/State";
 import CONST from "../const";
-import {Geom, Point, Button} from "./Geom";
+import {Geom, Point, Button} from "../geometry/Geom";
 
 export {Geom, Button};
 const movableElements = ["svg", "foreignObject"];
@@ -142,4 +142,4 @@ const EPS = 0.00001;
 window.dh = DragHandlerInst;
 
 export default Draggable;
-export {DragHandlerInst, DragHandler, Point};
+export {DragHandlerInst, DragHandler};

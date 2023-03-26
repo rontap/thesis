@@ -1,9 +1,10 @@
 import State, {getState} from "../graph/State";
 import {Node} from "./Node";
-import Draggable, {DragHandler, Geom, Point} from "../svg/Draggable";
+import Draggable, {DragHandler} from "../svg/Draggable";
 import CONST from "../const";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import {ReactElement} from "react";
+import {Geom, Point} from "../geometry/Geom";
 
 export type LineId = number;
 export type NodeId = number;

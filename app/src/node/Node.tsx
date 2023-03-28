@@ -1,18 +1,11 @@
 import State, {getState} from "../graph/State";
-import Draggable, {DragHandler, DragHandlerInst} from "../svg/Draggable";
+import {DragHandlerInst} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
-import {Geom, Point} from "../geometry/Geom";
-import {MovableState} from "../svg/Movable.js";
-import {Line, LineId, NodeId} from "./Line";
-import {jsobj, preventBubble} from "../app/util";
+import {Point} from "../geometry/Geom";
+import {Line, NodeId} from "./Line";
+import {jsobj} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
-import {FormRoot} from "./FormRoot";
-import CONST from "../const";
-import {ErrorBoundary} from "react-error-boundary";
-import Button from "../components/Button";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCode} from '@fortawesome/free-solid-svg-icons'
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
 
@@ -21,25 +14,17 @@ export {};
 
 type Input = number
 type Output = number
-type Params = {}
 
 export class Node {
     public nodeType: string;
     public ID: number;
-
     static ID = 1;
-
     public coords: Point;
-
     readonly _configParams: jsobj;
     _configValues: jsobj;
-
     public orderedNode: NodeId[] = [];
     public _error: any = "";
-
-
     output: Output = Node.ID;
-
 
     constructor(nodeType: string) {
         this.nodeType = nodeType;

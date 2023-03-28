@@ -7,6 +7,7 @@ import {DndContext, DragEndEvent, useDndMonitor, useDraggable, useDroppable} fro
 import {isDraft} from "@reduxjs/toolkit";
 import {stat} from "fs";
 import {Point} from "../geometry/Geom";
+import Button from "../components/Button";
 
 
 const taskbarStyles = {
@@ -14,11 +15,11 @@ const taskbarStyles = {
         width: '350px',
         height: '200px'
     },
-    properties : {
-        right:'0px',
-        width:'350px'
+    properties: {
+        right: '0px',
+        width: '350px'
     },
-    activeNodes : {
+    activeNodes: {
         top: '300px',
         width: '350px',
     }
@@ -28,16 +29,16 @@ export default function Taskbar({items}: { items: Map<string, jsobj> }) {
         id: 'unique-id',
     });
     return <>
-        <DndContext onDragEnd={dragend}>
+        <div id={"taskbar"}>
+            <DndContext onDragEnd={dragend}>
 
-            {/*<div className={"wr"} id="ddctx" ref={setNodeRef}>*/}
-            {/*</div>*/}
-            <WrapToTaskbarItem cid="nodes" element={<AvailableNodes items={items}/>}/>
-            <WrapToTaskbarItem cid="activeNodes" element={<ActiveNodes/>}/>
-            <WrapToTaskbarItem cid="properties" element={<PropertyViewer/>}/>
-            <Droppable/>
-            {/*<Draggable/>*/}
-        </DndContext>
+                <WrapToTaskbarItem name="nodes" cid="nodes" element={<AvailableNodes items={items}/>}/>
+                <WrapToTaskbarItem name="active" cid="activeNodes" element={<ActiveNodes/>}/>
+                <WrapToTaskbarItem name="props" cid="properties" element={<PropertyViewer/>}/>
+                <Droppable/>
+                {/*<Draggable/>*/}
+            </DndContext>
+        </div>
     </>
 }
 
@@ -58,8 +59,14 @@ function Droppable() {
 }
 
 
-function WrapToTaskbarItem({cid, element, title}: { title?: string, cid: string, element: ReactElement }) {
+function WrapToTaskbarItem({
+                               cid,
+                               name,
+                               element,
+                               title
+                           }: { title?: string, name: string, cid: string, element: ReactElement }) {
     const [stateTransform, setStateTransform] = useState({x: 0, y: 0});
+    const [minimised, setMinimised] = useState(false);
     const {isDragging, attributes, listeners, setNodeRef, transform} = useDraggable({
         id: cid,
     });
@@ -69,12 +76,20 @@ function WrapToTaskbarItem({cid, element, title}: { title?: string, cid: string,
             if (cid !== event.active.id) {
                 return;
             }
-            setStateTransform(prevTransform => ({
-                x: prevTransform.x + event.delta.x,
-                y: prevTransform.y + event.delta.y
-            }));
+            if (!minimised) {
+                setStateTransform(prevTransform => ({
+                    x: prevTransform.x + event.delta.x,
+                    y: prevTransform.y + event.delta.y
+                }));
+            }
         }
     })
+
+    if (minimised) {
+        return <div className={"minimisedItem"}>
+            <button onClick={() => setMinimised(false)}>{name}</button>
+        </div>
+    }
 
     const actTransform = {
         x: (transform?.x || 0) + stateTransform.x,
@@ -95,6 +110,9 @@ function WrapToTaskbarItem({cid, element, title}: { title?: string, cid: string,
             >
 
             </div>
+            <button onClick={() => setMinimised(true)} className={"minimiseButton"}>
+                _
+            </button>
             <div>
                 {element}
             </div>

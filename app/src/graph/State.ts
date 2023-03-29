@@ -33,7 +33,7 @@ interface AppState {
     getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
     forceSvgRender: {},
-    temporalSvgRender: () => void
+    doSvgRender: () => void
 }
 
 export enum End { FROM, TO}

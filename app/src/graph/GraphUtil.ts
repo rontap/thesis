@@ -24,7 +24,7 @@ export class GraphUtil {
 
     detectCircles(): Line[][] {
         this.forEachInOrder();
-        getState().temporalSvgRender();
+        getState().doSvgRender();
         return this.circleElementsInGraph;
     }
 

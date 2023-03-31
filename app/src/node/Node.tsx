@@ -8,7 +8,9 @@ import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {NodeTemplate} from "../app/DynamicReader";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
+import Serialiser from "../graph/Serialiser";
 
+console.log(Serialiser)
 console.log(GraphUtilInst)
 export {};
 

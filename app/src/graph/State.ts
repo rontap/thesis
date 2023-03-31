@@ -87,7 +87,7 @@ const State = create<AppState>()(
                     const whichJunction = end === End.FROM ? "from" : "to";
                     return get().lines.filter(line => line[whichJunction] === id)
                 },
-                temporalSvgRender: () => set((state) =>
+                doSvgRender: () => set((state) =>
                     ({forceSvgRender: {}})
                 ),
                 resetStore: () => set((state) => initialState),

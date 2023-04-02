@@ -1,6 +1,7 @@
 import {Node} from "./Node";
 import {getState} from "../graph/State";
 import {NodeBuilder} from "./Builder";
+import 'core-js/stable/structured-clone';
 
 beforeEach(() => {
     buildAllNodes();

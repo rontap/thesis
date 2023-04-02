@@ -3,6 +3,7 @@ import {Node} from "../node/Node";
 import {End, getState} from "./State";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
 import {Line} from "../node/Line";
+import 'core-js/stable/structured-clone';
 
 beforeEach(() => {
     buildAllNodes();

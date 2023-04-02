@@ -10,6 +10,7 @@ export default function Checkbox(props: any) {
         type={"checkbox"}
         className={"configInputCb"}
         onChange={onBeforeChange}
+        data-svg-checked={!!props.value}
         defaultChecked={!!props.defaultValue}
     />
 }

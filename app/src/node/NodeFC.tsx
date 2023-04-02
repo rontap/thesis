@@ -32,7 +32,7 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 
                     <FontAwesomeIcon icon={faCode} className={"showCodeToggle"}/>
                     <code
-                        style={{maxHeight:height+'px'}}
+                        style={{maxHeight: height + 'px'}}
                         className={`boxedCode boxedCode-${that.ID}`}>
 
                     </code>

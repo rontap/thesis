@@ -46,20 +46,28 @@ exports[`Renders <App/> without issues 1`] = `
       <button
         className=" btn blue"
       >
-        Compile
+        Run
       </button>
       <div
         className="btnGroup undefined"
       >
         <button
           className=" btn "
+          onClick={[Function]}
         >
-          Import...
+          Import
         </button>
         <button
           className=" btn "
+          onClick={[Function]}
         >
-          Export...
+          Save
+        </button>
+        <button
+          className=" btn "
+          onClick={[Function]}
+        >
+          Export SVG
         </button>
       </div>
     </span>
@@ -192,183 +200,205 @@ exports[`Renders <App/> without issues 1`] = `
     </svg>
   </div>
   <div
-    className="taskbarElement"
-    style={
-      Object {
-        "height": "200px",
-        "transform": "translate3d(0px, 0px, 0)",
-        "width": "350px",
-      }
-    }
+    id="taskbar"
   >
     <div
-      aria-describedby="DndDescribedBy-0"
-      aria-disabled={false}
-      aria-roledescription="draggable"
-      className="taskbarHeader"
-      onKeyDown={[Function]}
-      onPointerDown={[Function]}
-      role="button"
-      tabIndex={0}
-      title="Drag Element"
-    />
-    <div>
+      className="taskbarElement"
+      style={
+        Object {
+          "height": "200px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "350px",
+        }
+      }
+    >
       <div
-        id="availableNodes"
+        aria-describedby="DndDescribedBy-0"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
       >
-        <h3>
-          Add Node
-        </h3>
+        _
+      </button>
+      <div>
         <div
-          className="dnodes"
+          id="availableNodes"
         >
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
+          <h3>
+            Add Node
+          </h3>
+          <div
+            className="dnodes"
           >
-            + det_reader
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + fv_classify
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + fv_cluster
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + fv_sim
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + join
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + line_cross
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + print
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + SQL
-          </button>
-          <button
-            className="btnSmall btn "
-            onClick={[Function]}
-          >
-            + window
-          </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + det_reader
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + fv_classify
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + fv_cluster
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + fv_sim
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + join
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + line_cross
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + print
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + SQL
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + window
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="taskbarElement"
-    style={
-      Object {
-        "top": "300px",
-        "transform": "translate3d(0px, 0px, 0)",
-        "width": "350px",
-      }
-    }
-  >
     <div
-      aria-describedby="DndDescribedBy-0"
-      aria-disabled={false}
-      aria-roledescription="draggable"
-      className="taskbarHeader"
-      onKeyDown={[Function]}
-      onPointerDown={[Function]}
-      role="button"
-      tabIndex={0}
-      title="Drag Element"
-    />
-    <div>
+      className="taskbarElement"
+      style={
+        Object {
+          "top": "300px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "350px",
+        }
+      }
+    >
+      <div
+        aria-describedby="DndDescribedBy-0"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
+      >
+        _
+      </button>
       <div>
-        <h3>
-          Active Nodes
-        </h3>
-        <br />
+        <div>
+          <h3>
+            Active Nodes
+          </h3>
+          <br />
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="taskbarElement"
-    style={
-      Object {
-        "right": "0px",
-        "transform": "translate3d(0px, 0px, 0)",
-        "width": "350px",
-      }
-    }
-  >
     <div
-      aria-describedby="DndDescribedBy-0"
-      aria-disabled={false}
-      aria-roledescription="draggable"
-      className="taskbarHeader"
-      onKeyDown={[Function]}
-      onPointerDown={[Function]}
-      role="button"
-      tabIndex={0}
-      title="Drag Element"
-    />
-    <div />
-  </div>
-  <div
-    id="ddctx"
-  />
-  <div
-    id="DndDescribedBy-0"
-    style={
-      Object {
-        "display": "none",
+      className="taskbarElement"
+      style={
+        Object {
+          "right": "0px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "350px",
+        }
       }
-    }
-  >
-    
+    >
+      <div
+        aria-describedby="DndDescribedBy-0"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
+      >
+        _
+      </button>
+      <div />
+    </div>
+    <div
+      id="ddctx"
+    />
+    <div
+      id="DndDescribedBy-0"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      
     To pick up a draggable item, press the space bar.
     While dragging, use the arrow keys to move the item.
     Press space again to drop the item in its new position, or press escape to cancel.
   
-  </div>
-  <div
-    aria-atomic={true}
-    aria-live="assertive"
-    id="DndLiveRegion-0"
-    role="status"
-    style={
-      Object {
-        "border": 0,
-        "clip": "rect(0 0 0 0)",
-        "clipPath": "inset(100%)",
-        "height": 1,
-        "margin": -1,
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "whiteSpace": "nowrap",
-        "width": 1,
+    </div>
+    <div
+      aria-atomic={true}
+      aria-live="assertive"
+      id="DndLiveRegion-0"
+      role="status"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(100%)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "fixed",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
       }
-    }
-  />
+    />
+  </div>
 </div>
 `;

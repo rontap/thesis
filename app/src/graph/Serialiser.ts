@@ -3,8 +3,7 @@ import {jsobj} from "../app/util";
 import {LineId, NodeId} from "../node/Line";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
-const css = require('!!raw-loader!../svg.css').default;
-const cssExportOnly = require('!!raw-loader!../svgExprted.css').default;
+
 
 class Serialiser {
     toID(id: NodeId | LineId): string {
@@ -60,14 +59,16 @@ class Serialiser {
     // SVG
 
     toSvgCreate() {
-        // const parsedNodes = this.toJSON();
-        // parsedNodes.forEach(nodeJSON => {
-        //     console.log(nodeJSON, '<<');
-        //     const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
-        //     if (boxedItem) {
-        //         boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
-        //     }
-        // })
+        const css = require('!!raw-loader!../svg.css').default;
+        const cssExportOnly = require('!!raw-loader!../svgExprted.css').default;
+
+        const parsedNodes = this.toJSON();
+        parsedNodes.forEach(nodeJSON => {
+            const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
+            if (boxedItem) {
+                boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
+            }
+        })
 
         const svgRoot = document.getElementById("svgRootCont")!.innerHTML;
 
@@ -111,8 +112,6 @@ class Serialiser {
         aElement.click();
         aElement.remove();
     }
-
-
 }
 
 const SerialiserInst = new Serialiser();

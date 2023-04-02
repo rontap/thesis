@@ -7,7 +7,7 @@
     border: 2px solid white;
     box-shadow: 4px 2px 4px black;
 
-    max-height: 350px;
+    max-height: 400px;
     transition: max-height .2s, width .3s;
     overflow: hidden;
 
@@ -34,12 +34,14 @@
 }
 
 #ctxMenu button, .ctxMenu {
-    margin: 10px;
+    transition: all .2s;
+    margin: 8px 10px;
     border-radius: 4px;
     border: none;
     width: calc(100% - 20px);
-    background: #ccc;
-    color: #222;
+    background: #282c34;
+    color: #ccc;
+    padding: 5px 12px;
 }
 
 #ctxMenu button:hover {

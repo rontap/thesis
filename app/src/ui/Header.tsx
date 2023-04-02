@@ -40,7 +40,7 @@ export default function Header() {
             <Button onClick={() => SerialiserInst.fromJSON({})}>
                 Import
             </Button>
-            <Button onClick={() => SerialiserInst.toJSON()}>
+            <Button onClick={() => SerialiserInst.exportJSON()}>
                 Save
             </Button>
             <Button onClick={() => SerialiserInst.toSvg()}>

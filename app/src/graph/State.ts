@@ -62,8 +62,8 @@ const State = create<AppState>()(
                 setSingleEdgeOfActiveNode: (propertyName: string, to: string) =>
                     set((state) => {
                             const activeNode = state.activeNode;
-                            console.log('->>', activeNode, to);
                             if (!activeNode) return {};
+                            //console.log('->> fs', activeNode, to, propertyName, activeNode._configurableInputValues);
                             activeNode._configurableInputValues.set(propertyName, to);
                             return {activeNode}
                         }

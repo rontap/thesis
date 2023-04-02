@@ -23,8 +23,8 @@ export class Node {
     static ID = 1;
     public coords: Point;
     readonly _configParams: jsobj;
-    _configValues: jsobj;
-    public _configurableInputValues: jsobj;
+    public _configValues: jsobj;
+    public _configurableInputValues: Map<string, string>;
     public orderedNode: NodeId[] = [];
     public _error: any = "";
     output: Output = Node.ID;

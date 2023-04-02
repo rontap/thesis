@@ -32,14 +32,16 @@ export default function PropertyViewer() {
                 FROM
                 <br/>
                 {
-                    linesTo.map((line, i) => SingleNodeItem(getState().getNodeById(line.from), i))
+                    linesTo
+                        .map((line, i) => SingleNodeItem(getState().getNodeById(line.from), i))
                 }
             </div>
             <div className={"gridItem"}>
                 TO
                 <br/>
                 {
-                    linesFrom.map((line, i) => SingleNodeItem(getState().getNodeById(line.to), i))
+                    linesFrom
+                        .map((line, i) => SingleNodeItem(getState().getNodeById(line.to), i))
                 }
                 <br/>
             </div>

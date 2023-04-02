@@ -36,7 +36,7 @@ function App() {
     return (
         <div className={`App`}>
             <nav>
-                <span id={"titlemark"}>FLOWSCAPE</span>
+                <span id={"titlemark"}>GRAPHENE</span>
                 <Button
                     className={"blue"}
                     disabled={!graph}

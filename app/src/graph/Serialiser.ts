@@ -1,6 +1,9 @@
 import {getState} from "./State";
 import {jsobj} from "../app/util";
 import {LineId, NodeId} from "../node/Line";
+// de and re serialise content
+/* eslint import/no-webpack-loader-syntax: off */
+const css = require('!!raw-loader!../svg.css').default;
 
 class Serialiser {
     toID(id: NodeId | LineId): string {
@@ -42,6 +45,20 @@ class Serialiser {
 
     fromTopLevel(obj: jsobj): jsobj {
         return {}
+    }
+
+
+    // SVG
+
+    toSvg() {
+        const svgRoot = document.getElementById("svgRootCont")!.innerHTML;
+
+        const parsedCss = css.replace(/\n/g, " ");
+        // slice </svg> off
+        const svgRootCss = svgRoot
+            .slice(0, -6)
+            .concat(`<style>${parsedCss}</style></svg>`);
+        return svgRootCss;
     }
 
 

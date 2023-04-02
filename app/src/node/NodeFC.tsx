@@ -16,16 +16,16 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
     const height = 60 + (noProperties * 50);
 
 
-
     return (<foreignObject key={that.ID}
-                           xmlns="http://www.w3.org/1999/xhtml"
+
                            onClick={() => getState().setActiveNode(that.ID)}
                            className={`fo void data-node-${that.ID} ${that.nodeProps.className}`}
                            data-id={that.ID}
                            x={props.blueprint ? 10 : that.coords.x}
                            y={props.blueprint ? 10 : that.coords.y}
                            width={CONST.box.width + CONST.box.padLeft * 2} height={height}>
-        <div className={"boxedItem"}>
+        {/*@ts-ignore*/}
+        <div className={"boxedItem"} xmlns="http://www.w3.org/1999/xhtml">
             <ErrorBoundary FallbackComponent={NodeError}>
                 <div className={"title"}>
                     {that.nodeType} [{that.ID}]

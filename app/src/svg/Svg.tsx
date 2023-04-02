@@ -8,7 +8,9 @@ import {Node} from "../node/Node";
 import Movable from "./Movable.js";
 import {Line} from "../node/Line";
 import SvgLines from "./SvgLines";
+import {serialiseSvg, nop} from "./Serialiser";
 
+nop();
 export default function Svg(props: jsobj) {
     const {blueprint} = props;
     useEffect(() => {
@@ -73,6 +75,7 @@ export default function Svg(props: jsobj) {
                 {
                     nodes.map((node: Node) => node.getSvg())
                 }
+
 
             </svg>
         </div>

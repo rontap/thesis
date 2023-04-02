@@ -15,15 +15,15 @@ export default function PropertyViewer() {
 
 
     return <div>
-        <Button
-            onClick={() => getState().setActiveNode()}
-            className={"closer"}>×</Button>
-        <br/>
-        <br/>
+        {/*<Button*/}
+        {/*    onClick={() => getState().setActiveNode()}*/}
+        {/*    className={"closer"}>×</Button>*/}
+        {/*<br/>*/}
+        {/*<br/>*/}
         <h3>Properties of {node.ID} {node?.nodeType} </h3>
 
         {node.nodeProps.description}
-        <br/>
+        {/*<br/>*/}
 
         <hr/>
         <div className={"grid gtc-2"}>

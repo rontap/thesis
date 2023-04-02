@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 //---------------------
 import './App.css';
+import './svg.css';
 import './Stem.css';
 import './ctxmenu.css';
 import './ui/styles/mat.css';

@@ -67,96 +67,6 @@
 
 }
 
-.boxedItem {
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    width: calc(100% - 10px);
-    position: absolute;
-    left: 3px;
-    right: 0;
-    bottom: 0;
-    top: 0;
-}
-
-
-foreignObject, .fo {
-    outline: 3px solid transparent;
-
-}
-
-foreignObject.fo {
-    position: relative;
-}
-
-foreignObject.fo {
-    border-radius: 4px;
-}
-
-foreignObject:hover {
-    outline: 2px dotted whitesmoke;
-}
-
-foreignObject:active {
-    outline: 2px solid whitesmoke;
-}
-
-
-foreignObject > div {
-    background: #66666666;
-}
-
-svg:has(foreignObject:active div) {
-    cursor: move;
-}
-
-.blue div {
-    border-color: #4488FF;
-}
-
-.red div {
-    border-color: #e91e63;
-}
-
-.orange div {
-    border-color: #ff693e;
-}
-
-.green div {
-    border-color: #4caf50;
-}
-
-.purple div {
-    border-color: #9c27b0;
-}
-
-
-.boxedItem .title {
-    font-size: 15px;
-    padding: 3px;
-    margin-bottom: 3px;
-}
-
-.orange .boxedItem .title {
-    background: #ff693e;
-}
-
-.blue .boxedItem .title {
-    background: #4488FF;
-}
-
-.red .boxedItem .title {
-    background: #e91e63;
-}
-
-
-.green .boxedItem .title {
-    background: #4caf50;
-}
-
-.purple .boxedItem .title {
-    background: #9c27b0;
-}
-
 #activeNodes {
     position: fixed;
     top: calc(20px + 400px + 80px);
@@ -364,64 +274,6 @@ button, h3, #titlemark {
     font-family: Bahnschrift, sans-serif;
 }
 
-#smallGrid path {
-    transition: stroke-width .5s;
-}
-
-svg:has(rect:active) #smallGrid path {
-    stroke-width: 0px;
-}
-
-svg:has(rect:active) .nodeConnection {
-    opacity: 0;
-}
-
-
-svg:not(:has(.currentNodeActive)) .nodeConnectionStart {
-    /*opacity: 0;*/
-    background: #c1c1c1;
-}
-
-svg:has(.currentNodeActive) .nodeConnectionEnd {
-    opacity: 0;
-    background: #c1c1c1;
-}
-
-.currentBez {
-    stroke: orange;
-    stroke-width: 2;
-    fill: transparent;
-}
-
-.nodeConnection {
-    border: 0px solid #999;
-    width: 10px;
-    height: 16px;
-    padding: 0;
-    /*border-radius: 0 4px 4px 0;*/
-    border-radius: 8px;
-    position: absolute;
-
-    top: 20px;
-    z-index: 3;
-    background: #ccc;
-    transition: opacity .1s;
-    cursor: pointer;
-}
-
-.nodeConnectionStart {
-    left: -5px;
-    /*border-radius: 0 4px 4px 0;*/
-}
-
-.nodeConnectionEnd {
-    right: -5px;
-    /*border-radius: 4px 0px 0px 4px;*/
-}
-
-.nodeConnection:hover {
-    background: #4caf50;
-}
 
 .closer {
     float: right;
@@ -437,8 +289,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
-    grid-template-areas:
-    ". .";
+    grid-template-areas:". .";
 }
 
 .gtc-2 {
@@ -492,74 +343,6 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 
 .configInputItem {
     width: 149px;
-}
-
-.configInputItem, .configButtonItem {
-    margin: 5px;
-    padding: 4px;
-    background: linear-gradient(#ffffff66, #b7b7b766); /*looks bit ugly*/
-    border: 1px solid #333;
-    border-radius: 6px;
-}
-
-.configButtonItem {
-    min-width: 60px;
-    background: linear-gradient(#ffffff66, #b7b7b766);
-    cursor: pointer;
-}
-
-.configButtonItem:active,
-.configInputItem:focus {
-    background: linear-gradient(#b7b7b766, #ffffff66);
-}
-
-.configInputCb {
-    margin-left: 20px;
-    margin-bottom: 15px;
-    margin-top: 12px;
-    vertical-align: -1px;
-}
-
-.edgeRef {
-    border-radius: 6px;
-    border: 2px solid #ccc;
-    margin: 4px;
-    padding: 2px 8px 4px 8px;
-    font-weight: 400;
-}
-
-.edgeRef .edgeType {
-    font-family: monospace;
-}
-
-.edgeConfigurable {
-    width: 100%;
-    display: block;
-}
-
-.edgeConfigurable .configInputItem {
-
-    width: calc(100% - 20px);
-}
-
-
-.showCodeToggle {
-    opacity: 0;
-    transition: opacity .2s;
-    position: absolute;
-    right: 10px;
-    top: 4px;
-    width: 17px;
-}
-
-.showCodeToggle:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-
-
-foreignObject:hover .showCodeToggle {
-    opacity: .8;
 }
 
 #taskbar {

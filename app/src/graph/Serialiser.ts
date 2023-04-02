@@ -4,13 +4,14 @@ import {LineId, NodeId} from "../node/Line";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
 const css = require('!!raw-loader!../svg.css').default;
+const cssExportOnly = require('!!raw-loader!../svgExprted.css').default;
 
 class Serialiser {
     toID(id: NodeId | LineId): string {
         return "id-" + id;
     }
 
-    toJSON(): jsobj {
+    toJSON(): jsobj[] {
         const parsedNodes = getState().nodes.map(node => {
             console.log(node, '<<');
             const nodeProps = node.nodeProps;
@@ -50,15 +51,51 @@ class Serialiser {
 
     // SVG
 
-    toSvg() {
+    toSvgCreate() {
+        const parsedNodes = this.toJSON();
+        parsedNodes.forEach(nodeJSON => {
+            console.log(nodeJSON, '<<');
+            const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
+            if (boxedItem) {
+                boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
+            }
+        })
+
         const svgRoot = document.getElementById("svgRootCont")!.innerHTML;
 
         const parsedCss = css.replace(/\n/g, " ");
-        // slice </svg> off
+        const parsedCssExport = cssExportOnly.replace(/\n/g, " ");
         const svgRootCss = svgRoot
+            // slicing off the end SVG tag
             .slice(0, -6)
-            .concat(`<style>${parsedCss}</style></svg>`);
+            // add the CSS required for the SVG to look nice
+            .concat(`<style>${parsedCss}</style>`)
+            // add the export only CSS and close down SVG
+            .concat(`<style>${parsedCssExport}</style></svg>`)
+            // replace <input>-tags with XML valid <input/> tags
+            .replace(/<input(.*?)(>)/gm, "<input$1\/>")
+            // replace <br>-tags with XML valid <br/> tags
+            .replace(/<br(.*?)(>)/gm, "<br$1\/>");
+        console.log(this.toJSON());
+
         return svgRootCss;
+    }
+
+    toSvg(download: boolean = false) {
+        const svg: string = this.toSvgCreate();
+        const blob: Blob = new Blob([svg], {type: 'image/svg+xml'});
+        const objectUrl = URL.createObjectURL(blob);
+        const aElement = document.createElement('a');
+
+        if (download) {
+            aElement.setAttribute('download', 'fn.svg');
+        } else {
+            aElement.setAttribute('target', '_blank');
+        }
+
+        aElement.setAttribute('href', objectUrl);
+        aElement.click();
+        aElement.remove();
     }
 
 

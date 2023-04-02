@@ -34,20 +34,23 @@ export default function Header() {
             <Button onClick={() => redoWrap()}>Redo</Button>
         </BtnGroup>
 
-        <Button className={"blue"}>Compile</Button>
+        <Button className={"blue"}>Run</Button>
 
         <BtnGroup>
             <Button onClick={() => SerialiserInst.fromJSON({})}>
-                Import...
+                Import
             </Button>
             <Button onClick={() => SerialiserInst.toJSON()}>
-                Export...
+                Save
+            </Button>
+            <Button onClick={() => SerialiserInst.toSvg()}>
+                Export SVG
             </Button>
         </BtnGroup>
 
-        <Button>
-            GPT
-        </Button>
+        {/*<Button>*/}
+        {/*    GPT*/}
+        {/*</Button>*/}
 
     </span>
 };

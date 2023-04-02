@@ -2,6 +2,7 @@
 
  */
 
+@import url('https://fonts.cdnfonts.com/css/bahnschrift');
 
 .boxedItem {
     border: 2px solid #ccc;
@@ -160,8 +161,10 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     transition: opacity .2s;
     position: absolute;
     right: 10px;
-    top: 4px;
+    top: -2px;
     width: 17px;
+    padding: 5px;
+
 }
 
 .showCodeToggle:hover {
@@ -172,11 +175,45 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
 
 foreignObject:hover .showCodeToggle {
     opacity: .8;
+    transition: opacity .2s;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    width: 17px;
+    padding: 3px;
 }
 
 .svgRoot {
     background: #263238;
     color: #eee;
+}
+
+
+.boxedCode {
+    display: none; /*rewrite in svgExported**/
+}
+
+
+.configPropertyListItem {
+    display: block;
+    text-align: left;
+}
+
+.configPropertyListItem .configTitle {
+    text-align: left;
+    width: 100%;
+    padding-left: 7px;
+    font-size: 15px;
+    color: #ffffffee;
+}
+
+.configCtn {
+    padding: 0 5px;
+    width: 100%;
+}
+
+.configInputItem {
+    width: 149px;
 }
 
 /**

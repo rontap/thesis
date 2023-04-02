@@ -21,12 +21,20 @@ class Serialiser {
                 [nodeProps.config?.self]: {
                     ...node._configValues,
                 },
-                inputs: node.prevNodes.map(this.toID),
-                outputs: node.nextNodes.map(this.toID)
+                input: node.prevNodes.map(this.toID),
+                output: node.nextNodes.map(this.toID)
             }
         });
         console.log(parsedNodes);
         return parsedNodes;
+    }
+
+    dropPtrFromJSON(jsobjWithPtr: jsobj[]): jsobj[] {
+        return jsobjWithPtr
+            .map(nodeJSON => {
+                delete nodeJSON.ptr;
+                return nodeJSON;
+            })
     }
 
     fromJSON(obj: jsobj) {
@@ -52,14 +60,14 @@ class Serialiser {
     // SVG
 
     toSvgCreate() {
-        const parsedNodes = this.toJSON();
-        parsedNodes.forEach(nodeJSON => {
-            console.log(nodeJSON, '<<');
-            const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
-            if (boxedItem) {
-                boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
-            }
-        })
+        // const parsedNodes = this.toJSON();
+        // parsedNodes.forEach(nodeJSON => {
+        //     console.log(nodeJSON, '<<');
+        //     const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
+        //     if (boxedItem) {
+        //         boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
+        //     }
+        // })
 
         const svgRoot = document.getElementById("svgRootCont")!.innerHTML;
 
@@ -76,7 +84,13 @@ class Serialiser {
             .replace(/<input(.*?)(>)/gm, "<input$1\/>")
             // replace <br>-tags with XML valid <br/> tags
             .replace(/<br(.*?)(>)/gm, "<br$1\/>");
-        console.log(this.toJSON());
+        console.log('nl',
+            this.toTopLevel(
+                this.dropPtrFromJSON(
+                    this.toJSON()
+                )
+            )
+        );
 
         return svgRootCss;
     }

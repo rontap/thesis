@@ -11,7 +11,7 @@ export default function Textarea(props: any) {
         <textarea
             className={"configInputItem"}
             onChange={onBeforeChange}
-            value={value}
+            value={props.value}
             rows={2}
             defaultValue={props.defaultValue}
         />

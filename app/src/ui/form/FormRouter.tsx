@@ -8,6 +8,7 @@ type FormRouteComponentProps = FormRouteProps & {
     onChange?: Function
     onChangeRoot: Function
     defaultValue: any
+    value: any
 };
 
 function WidgetFactory(props: FormRouteComponentProps & { Component: JSX.Element }) {
@@ -31,6 +32,8 @@ export default function FormRouter(props: FormRouteComponentProps) {
     const {type} = props;
     const [formStore, setFormStore] = useState();
 
+    // @ts-ignore
+    const {renderAs} = window;
     if (props.widget) {
         return <WidgetFactory Component={getComponentFromName(props.widget)} {...props}/>
     }
@@ -45,6 +48,13 @@ export default function FormRouter(props: FormRouteComponentProps) {
     if (!parsedType) {
         console.error("[Form Router]", type, typeDef);
         throw Error("[Form Router] Undefined Type " + type + " cannot be displayed");
+    }
+    if (renderAs) {
+        return <>{
+            JSON.stringify(passProps.value)
+        }
+
+        </>
     }
 
     switch (parsedType) {

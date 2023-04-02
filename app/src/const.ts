@@ -23,7 +23,7 @@ const CONST = {
         speed:0.05
     },
     box: {
-        width: 185, //px
+        width: 200, //px
         pointTop: 28,
         padLeft : 5
     }

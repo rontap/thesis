@@ -36,7 +36,7 @@ export class NodeBuilder {
         return this._types;
     }
 
-    static EveryNodeTemplate() {
+    static EveryNodeTemplate():NodeTemplate[] {
         return [...NodeBuilder.Build().values()];
     }
 

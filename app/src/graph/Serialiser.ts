@@ -1,6 +1,8 @@
 import {getState} from "./State";
 import {createFile, jsobj} from "../app/util";
-import {LineId, NodeId} from "../node/Line";
+import {Line, LineId, NodeId} from "../node/Line";
+import {NodeSerialised} from "../app/DynamicReader";
+import {Node} from "../node/Node";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -17,7 +19,7 @@ class Serialiser {
             return {
                 ptr: node,
                 name: this.toID(node.ID),
-                [nodeProps.config?.self]: {
+                [nodeProps.config?.self || "jsonParseError"]: {
                     ...node._configValues,
                     ...Object.fromEntries(node._configurableInputValues)
                 },
@@ -35,14 +37,6 @@ class Serialiser {
                 delete nodeJSON.ptr;
                 return nodeJSON;
             })
-    }
-
-    fromJSON(obj: jsobj) {
-        // todo , fill nodes
-        // todo fill lines
-        // todo initial fillup of store.?
-
-
     }
 
     toTopLevel(transform: jsobj[]): jsobj {
@@ -80,6 +74,7 @@ class Serialiser {
         const parsedNodes = this.toJSON();
         parsedNodes.forEach(nodeJSON => {
             const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
+            delete nodeJSON.ptr;
             if (boxedItem) {
                 boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
             }
@@ -100,13 +95,6 @@ class Serialiser {
             .replace(/<input(.*?)(>)/gm, "<input$1\/>")
             // replace <br>-tags with XML valid <br/> tags
             .replace(/<br(.*?)(>)/gm, "<br$1\/>");
-        console.log('nl',
-            this.toTopLevel(
-                this.dropPtrFromJSON(
-                    this.toJSON()
-                )
-            )
-        );
 
         return svgRootCss;
     }
@@ -114,6 +102,72 @@ class Serialiser {
     toSvg(download: boolean = false) {
         const svg: string = this.toSvgCreate();
         createFile(svg, 'image/svg+xml', 'fv.svg', download);
+    }
+
+    /**
+     * FROM SVG
+     */
+
+    fromJSONParse(root: string): jsobj {
+        let rootJSONObj: jsobj;
+        try {
+            rootJSONObj = JSON.parse(root)
+        } catch (e) {
+            throw Error('Value is not valid JSON');
+        }
+
+        const {query} = rootJSONObj;
+
+        if (!query) {
+            throw  Error('Wrong {Query} Formatting')
+        }
+
+        return rootJSONObj;
+    }
+
+    fromJSON(rootObj: string) {
+        getState().resetStore();
+
+        const json = this.fromJSONParse(rootObj);
+
+        const {query} = json;
+        const {transform} = query;
+
+        transform.forEach((nodeSd: NodeSerialised) => {
+                const node = Node.fromSerialised(
+                    nodeSd
+                )
+                nodeSd.ref = node;
+            }
+        )
+
+        // getting all lines
+        transform.forEach((nodeSdRoot: NodeSerialised) => {
+            console.log('=== node', nodeSdRoot.name);
+            nodeSdRoot.output.forEach(output => {
+                transform
+                    .find((nodeSd: NodeSerialised) => {
+                        console.log('->', output, nodeSd.input, nodeSd.input.includes(output))
+                        return nodeSd.input.includes(output)
+                    })
+                    ?.map((nodeSd: NodeSerialised) => nodeSd.ref?.ID)
+                    .forEach((toID: NodeId) => {
+                        console.log('->', toID);
+                        getState()
+                            .addLine(
+                                new Line(nodeSdRoot.ref?.ID || -1, toID || -1)
+                            )
+                    })
+            })
+        })
+
+        console.log(transform);
+
+        // todo , fill nodes
+        // todo fill lines
+        // todo initial fillup of store.?
+
+
     }
 }
 

@@ -37,7 +37,7 @@ export default function Header() {
         <Button className={"blue"}>Run</Button>
 
         <BtnGroup>
-            <Button onClick={() => SerialiserInst.fromJSON({})}>
+            <Button onClick={() => SerialiserInst.fromJSON("")}>
                 Import
             </Button>
             <Button onClick={() => SerialiserInst.exportJSON()}>

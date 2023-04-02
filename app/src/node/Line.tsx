@@ -17,6 +17,9 @@ export class Line {
 
 
     constructor(from: number, to: number) {
+        if (from < 0 || to < 0) {
+            throw Error('Invalid Line Ctor');
+        }
         this.from = from;
         this.ID = Line.ID++;
         this.to = to;

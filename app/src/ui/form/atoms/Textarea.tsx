@@ -1,4 +1,5 @@
-import {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
+import Button from "../../../components/Button";
 
 export default function Textarea(props: any) {
     const [value, setValue] = useState();
@@ -8,6 +9,7 @@ export default function Textarea(props: any) {
     }
 
     return <>
+        <button className={"configButtonItem etc"}>...</button>
         <textarea
             className={"configInputItem"}
             onChange={onBeforeChange}

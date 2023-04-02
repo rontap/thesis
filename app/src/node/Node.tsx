@@ -5,7 +5,7 @@ import {Point} from "../geometry/Geom";
 import {Line, NodeId} from "./Line";
 import {jsobj} from "../app/util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
-import {NodeTemplate} from "../app/DynamicReader";
+import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate} from "../app/DynamicReader";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
 import Serialiser from "../graph/Serialiser";
@@ -56,11 +56,26 @@ export class Node {
 
         this._configurableInputValues = new Map(window.structuredClone(everyConfigurableInput));
 
+    }
 
-        console.log(
-            this._configurableInputValues
-        )
+    static fromSerialised(nodeSd: NodeSerialised) {
+        const guessedProperty = Object.keys(nodeSd)
+            .find(item => !NodeSerialisedSureProperties.includes(item));
 
+        const guessedType = NodeBuilder.EveryNodeTemplate()
+            .find(node => node.config?.self === guessedProperty);
+
+        let node;
+        if (guessedType) {
+            node = new Node(guessedType.name);
+            getState().addNode(node);
+        } else {
+            console.error(`Could not guess type ${guessedType} from ${nodeSd}`);
+            throw Error(`Could not guess type ${guessedType} from ${nodeSd}`);
+        }
+
+        return node;
+        // const node = new Node()
     }
 
     setCoords(newCoords: Point) {

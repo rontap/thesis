@@ -2,6 +2,9 @@
   "name": "SQL",
   "type": "sql",
   "className": "red",
+  "modifiers": [
+    "wide"
+  ],
   "inputs": [
     {
       "type": "any",

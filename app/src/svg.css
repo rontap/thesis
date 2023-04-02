@@ -115,6 +115,7 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     border-radius: 6px;
 }
 
+
 .configButtonItem {
     min-width: 60px;
     background: linear-gradient(#ffffff66, #b7b7b766);
@@ -131,6 +132,12 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     margin-bottom: 15px;
     margin-top: 12px;
     vertical-align: -1px;
+}
+
+.configButtonItem.etc {
+    min-width: 30px;
+    padding: 2px;
+    margin-bottom: 2px;
 }
 
 .edgeRef {
@@ -213,7 +220,7 @@ foreignObject:hover .showCodeToggle {
 }
 
 .configInputItem {
-    width: 149px;
+    width: 169px;
 }
 
 /**

@@ -1,5 +1,4 @@
 
-
 .App {
     text-align: center;
 }
@@ -120,6 +119,7 @@
     /*width: 200px;*/
     /*height: 200px;*/
     max-height: 800px;
+    overflow: auto;
 }
 
 .taskbarHeader {

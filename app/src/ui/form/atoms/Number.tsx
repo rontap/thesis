@@ -10,7 +10,7 @@ export default function _Number(props: any) {
         <input type={"number"}
                className={"configInputItem"}
                onChange={onBeforeChange}
-               value={props.value}
+               value={props.value || 0}
                defaultValue={props.defaultValue}
         />
 

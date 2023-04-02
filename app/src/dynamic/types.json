@@ -41,7 +41,7 @@
     },
     "time_ms": {
       "type": "number",
-      "widget": "time"
+      "_widget": "time"
     }
   }
 }

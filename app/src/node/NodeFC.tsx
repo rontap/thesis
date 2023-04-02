@@ -13,7 +13,7 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 
     const that: Node = props.Node;
     const noProperties = Object.values(that._configParams).length;
-    const height = 60 + (noProperties * 50);
+    const height = 60 + (noProperties * 60);
 
 
     return (<foreignObject key={that.ID}

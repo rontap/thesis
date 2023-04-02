@@ -25,7 +25,6 @@ export default function SingleEdgeRef({
         return <></>;
 
     }
-    console.log('edgeRef', node, edgeRef, node._configurableInputValues, edgeRef.configurable_input);
     return <div className={`edgeRef md-bc-${actColor}`}>
         {/*<Button small key={i} className={"w-100 blue"}>*/}
 

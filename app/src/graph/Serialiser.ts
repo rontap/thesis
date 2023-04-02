@@ -9,13 +9,13 @@ class Serialiser {
 
     toJSON(): jsobj {
         const parsedNodes = getState().nodes.map(node => {
-            console.log(node.nodeProps);
+            console.log(node, '<<');
             const nodeProps = node.nodeProps;
             return {
                 ptr: node,
                 name: this.toID(node.ID),
                 [nodeProps.config?.self]: {
-                    ...node._configValues
+                    ...node._configValues,
                 },
                 inputs: node.prevNodes.map(this.toID),
                 outputs: node.nextNodes.map(this.toID)
@@ -43,10 +43,13 @@ class Serialiser {
     fromTopLevel(obj: jsobj): jsobj {
         return {}
     }
+
+
 }
 
 const SerialiserInst = new Serialiser();
 
+export {SerialiserInst};
 // @ts-ignore
 window.SI = SerialiserInst;
 export default Serialiser;

@@ -24,6 +24,7 @@ export class Node {
     public coords: Point;
     readonly _configParams: jsobj;
     _configValues: jsobj;
+    public _configurableInputValues: jsobj;
     public orderedNode: NodeId[] = [];
     public _error: any = "";
     output: Output = Node.ID;
@@ -44,6 +45,22 @@ export class Node {
                 this._configValues[key] = aDefault;
             }
         })
+
+        const everyConfigurableInput = this.nodeOutputs
+            .filter(ref => ref.configurable_input)
+            .concat(
+                this.nodeInputs
+                    .filter(ref => ref.configurable_input)
+            ).map(value => [value.configurable_input, value.name
+            ]);
+
+        this._configurableInputValues = new Map(window.structuredClone(everyConfigurableInput));
+
+
+        console.log(
+            this._configurableInputValues
+        )
+
     }
 
     setCoords(newCoords: Point) {

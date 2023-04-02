@@ -49,12 +49,14 @@ export default function PropertyViewer() {
             <div className={"gridItem"}>
                 INPUTS
                 <br/>
-                {node.nodeInputs?.map(SingleEdgeRef)}
+                {node.nodeInputs?.map((edgeRef, i) => <SingleEdgeRef
+                    edgeRef={edgeRef} key={i} i={i}/>)}
             </div>
             <div className={"gridItem"}>
                 OUTPUTS
                 <br/>
-                {node.nodeOutputs.map(SingleEdgeRef)}
+                {node.nodeOutputs?.map((edgeRef, i) => <SingleEdgeRef
+                    edgeRef={edgeRef} key={i} i={i}/>)}
             </div>
         </div>
         <br/>
@@ -67,7 +69,7 @@ export default function PropertyViewer() {
 const SingleNodeItem = (node: Node | undefined, i: number) => {
     return <span key={i}><Button small>
             {node?.nodeType} #{node?.ID}
-    </Button>
-    <br/>
-    </span>
+                </Button>
+                <br/>
+                </span>
 }

@@ -7,6 +7,7 @@ import {Line} from "../node/Line";
 import {jsobj} from "../app/util";
 import {NodeBuilder} from "../node/Builder";
 import {GraphUtilInst} from "../graph/GraphUtil";
+import {SerialiserInst} from "../graph/Serialiser";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -36,8 +37,17 @@ export default function Header() {
         <Button className={"blue"}>Compile</Button>
 
         <BtnGroup>
-            <Button>Import...</Button>
-            <Button>Export...</Button>
+            <Button onClick={() => SerialiserInst.fromJSON({})}>
+                Import...
+            </Button>
+            <Button onClick={() => SerialiserInst.toJSON()}>
+                Export...
+            </Button>
         </BtnGroup>
+
+        <Button>
+            GPT
+        </Button>
+
     </span>
 };

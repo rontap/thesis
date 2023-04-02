@@ -33,7 +33,10 @@ interface AppState {
     getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
     forceSvgRender: {},
-    doSvgRender: () => void
+    doSvgRender: () => void,
+
+    setSingleEdgeOfActiveNode:
+        (propertyName: string, to: string) => void,
 }
 
 export enum End { FROM, TO}
@@ -56,7 +59,15 @@ const State = create<AppState>()(
         temporal(
             //persist(
             (set, get) => ({
-
+                setSingleEdgeOfActiveNode: (propertyName: string, to: string) =>
+                    set((state) => {
+                            const activeNode = state.activeNode;
+                            console.log('->>', activeNode, to);
+                            if (!activeNode) return {};
+                            activeNode._configurableInputValues.set(propertyName, to);
+                            return {activeNode}
+                        }
+                    ),
                 addNode: (node: Node) => set((state) =>
                     ({nodes: state.nodes.concat(node)})),
                 getNodeById: (id: NodeId) =>

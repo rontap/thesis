@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 
 //---------------------
-import './App.css';
-import './svg.css';
-import './Stem.css';
-import './ctxmenu.css';
+import './ui/styles/App.css';
+import './ui/styles/svg.css';
+import './ui/styles/Stem.css';
+import './ui/styles/ctxmenu.css';
 import './ui/styles/mat.css';
 
 import {NodeBuilder} from "./node/Builder";

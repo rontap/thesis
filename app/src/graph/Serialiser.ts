@@ -68,8 +68,8 @@ class Serialiser {
     // SVG
 
     toSvgCreate() {
-        const css = require('!!raw-loader!../svg.css').default;
-        const cssExportOnly = require('!!raw-loader!../svgExprted.css').default;
+        const css = require('!!raw-loader!../ui/styles/svg.css').default;
+        const cssExportOnly = require('!!raw-loader!../ui/styles/svgExprted.css').default;
 
         const parsedNodes = this.toJSON();
         parsedNodes.forEach(nodeJSON => {

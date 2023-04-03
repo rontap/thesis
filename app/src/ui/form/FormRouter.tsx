@@ -71,7 +71,7 @@ export default function FormRouter(props: FormRouteComponentProps) {
         case FormAtoms.BINARY:
             return <Atoms.Restricted {...passProps}/>
         case FormAtoms.STATIC:
-            return <>This is static.</>
+            return <>Static value.</>
         default:
             console.error(`[Form Route] Type ${type} is not found`);
             return <>

@@ -6,6 +6,7 @@ import {Geom, Point, Button} from "../geometry/Geom";
 export {Geom, Button};
 const movableElements = ["svg", "foreignObject"];
 
+const undraggables = ["BUTTON", "INPUT", "TEXTAREA", "DIV"];
 
 class DragHandler {
     private isDown: boolean = false;
@@ -28,7 +29,6 @@ class DragHandler {
     }
 
     evt(action: string, evt: any) {
-
         this.getTransformMatrix();
         const canBubble: boolean = !getState().lineAddAt?.ID;
 
@@ -36,18 +36,24 @@ class DragHandler {
             evt.preventDefault();
         }
 
+        if (undraggables.includes(evt.target.tagName) && !this.isDown) {
+            evt.stopPropagation();
+            return;
+        }
+
         if (canBubble) {
             evt.target = DragHandler.bubbleEvt(evt.target, movableElements);
         } else {
-            evt.target = DragHandler.bubbleEvt(evt.target, ["svg", "BUTTON", "INPUT"]);
+            evt.target = DragHandler.bubbleEvt(evt.target, ["svg", "BUTTON", "INPUT", "TEXTAREA", "DIV"]);
         }
 
         if (evt.target.tagName !== 'svg') {
             evt.stopPropagation();
         }
 
-        const actTarget = this.selected as HTMLElement;
+        const actTarget = (evt.target || this.selected) as HTMLElement;
         let id = Number(actTarget?.getAttribute('data-id'));
+
 
         if (action === Button.DOWN) {
             this.selected = evt.target;

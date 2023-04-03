@@ -6,7 +6,10 @@
     "self": "line_cross",
     "data": {
       "line": {
-        "type": "static"
+        "type": "json",
+        "additionalProps": {
+          "height": 80
+        }
       }
     }
   }

@@ -7,8 +7,8 @@ import Button from "../components/Button";
 
 export default function ActiveNodes(props: jsobj) {
     const nodes = State((state) => state.nodes)
-    return <div >
-        <h3>Active Nodes</h3>
+    return <div>
+        <h3>Current Nodes</h3>
         {
             nodes.map((node: Node) => NodeListItem(node))
         }

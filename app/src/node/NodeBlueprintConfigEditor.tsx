@@ -8,9 +8,10 @@ export default function NodeBlueprintConfigEditor(props: jsobj) {
     return <>
         <div id={"blueprintConfig"} className={"majorElement"}>
             <code>
-                <pre>
-                    {JSON.stringify(blueprintedType, null, 2)}
-                </pre>
+                <textarea
+                    defaultValue={JSON.stringify(blueprintedType, null, 2)}>
+                </textarea>
+
             </code>
         </div>
     </>

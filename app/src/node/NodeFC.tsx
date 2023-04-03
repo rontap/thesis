@@ -17,7 +17,7 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
         (prev: any, param: any) => (param?.additionalProps?.height || 0) + prev, 0
     )
     console.log(that._configParams, sumAdditionalHeight);
-    const height = 50 + (noProperties * 50) + sumAdditionalHeight;
+    const height = 40 + (noProperties * 50) + sumAdditionalHeight;
     const tempSvgRender = State((state) => state.forceSvgRender)
     const a = that.nodeConfigTypes;
     return (<foreignObject key={that.ID}

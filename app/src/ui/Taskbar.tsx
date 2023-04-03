@@ -8,6 +8,7 @@ import {isDraft} from "@reduxjs/toolkit";
 import {stat} from "fs";
 import {Point} from "../geometry/Geom";
 import Button from "../components/Button";
+import IO from "./IO";
 
 
 const taskbarStyles = {
@@ -21,7 +22,11 @@ const taskbarStyles = {
     },
     activeNodes: {
         top: '300px',
-        width: '350px',
+        width: '300px',
+    },
+    io: {
+        top: '420px',
+        width: '300px',
     }
 }
 export default function Taskbar({items}: { items: Map<string, jsobj> }) {
@@ -35,6 +40,7 @@ export default function Taskbar({items}: { items: Map<string, jsobj> }) {
                 <WrapToTaskbarItem name="nodes" cid="nodes" element={<AvailableNodes items={items}/>}/>
                 <WrapToTaskbarItem name="active" cid="activeNodes" element={<ActiveNodes/>}/>
                 <WrapToTaskbarItem name="props" cid="properties" element={<PropertyViewer/>}/>
+                <WrapToTaskbarItem name="io" cid="io" element={<IO/>}/>
                 <Droppable/>
                 {/*<Draggable/>*/}
             </DndContext>

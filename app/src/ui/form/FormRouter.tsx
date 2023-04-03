@@ -58,6 +58,7 @@ export default function FormRouter(props: FormRouteComponentProps) {
 
     switch (parsedType) {
         case FormAtoms.JSON:
+            return <Atoms.JSON {...passProps}/>
         case FormAtoms.ANY:
         case FormAtoms.STRING:
             return <Atoms.String {...passProps}/>

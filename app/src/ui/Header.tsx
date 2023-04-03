@@ -37,21 +37,11 @@ export default function Header() {
 
         <Button className={"blue"}>Run</Button>
 
-        <BtnGroup>
-            <Button onClick={() => SerialiserInst.fromJSON("")}>
-                Import
-            </Button>
-            <Button onClick={() => SerialiserInst.exportJSON()}>
-                Save
-            </Button>
-            <Button onClick={() => SerialiserInst.toSvg()}>
-                Export SVG
-            </Button>
-        </BtnGroup>
-
+        &nbsp;&nbsp;
         <Button onClick={() => PositionInst.orderNodes()}>
-            ~
+            Auto Layout
         </Button>
+
         {/*<Button>*/}
         {/*    GPT*/}
         {/*</Button>*/}

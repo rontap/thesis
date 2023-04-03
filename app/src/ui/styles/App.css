@@ -363,9 +363,10 @@ button, h3, #titlemark {
     width: 80px;
     cursor: pointer;
     color: whitesmoke;
-    font-family: 'Bahnschrift';
+    font-family: 'Bahnschrift', sans-serif;
     font-size: 15px;
     transition: all .15s;
+    border-left: 0.5px solid var(--btn-bg)
 }
 
 .minimisedItem button:hover {
@@ -393,4 +394,12 @@ button, h3, #titlemark {
 
 #taskbar > .minimisedItem:nth-of-type(4) {
     right: calc(80px * 3);
+}
+
+.dragTarget {
+    border: 1px solid lightskyblue;
+    border-radius: 4px;
+    margin: 10px auto;
+    max-width: 120px;
+    padding: 15px;
 }

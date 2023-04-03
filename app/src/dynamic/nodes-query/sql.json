@@ -23,7 +23,10 @@
     "data": {
       "query": {
         "type": "sql",
-        "_widget": "Popup"
+        "_widget": "Popup",
+        "additionalProps": {
+          "height": 60
+        }
       }
     }
   }

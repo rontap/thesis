@@ -4,8 +4,8 @@ import {NodeBuilder} from "./Builder";
 import {Point} from "../geometry/Geom";
 import {Line, NodeId} from "./Line";
 import {jsobj} from "../app/util";
-import {NodeEdgeRef} from "../graph/EdgeLoader";
-import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate} from "../app/DynamicReader";
+import {configTypes, NodeEdgeRef} from "../graph/EdgeLoader";
+import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate, NodeTemplateConfig} from "../app/DynamicReader";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
 import Serialiser from "../graph/Serialiser";
@@ -92,6 +92,19 @@ export class Node {
 
     get nodeProps(): NodeTemplate {
         return NodeBuilder.getType(this.nodeType)!;
+    }
+
+    get nodeConfig(): NodeTemplateConfig | undefined {
+        return this.nodeProps.config;
+    }
+
+    get nodeConfigTypes() {
+        if (this.nodeConfig?.self) {
+            return configTypes.get(this.nodeConfig.self);
+        } else {
+            return [];
+        }
+
     }
 
     get nodeOutputs(): NodeEdgeRef[] {

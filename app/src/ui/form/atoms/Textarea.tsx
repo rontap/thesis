@@ -8,6 +8,9 @@ export default function Textarea(props: any) {
         props.onChange(value);
     }
 
+    const preferredHeight = props.additionalProps?.height ? (props.additionalProps.height / 12) : 3
+
+
     console.log('TA_PROP_VALUE', props);
     return <>
         <button className={"configButtonItem etc"}>...</button>
@@ -15,7 +18,7 @@ export default function Textarea(props: any) {
             className={"configInputItem"}
             onChange={onBeforeChange}
             value={props.value}
-            rows={3}
+            rows={preferredHeight}
             // defaultValue={props.defaultValue}
         />
 

@@ -15,7 +15,6 @@ export function FormRoot({configParams, configValues}:
     }
     const onChangeRoot = (path: string, newValue: any) => {
         configValues[path] = newValue;
-        console.log(path, newValue, '<< onchange', configValues);
     }
 
     return <>

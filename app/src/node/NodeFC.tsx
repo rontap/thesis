@@ -3,7 +3,7 @@ import CONST from "../const";
 import {ErrorBoundary} from "react-error-boundary";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from "@fortawesome/free-solid-svg-icons";
-import {preventBubble} from "../app/util";
+import {jsobj, preventBubble} from "../app/util";
 import {MovableState} from "../svg/Movable.js";
 import {FormRoot} from "./FormRoot";
 import {Node} from "./Node";
@@ -13,9 +13,13 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 
     const that: Node = props.Node;
     const noProperties = Object.values(that._configParams).length;
-    const height = 60 + (noProperties * 70);
+    const sumAdditionalHeight = Object.values(that._configParams).reduce(
+        (prev: any, param: any) => (param?.additionalProps?.height || 0) + prev, 0
+    )
+    console.log(that._configParams, sumAdditionalHeight);
+    const height = 50 + (noProperties * 50) + sumAdditionalHeight;
     const tempSvgRender = State((state) => state.forceSvgRender)
-
+    const a = that.nodeConfigTypes;
     return (<foreignObject key={that.ID}
 
                            onClick={() => getState().setActiveNode(that.ID)}

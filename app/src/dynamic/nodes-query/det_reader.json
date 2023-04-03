@@ -53,7 +53,7 @@
       "name": "confidence"
     },
     {
-      "type": "time",
+      "type": "time_ms",
       "name": "frame_time"
     }
   ],

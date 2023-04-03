@@ -27,7 +27,6 @@ const getComponentFromName = (name: FormAtoms | string): JSX.Element => {
     return <></>
 }
 
-
 export default function FormRouter(props: FormRouteComponentProps) {
     const {type} = props;
     const [formStore, setFormStore] = useState();

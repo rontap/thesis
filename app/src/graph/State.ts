@@ -32,7 +32,7 @@ interface AppState {
     setActiveNode: (id?: NodeId | undefined) => void,
     getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
-    forceSvgRender: {},
+    forceSvgRender: number,
     doSvgRender: () => void,
 
     setSingleEdgeOfActiveNode:
@@ -47,7 +47,7 @@ const initialState = {
     contextMenu: {},
     blueprintedNode: "",
     activeNode: undefined,
-    forceSvgRender: {},
+    forceSvgRender: 0,
     nodes: [],
     zoom: 1,
 }
@@ -99,7 +99,7 @@ const State = create<AppState>()(
                     return get().lines.filter(line => line[whichJunction] === id)
                 },
                 doSvgRender: () => set((state) =>
-                    ({forceSvgRender: {}})
+                    ({forceSvgRender: Math.random()})
                 ),
                 resetStore: () => set((state) => initialState),
 

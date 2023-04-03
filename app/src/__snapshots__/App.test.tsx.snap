@@ -8,7 +8,7 @@ exports[`Renders <App/> without issues 1`] = `
     <span
       id="titlemark"
     >
-      FLOWSCAPE
+      GRAPHENE
     </span>
     <button
       className=" btn blue"
@@ -70,6 +70,12 @@ exports[`Renders <App/> without issues 1`] = `
           Export SVG
         </button>
       </div>
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        ~
+      </button>
     </span>
   </nav>
   <div

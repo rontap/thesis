@@ -26,6 +26,7 @@ export function FormRoot({configParams, configValues}:
                 key={item}
                 item={item}
                 hasDefault={value.default != undefined}
+                entryValue={configValues[item]}
                 defaultValue={value.default}
                 entry={value}/>)
         }
@@ -33,10 +34,10 @@ export function FormRoot({configParams, configValues}:
 }
 
 export function ConfigPropertyEntry(props: {
-    item: string, entry: FormRouteProps, onChangeRoot: Function, hasDefault: boolean, defaultValue: any
+    item: string, entry: FormRouteProps, entryValue: any, onChangeRoot: Function, hasDefault: boolean, defaultValue: any
 }) {
-    const {item, entry, onChangeRoot, defaultValue} = props;
-    const [value, setValue] = useState(defaultValue);
+    const {item, entry, onChangeRoot, defaultValue, entryValue} = props;
+    const [value, setValue] = useState(entryValue || defaultValue);
     const handleChange = (item: string, newValue: string) => {
         console.log(newValue);
         onChangeRoot(item, newValue);

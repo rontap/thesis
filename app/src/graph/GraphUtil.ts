@@ -23,12 +23,12 @@ export class GraphUtil {
     }
 
     detectCircles(): Line[][] {
-        this.forEachInOrder();
+        this.forEachInOrder(() => false);
         getState().doSvgRender();
         return this.circleElementsInGraph;
     }
 
-    forEachInOrder() {
+    forEachInOrder(callbackFn: Function, doSvgRender = false) {
         getState().nodes.forEach(node => node.orderedNode = []);
         this.circleElementsInGraph = [];
 
@@ -38,35 +38,42 @@ export class GraphUtil {
 
         this.sourceNodes
             .forEach(node => {
-                this.forEachInOrderRecurse(node, node.ID, []);
+                this.forEachInOrderRecurse(node, node.ID, [], [null, 0], callbackFn);
             });
+
+        if (doSvgRender) {
+            getState().doSvgRender();
+        }
     }
 
     public circleElementsInGraph: Line[][] = [];
 
-    forEachInOrderRecurse(node: Node, initialSourceNode: NodeId, visitedLines: Line[]) {
-        node.orderedNode.push(initialSourceNode);
+    forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: [Node | null, number], callbackFn: Function) {
+        currentNode.orderedNode.push(initialSourceNode);
+
+        callbackFn && callbackFn(currentNode, initialSourceNode, visitedLines, prevNode);
 
         // detect a circle in this path
-        if (visitedLines.map(line => line.from).includes(node.ID)) {
+        if (visitedLines.map(line => line.from).includes(currentNode.ID)) {
             // slice only the actual circle out and report it
             const circleLine = visitedLines.slice(
-                visitedLines.findIndex(line => line.from === node.ID),
+                visitedLines.findIndex(line => line.from === currentNode.ID),
                 visitedLines.length
             )
             this.circleElementsInGraph.push(circleLine);
             return;
         }
 
-        node.linesFromNode.forEach(line =>
+        currentNode.linesFromNode.forEach((line, i) =>
             this.forEachInOrderRecurse(
                 getState().getNodeById(line.to)!,
                 initialSourceNode,
-                visitedLines.concat(line))
+                visitedLines.concat(line),
+                [currentNode, i],
+                callbackFn
+            )
         );
     }
-
-
 }
 
 const GraphUtilInst = new GraphUtil();
@@ -74,3 +81,11 @@ export {GraphUtilInst};
 
 // @ts-ignore
 window._GU = GraphUtilInst;
+/**
+ *
+ * _GU.forEachInOrder( (node,initial,visited,[prevNode,nthRendered]) =>
+ *     {node.coords.x = (visited.length * 240) +200 ;
+ *      node.coords.y = (initial * 140)   + (visited.length * 40) +200 + nthRendered*200;
+ *      console.log(node,nthRendered)
+ *     },true)
+ */

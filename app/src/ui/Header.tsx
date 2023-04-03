@@ -8,6 +8,7 @@ import {jsobj} from "../app/util";
 import {NodeBuilder} from "../node/Builder";
 import {GraphUtilInst} from "../graph/GraphUtil";
 import {SerialiserInst} from "../graph/Serialiser";
+import PositionInst from "../svg/Positioning";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -48,6 +49,9 @@ export default function Header() {
             </Button>
         </BtnGroup>
 
+        <Button onClick={() => PositionInst.orderNodes()}>
+            ~
+        </Button>
         {/*<Button>*/}
         {/*    GPT*/}
         {/*</Button>*/}

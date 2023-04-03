@@ -1,4 +1,4 @@
-import {getState} from "../graph/State";
+import State, {getState} from "../graph/State";
 import CONST from "../const";
 import {ErrorBoundary} from "react-error-boundary";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -13,8 +13,8 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 
     const that: Node = props.Node;
     const noProperties = Object.values(that._configParams).length;
-    const height = 60 + (noProperties * 60);
-
+    const height = 60 + (noProperties * 70);
+    const tempSvgRender = State((state) => state.forceSvgRender)
 
     return (<foreignObject key={that.ID}
 

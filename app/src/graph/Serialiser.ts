@@ -14,7 +14,7 @@ class Serialiser {
 
     toJSON(): jsobj[] {
         const parsedNodes = getState().nodes.map(node => {
-            console.log(node, '<<', node._configurableInputValues);
+
             const nodeProps = node.nodeProps;
             return {
                 ptr: node,
@@ -23,7 +23,7 @@ class Serialiser {
                     ...node._configValues,
                     ...Object.fromEntries(node._configurableInputValues)
                 },
-                input: node.prevNodes.map(this.toID),
+                input: [this.toID(node.ID)],//node.prevNodes.map(this.toID),
                 output: node.nextNodes.map(this.toID)
             }
         });
@@ -144,20 +144,18 @@ class Serialiser {
         // getting all lines
         transform.forEach((nodeSdRoot: NodeSerialised) => {
             console.log('=== node', nodeSdRoot.name);
-            nodeSdRoot.output.forEach(output => {
-                transform
+            nodeSdRoot.output?.forEach(output => {
+                const toNode = transform
                     .find((nodeSd: NodeSerialised) => {
-                        console.log('->', output, nodeSd.input, nodeSd.input.includes(output))
-                        return nodeSd.input.includes(output)
+                        console.log('->', output, nodeSd, nodeSd.input?.includes(output))
+                        return nodeSd.input?.includes(output)
                     })
-                    ?.map((nodeSd: NodeSerialised) => nodeSd.ref?.ID)
-                    .forEach((toID: NodeId) => {
-                        console.log('->', toID);
-                        getState()
-                            .addLine(
-                                new Line(nodeSdRoot.ref?.ID || -1, toID || -1)
-                            )
-                    })
+
+                getState()
+                    .addLine(
+                        new Line(nodeSdRoot.ref?.ID || -1, toNode.ref?.ID || -1)
+                    )
+
             })
         })
 

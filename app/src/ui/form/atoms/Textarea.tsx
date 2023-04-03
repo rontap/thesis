@@ -8,14 +8,15 @@ export default function Textarea(props: any) {
         props.onChange(value);
     }
 
+    console.log('TA_PROP_VALUE', props);
     return <>
         <button className={"configButtonItem etc"}>...</button>
         <textarea
             className={"configInputItem"}
             onChange={onBeforeChange}
             value={props.value}
-            rows={2}
-            defaultValue={props.defaultValue}
+            rows={3}
+            // defaultValue={props.defaultValue}
         />
 
     </>

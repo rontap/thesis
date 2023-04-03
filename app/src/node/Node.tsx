@@ -10,8 +10,6 @@ import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
 import Serialiser from "../graph/Serialiser";
 
-console.log(Serialiser)
-console.log(GraphUtilInst)
 export {};
 
 type Input = number
@@ -65,14 +63,23 @@ export class Node {
         const guessedType = NodeBuilder.EveryNodeTemplate()
             .find(node => node.config?.self === guessedProperty);
 
-        let node;
-        if (guessedType) {
-            node = new Node(guessedType.name);
-            getState().addNode(node);
-        } else {
+        let node: Node;
+
+        if (!guessedType) {
             console.error(`Could not guess type ${guessedType} from ${nodeSd}`);
             throw Error(`Could not guess type ${guessedType} from ${nodeSd}`);
         }
+
+
+        if (guessedProperty === undefined) {
+            throw Error('Could not guess property');
+        }
+
+        node = new Node(guessedType.name);
+
+        node._configValues = nodeSd[guessedProperty] as jsobj;
+        getState().addNode(node);
+
 
         return node;
         // const node = new Node()
@@ -80,6 +87,7 @@ export class Node {
 
     setCoords(newCoords: Point) {
         this.coords = newCoords;
+        DragHandlerInst.setCoords(this.selfSvg, newCoords);
     }
 
     get nodeProps(): NodeTemplate {

@@ -10,7 +10,7 @@ export default function String(props: any) {
     }
     return <>
         <input className={"configInputItem"}
-               defaultValue={props.defaultValue}
+               // defaultValue={props.defaultValue}
                value={props.value}
                onChange={onBeforeChange}/>
     </>

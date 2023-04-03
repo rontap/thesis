@@ -115,6 +115,10 @@ svg:has(.currentNodeActive) .nodeConnectionEnd {
     border-radius: 6px;
 }
 
+textarea.configInputItem {
+    font-size: 13px;
+}
+
 
 .configButtonItem {
     min-width: 60px;

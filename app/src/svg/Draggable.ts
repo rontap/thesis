@@ -82,6 +82,8 @@ class DragHandler {
                         item.setAttributeNS(null, 'path', bezier)
                         this.setCoords(item, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop), 'x2', 'y2');
                     })
+
+
                 }
 
 
@@ -92,7 +94,6 @@ class DragHandler {
             const id = Number((this.selected as HTMLElement)?.getAttribute('data-id'));
             if (id && id > 0) {
 
-                console.log(id);
                 const finalCoord = Geom.Difference(this.getCursor(evt), this.startCoord);
                 getState().getNodeById(id)?.setCoords(finalCoord);
             }

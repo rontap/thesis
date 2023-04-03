@@ -5,7 +5,7 @@ import CONST from "../const";
 
 const Positioning = {
     multipleNodesInLine: 200,
-    padBetweenVisitedNodes: 40
+    padBetweenVisitedNodes: 75
 }
 
 class Position {
@@ -19,7 +19,7 @@ class Position {
                 node.setCoords(
                     new Point(
                         (visited.length * (CONST.box.width + Positioning.padBetweenVisitedNodes)) + 200,
-                        (initial * 140) + (visited.length * Positioning.padBetweenVisitedNodes) + 200 + nthRendered * Positioning.multipleNodesInLine
+                        (initial * 140) + (visited.length) + 200 + nthRendered * Positioning.multipleNodesInLine
                     )
                 );
             }, true)

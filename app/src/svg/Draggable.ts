@@ -6,7 +6,7 @@ import {Geom, Point, Button} from "../geometry/Geom";
 export {Geom, Button};
 const movableElements = ["svg", "foreignObject"];
 
-const undraggables = ["BUTTON", "INPUT", "TEXTAREA", "DIV"];
+const undraggables = ["BUTTON", "INPUT", "TEXTAREA"];
 
 class DragHandler {
     private isDown: boolean = false;

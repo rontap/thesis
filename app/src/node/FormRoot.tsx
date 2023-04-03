@@ -1,7 +1,6 @@
 import {jsobj} from "../app/util";
 import Button from "../components/Button";
 import {useState} from "react";
-import {Form} from "formik";
 import FormRouter from "../ui/form/FormRouter";
 import {FormRouteProps} from "../graph/EdgeLoader";
 
@@ -54,7 +53,6 @@ export function ConfigPropertyEntry(props: {
                         value={value}
                         defaultValue={defaultValue}
                         {...entry}/>
-
 
         <br/>
             </span>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, useState} from "react";
 import BtnGroup from "../components/BtnGroup";
 import Button from "../components/Button";
 import {SerialiserInst} from "../graph/Serialiser";
@@ -14,6 +14,10 @@ const loadTextFromPrompt = () => {
 
 }
 export default function IO() {
+    const [shouldDownload, setShouldDownload] = useState<boolean>(false);
+    const changeDownloadType = (evt: ChangeEvent<HTMLInputElement>) => {
+        setShouldDownload(evt.target.checked);
+    }
     return <div className={""}>
         <h3>Import & Export Graph</h3>
 
@@ -28,10 +32,10 @@ export default function IO() {
         <hr/>
 
         <BtnGroup>
-            <Button onClick={() => SerialiserInst.exportJSON()}>
+            <Button onClick={() => SerialiserInst.exportJSON(shouldDownload)}>
                 Save JSON
             </Button>
-            <Button onClick={() => SerialiserInst.toSvg()}>
+            <Button onClick={() => SerialiserInst.toSvg(shouldDownload)}>
                 Export SVG
             </Button>
         </BtnGroup>
@@ -40,7 +44,8 @@ export default function IO() {
         <label>
             <input
                 type={"checkbox"}
-
+                onChange={changeDownloadType}
+                checked={shouldDownload}
             /> Open in new window instead of downloading
         </label>
         <br/>

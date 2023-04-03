@@ -48,7 +48,7 @@ class Serialiser {
         }
     }
 
-    exportJSON() {
+    exportJSON(download: boolean) {
         const coreContent =
             JSON.stringify(
                 this.toTopLevel(
@@ -57,7 +57,7 @@ class Serialiser {
                     )
                 )
                 , null, 1);
-        createFile(coreContent, 'txt', 'temp.txt', false);
+        createFile(coreContent, 'txt', 'temp.txt', download);
     }
 
     fromTopLevel(obj: jsobj): jsobj {
@@ -145,17 +145,19 @@ class Serialiser {
         transform.forEach((nodeSdRoot: NodeSerialised) => {
             console.log('=== node', nodeSdRoot.name);
             nodeSdRoot.output?.forEach(output => {
-                const toNode = transform
-                    .find((nodeSd: NodeSerialised) => {
-                        console.log('->', output, nodeSd, nodeSd.input?.includes(output))
+                const toNodes = transform
+                    .filter((nodeSd: NodeSerialised) => {
                         return nodeSd.input?.includes(output)
                     })
 
-                getState()
-                    .addLine(
-                        new Line(nodeSdRoot.ref?.ID || -1, toNode.ref?.ID || -1)
-                    )
-
+                if (toNodes) {
+                    toNodes.forEach((toNode: jsobj) => {
+                        getState()
+                            .addLine(
+                                new Line(nodeSdRoot.ref?.ID || -1, toNode.ref?.ID || -1)
+                            )
+                    })
+                }
             })
         })
 

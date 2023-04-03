@@ -20,7 +20,7 @@ jobs:
           CI=false npm run build
 
       - name: Run tests 
-        run: npm test
+        run: npm test -u
      
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

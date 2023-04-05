@@ -45,7 +45,7 @@ export default function IO() {
             <input
                 type={"checkbox"}
                 onChange={changeDownloadType}
-                checked={shouldDownload}
+                checked={!shouldDownload}
             /> Open in new window instead of downloading
         </label>
         <br/>

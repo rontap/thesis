@@ -270,11 +270,62 @@ COLORED ITEM
     background: #e91e63;
 }
 
+/***n extimee*/
 
-.green .boxedItem .title {
-    background: #4caf50;
+._white foreignObject.green > div {
+    background: red;
 }
 
-.purple .boxedItem .title {
+._white foreignObject.purple > div {
     background: #9c27b0;
+}
+
+._white foreignObject.blue > div {
+    background: #ff693e;
+}
+
+._white foreignObject.red > div {
+    background: #4488FF;
+}
+
+._white foreignObject.organge > div {
+    background: #e91e63;
+}
+
+
+/**
+ WHITE SECTION
+ */
+
+._white .svgRoot {
+    background: #e2edf3;
+}
+
+._white #smallGrid path {
+    stroke: #bcc3c7;
+}
+
+._white #grid path {
+    stroke: #89949b;
+}
+
+._white .svgRoot {
+    border-radius: 0;
+}
+
+._white svg:not(:has(.currentNodeActive)) .nodeConnectionStart,
+._white .nodeConnection {
+    background: #444;
+}
+
+._white .configPropertyListItem .configTitle {
+    /*color: #222;*/
+}
+
+._white foreignObject > div {
+    background: #444444cc;
+}
+
+._white .boxedItem {
+    border: 1px solid #444;
 }

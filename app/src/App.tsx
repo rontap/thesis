@@ -32,9 +32,13 @@ const items: Map<string, jsobj> = NodeBuilder.Build();
 function App() {
     const [graph, setGraph] = useState(true);
 
+    const [light, setLight] = useState(false);
+    const toggleBg = () => {
+        setLight(now => !now);
+    };
 
     return (
-        <div className={`App`}>
+        <div className={`App ${light ? "_white" : ""}`}>
             <nav>
                 <span id={"titlemark"}>GRAPHENE</span>
                 <Button
@@ -45,7 +49,7 @@ function App() {
                     disabled={graph}
                     className={"blue"}
                     onClick={() => setGraph(true)}>Edit Graph</Button>
-                <Header/>
+                <Header toggleBg={toggleBg}/>
 
             </nav>
 

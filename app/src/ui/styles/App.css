@@ -403,3 +403,53 @@ button, h3, #titlemark {
     max-width: 120px;
     padding: 15px;
 }
+
+/*
+WHITE THEME
+ */
+._white .taskbarHeader {
+    background: #ddd;
+    background-image: radial-gradient(#445b65 1px, transparent 0);
+}
+
+._white .taskbarElement {
+    border: 1px solid #888;
+    background: #ddd;
+    color: #222;
+    overflow: hidden;
+    transition: background .4s;
+}
+
+._white .minimiseButton {
+    border: 1px solid #888;
+    background: #ccc;
+    top: -1px;
+    right: -1px;
+    transition: background .4s;
+}
+
+._white #propertyRoot,
+._white #activeNodes,
+._white nav,
+._white .majorElement {
+    background: #f1f1f1;
+    border: 1px solid #888;
+    transition: background .4s;
+}
+
+._white #titlemark {
+
+    background: -webkit-linear-gradient(0deg, #28354c, #325591);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body:has(._white) {
+    background: white;
+    transition: background .4s;
+}
+
+._white #svgRootCont {
+    border-top: 1px solid #888;
+}
+

@@ -12,7 +12,9 @@ import PositionInst from "../svg/Positioning";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
-export default function Header() {
+export default function Header({toggleBg}: {
+    toggleBg: Function
+}) {
     const {
         undo,
         redo,
@@ -28,7 +30,6 @@ export default function Header() {
         GraphUtilInst.detectCircles();
     }
 
-
     return <span id={"header"}>
         <BtnGroup>
             <Button onClick={() => undoWrap()}>Undo</Button>
@@ -40,6 +41,10 @@ export default function Header() {
         &nbsp;&nbsp;
         <Button onClick={() => PositionInst.orderNodes()}>
             Auto Layout
+        </Button>
+        {" "}
+        <Button onClick={toggleBg}>
+            Toggle Theme
         </Button>
 
         {/*<Button>*/}

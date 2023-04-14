@@ -26,6 +26,7 @@ import AvailableNodes from "./ui/AvailableNodes";
 import BlueprintSvg from "./svg/BlueprintSvg";
 import NodeBlueprintConfigEditor from "./node/NodeBlueprintConfigEditor";
 import Taskbar from "./ui/Taskbar";
+import InspectLine from "./ui/InspectLine";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
@@ -54,19 +55,22 @@ function App() {
             </nav>
 
             {graph ? <>
-                <ContextMenu items={items}/>
-                <ZoomInfo/>
-                <Recenter/>
+                    <ContextMenu items={items}/>
+                    <ZoomInfo/>
+                    <Recenter/>
 
 
-                <Svg items={items}/>
+                    <Svg items={items}/>
 
-                <Taskbar items={items}/>
-            </> : <>
-                <BlueprintSvg items={items} blueprint/>
-                <NodeBlueprints items={items}/>
-                <NodeBlueprintConfigEditor items={items}/>
-            </>}
+                    <Taskbar items={items}/>
+
+
+                </>
+                : <>
+                    <BlueprintSvg items={items} blueprint/>
+                    <NodeBlueprints items={items}/>
+                    <NodeBlueprintConfigEditor items={items}/>
+                </>}
 
 
         </div>

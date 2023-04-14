@@ -2,6 +2,12 @@ import {Node} from "../node/Node";
 import State, {getState} from "./State";
 import {Line, LineId, NodeId} from "../node/Line";
 
+/**
+ * first argument is the node, or if its a source node, null
+ * second argument is the position of the previous node in the `for` iterator of that's source node.
+ */
+type prevNodeIterator = [Node | null, number];
+
 export class GraphUtil {
 
     get everyNode(): Node[] {
@@ -34,6 +40,7 @@ export class GraphUtil {
 
         if (this.sourceNodes.length === 0 && this.everyNode.length !== 0) {
             console.log('There are no nodes that are source nodes');
+            return false;
         }
 
         this.sourceNodes
@@ -44,11 +51,13 @@ export class GraphUtil {
         if (doSvgRender) {
             getState().doSvgRender();
         }
+        return this.circleElementsInGraph.length === 0;
     }
 
     public circleElementsInGraph: Line[][] = [];
 
-    forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: [Node | null, number], callbackFn: Function) {
+
+    forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: prevNodeIterator, callbackFn: Function) {
         currentNode.orderedNode.push(initialSourceNode);
 
         callbackFn && callbackFn(currentNode, initialSourceNode, visitedLines, prevNode);
@@ -73,6 +82,26 @@ export class GraphUtil {
                 callbackFn
             )
         );
+    }
+
+    rippleNodeEdgeRefs() {
+        this.everyNode.forEach(node => node.connectedNodeInputs = []);
+
+
+        this.forEachInOrder(
+            (current: Node, initial: NodeId, visited: Line[], [prevNode, item]: prevNodeIterator) => {
+                const prevNodeInputs = prevNode ? prevNode.getConnectedNodeInputs : [];
+                const prevNodeSelfOutputs = prevNode ? prevNode.nodeOutputs : [];
+
+                console.log(prevNode, 'OPN');
+                current.connectedNodeInputs.push(
+                    ...prevNodeInputs,
+                    ...prevNodeSelfOutputs
+                )
+                console.log(current.connectedNodeInputs, current.ID);
+            }
+            , false
+        )
     }
 }
 

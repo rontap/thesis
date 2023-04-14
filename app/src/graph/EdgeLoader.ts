@@ -38,7 +38,7 @@ export type NodeEdgeRef = {
     description?: string,
     optional?: boolean,
     unique?: boolean,
-    configurable_input?: string
+    configurable_input?: string,
 
 }
 /**

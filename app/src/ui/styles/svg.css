@@ -227,6 +227,27 @@ foreignObject:hover .showCodeToggle {
     width: 169px;
 }
 
+.data-curve {
+    fill: transparent;
+    stroke: whitesmoke;
+    stroke-width: 2px;
+    transition: stroke-width .15s;
+}
+
+.data-curve-group:hover .data-curve {
+    stroke-width: 7px;
+
+}
+
+.data-curve-group:hover {
+    cursor: pointer;
+}
+
+.data-curve-group:hover .circle-first,
+.data-curve-group:hover .circle-second {
+    fill: var(--material-color-red);
+}
+
 /**
 COLORED ITEM
  */
@@ -268,6 +289,14 @@ COLORED ITEM
 
 .red .boxedItem .title {
     background: #e91e63;
+}
+
+.green .boxedItem .title {
+    background: #4caf50;;
+}
+
+.purple .boxedItem .title {
+    background: #9c27b0;
 }
 
 /***n extimee*/
@@ -328,4 +357,22 @@ COLORED ITEM
 
 ._white .boxedItem {
     border: 1px solid #444;
+}
+
+._white .data-curve {
+    fill: transparent;
+    stroke: #444444;
+    stroke-width: 2px;
+}
+
+._white .data-curve-group circle {
+    fill: var(--material-color-purple);
+}
+
+._white foreignObject:hover {
+    outline: 2px dotted #666;
+}
+
+._white foreignObject:active {
+    outline: 2px solid #666;
 }

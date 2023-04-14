@@ -2,7 +2,7 @@
 
 exports[`Renders <App/> without issues 1`] = `
 <div
-  className="App"
+  className="App "
 >
   <nav>
     <span
@@ -48,33 +48,19 @@ exports[`Renders <App/> without issues 1`] = `
       >
         Run
       </button>
-      <div
-        className="btnGroup undefined"
-      >
-        <button
-          className=" btn "
-          onClick={[Function]}
-        >
-          Import
-        </button>
-        <button
-          className=" btn "
-          onClick={[Function]}
-        >
-          Save
-        </button>
-        <button
-          className=" btn "
-          onClick={[Function]}
-        >
-          Export SVG
-        </button>
-      </div>
+        
       <button
         className=" btn "
         onClick={[Function]}
       >
-        ~
+        Auto Layout
+      </button>
+       
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Toggle Theme
       </button>
     </span>
   </nav>
@@ -309,7 +295,7 @@ exports[`Renders <App/> without issues 1`] = `
         Object {
           "top": "300px",
           "transform": "translate3d(0px, 0px, 0)",
-          "width": "350px",
+          "width": "300px",
         }
       }
     >
@@ -333,7 +319,7 @@ exports[`Renders <App/> without issues 1`] = `
       <div>
         <div>
           <h3>
-            Active Nodes
+            Current Nodes
           </h3>
           <br />
         </div>
@@ -367,6 +353,83 @@ exports[`Renders <App/> without issues 1`] = `
         _
       </button>
       <div />
+    </div>
+    <div
+      className="taskbarElement"
+      style={
+        Object {
+          "top": "420px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "300px",
+        }
+      }
+    >
+      <div
+        aria-describedby="DndDescribedBy-0"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
+      >
+        _
+      </button>
+      <div>
+        <div
+          className=""
+        >
+          <h3>
+            Import & Export Graph
+          </h3>
+          <button
+            className=" btn "
+            onClick={[Function]}
+          >
+            Paste JSON / SVG code
+          </button>
+          <div
+            className="dragTarget"
+          >
+            Or drag here...
+          </div>
+          <hr />
+          <div
+            className="btnGroup undefined"
+          >
+            <button
+              className=" btn "
+              onClick={[Function]}
+            >
+              Save JSON
+            </button>
+            <button
+              className=" btn "
+              onClick={[Function]}
+            >
+              Export SVG
+            </button>
+          </div>
+          <br />
+          <br />
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox"
+            />
+             Open in new window instead of downloading
+          </label>
+          <br />
+          <br />
+        </div>
+      </div>
     </div>
     <div
       id="ddctx"

@@ -1,6 +1,6 @@
 import CONST from "../const";
 import Draggable, {DragHandler, DragHandlerInst} from "./Draggable";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {jsobj} from "../app/util";
 import State, {getState} from "../graph/State";
 import {Geom, Point} from "../geometry/Geom";
@@ -8,6 +8,7 @@ import {Node} from "../node/Node";
 import Movable from "./Movable.js";
 import {Line} from "../node/Line";
 import SvgLines from "./SvgLines";
+import InspectLine from "../ui/InspectLine";
 
 export default function Svg(props: jsobj) {
     const {blueprint} = props;
@@ -73,6 +74,8 @@ export default function Svg(props: jsobj) {
                 {
                     nodes.map((node: Node) => node.getSvg())
                 }
+
+                <InspectLine/>
 
 
             </svg>

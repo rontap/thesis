@@ -336,6 +336,13 @@ button, h3, #titlemark {
 
 }
 
+#inspectLine {
+    width: 150px;
+    position: fixed;
+    height: 200px;
+    top: 40px;
+}
+
 .minimisedItem {
     position: fixed;
     right: 0;
@@ -378,6 +385,11 @@ button, h3, #titlemark {
 .minimiseButton:hover {
     opacity: 1;
     background: #f1f1f1ee;
+}
+
+.inspectLine {
+    border-radius: 8px;
+    border: 1px solid whitesmoke;
 }
 
 #taskbar > .minimisedItem:nth-of-type(1) {

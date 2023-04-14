@@ -13,7 +13,7 @@ export default function PropertyViewer() {
 
     if (!node) return <></>;
 
-
+    console.log(node.nodeInputs)
     return <div>
         {/*<Button*/}
         {/*    onClick={() => getState().setActiveNode()}*/}
@@ -49,10 +49,25 @@ export default function PropertyViewer() {
         <hr/>
         <div className={"grid gtc-2 gtc-m-10"}>
             <div className={"gridItem"}>
-                INPUTS
+                {/*todo editable props dont work well*/}
+                MISSING INPUTS
                 <br/>
-                {node.nodeInputs?.map((edgeRef, i) => <SingleEdgeRef
-                    edgeRef={edgeRef} key={i} i={i}/>)}
+                {node.nodeInputs
+                    ?.filter(nodeInput => !node.getConnectedInputIfAnyByName(nodeInput.name))
+                    .map((edgeRef, i) => <SingleEdgeRef
+                        edgeRef={edgeRef} key={i} i={i}/>)}
+                <br/>
+                INPUTS
+                {node.nodeInputs
+                    ?.filter(nodeInput => node.getConnectedInputIfAnyByName(nodeInput.name))
+                    .map((edgeRef, i) => <SingleEdgeRef
+                        edgeRef={edgeRef} key={i} i={i}/>)}
+                <br/>
+                UNUSED INPUTS
+                {node.getConnectedNodeInputs
+                    ?.filter(nodeInput => !node.nodeInputs.includes(nodeInput))
+                    .map((edgeRef, i) => <SingleEdgeRef small constant={true}
+                        edgeRef={edgeRef} key={i} i={i}/>)}
             </div>
             <div className={"gridItem"}>
                 OUTPUTS

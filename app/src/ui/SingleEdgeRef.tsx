@@ -4,8 +4,8 @@ import State, {getState} from "../graph/State";
 import {ChangeEvent, useState} from "react";
 
 export default function SingleEdgeRef({
-                                          edgeRef, i
-                                      }: { edgeRef: NodeEdgeRef, i: number }
+                                          edgeRef, i, constant, small
+                                      }: { edgeRef: NodeEdgeRef, small?: boolean, constant?: boolean, i: number }
 ) {
     const actColor = edgeTypes.get(edgeRef.type)?.color || "gray";
     const node = State((state) => state.activeNode);
@@ -25,11 +25,12 @@ export default function SingleEdgeRef({
         return <></>;
 
     }
+    console.log('???', constant);
     return <div className={`edgeRef md-bc-${actColor}`}>
         {/*<Button small key={i} className={"w-100 blue"}>*/}
 
         {
-            edgeRef.configurable_input ? <span className={"edgeConfigurable"}>
+            (edgeRef.configurable_input && !constant) ? <span className={"edgeConfigurable"}>
                 <label>{edgeRef.configurable_input}</label>
                 <input className={"configInputItem"}
                        onChange={setName}
@@ -37,7 +38,7 @@ export default function SingleEdgeRef({
             </span> :
                 <>
                     {edgeRef.name}
-                    <br/>
+                    {small ? " - " : <br/>}
                 </>
         }
 

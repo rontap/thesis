@@ -25,6 +25,7 @@ export class Node {
     public _configurableInputValues: Map<string, string>;
     public orderedNode: NodeId[] = [];
     public _error: any = "";
+    public connectedNodeInputs: NodeEdgeRef[] = [];
     output: Output = Node.ID;
 
     constructor(nodeType: string) {
@@ -110,6 +111,15 @@ export class Node {
 
     get nodeConfig(): NodeTemplateConfig | undefined {
         return this.nodeProps.config;
+    }
+
+    get getConnectedNodeInputs(): NodeEdgeRef[] {
+        return this.connectedNodeInputs;
+    }
+
+    getConnectedInputIfAnyByName(name: string | undefined): NodeEdgeRef | undefined {
+        if (!name) return undefined;
+        return this.connectedNodeInputs.find(nodeInput => nodeInput.name === name);
     }
 
     get nodeConfigTypes() {

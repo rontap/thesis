@@ -1,11 +1,12 @@
 import State, {getState} from "../graph/State";
 import {Node} from "./Node";
-import Draggable, {DragHandler} from "../svg/Draggable";
+import Draggable, {DragHandler, DragHandlerInst} from "../svg/Draggable";
 import CONST from "../const";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
-import {ReactElement} from "react";
+import {MouseEventHandler, ReactElement} from "react";
 import {Geom, Point} from "../geometry/Geom";
 import svgContainer from "../svg/Movable.js";
+import {jsobj} from "../app/util";
 
 export type LineId = number;
 export type NodeId = number;
@@ -66,9 +67,16 @@ export class Line {
         return this.getNode(this.to)
     }
 
+    showLineInfo(evt: jsobj) {
+        const leftSpawn = DragHandlerInst.getCursor(evt)
+            .add(-90, 50);
+
+        getState().setInspectLine(this, leftSpawn);
+    }
+
     getSvgAnimation(fromPoint: Point, toPoint: Point, tempSvgRender: number) {
         return <>
-            <circle r="4" fill="#90caf9">
+            <circle r="4" fill="#90caf9" className={"data-curve-circle circle-first"}>
                 <animateMotion
                     className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
                     dur="3s"
@@ -78,7 +86,7 @@ export class Line {
                     path={Geom.bezierSvgD(fromPoint, toPoint)}/>
             </circle>
 
-            <circle r="4" fill="#90caf9">
+            <circle r="4" fill="#90caf9" className={"data-curve-circle  circle-second"}>
                 <animateMotion
                     begin="1.5s"
                     key={tempSvgRender}
@@ -104,21 +112,25 @@ export class Line {
             if (isLinePartOfInvalidPath) {
                 return <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                              key={this.from + this.to + tempSvgRender}
-                             className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
+                             className={`data-curve data-curve-danger data-curve-from-${this.from} data-curve-to-${this.to}`}
                              x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
                              style={{fill: 'transparent', stroke: '#f44336', strokeWidth: '3px'}}/>
             }
 
             return <>
-                <path d={Geom.bezierSvgD(fromPoint, toPoint)}
-                      key={this.from + this.to + tempSvgRender}
-                      className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
-                      x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
-                      markerMid="url(#dot)"
-                      style={{fill: 'transparent', stroke: 'whitesmoke', strokeWidth: '2px'}}/>
+                <g className={"data-curve-group"}
+                   onClick={evt => this.showLineInfo(evt)}
+                >
+                    <path d={Geom.bezierSvgD(fromPoint, toPoint)}
 
-                {this.getSvgAnimation(fromPoint, toPoint, tempSvgRender)}
+                          key={this.from + this.to + tempSvgRender}
+                          className={`data-curve data-curve-from-${this.from} data-curve-to-${this.to}`}
+                          x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
+                          markerMid="url(#dot)"
+                    />
 
+                    {this.getSvgAnimation(fromPoint, toPoint, tempSvgRender)}
+                </g>
             </>
         } catch (e) {
             // if the line has at least one invalid input it is going to get nuked.

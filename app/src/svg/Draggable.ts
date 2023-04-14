@@ -16,7 +16,6 @@ class DragHandler {
     }
 
     public startCoord: Point = Point.Origin;
-    public currentCoord: Point = Point.Origin;
     public selected: EventTarget | null = null;
 
     static bubbleEvt(target: any, movableElements: string[]): any {
@@ -30,18 +29,22 @@ class DragHandler {
 
     evt(action: string, evt: any) {
         this.getTransformMatrix();
-        const canBubble: boolean = !getState().lineAddAt?.ID;
+        const isAddingLine: boolean = !getState().lineAddAt?.ID;
 
         if (this.isDown) {
             evt.preventDefault();
         }
 
-        if (undraggables.includes(evt.target.tagName) && !this.isDown) {
+        /**
+         * Do not handle event if it's over an input element of some kind.
+         * Except when - we are moving elements
+         */
+        if (undraggables.includes(evt.target.tagName) && !this.isDown && !isAddingLine) {
             evt.stopPropagation();
             return;
         }
 
-        if (canBubble) {
+        if (isAddingLine) {
             evt.target = DragHandler.bubbleEvt(evt.target, movableElements);
         } else {
             evt.target = DragHandler.bubbleEvt(evt.target, ["svg", "BUTTON", "INPUT", "TEXTAREA", "DIV"]);
@@ -72,34 +75,15 @@ class DragHandler {
 
                 // only try to render when we are sure there is an actual ID node
                 if (id > 0) {
-
-                    document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
-                        const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
-                        const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop), toParameter)
-                        item.setAttributeNS(null, 'd', bezier)
-                        item.setAttributeNS(null, 'path', bezier)
-                        this.setCoords(item, finalCoord.add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop), 'x1', 'y1');
-                    })
-
-                    document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
-                        const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
-                        const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop))
-                        item.setAttributeNS(null, 'd', bezier)
-                        item.setAttributeNS(null, 'path', bezier)
-                        this.setCoords(item, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop), 'x2', 'y2');
-                    })
-
-
+                    this.moveNodeSvg(id, finalCoord);
                 }
-
-
             }
         }
 
         if (action === Button.UP || action === Button.LEAVE) {
             const id = Number((this.selected as HTMLElement)?.getAttribute('data-id'));
             if (id && id > 0) {
-
+                // sending back the final coordinate to the node that was moved
                 const finalCoord = Geom.Difference(this.getCursor(evt), this.startCoord);
                 getState().getNodeById(id)?.setCoords(finalCoord);
             }
@@ -107,6 +91,24 @@ class DragHandler {
             this.selected = null;
         }
 
+    }
+
+    private moveNodeSvg(id: number, finalCoord: Point) {
+        document.querySelectorAll('.data-curve-from-' + id).forEach(item => {
+            const toParameter = DragHandler.getCoords(item, 'x2', 'y2');
+            const bezier = Geom.bezierSvgD(finalCoord.add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop), toParameter)
+            item.setAttributeNS(null, 'd', bezier)
+            item.setAttributeNS(null, 'path', bezier)
+            this.setCoords(item, finalCoord.add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop), 'x1', 'y1');
+        })
+
+        document.querySelectorAll('.data-curve-to-' + id).forEach(item => {
+            const fromParameter = DragHandler.getCoords(item, 'x1', 'y1');
+            const bezier = Geom.bezierSvgD(fromParameter, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop))
+            item.setAttributeNS(null, 'd', bezier)
+            item.setAttributeNS(null, 'path', bezier)
+            this.setCoords(item, finalCoord.add(CONST.box.padLeft, CONST.box.pointTop), 'x2', 'y2');
+        })
     }
 
     getTransformMatrix() {

@@ -7,6 +7,7 @@ import {unwatchFile} from "fs";
 import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
+import {Point} from "../geometry/Geom";
 
 // export default class State {
 //     static nodes: Node[] = [];
@@ -20,9 +21,9 @@ interface AppState {
     removeNode: (id: number) => void,
     addLine: (line: Line) => boolean,
     removeLine: (id: number) => void,
+    inspectedLine: { line: Line, point: Point } | undefined,
 
     resetStore: () => void,
-
     blueprintedNode: string,
     getLineBetween: (from: number, to: number) => Line | undefined
     zoom: number,
@@ -32,8 +33,11 @@ interface AppState {
     setActiveNode: (id?: NodeId | undefined) => void,
     getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
+    setInspectLine: (line: Line, point: Point) => void,
+    removeInspectLine: () => void,
     forceSvgRender: number,
     doSvgRender: () => void,
+
 
     setSingleEdgeOfActiveNode:
         (propertyName: string, to: string) => void,
@@ -50,6 +54,7 @@ const initialState = {
     forceSvgRender: 0,
     nodes: [],
     zoom: 1,
+    inspectedLine: undefined
 }
 
 const actions = {}
@@ -102,6 +107,10 @@ const State = create<AppState>()(
                     ({forceSvgRender: Math.random()})
                 ),
                 resetStore: () => set((state) => initialState),
+                setInspectLine: (line: Line, point: Point) => set((state) =>
+                    ({inspectedLine: {line, point}})),
+                removeInspectLine: () => set((state) =>
+                    ({inspectedLine: undefined})),
 
                 // store part
                 ...initialState

@@ -4,6 +4,7 @@ import {Line} from "../node/Line";
 import {Node} from "../node/Node";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import SingleEdgeRef from "./SingleEdgeRef";
+import ActiveNodes from "./ActiveNodes";
 
 export default function PropertyViewer() {
     const node = State((state) => state.activeNode)
@@ -11,14 +12,16 @@ export default function PropertyViewer() {
     const linesFrom: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.FROM);
     const linesTo: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.TO);
 
-    if (!node) return <></>;
+    if (!node) return <>
+        <h3>Select a node to view it's properties</h3>
+        <ActiveNodes/>
+    </>;
 
-    console.log(node.nodeInputs)
     return <div id={"propertyViewer"}>
-        {/*<Button*/}
-        {/*    onClick={() => getState().setActiveNode()}*/}
-        {/*    className={"closer"}>×</Button>*/}
-        {/*<br/>*/}
+        <Button
+            onClick={() => getState().setActiveNode()}
+            className={"closer"}>Deselect</Button>
+        <br/>
         {/*<br/>*/}
         <h3>Properties of {node.ID} {node?.nodeType} </h3>
 
@@ -47,17 +50,17 @@ export default function PropertyViewer() {
             </div>
         </div>
         <hr/>
-        <div className={"grid gtc-3 gtc-m-10"}>
+        <div className={"grid gtc-2 gtc-m-10"}>
             <div className={"gridItem"}>
                 {/*todo editable props dont work well*/}
                 MISSING INPUTS
                 <br/>
                 {node.nodeInputs
                     ?.filter(nodeInput => !node.getConnectedInputIfAnyByName(nodeInput.name))
-                    .map((edgeRef, i) => <SingleEdgeRef
-                        edgeRef={edgeRef} key={i} i={i}/>)}
+                    .map((edgeRef, i) => <SingleEdgeRef connected
+                                                        edgeRef={edgeRef} key={i} i={i}/>)}
                 <br/>
-                INPUTS
+                CONNECTED INPUTS
                 {node.nodeInputs
                     ?.filter(nodeInput => node.getConnectedInputIfAnyByName(nodeInput.name))
                     .map((edgeRef, i) => <SingleEdgeRef
@@ -65,19 +68,24 @@ export default function PropertyViewer() {
                 <br/>
 
             </div>
-            <div className={"gridItem"}>
-                OTHER INPUTS
-                {node.getConnectedNodeInputs
-                    ?.filter(nodeInput => !node.nodeInputs.includes(nodeInput))
-                    .map((edgeRef, i) => <SingleEdgeRef small constant={true}
-                                                        edgeRef={edgeRef} key={i} i={i}/>)}
-            </div>
+
             <div className={"gridItem"}>
                 OUTPUTS
                 <br/>
                 {node.nodeOutputs?.map((edgeRef, i) => <SingleEdgeRef
                     edgeRef={edgeRef} key={i} i={i}/>)}
             </div>
+
+        </div>
+        OTHER INPUTS
+        <div className={"grid gtc-3 m-10"}>
+
+            {node.getConnectedNodeInputs
+                ?.filter(nodeInput => !node.nodeInputs.includes(nodeInput))
+                .map((edgeRef, i) => <div className={"gridItem noPad"}>
+                    <SingleEdgeRef small constant={true}
+                                   edgeRef={edgeRef} key={i} i={i}/>
+                </div>)}
         </div>
         <br/>
         {/*<hr/>*/}

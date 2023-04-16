@@ -10,15 +10,26 @@ export default function InspectLine() {
     if (!line || !point) {
         return <></>
     }
+    const rmAndClose = () => {
+        getState().removeLine(line.ID);
+        getState().removeInspectLine()
+    }
 
+    const fromNode = getState().getNodeById(line.from);
+    const toNode = getState().getNodeById(line.to);
+
+    const fromNodeOutputs = fromNode?.nodeOutputs.concat(
+        fromNode?.getConnectedNodeInputs
+    ) || []
+    const maxPad = fromNodeOutputs.length > 6 ? 11 : fromNodeOutputs.length / 2
     return (
         <foreignObject
             x={point.x}
             y={point.y}
             key={"inspectLine"}
-            className={"data-node"}
-            width={180}
-            height={180}
+            className={"data-node data-node-inspect"}
+            width={190}
+            height={maxPad * 10 + 170}
         >
             <button className={"minimiseButton"}
                     onClick={evt => getState().removeInspectLine()}
@@ -29,19 +40,51 @@ export default function InspectLine() {
                 <>Inspecting line {line.ID}</>
                 <br/>
                 <>
-                    from {getState().getNodeById(line.from)?.nodeType || "unknown"}
+                    from {fromNode?.nodeType || "unknown"}
                     &nbsp;[{line.from}]
                 </>
                 <br/>
                 <>
-                    to {getState().getNodeById(line.to)?.nodeType || "unknown"}
+                    to {toNode?.nodeType || "unknown"}
                     &nbsp;[{line.to}]
                 </>
                 {/*<div className={}>*/}
                 {/*    */}
                 {/*</div>*/}
-                <Button small>Remove</Button>
+
+
+                <hr/>
+                Data traveling
+                <div id={"inspectData"} className={"grid gtc-2 m-5"}>
+                    {
+                        fromNodeOutputs
+                            ?.slice(0, 11)
+                            .map(
+                                nodeEdgeRef => <div className={"gridItem smallDescr"}
+                                                    title={`${nodeEdgeRef.name} | type: ${nodeEdgeRef.type}`}>{
+                                    nodeEdgeRef.name
+                                }</div>
+                            )
+
+                    }
+
+                    {
+                        (fromNodeOutputs?.length && fromNodeOutputs.length > 10) &&
+                        <div className={"gridItem smallDescr"}
+                             title={
+                                 fromNodeOutputs.slice(10).map((ref, i) => (i + 1) + ": " + ref.type).join(" \n")
+                             }>
+                            + {fromNodeOutputs.length - 10} more
+                        </div>
+                    }
+                </div>
+
+                <Button
+                    onClick={rmAndClose}
+                    small>Remove</Button>
+                <br/>
             </div>
+
         </foreignObject>
     )
 }

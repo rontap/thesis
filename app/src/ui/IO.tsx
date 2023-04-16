@@ -25,9 +25,9 @@ export default function IO() {
         <Button onClick={loadTextFromPrompt}>
             Paste JSON / SVG code
         </Button>
-        <div className={"dragTarget"}>
-            Or drag here...
-        </div>
+        {/*<div className={"dragTarget"}>*/}
+        {/*    Or drag here...*/}
+        {/*</div>*/}
 
         <hr/>
 

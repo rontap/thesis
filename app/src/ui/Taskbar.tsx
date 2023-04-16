@@ -38,7 +38,7 @@ export default function Taskbar({items}: { items: Map<string, jsobj> }) {
             <DndContext onDragEnd={dragend}>
 
                 <WrapToTaskbarItem name="nodes" cid="nodes" element={<AvailableNodes items={items}/>}/>
-                <WrapToTaskbarItem name="active" cid="activeNodes" element={<ActiveNodes/>}/>
+                {/*<WrapToTaskbarItem name="active" cid="activeNodes" element={<ActiveNodes/>}/>*/}
                 <WrapToTaskbarItem name="props" cid="properties" element={<PropertyViewer/>}/>
                 <WrapToTaskbarItem name="io" cid="io" element={<IO/>}/>
 

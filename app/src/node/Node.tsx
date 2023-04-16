@@ -114,7 +114,7 @@ export class Node {
     }
 
     get getConnectedNodeInputs(): NodeEdgeRef[] {
-        return this.connectedNodeInputs;
+        return this.connectedNodeInputs || [];
     }
 
     getConnectedInputIfAnyByName(name: string | undefined): NodeEdgeRef | undefined {

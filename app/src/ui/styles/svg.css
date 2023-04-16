@@ -156,6 +156,10 @@ textarea.configInputItem {
     font-family: monospace;
 }
 
+.edgeRef.edgeRef-small {
+    font-size: 13.5px;
+}
+
 .edgeConfigurable {
     width: 100%;
     display: block;
@@ -192,6 +196,17 @@ foreignObject:hover .showCodeToggle {
     top: 0px;
     width: 17px;
     padding: 3px;
+}
+
+#inspectData {
+    text-align: left;
+    font-size: 14px;
+}
+
+.smallDescr {
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .svgRoot {

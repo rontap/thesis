@@ -323,6 +323,18 @@ button, h3, #titlemark {
     margin: 10px;
 }
 
+.m-10 {
+    margin: 10px;
+}
+
+.m-5 {
+    margin: 5px;
+}
+
+.gridItem.noPad {
+    margin: 1px;
+}
+
 .p-5 {
     padding: 5px;
 }

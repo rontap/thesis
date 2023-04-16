@@ -16,7 +16,7 @@ const loadTextFromPrompt = () => {
 export default function IO() {
     const [shouldDownload, setShouldDownload] = useState<boolean>(false);
     const changeDownloadType = (evt: ChangeEvent<HTMLInputElement>) => {
-        setShouldDownload(evt.target.checked);
+        setShouldDownload(!evt.target.checked);
     }
     return <div className={""}>
         <h3>Import & Export Graph</h3>

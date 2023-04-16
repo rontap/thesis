@@ -3,6 +3,8 @@ import {createFile, jsobj} from "../app/util";
 import {Line, LineId, NodeId} from "../node/Line";
 import {NodeSerialised} from "../app/DynamicReader";
 import {Node} from "../node/Node";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCode} from "@fortawesome/free-solid-svg-icons";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -12,7 +14,7 @@ class Serialiser {
         return "id-" + id;
     }
 
-    toJSON(): jsobj[] {
+    toJSONRaw(): jsobj[] {
         const parsedNodes = getState().nodes.map(node => {
 
             const nodeProps = node.nodeProps;
@@ -27,7 +29,6 @@ class Serialiser {
                 output: node.nextNodes.map(this.toID)
             }
         });
-        console.log(parsedNodes);
         return parsedNodes;
     }
 
@@ -49,21 +50,44 @@ class Serialiser {
     }
 
     exportJSON(download: boolean) {
-        const coreContent =
-            JSON.stringify(
-                this.toTopLevel(
-                    this.dropPtrFromJSON(
-                        this.toJSON()
-                    )
+
+        createFile(this.toJSON(), 'txt', 'temp.txt', download);
+    }
+
+    toJSON() {
+        return JSON.stringify(
+            this.toTopLevel(
+                this.dropPtrFromJSON(
+                    this.toJSONRaw()
                 )
-                , null, 1);
-        createFile(coreContent, 'txt', 'temp.txt', download);
+            )
+            , null, 1);
     }
 
     fromTopLevel(obj: jsobj): jsobj {
         return {}
     }
 
+    /**
+     * wraps json output to svg node
+     * @param stringifiedJSON
+     */
+    wrapJSONOutput(stringifiedJSON: string, pos: jsobj) {
+        return `
+            <foreignObject id="jsonCodeCtnr" x="${pos.x}" y="${pos.y}">
+                <div id="jsonCode" xmlns="http://www.w3.org/1999/xhtml">
+                          show graph code
+                          <br>
+                          <div id="jsonCodeInner">
+                            ${stringifiedJSON}         
+                          
+                          </div>
+                              <br> <br> 
+                         
+                </div>
+            </foreignObject>
+        `
+    }
 
     // SVG
 
@@ -71,7 +95,7 @@ class Serialiser {
         const css = require('!!raw-loader!../ui/styles/svg.css').default;
         const cssExportOnly = require('!!raw-loader!../ui/styles/svgExprted.css').default;
 
-        const parsedNodes = this.toJSON();
+        const parsedNodes = this.toJSONRaw();
         parsedNodes.forEach(nodeJSON => {
             const boxedItem = document.querySelector(`.boxedCode-${nodeJSON.ptr.ID}`);
             delete nodeJSON.ptr;
@@ -79,6 +103,13 @@ class Serialiser {
                 boxedItem.innerHTML = JSON.stringify(nodeJSON, null, 2);
             }
         })
+
+        const svgElement = document.getElementsByClassName("svgRoot")[0]!;
+
+        const pos = {
+            x: svgElement.getAttribute("viewBox")?.split(' ')[0],
+            y: svgElement.getAttribute("viewBox")?.split(' ')[1]
+        }
 
         const svgRoot = document.getElementById("svgRootCont")!.innerHTML;
 
@@ -89,6 +120,8 @@ class Serialiser {
             .slice(0, -6)
             // add the CSS required for the SVG to look nice
             .concat(`<style>${parsedCss}</style>`)
+            // add json code
+            .concat(this.wrapJSONOutput(this.toJSON(), pos))
             // add the export only CSS and close down SVG
             .concat(`<style>${parsedCssExport}</style></svg>`)
             // replace <input>-tags with XML valid <input/> tags

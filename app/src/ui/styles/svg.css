@@ -263,6 +263,35 @@ foreignObject:hover .showCodeToggle {
     fill: var(--material-color-red);
 }
 
+#jsonCodeCtnr {
+    width: 350px;
+    cursor: pointer;
+    height: 100%;
+    white-space: pre-wrap;
+    text-align: left;
+    font-family: monospace;
+    position: initial;
+    margin: 10px;
+
+}
+
+#jsonCode {
+    padding: 5px;
+    max-height: 50px;
+    transition: max-height .2s;
+    overflow: hidden;
+}
+
+#jsonCodeInner {
+    overflow: scroll;
+    height: 100%;
+}
+
+#jsonCode:hover {
+    max-height: 1000px;
+    height: calc(100% - 160px);
+}
+
 /**
 COLORED ITEM
  */

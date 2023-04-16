@@ -26,10 +26,10 @@ function NodeListItem(node: Node) {
         {" "}
         <BtnGroup>
             <Button onClick={() => getState().setActiveNode(node.ID)}>
-                focus
+                Select
             </Button>
             <Button onClick={() => getState().removeNode(node.ID)}>
-                ×
+                Remove
             </Button>
         </BtnGroup>
     </div>

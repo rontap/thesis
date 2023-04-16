@@ -293,9 +293,9 @@ exports[`Renders <App/> without issues 1`] = `
       className="taskbarElement"
       style={
         Object {
-          "top": "300px",
+          "right": "0px",
           "transform": "translate3d(0px, 0px, 0)",
-          "width": "300px",
+          "width": "450px",
         }
       }
     >
@@ -317,6 +317,9 @@ exports[`Renders <App/> without issues 1`] = `
         _
       </button>
       <div>
+        <h3>
+          Select a node to view it's properties
+        </h3>
         <div>
           <h3>
             Current Nodes
@@ -324,35 +327,6 @@ exports[`Renders <App/> without issues 1`] = `
           <br />
         </div>
       </div>
-    </div>
-    <div
-      className="taskbarElement"
-      style={
-        Object {
-          "right": "0px",
-          "transform": "translate3d(0px, 0px, 0)",
-          "width": "350px",
-        }
-      }
-    >
-      <div
-        aria-describedby="DndDescribedBy-0"
-        aria-disabled={false}
-        aria-roledescription="draggable"
-        className="taskbarHeader"
-        onKeyDown={[Function]}
-        onPointerDown={[Function]}
-        role="button"
-        tabIndex={0}
-        title="Drag Element"
-      />
-      <button
-        className="minimiseButton"
-        onClick={[Function]}
-      >
-        _
-      </button>
-      <div />
     </div>
     <div
       className="taskbarElement"
@@ -394,11 +368,6 @@ exports[`Renders <App/> without issues 1`] = `
           >
             Paste JSON / SVG code
           </button>
-          <div
-            className="dragTarget"
-          >
-            Or drag here...
-          </div>
           <hr />
           <div
             className="btnGroup undefined"

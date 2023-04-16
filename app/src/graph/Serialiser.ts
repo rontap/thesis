@@ -3,8 +3,6 @@ import {createFile, jsobj} from "../app/util";
 import {Line, LineId, NodeId} from "../node/Line";
 import {NodeSerialised} from "../app/DynamicReader";
 import {Node} from "../node/Node";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCode} from "@fortawesome/free-solid-svg-icons";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -85,6 +83,7 @@ class Serialiser {
                               <br> <br> 
                          
                 </div>
+                <div id="AppVersion">1.0</div>
             </foreignObject>
         `
     }
@@ -167,10 +166,9 @@ class Serialiser {
         const {transform} = query;
 
         transform.forEach((nodeSd: NodeSerialised) => {
-                const node = Node.fromSerialised(
+            nodeSd.ref = Node.fromSerialised(
                     nodeSd
-                )
-                nodeSd.ref = node;
+                );
             }
         )
 

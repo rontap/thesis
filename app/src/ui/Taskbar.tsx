@@ -18,7 +18,7 @@ const taskbarStyles = {
     },
     properties: {
         right: '0px',
-        width: '350px'
+        width: '450px'
     },
     activeNodes: {
         top: '300px',

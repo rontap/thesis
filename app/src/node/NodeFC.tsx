@@ -37,7 +37,6 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
                     <code
                         style={{maxHeight: height + 'px'}}
                         className={`boxedCode boxedCode-${that.ID}`}>
-
                     </code>
                 </div>
 

@@ -152,7 +152,7 @@
     white-space: pre-wrap;
 }
 
-#nodeBlueprints {
+#nodeBlueprints, #nodeGroups {
     width: 300px;
     top: 120px;
     min-height: 600px;
@@ -160,6 +160,12 @@
     overflow-x: auto;
     text-align: left;
     padding: 15px;
+    left: 750px;
+
+}
+
+#nodeGroups {
+    left: 10px;
 }
 
 #nodeBlueprints .nodeListItem {

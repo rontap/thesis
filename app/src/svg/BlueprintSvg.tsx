@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {DragHandlerInst} from "./Draggable";
 import State, {getState} from "../graph/State";
 import {Node} from "../node/Node";
-import {loadJsonNodeDefinitions, NodeTemplateMap} from "../app/DynamicReader";
+import { NodeTemplateMap} from "../app/DynamicReader";
 import {NodeBuilder} from "../node/Builder";
 
 export default function BlueprintSvg(props: jsobj) {
@@ -14,7 +14,7 @@ export default function BlueprintSvg(props: jsobj) {
     const blueprinted = State((state) => state.blueprintedNode)
     useEffect(() => {
         setEveryNode(NodeBuilder.InstNodesFromTemplate())
-    }, []);
+    }, [blueprinted]);
 
 
     nodes = State((state) => state.nodes)

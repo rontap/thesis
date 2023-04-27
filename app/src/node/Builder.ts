@@ -12,7 +12,6 @@ export class NodeBuilder {
     }
 
     static get types(): NodeTemplateMap {
-
         return this._types;
     }
 
@@ -23,6 +22,10 @@ export class NodeBuilder {
         return [...this._types.values()].map(value => new Node(value.name));
     }
 
+    static Rebuild() {
+        this._types = new Map();
+        return this.Build();
+    }
     static Build() {
         this._rawTypes = loadJsonNodeDefinitions();
 

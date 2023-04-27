@@ -27,10 +27,14 @@ import BlueprintSvg from "./svg/BlueprintSvg";
 import NodeBlueprintConfigEditor from "./node/NodeBlueprintConfigEditor";
 import Taskbar from "./ui/Taskbar";
 import InspectLine from "./ui/InspectLine";
+import {NodeGroups} from "./ui/NodeBlueprints";
 
-const items: Map<string, jsobj> = NodeBuilder.Build();
+
 
 function App() {
+    const items: Map<string, jsobj> = NodeBuilder.Rebuild();
+
+    console.log('-#')
     const [graph, setGraph] = useState(true);
 
     const [light, setLight] = useState(false);
@@ -45,7 +49,7 @@ function App() {
                 <Button
                     className={"blue"}
                     disabled={!graph}
-                    onClick={() => setGraph(false)}>Edit Node</Button>
+                    onClick={() => setGraph(false)}>Edit Group</Button>
                 <Button
                     disabled={graph}
                     className={"blue"}
@@ -68,6 +72,7 @@ function App() {
                 </>
                 : <>
                     <BlueprintSvg items={items} blueprint/>
+                    <NodeGroups items={items}/>
                     <NodeBlueprints items={items}/>
                     <NodeBlueprintConfigEditor items={items}/>
                 </>}

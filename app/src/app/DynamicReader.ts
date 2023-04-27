@@ -2,21 +2,59 @@ import {jsobj} from "./util";
 import {NodeEdgeRef} from "../graph/EdgeLoader";
 import {Node} from "../node/Node";
 
-export function loadJsonNodeDefinitions(): NodeTemplateMap {
-    // const context = require.context('../dynamic/nodes/', true, /\.(json)$/);
-    let context: any;
 
-    try {
-        context = require.context('../dynamic/nodes-query/', true, /\.(json)$/);
-    } catch (e) {
-        console.log("[falling back to mocked nodes]")
-        return new Map(require('./mocked-nodes.json'));
+class NodeGroup {
+    static activeNodeGroup: string = "nodes-query"; // todo setter that acutally checks
+
+    static #nodeGroupDefinitions: NodeTemplateMapGroup | null = null;
+
+    static getEveryNodeGroupDefinition(): NodeTemplateMapGroup {
+        if (!NodeGroup.#nodeGroupDefinitions) {
+            const value = this.everyNodeGroupDefinition();
+            NodeGroup.#nodeGroupDefinitions = value;
+            return value;
+        } else {
+            return NodeGroup.#nodeGroupDefinitions;
+        }
     }
-    let files = new Map<string, NodeTemplate>();
-    context.keys().forEach((filename: string) => {
-        files.set(filename, context(filename));
-    });
-    return files;
+
+    static getCurrentNodeGroupDefinition(): NodeTemplateMap {
+        return this.getEveryNodeGroupDefinition().get(NodeGroup.activeNodeGroup)!;
+    }
+
+    static everyNodeGroupDefinition(): NodeTemplateMapGroup {
+        let context: any;
+
+        try {
+            context = require.context(`../dynamic/groups/`, true, /.(json)$/);
+            let filesGroups: Map<string, Map<string, NodeTemplate>> = new Map();
+            context.keys().forEach((filename: string) => {
+                const [pre, group, item] = filename.split("/");
+                const currentGroup = filesGroups.get(group);
+                if (!currentGroup) {
+                    filesGroups.set(group, new Map<string, NodeTemplate>())
+                }
+                filesGroups
+                    .get(group)
+                    ?.set(item, context(filename));
+            });
+            return filesGroups;
+
+        } catch (e) {
+            // todo
+        }
+        console.error("todo code reached");
+        return new Map();
+    }
+
+}
+
+// @ts-ignore
+window.NG = NodeGroup;
+export {NodeGroup}
+export function loadJsonNodeDefinitions(): NodeTemplateMap {
+    console.log('!');
+    return NodeGroup.getCurrentNodeGroupDefinition();
 }
 
 type NodeTemplateModifiers = "wide" | string;
@@ -50,5 +88,5 @@ export type NodeSerialised = {
     [key: string]: jsobj | string | boolean | undefined
 }
 export const NodeSerialisedSureProperties = ["name", "output", "hide", "input"];
-
 export type NodeTemplateMap = Map<string, NodeTemplate>;
+export type NodeTemplateMapGroup = Map<string, NodeTemplateMap>;

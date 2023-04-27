@@ -46,7 +46,9 @@ export default function Header({toggleBg}: {
         <Button onClick={toggleBg}>
             Toggle Theme
         </Button>
-
+        <Button onClick={toggleBg}>
+            FRF
+        </Button>
         {/*<Button>*/}
         {/*    GPT*/}
         {/*</Button>*/}

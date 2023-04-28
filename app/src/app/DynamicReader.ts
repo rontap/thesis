@@ -4,6 +4,7 @@ import {Node} from "../node/Node";
 
 
 class NodeGroup {
+    static default: string = "nodes-query";
     static activeNodeGroup: string = "nodes-query"; // todo setter that actually checks
     static loadDebugNodes: boolean = false;
 

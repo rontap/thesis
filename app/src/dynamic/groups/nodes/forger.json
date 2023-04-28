@@ -1,5 +1,11 @@
 {
   "name": "forger",
   "type": "test",
-  "className": "red"
+  "className": "red",
+  "inputs": [],
+  "outputs" : [],
+  "config" : {
+    "self" : "forger",
+    "data": {}
+  }
 }

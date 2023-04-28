@@ -60,7 +60,7 @@ export class Node {
     static fromSerialised(nodeSd: NodeSerialised) {
         const guessedProperty = Object.keys(nodeSd)
             .find(item => !NodeSerialisedSureProperties.includes(item));
-
+        
         const guessedType = NodeBuilder.EveryNodeTemplate()
             .find(node => node.config?.self === guessedProperty);
 

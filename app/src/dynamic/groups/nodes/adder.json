@@ -1,6 +1,11 @@
 {
   "name": "adder",
   "type": "test",
-  "className": "blue"
-
+  "className": "blue",
+  "inputs": [],
+  "outputs": [],
+  "config": {
+    "self": "adder",
+    "data": {}
+  }
 }

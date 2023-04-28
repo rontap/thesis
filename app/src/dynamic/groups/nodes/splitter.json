@@ -1,5 +1,11 @@
 {
   "name": "splitter",
   "type": "test",
-  "className": "purple"
+  "className": "purple",
+  "inputs": [],
+  "outputs" : [],
+  "config" : {
+    "self" : "splitter",
+    "data": {}
+  }
 }

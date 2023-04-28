@@ -3,12 +3,18 @@ import React from "react";
 import {jsobj} from "../app/util";
 import BtnGroup from "../components/BtnGroup";
 import Button from "../components/Button";
-import {getState} from "../graph/State";
+import State, {getState} from "../graph/State";
 import {NodeGroup} from "../app/DynamicReader";
 
 type NodeBlueprintsProps = {
     items: Map<string, jsobj>
 }
+
+
+const nodeGroupNames = new Map([
+    ["nodes-query", "U-Query Nodes"],
+    ["nodes-th", "Example Nodes"],
+]);
 
 export function NodeGroups({items}: NodeBlueprintsProps) {
     return <>
@@ -28,12 +34,17 @@ function NodeGroupItem(item: jsobj) {
         {/*    {node.}*/}
         {/*</code>*/}
 
-        <Button className={"btn-100"}>{item.name}</Button>
+        <Button className={"btn-100"} onClick={() => getState().setNodeGroup(item.name)}>
+            {
+                nodeGroupNames.get(item.name) ?? `[${item.name}]`
+            }
+        </Button>
 
     </div>
 }
 
 export default function NodeBlueprints({items}: NodeBlueprintsProps) {
+    const ng = State((state) => state.nodeGroup)
     return <>
         <div id={"nodeBlueprints"} className={"majorElement"}>
             <h3 className={"center"}>Node Blueprints</h3>

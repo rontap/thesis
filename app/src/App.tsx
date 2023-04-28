@@ -30,8 +30,8 @@ import InspectLine from "./ui/InspectLine";
 import {NodeGroups} from "./ui/NodeBlueprints";
 
 
-
 function App() {
+    const ng = State((state) => state.nodeGroup)
     const items: Map<string, jsobj> = NodeBuilder.Rebuild();
 
     const [graph, setGraph] = useState(true);

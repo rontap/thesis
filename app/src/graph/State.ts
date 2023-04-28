@@ -8,6 +8,7 @@ import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
 import {Point} from "../geometry/Geom";
+import {NodeGroup} from "../app/DynamicReader";
 
 // export default class State {
 //     static nodes: Node[] = [];
@@ -22,6 +23,7 @@ interface AppState {
     addLine: (line: Line) => boolean,
     removeLine: (id: number) => void,
     inspectedLine: { line: Line, point: Point } | undefined,
+    nodeGroup: string,
 
     resetStore: () => void,
     blueprintedNode: string,
@@ -33,6 +35,7 @@ interface AppState {
     setActiveNode: (id?: NodeId | undefined) => void,
     getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => Line[],
     setBlueprintedNode: (nodeName: string) => void,
+    setNodeGroup: (nodeGroup: string) => void,
     setInspectLine: (line: Line, point: Point) => void,
     removeInspectLine: () => void,
     forceSvgRender: number,
@@ -50,6 +53,7 @@ const initialState = {
     lineAddAt: undefined,
     contextMenu: {},
     blueprintedNode: "",
+    nodeGroup: NodeGroup.default,
     activeNode: undefined,
     forceSvgRender: 0,
     nodes: [],
@@ -98,6 +102,11 @@ const State = create<AppState>()(
                 ),
                 setBlueprintedNode: (nodeName: string) => set((state) =>
                     ({blueprintedNode: nodeName})),
+                setNodeGroup: (nodeGroup: string) => {
+                    NodeGroup.activeNodeGroup = nodeGroup;
+                    set((state) =>
+                        ({...initialState, blueprintedNode: "", nodeGroup: nodeGroup}))
+                },
                 getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => {
                     if (!id) return [];
                     const whichJunction = end === End.FROM ? "from" : "to";
@@ -106,7 +115,11 @@ const State = create<AppState>()(
                 doSvgRender: () => set((state) =>
                     ({forceSvgRender: Math.random()})
                 ),
-                resetStore: () => set((state) => initialState),
+                resetStore: () => {
+                    Node.ID = 1;
+                    Line.ID = 1;
+                    return set((state) => initialState)
+                },
                 setInspectLine: (line: Line, point: Point) => set((state) =>
                     ({inspectedLine: {line, point}})),
                 removeInspectLine: () => set((state) =>

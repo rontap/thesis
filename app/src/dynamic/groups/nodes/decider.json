@@ -1,5 +1,11 @@
 {
   "name": "decider",
   "type": "test",
-  "className": "orange"
+  "className": "orange",
+  "inputs": [],
+  "outputs" : [],
+  "config" : {
+    "self" : "decider",
+    "data": {}
+  }
 }

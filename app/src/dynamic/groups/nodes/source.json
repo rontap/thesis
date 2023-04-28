@@ -1,11 +1,11 @@
 {
-  "name": "const",
+  "name": "input",
   "type": "test",
   "className": "",
-  "outputs": [
-    {
-      "type": "boolean",
-      "name": "yass"
-    }
-  ]
+  "inputs": false,
+  "outputs" : [],
+  "config" : {
+    "self" : "source",
+    "data": {}
+  }
 }

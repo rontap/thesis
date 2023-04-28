@@ -1,5 +1,11 @@
 {
   "name": "crafter",
   "type": "test",
-  "className": "green"
+  "className": "green",
+  "inputs": [],
+  "outputs" : [],
+  "config" : {
+    "self" : "crafter",
+    "data": {}
+  }
 }

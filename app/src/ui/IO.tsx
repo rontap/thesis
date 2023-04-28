@@ -17,7 +17,6 @@ const loadSVGTextFromPrompt = () => {
     const code = window.prompt("Paste raw SVG here");
     try {
         SerialiserInst.fromSVG(code || "");
-        setTimeout(() => PositionInst.orderNodes(), 100);
     } catch (e) {
         alert("Error:\n" + e);
     }
@@ -53,8 +52,9 @@ export default function IO() {
                             SerialiserInst.fromSVG(result as string || "");
                         } else {
                             SerialiserInst.fromJSON(result as string || "");
+                            setTimeout(() => PositionInst.orderNodes(), 200);
                         }
-                        setTimeout(() => PositionInst.orderNodes(), 200);
+
                     } catch (e) {
                         return alert("Error:\n" + e);
                     }

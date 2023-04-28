@@ -57,7 +57,8 @@ export class Node {
 
     }
 
-    static fromSerialised(nodeSd: NodeSerialised) {
+    static fromSerialised(nodeSd: NodeSerialised, svgFO: Element | null | undefined) {
+        console.log(svgFO);
         const guessedProperty = Object.keys(nodeSd)
             .find(item => !NodeSerialisedSureProperties.includes(item));
 
@@ -95,6 +96,12 @@ export class Node {
             })
 
         node._configValues = configValue;
+        if (svgFO) {
+            node.coords = Point.fromString(
+                svgFO.getAttribute('x'),
+                svgFO.getAttribute('y')
+            );
+        }
 
         getState().addNode(node);
         return node;

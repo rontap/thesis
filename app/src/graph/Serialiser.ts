@@ -160,17 +160,21 @@ class Serialiser {
     }
 
     fromSVG(rootObj: string) {
-        const ctnr = document.createElement('div');
-        ctnr.innerHTML = rootObj;
-        const jsonCtnr = ctnr.querySelector("#jsonCodeInner");
+        const svgDocument = document.createElement('div');
+        svgDocument.innerHTML = rootObj;
+        const jsonCtnr = svgDocument.querySelector("#jsonCodeInner");
+
+        const svgHint = svgDocument.querySelector("div > svg");
+        console.log(svgDocument)
         if (!jsonCtnr) throw Error("This is not a valid .SVG file")
-        ctnr.innerHTML = "";
 
         getState().resetStore();
-        return this.fromJSON(jsonCtnr.innerHTML);
+        this.fromJSON(jsonCtnr.innerHTML, svgHint);
+        // svgDocument.innerHTML = "";
+
     }
 
-    fromJSON(rootObj: string) {
+    fromJSON(rootObj: string, svgHint?: Element | null) {
 
         const json = this.fromJSONParse(rootObj);
 
@@ -183,7 +187,8 @@ class Serialiser {
 
         transform.forEach((nodeSd: NodeSerialised) => {
                 nodeSd.ref = Node.fromSerialised(
-                    nodeSd
+                    nodeSd,
+                    svgHint?.querySelector(`.data-node-${Node.ID}`)
                 );
             }
         )

@@ -27,6 +27,12 @@ export class Point {
         return new Point(obj?.x || 0, obj?.y || 0);
     }
 
+    static fromString(x: string | undefined | null, y: string | undefined | null) {
+        const xn = isNaN(Number(x)) ? 0 : Number(x);
+        const yn = isNaN(Number(y)) ? 0 : Number(y);
+        return new Point(xn, yn)
+    }
+
     static get Origin(): Point {
         return new Point(0, 0);
     }

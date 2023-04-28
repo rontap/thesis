@@ -157,16 +157,28 @@ class Serialiser {
         return rootJSONObj;
     }
 
-    fromJSON(rootObj: string) {
+    fromSVG(rootObj: string) {
+        const ctnr = document.createElement('div');
+        ctnr.innerHTML = rootObj;
+        const jsonCtnr = ctnr.querySelector("#jsonCodeInner");
+        if (!jsonCtnr) throw Error("This is not a valid .SVG file")
+        ctnr.innerHTML = "";
+
         getState().resetStore();
+        return this.fromJSON(jsonCtnr.innerHTML);
+    }
+
+    fromJSON(rootObj: string) {
 
         const json = this.fromJSONParse(rootObj);
+
+        getState().resetStore();
 
         const {query} = json;
         const {transform} = query;
 
         transform.forEach((nodeSd: NodeSerialised) => {
-            nodeSd.ref = Node.fromSerialised(
+                nodeSd.ref = Node.fromSerialised(
                     nodeSd
                 );
             }
@@ -174,7 +186,6 @@ class Serialiser {
 
         // getting all lines
         transform.forEach((nodeSdRoot: NodeSerialised) => {
-            console.log('=== node', nodeSdRoot.name);
             nodeSdRoot.output?.forEach(output => {
                 const toNodes = transform
                     .filter((nodeSd: NodeSerialised) => {
@@ -191,14 +202,6 @@ class Serialiser {
                 }
             })
         })
-
-        console.log(transform);
-
-        // todo , fill nodes
-        // todo fill lines
-        // todo initial fillup of store.?
-
-
     }
 }
 

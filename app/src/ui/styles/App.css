@@ -432,11 +432,16 @@ button, h3, #titlemark {
 }
 
 .dragTarget {
-    border: 1px solid lightskyblue;
+    border: 1px solid #fefefe;
     border-radius: 4px;
-    margin: 10px auto;
-    max-width: 120px;
-    padding: 15px;
+    margin: 10px 15px;
+    font-size: 14px;
+    padding: 0px 10px;
+}
+
+.dragTarget.dragover {
+    background: var(--material-color-amber-200);
+    color: #222;
 }
 
 /*

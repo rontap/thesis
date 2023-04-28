@@ -77,11 +77,9 @@ export class Node {
         }
 
         node = new Node(guessedType.name);
-
         const configValue = nodeSd[guessedProperty] as jsobj;
 
-
-        // move some values to configurable input values seperate value;
+        // move some values to configurable input values separate value;
         [...node._configurableInputValues.keys()]
             .forEach(inputValueKey => {
                 if (configValue[inputValueKey]) {
@@ -97,7 +95,6 @@ export class Node {
 
         getState().addNode(node);
         return node;
-        // const node = new Node()
     }
 
     setCoords(newCoords: Point) {

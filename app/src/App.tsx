@@ -34,7 +34,6 @@ import {NodeGroups} from "./ui/NodeBlueprints";
 function App() {
     const items: Map<string, jsobj> = NodeBuilder.Rebuild();
 
-    console.log('-#')
     const [graph, setGraph] = useState(true);
 
     const [light, setLight] = useState(false);

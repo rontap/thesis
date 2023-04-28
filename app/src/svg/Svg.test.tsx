@@ -12,8 +12,10 @@ import Svg from "./Svg";
 import {NodeBuilder} from "../node/Builder";
 // @ts-ignore
 import renderer from 'react-test-renderer';
+import {NodeGroup} from "../app/DynamicReader";
 
 it('Renders <Svg/> without issues', () => {
+    NodeGroup.loadDebugNodes = true;
     const svgCore = renderer.create(<Svg items={NodeBuilder.Build()}/>)
         .toJSON();
     expect(svgCore).toMatchSnapshot();

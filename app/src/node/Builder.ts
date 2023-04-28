@@ -19,6 +19,7 @@ export class NodeBuilder {
     private static _types = new Map<string, NodeTemplate>();
 
     static InstNodesFromTemplate() {
+        NodeBuilder.Rebuild();
         return [...this._types.values()].map(value => new Node(value.name));
     }
 
@@ -26,6 +27,7 @@ export class NodeBuilder {
         this._types = new Map();
         return this.Build();
     }
+
     static Build() {
         this._rawTypes = loadJsonNodeDefinitions();
 
@@ -39,7 +41,7 @@ export class NodeBuilder {
         return this._types;
     }
 
-    static EveryNodeTemplate():NodeTemplate[] {
+    static EveryNodeTemplate(): NodeTemplate[] {
         return [...NodeBuilder.Build().values()];
     }
 
@@ -52,17 +54,7 @@ export class NodeBuilder {
         return this.types.get(name);
     }
 
-    // static InstantiateNode(nodeTemplate: jsobj) {
-    //     switch (nodeTemplate.type) {
-    //         case "default":
-    //             return new Node(nodeTemplate, nodeTemplate.type);
-    //         case undefined:
-    //             throw Error("Node type property is required for instantiation.");
-    //         default:
-    //             throw Error("Unknown Node type: " + nodeTemplate.type);
-    //     }
-    // }
 
 }
 
-EdgeInvariant(true);
+//EdgeInvariant(true);

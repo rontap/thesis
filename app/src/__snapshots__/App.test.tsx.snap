@@ -15,7 +15,7 @@ exports[`Renders <App/> without issues 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      Edit Node
+      Edit Group
     </button>
     <button
       className=" btn blue"
@@ -61,6 +61,12 @@ exports[`Renders <App/> without issues 1`] = `
         onClick={[Function]}
       >
         Toggle Theme
+      </button>
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        FRF
       </button>
     </span>
   </nav>

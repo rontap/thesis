@@ -4,12 +4,14 @@ import {End, getState} from "./State";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
 import {Line} from "../node/Line";
 import 'core-js/stable/structured-clone';
+import {NodeGroup} from "../app/DynamicReader";
 
 beforeEach(() => {
     buildAllNodes();
 });
 
 const buildAllNodes = () => {
+    NodeGroup.loadDebugNodes = true;
     NodeBuilder.InstNodesFromTemplate()
         .map((node: Node) => {
             getState().addNode(node)
@@ -39,13 +41,13 @@ const l = (a: number, b: number) => new Line(a, b);
 // @ts-ignore
 describe.each([
     [
-        [l(1, 2), l(1, 3)], [0,2], [2], [1]
+        [l(1, 2), l(1, 3)], [0, 2], [2], [1]
     ],
     [
-        [l(1, 2), l(1, 3), l(2, 3)], [0,2], [3, 5], [1]
+        [l(1, 2), l(1, 3), l(2, 3)], [0, 2], [3, 5], [1]
     ],
     [
-        [l(1, 2), l(5, 3), l(4, 3), l(6, 1)], [1,1], [3], [4,6]
+        [l(1, 2), l(5, 3), l(4, 3), l(6, 1)], [1, 1], [3], [4, 6]
     ],
 
 ])("Graph util circle detection", (lines: Line[], toFrom, leafNodes, sourceNodes) => {
@@ -76,6 +78,9 @@ describe.each([
             buildAllNodes();
             lines.forEach(line =>
                 getState().addLine(line))
+
+            expect(NodeBuilder.InstNodesFromTemplate().length).toBe(9);
+            expect(NodeGroup.getCurrentNodeGroupDefinition().size).toBe(15);
 
             sourceNodes.forEach(node => {
                 expect(GraphUtilInst.sourceNodes.map(node => node.ID))

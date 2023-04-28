@@ -28,7 +28,7 @@ function NodeGroupItem(item: jsobj) {
         {/*    {node.}*/}
         {/*</code>*/}
 
-        <Button  className={"btn-100"}>{item.name}</Button>
+        <Button className={"btn-100"}>{item.name}</Button>
 
     </div>
 }

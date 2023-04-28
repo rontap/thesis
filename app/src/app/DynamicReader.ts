@@ -4,7 +4,8 @@ import {Node} from "../node/Node";
 
 
 class NodeGroup {
-    static activeNodeGroup: string = "nodes-query"; // todo setter that acutally checks
+    static activeNodeGroup: string = "nodes-query"; // todo setter that actually checks
+    static loadDebugNodes: boolean = false;
 
     static #nodeGroupDefinitions: NodeTemplateMapGroup | null = null;
 
@@ -19,7 +20,9 @@ class NodeGroup {
     }
 
     static getCurrentNodeGroupDefinition(): NodeTemplateMap {
-        return this.getEveryNodeGroupDefinition().get(NodeGroup.activeNodeGroup)!;
+        return this.getEveryNodeGroupDefinition().get(
+            NodeGroup.loadDebugNodes ? "nodes-debug" :
+                NodeGroup.activeNodeGroup)!;
     }
 
     static everyNodeGroupDefinition(): NodeTemplateMapGroup {
@@ -41,19 +44,17 @@ class NodeGroup {
             return filesGroups;
 
         } catch (e) {
-            // todo
+            NodeGroup.loadDebugNodes = true;
+            return new Map([["nodes-debug", new Map(require('./mocked-nodes.json'))]]);
         }
-        console.error("todo code reached");
-        return new Map();
     }
-
 }
 
 // @ts-ignore
 window.NG = NodeGroup;
 export {NodeGroup}
+
 export function loadJsonNodeDefinitions(): NodeTemplateMap {
-    console.log('!');
     return NodeGroup.getCurrentNodeGroupDefinition();
 }
 

@@ -152,7 +152,7 @@
     white-space: pre-wrap;
 }
 
-#nodeBlueprints, #nodeGroups {
+/* #nodeBlueprints, #nodeGroups {
     width: 300px;
     top: 120px;
     min-height: 600px;
@@ -162,10 +162,15 @@
     padding: 15px;
     left: 750px;
 
-}
+} */
 
 #nodeGroups {
     left: 10px;
+    width: 200px;
+}
+
+#nodeGroups button {
+    width: 100%;
 }
 
 #nodeBlueprints .nodeListItem {
@@ -493,3 +498,43 @@ body:has(._white) {
     border-top: 1px solid #888;
 }
 
+#groupsCtnr {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 90px;
+}
+
+#groupsCtnr .majorElement {
+    position: static;
+}
+
+.majorElement {
+    padding: 15px;
+
+}
+
+.blueprintEditor textarea {
+    background: transparent;
+    color: #fefefe;
+    border: none;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#ctxMenu button.half {
+    width: calc(50% - 7px);
+    padding: 5px;
+    display: inline-block;
+    margin: 5px 3px;
+}
+
+.halfCtnr {
+    margin: 0 5px;
+}
+
+.overflowableCtx .btnVertical {
+    max-height: 250px;
+    overflow-x: auto;
+}

@@ -12,14 +12,14 @@ import PositionInst from "../svg/Positioning";
 
 const items: Map<string, jsobj> = NodeBuilder.Build();
 
-export default function Header({toggleBg}: {
-    toggleBg: Function
+export default function Header({toggleBg, graph}: {
+    toggleBg: Function, graph: boolean
+
 }) {
     const {
         undo,
         redo,
     } = useTemporalStore((state) => state);
-
 
     const undoWrap = () => {
         undo();
@@ -31,24 +31,28 @@ export default function Header({toggleBg}: {
     }
 
     return <span id={"header"}>
-        <BtnGroup>
-            <Button onClick={() => undoWrap()}>Undo</Button>
-            <Button onClick={() => redoWrap()}>Redo</Button>
-        </BtnGroup>
 
-        <Button className={"blue"}>Run</Button>
+
+        {/*<Button className={"blue"}>Run</Button>*/}
 
         &nbsp;&nbsp;
-        <Button onClick={() => PositionInst.orderNodes()}>
-            Auto Layout
-        </Button>
-        {" "}
-        <Button onClick={toggleBg}>
-            Toggle Theme
-        </Button>
-        <Button onClick={toggleBg}>
-            FRF
-        </Button>
+        {graph && <>
+            <BtnGroup>
+                <Button onClick={() => undoWrap()}>Undo</Button>
+                <Button onClick={() => redoWrap()}>Redo</Button>
+            </BtnGroup>
+            <Button onClick={() => PositionInst.orderNodes()}>
+                Auto Layout
+            </Button>
+            {" "}
+            <Button onClick={toggleBg}>
+                Toggle Theme
+            </Button>
+            <Button onClick={toggleBg}>
+                FRF
+            </Button>
+        </>}
+
         {/*<Button>*/}
         {/*    GPT*/}
         {/*</Button>*/}

@@ -53,7 +53,7 @@ function App() {
                     disabled={graph}
                     className={"blue"}
                     onClick={() => setGraph(true)}>Edit Graph</Button>
-                <Header toggleBg={toggleBg}/>
+                <Header toggleBg={toggleBg} graph={graph}/>
 
             </nav>
 
@@ -61,19 +61,16 @@ function App() {
                     <ContextMenu items={items}/>
                     <ZoomInfo/>
                     <Recenter/>
-
-
                     <Svg items={items}/>
-
                     <Taskbar items={items}/>
-
-
                 </>
                 : <>
-                    <BlueprintSvg items={items} blueprint/>
-                    <NodeGroups items={items}/>
-                    <NodeBlueprints items={items}/>
-                    <NodeBlueprintConfigEditor items={items}/>
+                    <div id={"groupsCtnr"}>
+                        <NodeGroups items={items}/>
+                        <NodeBlueprints items={items}/>
+                        <NodeBlueprintConfigEditor items={items}/>
+                        <BlueprintSvg items={items} blueprint/>
+                    </div>
                 </>}
 
 

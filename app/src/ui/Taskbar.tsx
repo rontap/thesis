@@ -25,7 +25,7 @@ const taskbarStyles = {
         width: '300px',
     },
     io: {
-        top: '420px',
+        top: '300px',
         width: '300px',
     }
 }

@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {DragHandlerInst} from "./Draggable";
 import State, {getState} from "../graph/State";
 import {Node} from "../node/Node";
-import { NodeTemplateMap} from "../app/DynamicReader";
+import {NodeTemplateMap} from "../app/DynamicReader";
 import {NodeBuilder} from "../node/Builder";
 
 export default function BlueprintSvg(props: jsobj) {
@@ -18,10 +18,8 @@ export default function BlueprintSvg(props: jsobj) {
 
 
     nodes = State((state) => state.nodes)
-
     lines = State((state) => state.lines)
 
-    console.log(everyNode);
     if (everyNode.length === 0) {
         return <>No nodes defined.</>
     }

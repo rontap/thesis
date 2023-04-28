@@ -1,0 +1,30 @@
+{
+  "name": "lecture",
+  "type": "fv",
+  "className": "purple",
+  "inputs": [
+    {
+      "type": "fv",
+      "name": "feature",
+      "configurable_input": "fv_field_name"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "string",
+      "name": "cluster",
+      "configurable_input": "cluster_field_name"
+    }
+  ],
+  "config": {
+    "self": "lecture",
+    "data": {
+      "class_name" : {
+        "type": "string"
+      },
+      "credit" : {
+        "type": "number"
+      }
+    }
+  }
+}

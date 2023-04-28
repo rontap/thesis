@@ -4,8 +4,8 @@ import {Point} from "../geometry/Geom";
 import CONST from "../const";
 
 const Positioning = {
-    multipleNodesInLine: 200,
-    padBetweenVisitedNodes: 75
+    multipleNodesInLine: 325,
+    padBetweenVisitedNodes: 120
 }
 
 class Position {
@@ -18,14 +18,12 @@ class Position {
             .forEachInOrder((node: Node, initial: number, visited: string | any[], [prevNode, nthRendered]: [Node, number]) => {
                 node.setCoords(
                     new Point(
-                        (visited.length * (CONST.box.width + Positioning.padBetweenVisitedNodes)) + 200,
-                        (initial * 140) + (visited.length) + 200 + nthRendered * Positioning.multipleNodesInLine
+                        (visited.length * (CONST.box.width + Positioning.padBetweenVisitedNodes)) + 200 + 300,
+                        (initial * 180) + (visited.length) + 200 + nthRendered * Positioning.multipleNodesInLine
                     )
                 );
             }, true)
     }
-
-
 }
 
 const PositionInst = new Position();

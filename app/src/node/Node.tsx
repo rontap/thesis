@@ -60,17 +60,20 @@ export class Node {
     static fromSerialised(nodeSd: NodeSerialised) {
         const guessedProperty = Object.keys(nodeSd)
             .find(item => !NodeSerialisedSureProperties.includes(item));
-        
+
         const guessedType = NodeBuilder.EveryNodeTemplate()
             .find(node => node.config?.self === guessedProperty);
 
         let node: Node;
 
+        if (guessedType == undefined) {
+            console.error(`Could not guess type ${guessedType} from ${nodeSd}`);
+            throw Error(`Could not find the type with value ${guessedProperty}. Does this node exist? Are you using the correct node group?`)
+        }
         if (!guessedType) {
             console.error(`Could not guess type ${guessedType} from ${nodeSd}`);
             throw Error(`Could not guess type ${guessedType} from ${nodeSd}`);
         }
-
 
         if (guessedProperty === undefined) {
             throw Error('Could not guess property');

@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import State, {getState} from "../graph/State";
+import State, {getState, useTemporalStore} from "../graph/State";
 import {jsobj} from "../app/util";
 import {DragHandler} from "../svg/Draggable";
 import AddNodes from "./AddNodes";
 import BtnGroup from "./BtnGroup";
 import Button from "./Button";
 import {Geom, Point} from "../geometry/Geom";
+import {GraphUtilInst} from "../graph/GraphUtil";
 
 export default function ContextMenu({items}: any) {
 
@@ -45,14 +46,37 @@ export default function ContextMenu({items}: any) {
     if (!display) return <div id={"ctxMenu"} style={{top: "-10px"}} className={"hiddenCtx"}></div>;
 
     return <div id={"ctxMenu"} style={{left: pos?.x || 0, top: pos?.y || 0}} onClick={close}>
-        {evt?.target?.tagName === "DIV" ? NodeItems(evt) : AddItems(items)}
+        {evt?.target?.tagName === "DIV" ? NodeItems(evt) : <AddItems items={items}/>}
     </div>
 }
 
-const AddItems = (items: Map<string, jsobj>) => {
+const AddItems = ({items}: { items: Map<string, jsobj> }) => {
+    const {
+        undo,
+        redo,
+    } = useTemporalStore((state) => state);
+
+    const undoWrap = () => {
+        undo();
+        GraphUtilInst.detectCircles();
+    }
+    const redoWrap = () => {
+        redo();
+        GraphUtilInst.detectCircles();
+    }
     return <>
+        <div className={"ctxTitle"}>Quick Actions</div>
+
+        <div className={"halfCtnr"}>
+            <Button className={"half"} onClick={undoWrap}>Undo</Button>
+            <Button className={"half"} onClick={redoWrap}>Redo</Button>
+        </div>
+
         <div className={"ctxTitle"}>Add Items</div>
-        <AddNodes items={items} vertical/></>
+        <div className={"overflowableCtx"}>
+            <AddNodes items={items} vertical/>
+        </div>
+    </>
 }
 
 const NodeItems = (evt: jsobj) => {

@@ -61,6 +61,10 @@ const initialState = {
     inspectedLine: undefined
 }
 
+const resetIDS = () => {
+    Node.ID = 1;
+    Line.ID = 1;
+}
 const actions = {}
 
 const State = create<AppState>()(
@@ -103,6 +107,7 @@ const State = create<AppState>()(
                 setBlueprintedNode: (nodeName: string) => set((state) =>
                     ({blueprintedNode: nodeName})),
                 setNodeGroup: (nodeGroup: string) => {
+                    resetIDS();
                     NodeGroup.activeNodeGroup = nodeGroup;
                     set((state) =>
                         ({...initialState, blueprintedNode: "", nodeGroup: nodeGroup}))
@@ -116,8 +121,7 @@ const State = create<AppState>()(
                     ({forceSvgRender: Math.random()})
                 ),
                 resetStore: () => {
-                    Node.ID = 1;
-                    Line.ID = 1;
+                    resetIDS();
                     return set((state) => initialState)
                 },
                 setInspectLine: (line: Line, point: Point) => set((state) =>

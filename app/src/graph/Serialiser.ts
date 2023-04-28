@@ -1,7 +1,7 @@
 import {getState} from "./State";
 import {createFile, jsobj} from "../app/util";
 import {Line, LineId, NodeId} from "../node/Line";
-import {NodeSerialised} from "../app/DynamicReader";
+import {NodeGroup, NodeSerialised} from "../app/DynamicReader";
 import {Node} from "../node/Node";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
@@ -177,7 +177,9 @@ class Serialiser {
         getState().resetStore();
 
         const {query} = json;
-        const {transform} = query;
+        const {transform, node_group_used} = query;
+
+        getState().setNodeGroup(node_group_used || NodeGroup.default);
 
         transform.forEach((nodeSd: NodeSerialised) => {
                 nodeSd.ref = Node.fromSerialised(

@@ -20,9 +20,18 @@ export function NodeGroups({items}: NodeBlueprintsProps) {
     return <>
         <div id={"nodeGroups"} className={"majorElement"}>
             <h3 className={"center"}>Node Groups</h3>
+            <p className={"just"}>
+                Switch the list of available nodes from presets<br/>
+                Switching node groups will remove all currently placed nodes in the graph.<br/>
+                Feel free to create and delete nodes in the custom nodes section.
+
+            </p>
             {[...NodeGroup.everyNodeGroupDefinition()]
                 .map(el => <NodeGroupItem name={el[0]}/>)
             }
+            <Button className={"blue"}>
+                Custom Nodes
+            </Button>
 
         </div>
     </>
@@ -37,6 +46,9 @@ function NodeGroupItem(item: jsobj) {
         <Button className={"btn-100"} onClick={() => getState().setNodeGroup(item.name)}>
             {
                 nodeGroupNames.get(item.name) ?? `[${item.name}]`
+            }
+            {
+                item.name === getState().nodeGroup && " [active]"
             }
         </Button>
 

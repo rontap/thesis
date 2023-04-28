@@ -7,7 +7,8 @@ export default function NodeBlueprintConfigEditor(props: jsobj) {
     const blueprintedType = NodeBuilder.types.get(blueprinted);
     return <>
         <div id={"blueprintConfig"} className={"majorElement"}>
-            <code>
+            <h3>Single Node Configuration</h3>
+            <code className={"blueprintEditor"}>
                 <textarea
                     defaultValue={JSON.stringify(blueprintedType, null, 2)}>
                 </textarea>

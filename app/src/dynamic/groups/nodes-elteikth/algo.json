@@ -1,13 +1,13 @@
 {
-  "name": "maths",
+  "name": "algo",
   "type": "fv",
-  "className": "green",
+  "className": "blue",
   "inputs": [
   ],
   "outputs": [
   ],
   "config": {
-    "self": "maths",
+    "self": "algo",
     "data": {
       "class_name": {
         "type": "string"

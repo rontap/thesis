@@ -336,7 +336,7 @@ COLORED ITEM
 }
 
 .green .boxedItem .title {
-    background: #4caf50;;
+    background: #4caf50;
 }
 
 .purple .boxedItem .title {
@@ -346,7 +346,7 @@ COLORED ITEM
 /***n extimee*/
 
 ._white foreignObject.green > div {
-    background: red;
+    background: #4caf50;
 }
 
 ._white foreignObject.purple > div {
@@ -354,15 +354,15 @@ COLORED ITEM
 }
 
 ._white foreignObject.blue > div {
-    background: #ff693e;
-}
-
-._white foreignObject.red > div {
     background: #4488FF;
 }
 
-._white foreignObject.organge > div {
+._white foreignObject.red > div {
     background: #e91e63;
+}
+
+._white foreignObject.orange > div {
+    background: #ff693e;
 }
 
 

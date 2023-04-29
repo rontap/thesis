@@ -64,10 +64,6 @@ class Serialiser {
             , null, 1);
     }
 
-    fromTopLevel(obj: jsobj): jsobj {
-        return {}
-    }
-
     /**
      * wraps json output to svg node
      * @param stringifiedJSON
@@ -116,7 +112,7 @@ class Serialiser {
 
         const parsedCss = css.replace(/\n/g, " ");
         const parsedCssExport = cssExportOnly.replace(/\n/g, " ");
-        const svgRootCss = svgRoot
+        return svgRoot
             // slicing off the end SVG tag
             .slice(0, -6)
             // add the CSS required for the SVG to look nice
@@ -129,8 +125,6 @@ class Serialiser {
             .replace(/<input(.*?)(>)/gm, "<input$1\/>")
             // replace <br>-tags with XML valid <br/> tags
             .replace(/<br(.*?)(>)/gm, "<br$1\/>");
-
-        return svgRootCss;
     }
 
     toSvg(download: boolean = false) {
@@ -141,7 +135,6 @@ class Serialiser {
     /**
      * FROM SVG
      */
-
     fromJSONParse(root: string): jsobj {
         let rootJSONObj: jsobj;
         try {
@@ -175,8 +168,8 @@ class Serialiser {
     }
 
     fromJSON(rootObj: string, svgHint?: Element | null) {
-
         const json = this.fromJSONParse(rootObj);
+        let processedNodeNth = 0;
 
         getState().resetStore();
 
@@ -187,8 +180,10 @@ class Serialiser {
 
         transform.forEach((nodeSd: NodeSerialised) => {
                 nodeSd.ref = Node.fromSerialised(
+                    // passing the object
                     nodeSd,
-                    svgHint?.querySelector(`.data-node-${Node.ID}`)
+                    // passing the SVG foreignObject to the serialiser
+                    svgHint?.querySelectorAll(`foreignObject[data-id]`)[processedNodeNth++]
                 );
             }
         )

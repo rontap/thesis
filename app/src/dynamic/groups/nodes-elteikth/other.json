@@ -1,13 +1,13 @@
 {
-  "name": "maths",
+  "name": "other",
   "type": "fv",
-  "className": "green",
+  "className": "orange",
   "inputs": [
   ],
   "outputs": [
   ],
   "config": {
-    "self": "maths",
+    "self": "other",
     "data": {
       "class_name": {
         "type": "string"

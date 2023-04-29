@@ -1,13 +1,13 @@
 {
-  "name": "maths",
+  "name": "prog",
   "type": "fv",
-  "className": "green",
+  "className": "red",
   "inputs": [
   ],
   "outputs": [
   ],
   "config": {
-    "self": "maths",
+    "self": "prog",
     "data": {
       "class_name": {
         "type": "string"

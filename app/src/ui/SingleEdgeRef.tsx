@@ -1,5 +1,5 @@
 import {edgeTypes, NodeEdgeRef} from "../app/EdgeLoader";
-import Button from "../components/Button";
+import Button from "./components/Button";
 import State, {getState} from "../graph/State";
 import {ChangeEvent, useState} from "react";
 

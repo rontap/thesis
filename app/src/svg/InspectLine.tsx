@@ -2,7 +2,7 @@ import React from "react";
 import {Line} from "../node/Line";
 import State, {End, getState} from "../graph/State";
 import {DragHandler} from "./Draggable";
-import Button from "../components/Button";
+import Button from "../ui/components/Button";
 
 export default function InspectLine() {
     const {line, point} = State((state) => state.inspectedLine) || {};

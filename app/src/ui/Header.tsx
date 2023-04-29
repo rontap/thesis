@@ -1,7 +1,7 @@
 import {getState, useTemporalStore} from "../graph/State";
-import BtnGroup from "../components/BtnGroup";
-import Button from "../components/Button";
-import AddNodes from "../components/AddNodes";
+import BtnGroup from "./components/BtnGroup";
+import Button from "./components/Button";
+import AddNodes from "./components/AddNodes";
 import React from "react";
 import {Line} from "../node/Line";
 import {jsobj} from "../util/util";

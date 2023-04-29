@@ -2,7 +2,7 @@ import {jsobj} from "../util/util";
 import State from "../graph/State";
 import {Node} from "../node/Node";
 import React from "react";
-import AddNodes from "../components/AddNodes";
+import AddNodes from "./components/AddNodes";
 
 export default function AvailableNodes(props: jsobj) {
     return <div id={"availableNodes"}>

@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import State, {getState, useTemporalStore} from "../graph/State";
-import {jsobj} from "../util/util";
-import {DragHandler} from "../svg/Draggable";
+import State, {getState, useTemporalStore} from "../../graph/State";
+import {jsobj} from "../../util/util";
+import {DragHandler} from "../../svg/Draggable";
 import AddNodes from "./AddNodes";
 import BtnGroup from "./BtnGroup";
 import Button from "./Button";
-import {Geom, Point} from "../util/Geom";
-import {GraphUtilInst} from "../graph/GraphUtil";
+import {Geom, Point} from "../../util/Geom";
+import {GraphUtilInst} from "../../graph/GraphUtil";
 
 export default function ContextMenu({items}: any) {
 

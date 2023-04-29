@@ -1,6 +1,6 @@
 import State from "../graph/State";
-import Button from "../components/Button";
-import BtnGroup from "../components/BtnGroup";
+import Button from "./components/Button";
+import BtnGroup from "./components/BtnGroup";
 import {MovableState} from "../svg/Movable.js";
 import CONST from "../const";
 

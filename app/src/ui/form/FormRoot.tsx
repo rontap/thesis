@@ -1,8 +1,8 @@
-import {jsobj} from "../util/util";
+import {jsobj} from "../../util/util";
 import Button from "../components/Button";
 import {useState} from "react";
-import FormRouter from "../ui/form/FormRouter";
-import {FormRouteProps} from "../app/EdgeLoader";
+import FormRouter from "./FormRouter";
+import {FormRouteProps} from "../../app/EdgeLoader";
 
 export function FormRoot({configParams, configValues}:
                              { configValues: jsobj, configParams: jsobj | undefined }) {
@@ -44,7 +44,6 @@ export function ConfigPropertyEntry(props: {
     return <span key={item} className={"configPropertyListItem"}>
                     <span className={"configTitle"}>
                         {item}
-                        {/*<span className={"configTypehint"}>[{entry.type}]</span>*/}
                     </span>
 
                     <FormRouter

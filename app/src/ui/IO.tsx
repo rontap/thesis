@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
-import BtnGroup from "../components/BtnGroup";
-import Button from "../components/Button";
+import BtnGroup from "./components/BtnGroup";
+import Button from "./components/Button";
 import {SerialiserInst} from "../graph/Serialiser";
 import PositionInst from "../svg/Positioning";
 

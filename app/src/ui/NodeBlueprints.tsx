@@ -1,8 +1,8 @@
 import {Node} from "../node/Node";
 import React from "react";
 import {jsobj} from "../util/util";
-import BtnGroup from "../components/BtnGroup";
-import Button from "../components/Button";
+import BtnGroup from "./components/BtnGroup";
+import Button from "./components/Button";
 import State, {getState} from "../graph/State";
 import {NodeGroup} from "../app/DynamicReader";
 

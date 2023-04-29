@@ -1,5 +1,5 @@
 import State, {End, getState} from "../graph/State";
-import Button from "../components/Button";
+import Button from "./components/Button";
 import {Line} from "../node/Line";
 import {Node} from "../node/Node";
 import {NodeEdgeRef} from "../app/EdgeLoader";

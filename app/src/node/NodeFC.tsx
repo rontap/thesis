@@ -5,9 +5,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from "@fortawesome/free-solid-svg-icons";
 import {jsobj, preventBubble} from "../util/util";
 import {MovableState} from "../svg/Movable.js";
-import {FormRoot} from "./FormRoot";
+import {FormRoot} from "../ui/form/FormRoot";
 import {Node} from "./Node";
-import Button from "../components/Button";
+import Button from "../ui/components/Button";
 
 const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 

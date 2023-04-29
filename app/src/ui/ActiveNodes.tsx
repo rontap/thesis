@@ -2,8 +2,8 @@ import {Node} from "../node/Node";
 import {jsobj} from "../util/util";
 import State, {getState} from "../graph/State";
 import React from "react";
-import BtnGroup from "../components/BtnGroup";
-import Button from "../components/Button";
+import BtnGroup from "./components/BtnGroup";
+import Button from "./components/Button";
 
 export default function ActiveNodes(props: jsobj) {
     const nodes = State((state) => state.nodes)

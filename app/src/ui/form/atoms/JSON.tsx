@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import Button from "../../../components/Button";
+import Button from "../../components/Button";
 
 export default function _JSON(props: any) {
     const [value, setValue] = useState(JSON.stringify(props.value, null, 1));

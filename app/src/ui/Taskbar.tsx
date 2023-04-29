@@ -6,7 +6,7 @@ import {jsobj} from "../util/util";
 import {DndContext, DragEndEvent, useDndMonitor, useDraggable, useDroppable} from '@dnd-kit/core';
 import {stat} from "fs";
 import {Point} from "../util/Geom";
-import Button from "../components/Button";
+import Button from "./components/Button";
 import IO from "./IO";
 import InspectLine from "../svg/InspectLine";
 

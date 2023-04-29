@@ -1,6 +1,6 @@
 import {loadJsonNodeDefinitions, NodeTemplate, NodeTemplateMap} from "../app/DynamicReader";
-import {EdgeInvariant, EdgeLoader, edgeTypes} from "../graph/EdgeLoader";
-import {jsobj} from "../app/util";
+import {EdgeInvariant, EdgeLoader, edgeTypes} from "../app/EdgeLoader";
+import {jsobj} from "../util/util";
 import {Node} from './Node';
 import State from "../graph/State";
 

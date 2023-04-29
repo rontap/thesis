@@ -1,4 +1,4 @@
-import {jsobj} from "../app/util";
+import {jsobj} from "./util";
 
 export enum Button {
     DOWN = "DOWN",

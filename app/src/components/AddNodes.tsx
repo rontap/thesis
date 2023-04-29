@@ -2,7 +2,7 @@ import BtnGroup from "./BtnGroup";
 import Button from "./Button";
 import {NodeBuilder} from "../node/Builder";
 import React from "react";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 
 export default function AddNodes({
                                      items,

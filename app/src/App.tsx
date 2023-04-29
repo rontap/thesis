@@ -9,7 +9,7 @@ import './ui/styles/mat.css';
 
 import {NodeBuilder} from "./node/Builder";
 import Svg from "./svg/Svg";
-import {jsobj} from './app/util';
+import {jsobj} from './util/util';
 import ActiveNodes from "./ui/ActiveNodes";
 import PropertyViewer from "./ui/PropertyViewer";
 import ZoomInfo from "./ui/ZoomInfo";
@@ -26,7 +26,7 @@ import AvailableNodes from "./ui/AvailableNodes";
 import BlueprintSvg from "./svg/BlueprintSvg";
 import NodeBlueprintConfigEditor from "./node/NodeBlueprintConfigEditor";
 import Taskbar from "./ui/Taskbar";
-import InspectLine from "./ui/InspectLine";
+import InspectLine from "./svg/InspectLine";
 import {NodeGroups} from "./ui/NodeBlueprints";
 
 

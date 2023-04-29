@@ -1,5 +1,5 @@
 import State from "../graph/State";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import {NodeBuilder} from "./Builder";
 
 export default function NodeBlueprintConfigEditor(props: jsobj) {

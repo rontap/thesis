@@ -1,8 +1,8 @@
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import Button from "../components/Button";
 import {useState} from "react";
 import FormRouter from "../ui/form/FormRouter";
-import {FormRouteProps} from "../graph/EdgeLoader";
+import {FormRouteProps} from "../app/EdgeLoader";
 
 export function FormRoot({configParams, configValues}:
                              { configValues: jsobj, configParams: jsobj | undefined }) {

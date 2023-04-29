@@ -1,6 +1,6 @@
 import Atoms from "./atoms";
 import React, {useState} from "react";
-import {configTypes, FormAtoms, FormRouteProps, IsFormAtom} from "../../graph/EdgeLoader";
+import {configTypes, FormAtoms, FormRouteProps, IsFormAtom} from "../../app/EdgeLoader";
 import Widgets from "./widgets";
 
 type FormRouteComponentProps = FormRouteProps & {

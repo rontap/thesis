@@ -1,7 +1,7 @@
 import React from "react";
 import {Line} from "../node/Line";
 import State, {End, getState} from "../graph/State";
-import {DragHandler} from "../svg/Draggable";
+import {DragHandler} from "./Draggable";
 import Button from "../components/Button";
 
 export default function InspectLine() {
@@ -48,10 +48,6 @@ export default function InspectLine() {
                     to {toNode?.nodeType || "unknown"}
                     &nbsp;[{line.to}]
                 </>
-                {/*<div className={}>*/}
-                {/*    */}
-                {/*</div>*/}
-
 
                 <hr/>
                 Data traveling

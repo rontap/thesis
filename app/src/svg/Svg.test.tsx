@@ -1,9 +1,9 @@
 import CONST from "../const";
 import Draggable, {DragHandler, DragHandlerInst} from "./Draggable";
 import {useEffect} from "react";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import State, {getState} from "../graph/State";
-import {Geom, Point} from "../geometry/Geom";
+import {Geom, Point} from "../util/Geom";
 import {Node} from "../node/Node";
 import Movable from "./Movable.js";
 import {Line} from "../node/Line";

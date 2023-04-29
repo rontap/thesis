@@ -1,4 +1,4 @@
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import {useEffect, useState} from "react";
 import {DragHandlerInst} from "./Draggable";
 import State, {getState} from "../graph/State";

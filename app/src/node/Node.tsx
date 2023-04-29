@@ -1,10 +1,10 @@
 import State, {getState} from "../graph/State";
 import {DragHandlerInst} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
-import {Point} from "../geometry/Geom";
+import {Point} from "../util/Geom";
 import {Line, NodeId} from "./Line";
-import {jsobj} from "../app/util";
-import {configTypes, NodeEdgeRef} from "../graph/EdgeLoader";
+import {jsobj} from "../util/util";
+import {configTypes, NodeEdgeRef} from "../app/EdgeLoader";
 import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate, NodeTemplateConfig} from "../app/DynamicReader";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";

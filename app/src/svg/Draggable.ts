@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {getState} from "../graph/State";
 import CONST from "../const";
-import {Geom, Point, Button} from "../geometry/Geom";
+import {Geom, Point, Button} from "../util/Geom";
 
 export {Geom, Button};
 const movableElements = ["svg", "foreignObject"];

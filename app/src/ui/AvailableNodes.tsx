@@ -1,4 +1,4 @@
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import State from "../graph/State";
 import {Node} from "../node/Node";
 import React from "react";

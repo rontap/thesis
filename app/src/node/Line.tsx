@@ -4,9 +4,9 @@ import Draggable, {DragHandler, DragHandlerInst} from "../svg/Draggable";
 import CONST from "../const";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import {MouseEventHandler, ReactElement} from "react";
-import {Geom, Point} from "../geometry/Geom";
+import {Geom, Point} from "../util/Geom";
 import svgContainer from "../svg/Movable.js";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 
 export type LineId = number;
 export type NodeId = number;

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import State, {getState, useTemporalStore} from "../graph/State";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import {DragHandler} from "../svg/Draggable";
 import AddNodes from "./AddNodes";
 import BtnGroup from "./BtnGroup";
 import Button from "./Button";
-import {Geom, Point} from "../geometry/Geom";
+import {Geom, Point} from "../util/Geom";
 import {GraphUtilInst} from "../graph/GraphUtil";
 
 export default function ContextMenu({items}: any) {
@@ -17,9 +17,9 @@ export default function ContextMenu({items}: any) {
     const [ts, setTs] = useState(0);
 
     /**
-     * its either a new context event, or we didnt open
+     * it's either a new context event, or we didnt open
      * AND there is a valid tag target
-     * AND its actually a context menu
+     * AND it's actually a context menu
      */
     if ((evt?.timeStamp !== ts || !display) && evt?.target?.tagName && evt.type === "contextmenu") {
         setDisplay(true);

@@ -1,11 +1,11 @@
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import CONST from "../const";
 import State from "../graph/State";
 import {Line, NodeId} from "../node/Line";
 
 import {Node} from "../node/Node";
 import {DragHandler, DragHandlerInst} from "./Draggable";
-import {Geom, Point} from '../geometry/Geom';
+import {Geom, Point} from '../util/Geom';
 
 function initMovable() {
 

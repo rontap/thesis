@@ -3,7 +3,7 @@ import State, {getState} from "./State";
 import {Line, LineId, NodeId} from "../node/Line";
 
 /**
- * first argument is the node, or if its a source node, null
+ * first argument is the node, or if it's a source node, null
  * second argument is the position of the previous node in the `for` iterator of that's source node.
  */
 type prevNodeIterator = [Node | null, number];
@@ -93,7 +93,6 @@ export class GraphUtil {
                 const prevNodeInputs = prevNode ? prevNode.getConnectedNodeInputs : [];
                 const prevNodeSelfOutputs = prevNode ? prevNode.nodeOutputs : [];
 
-                console.log(prevNode, 'OPN');
                 current.connectedNodeInputs.push(
                     ...prevNodeInputs,
                     ...prevNodeSelfOutputs
@@ -110,11 +109,3 @@ export {GraphUtilInst};
 
 // @ts-ignore
 window._GU = GraphUtilInst;
-/**
- *
- * _GU.forEachInOrder( (node,initial,visited,[prevNode,nthRendered]) =>
- *     {node.coords.x = (visited.length * 240) +200 ;
- *      node.coords.y = (initial * 140)   + (visited.length * 40) +200 + nthRendered*200;
- *      console.log(node,nthRendered)
- *     },true)
- */

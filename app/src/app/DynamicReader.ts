@@ -1,5 +1,5 @@
-import {jsobj} from "./util";
-import {NodeEdgeRef} from "../graph/EdgeLoader";
+import {jsobj} from "../util/util";
+import {NodeEdgeRef} from "./EdgeLoader";
 import {Node} from "../node/Node";
 
 

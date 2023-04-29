@@ -1,6 +1,6 @@
 import Popup from './Popup';
 import React from "react";
-import { jsobj } from '../../../app/util';
+import { jsobj } from '../../../util/util';
 
 const Widgets: jsobj = {
     Popup

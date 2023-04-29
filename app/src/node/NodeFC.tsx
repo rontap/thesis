@@ -3,7 +3,7 @@ import CONST from "../const";
 import {ErrorBoundary} from "react-error-boundary";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCode} from "@fortawesome/free-solid-svg-icons";
-import {jsobj, preventBubble} from "../app/util";
+import {jsobj, preventBubble} from "../util/util";
 import {MovableState} from "../svg/Movable.js";
 import {FormRoot} from "./FormRoot";
 import {Node} from "./Node";

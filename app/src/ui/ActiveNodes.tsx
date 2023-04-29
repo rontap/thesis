@@ -1,5 +1,5 @@
 import {Node} from "../node/Node";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import State, {getState} from "../graph/State";
 import React from "react";
 import BtnGroup from "../components/BtnGroup";

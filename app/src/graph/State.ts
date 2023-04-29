@@ -1,4 +1,4 @@
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import {create, useStore} from 'zustand'
 import {devtools, persist} from 'zustand/middleware'
 import {Node} from "../node/Node";
@@ -7,7 +7,7 @@ import {unwatchFile} from "fs";
 import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
-import {Point} from "../geometry/Geom";
+import {Point} from "../util/Geom";
 import {NodeGroup} from "../app/DynamicReader";
 
 // export default class State {

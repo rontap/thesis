@@ -1,6 +1,6 @@
 import {GraphUtilInst} from "../graph/GraphUtil";
 import {Node} from "../node/Node";
-import {Point} from "../geometry/Geom";
+import {Point} from "../util/Geom";
 import CONST from "../const";
 
 const Positioning = {

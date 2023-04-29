@@ -1,14 +1,14 @@
 import CONST from "../const";
 import Draggable, {DragHandler, DragHandlerInst} from "./Draggable";
 import React, {useEffect} from "react";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import State, {getState} from "../graph/State";
-import {Geom, Point} from "../geometry/Geom";
+import {Geom, Point} from "../util/Geom";
 import {Node} from "../node/Node";
 import Movable from "./Movable.js";
 import {Line} from "../node/Line";
 import SvgLines from "./SvgLines";
-import InspectLine from "../ui/InspectLine";
+import InspectLine from "./InspectLine";
 
 export default function Svg(props: jsobj) {
     const {blueprint} = props;
@@ -50,11 +50,6 @@ export default function Svg(props: jsobj) {
                         markerWidth="5"
                         markerHeight="5">
                         <circle cx="5" cy="20" r="20" fill="red"/>
-                        {/*<animateMotion*/}
-                        {/*    dur="3s"*/}
-                        {/*    repeatCount="indefinite"*/}
-                        {/*    path={Geom.bezierSvgD(fromPoint, toPoint)}/>*/}
-
                     </marker>
                 </defs>
 

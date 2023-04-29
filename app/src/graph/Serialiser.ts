@@ -1,5 +1,5 @@
 import {getState} from "./State";
-import {createFile, jsobj} from "../app/util";
+import {createFile, jsobj} from "../util/util";
 import {Line, LineId, NodeId} from "../node/Line";
 import {NodeGroup, NodeSerialised} from "../app/DynamicReader";
 import {Node} from "../node/Node";

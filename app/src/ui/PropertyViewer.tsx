@@ -2,7 +2,7 @@ import State, {End, getState} from "../graph/State";
 import Button from "../components/Button";
 import {Line} from "../node/Line";
 import {Node} from "../node/Node";
-import {NodeEdgeRef} from "../graph/EdgeLoader";
+import {NodeEdgeRef} from "../app/EdgeLoader";
 import SingleEdgeRef from "./SingleEdgeRef";
 import ActiveNodes from "./ActiveNodes";
 
@@ -88,11 +88,9 @@ export default function PropertyViewer() {
                 </div>)}
         </div>
         <br/>
-        {/*<hr/>*/}
-        {/*<Config node={node}/>*/}
+
     </div>
 }
-
 
 const SingleNodeItem = (node: Node | undefined, i: number) => {
     return <span key={i}><Button small>

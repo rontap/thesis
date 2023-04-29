@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import AddNodes from "../components/AddNodes";
 import React from "react";
 import {Line} from "../node/Line";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 import {NodeBuilder} from "../node/Builder";
 import {GraphUtilInst} from "../graph/GraphUtil";
 import {SerialiserInst} from "../graph/Serialiser";

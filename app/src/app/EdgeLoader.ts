@@ -1,5 +1,5 @@
 import {NodeBuilder} from "../node/Builder";
-import {jsobj} from "../app/util";
+import {jsobj} from "../util/util";
 
 export type EdgePrimitive = "any" | string;
 export type EdgeType = {
@@ -77,7 +77,6 @@ export function EdgeInvariant(verbose = false) {
 
     })
 }
-
 
 export {edgeTypes, configTypes};
 // @ts-ignore

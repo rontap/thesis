@@ -44,8 +44,7 @@ export class NodeBuilder {
     }
 
     static New(nodeType: string) {
-        const nodes = State.getState().nodes;
-        State.setState({nodes: nodes.concat(new Node(nodeType))})
+        State.getState().addNode(new Node(nodeType))
     }
 
     static getType(name: string) {

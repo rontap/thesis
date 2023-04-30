@@ -79,18 +79,21 @@ const State = create<AppState>()(
                             return {activeNode}
                         }
                     ),
-                addNode: (node: Node) => set((state) =>
-                    ({nodes: state.nodes.concat(node)})),
+                addNode: (node: Node) => {
+                    set((state) => ({nodes: state.nodes.concat(node)}))
+                },
                 getNodeById: (id: NodeId) =>
                     get().nodes.find(item => item.ID === Number(id)),
-                removeNode: (id: NodeId) => set((state) =>
-                    ({nodes: state.nodes.filter(item => item.ID !== Number(id))})),
+                removeNode: (id: NodeId) => {
+                    set((state) => ({nodes: state.nodes.filter(item => item.ID !== Number(id))}))
+                    handleLineSideEffect();
+                },
                 addLine: (line: Line) => {
                     if (get().getLineBetween(line.from, line.to)) {
                         return false;
                     }
                     set((state) => ({lines: state.lines.concat(line)}));
-                    GraphUtilInst.detectCircles();
+                    handleLineSideEffect();
                     return true;
                 },
                 removeLine: (id: LineId) => {
@@ -150,6 +153,11 @@ const useTemporalStore = <T, >(
     equality?: (a: T, b: T) => boolean,
 ) => useStore(State.temporal, selector, equality);
 
+const handleLineSideEffect = () => {
+    console.log('++--');
+    GraphUtilInst.detectCircles();
+    GraphUtilInst.rippleNodeEdgeRefs();
+}
 export default State;
 const {getState, setState, subscribe} = State
 export {

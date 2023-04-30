@@ -87,7 +87,6 @@ export class GraphUtil {
     rippleNodeEdgeRefs() {
         this.everyNode.forEach(node => node.connectedNodeInputs = []);
 
-
         this.forEachInOrder(
             (current: Node, initial: NodeId, visited: Line[], [prevNode, item]: prevNodeIterator) => {
                 const prevNodeInputs = prevNode ? prevNode.getConnectedNodeInputs : [];
@@ -97,9 +96,8 @@ export class GraphUtil {
                     ...prevNodeInputs,
                     ...prevNodeSelfOutputs
                 )
-                console.log(current.connectedNodeInputs, current.ID);
             }
-            , false
+            , true
         )
     }
 }

@@ -7,7 +7,8 @@ import SingleEdgeRef from "./SingleEdgeRef";
 import ActiveNodes from "./ActiveNodes";
 
 export default function PropertyViewer() {
-    const node = State((state) => state.activeNode)
+    const node = State((state) => state.activeNode);
+    const tempSvgRender = State((state) => state.forceSvgRender);
 
     const linesFrom: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.FROM);
     const linesTo: Line[] = getState().getLinesAtNodeConnection(node?.ID, End.TO);

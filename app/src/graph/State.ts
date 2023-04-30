@@ -65,7 +65,6 @@ const resetIDS = () => {
     Node.ID = 1;
     Line.ID = 1;
 }
-const actions = {}
 
 const State = create<AppState>()(
     devtools(
@@ -76,8 +75,7 @@ const State = create<AppState>()(
                     set((state) => {
                             const activeNode = state.activeNode;
                             if (!activeNode) return {};
-                            //console.log('->> fs', activeNode, to, propertyName, activeNode._configurableInputValues);
-                            activeNode._configurableInputValues.set(propertyName, to);
+                            activeNode.configurableInputValues.set(propertyName, to);
                             return {activeNode}
                         }
                     ),
@@ -124,9 +122,9 @@ const State = create<AppState>()(
                     resetIDS();
                     return set((state) => initialState)
                 },
-                setInspectLine: (line: Line, point: Point) => set((state) =>
+                setInspectLine: (line: Line, point: Point) => set(() =>
                     ({inspectedLine: {line, point}})),
-                removeInspectLine: () => set((state) =>
+                removeInspectLine: () => set(() =>
                     ({inspectedLine: undefined})),
 
                 // store part

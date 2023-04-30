@@ -20,8 +20,8 @@ class Serialiser {
                 ptr: node,
                 name: this.toID(node.ID),
                 [nodeProps.config?.self || "jsonParseError"]: {
-                    ...node._configValues,
-                    ...Object.fromEntries(node._configurableInputValues)
+                    ...node.configValues,
+                    ...Object.fromEntries(node.configurableInputValues)
                 },
                 input: [this.toID(node.ID)],//node.prevNodes.map(this.toID),
                 output: node.nextNodes.map(this.toID)
@@ -122,9 +122,9 @@ class Serialiser {
             // add the export only CSS and close down SVG
             .concat(`<style>${parsedCssExport}</style></svg>`)
             // replace <input>-tags with XML valid <input/> tags
-            .replace(/<input(.*?)(>)/gm, "<input$1\/>")
+            .replace(/<input(.*?)(>)/gm, "<input$1/>")
             // replace <br>-tags with XML valid <br/> tags
-            .replace(/<br(.*?)(>)/gm, "<br$1\/>");
+            .replace(/<br(.*?)(>)/gm, "<br$1/>");
     }
 
     toSvg(download: boolean = false) {

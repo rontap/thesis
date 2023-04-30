@@ -39,7 +39,6 @@ export default function BlueprintSvg(props: jsobj) {
             width="1000%"
             height="10000%" fill="url(#grid)"/>
 
-
         {everyNode.find(node => node.nodeType === blueprinted)
             ?.getSvg(true)}
     </svg>

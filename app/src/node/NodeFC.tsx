@@ -12,8 +12,8 @@ import Button from "../ui/components/Button";
 const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 
     const that: Node = props.Node;
-    const noProperties = Object.values(that._configParams).length;
-    const sumAdditionalHeight = Object.values(that._configParams).reduce(
+    const noProperties = Object.values(that.configParams).length;
+    const sumAdditionalHeight = Object.values(that.configParams).reduce(
         (prev: any, param: any) => (param?.additionalProps?.height || 0) + prev, 0
     )
     const height = 40 + (noProperties * 55) + sumAdditionalHeight;
@@ -56,8 +56,8 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
 
                 <div className={"configCtn"}>
                     <FormRoot
-                        configValues={that._configValues}
-                        configParams={that._configParams}/>
+                        configValues={that.configValues}
+                        configParams={that.configParams}/>
                 </div>
             </ErrorBoundary>
         </div>

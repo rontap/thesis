@@ -12,7 +12,6 @@ export default function NodeBlueprintConfigEditor(props: jsobj) {
                 <textarea
                     defaultValue={JSON.stringify(blueprintedType, null, 2)}>
                 </textarea>
-
             </code>
         </div>
     </>

@@ -35,9 +35,7 @@ export class NodeBuilder {
             if (!value.hide) {
                 this._types.set(value.name, value);
             }
-
         })
-
         return this._types;
     }
 
@@ -53,7 +51,6 @@ export class NodeBuilder {
     static getType(name: string) {
         return this.types.get(name);
     }
-
 
 }
 

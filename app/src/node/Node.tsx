@@ -20,11 +20,10 @@ export class Node {
     public ID: number;
     static ID = 1;
     public coords: Point;
-    readonly _configParams: jsobj;
-    public _configValues: jsobj;
-    public _configurableInputValues: Map<string, string>;
+    readonly configParams: jsobj;
+    public configValues: jsobj;
+    public configurableInputValues: Map<string, string>;
     public orderedNode: NodeId[] = [];
-    public _error: any = "";
     public connectedNodeInputs: NodeEdgeRef[] = [];
     output: Output = Node.ID;
 
@@ -33,15 +32,15 @@ export class Node {
         this.ID = Node.ID++;
 
         this.coords = this.initialCoords;
-        this._configParams = this.nodeProps?.config?.data || {};
+        this.configParams = this.nodeProps?.config?.data || {};
 
-        const configParamKeys = Object.keys(this._configParams);
+        const configParamKeys = Object.keys(this.configParams);
 
-        this._configValues = {};
+        this.configValues = {};
         configParamKeys.forEach(key => {
-            const aDefault = this._configParams[key].default;
+            const aDefault = this.configParams[key].default;
             if (aDefault != undefined) {
-                this._configValues[key] = aDefault;
+                this.configValues[key] = aDefault;
             }
         })
 
@@ -53,7 +52,7 @@ export class Node {
             ).map(value => [value.configurable_input, value.name
             ]);
 
-        this._configurableInputValues = new Map(window.structuredClone(everyConfigurableInput));
+        this.configurableInputValues = new Map(window.structuredClone(everyConfigurableInput));
 
     }
 
@@ -84,18 +83,18 @@ export class Node {
         const configValue = nodeSd[guessedProperty] as jsobj;
 
         // move some values to configurable input values separate value;
-        [...node._configurableInputValues.keys()]
+        [...node.configurableInputValues.keys()]
             .forEach(inputValueKey => {
                 if (configValue[inputValueKey]) {
-                    node._configurableInputValues.set(
+                    node.configurableInputValues.set(
                         inputValueKey,
                         configValue[inputValueKey]
                     )
-                    delete node._configValues[inputValueKey];
+                    delete node.configValues[inputValueKey];
                 }
             })
 
-        node._configValues = configValue;
+        node.configValues = configValue;
         if (svgFO) {
             node.coords = Point.fromString(
                 svgFO.getAttribute('x'),

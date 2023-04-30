@@ -27,6 +27,7 @@ exports[`Renders <App/> without issues 1`] = `
     <span
       id="header"
     >
+        
       <div
         className="btnGroup undefined"
       >
@@ -43,12 +44,6 @@ exports[`Renders <App/> without issues 1`] = `
           Redo
         </button>
       </div>
-      <button
-        className=" btn blue"
-      >
-        Run
-      </button>
-        
       <button
         className=" btn "
         onClick={[Function]}
@@ -338,7 +333,7 @@ exports[`Renders <App/> without issues 1`] = `
       className="taskbarElement"
       style={
         Object {
-          "top": "420px",
+          "top": "300px",
           "transform": "translate3d(0px, 0px, 0)",
           "width": "300px",
         }
@@ -372,8 +367,27 @@ exports[`Renders <App/> without issues 1`] = `
             className=" btn "
             onClick={[Function]}
           >
-            Paste JSON / SVG code
+            Paste JSON code
           </button>
+          <button
+            className=" btn "
+            onClick={[Function]}
+          >
+            Paste SVG code
+          </button>
+          <div
+            className="dragTarget"
+            onDragEnter={[Function]}
+            onDragExit={[Function]}
+            onDragOver={[Function]}
+            onDrop={[Function]}
+          >
+            <div>
+              <p>
+                Drag an SVG or JSON file here to load.
+              </p>
+            </div>
+          </div>
           <hr />
           <div
             className="btnGroup undefined"

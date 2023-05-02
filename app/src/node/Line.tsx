@@ -5,7 +5,7 @@ import CONST from "../const";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import {MouseEventHandler, ReactElement} from "react";
 import {Geom, Point} from "../util/Geom";
-import svgContainer from "../svg/Movable.js";
+import svgContainer from "../svg/Movable";
 import {jsobj} from "../util/util";
 
 export type LineId = number;

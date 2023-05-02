@@ -57,12 +57,8 @@ exports[`Renders <App/> without issues 1`] = `
       >
         Toggle Theme
       </button>
-      <button
-        className=" btn "
-        onClick={[Function]}
-      >
-        FRF
-      </button>
+       
+      version 1.0
     </span>
   </nav>
   <div

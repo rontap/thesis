@@ -1,7 +1,7 @@
 import State from "../graph/State";
 import Button from "./components/Button";
 import BtnGroup from "./components/BtnGroup";
-import {MovableState} from "../svg/Movable.js";
+import {MovableState} from "../svg/Movable";
 import CONST from "../const";
 
 export default function ZoomInfo() {

@@ -5,7 +5,7 @@ import {jsobj} from "../util/util";
 import State, {getState} from "../graph/State";
 import {Geom, Point} from "../util/Geom";
 import {Node} from "../node/Node";
-import Movable from "./Movable.js";
+import Movable from "./Movable";
 import {Line} from "../node/Line";
 import SvgLines from "./SvgLines";
 import InspectLine from "./InspectLine";

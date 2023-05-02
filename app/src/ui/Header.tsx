@@ -1,16 +1,9 @@
-import {getState, useTemporalStore} from "../graph/State";
+import {useTemporalStore} from "../graph/State";
 import BtnGroup from "./components/BtnGroup";
 import Button from "./components/Button";
-import AddNodes from "./components/AddNodes";
 import React from "react";
-import {Line} from "../node/Line";
-import {jsobj} from "../util/util";
-import {NodeBuilder} from "../node/Builder";
 import {GraphUtilInst} from "../graph/GraphUtil";
-import {SerialiserInst} from "../graph/Serialiser";
 import PositionInst from "../svg/Positioning";
-
-const items: Map<string, jsobj> = NodeBuilder.Build();
 
 export default function Header({toggleBg, graph}: {
     toggleBg: Function, graph: boolean
@@ -32,9 +25,7 @@ export default function Header({toggleBg, graph}: {
 
     return <span id={"header"}>
 
-
         {/*<Button className={"blue"}>Run</Button>*/}
-
         &nbsp;&nbsp;
         {graph && <>
             <BtnGroup>
@@ -48,9 +39,11 @@ export default function Header({toggleBg, graph}: {
             <Button onClick={toggleBg}>
                 Toggle Theme
             </Button>
-            <Button onClick={toggleBg}>
-                FRF
-            </Button>
+            {/*<Button onClick={toggleBg}>*/}
+            {/*    FRF*/}
+            {/*</Button>*/}
+            {" "}
+            version 1.0
         </>}
 
         {/*<Button>*/}

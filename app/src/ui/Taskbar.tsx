@@ -1,14 +1,9 @@
 import AvailableNodes from "./AvailableNodes";
-import ActiveNodes from "./ActiveNodes";
 import PropertyViewer from "./PropertyViewer";
-import React, {ReactElement, useEffect, useState} from "react";
+import React, {ReactElement, useState} from "react";
 import {jsobj} from "../util/util";
 import {DndContext, DragEndEvent, useDndMonitor, useDraggable, useDroppable} from '@dnd-kit/core';
-import {stat} from "fs";
-import {Point} from "../util/Geom";
-import Button from "./components/Button";
 import IO from "./IO";
-import InspectLine from "../svg/InspectLine";
 
 
 const taskbarStyles = {

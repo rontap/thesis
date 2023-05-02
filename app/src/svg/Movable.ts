@@ -1,7 +1,7 @@
 import {jsobj} from "../util/util";
 import CONST from "../const";
 import State from "../graph/State";
-import {Line, NodeId} from "../node/Line";
+import {Line} from "../node/Line";
 
 import {Node} from "../node/Node";
 import {DragHandler, DragHandlerInst} from "./Draggable";

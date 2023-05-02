@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 //---------------------
 import './ui/styles/App.css';
@@ -10,24 +10,16 @@ import './ui/styles/mat.css';
 import {NodeBuilder} from "./node/Builder";
 import Svg from "./svg/Svg";
 import {jsobj} from './util/util';
-import ActiveNodes from "./ui/ActiveNodes";
-import PropertyViewer from "./ui/PropertyViewer";
 import ZoomInfo from "./ui/ZoomInfo";
-import State, {useTemporalStore} from "./graph/State";
-import {Line} from "./node/Line";
-import BtnGroup from "./ui/components/BtnGroup";
+import State from "./graph/State";
 import Button from "./ui/components/Button";
 import ContextMenu from "./ui/components/ContextMenu";
-import AddNodes from "./ui/components/AddNodes";
 import Recenter from "./ui/Recenter";
 import Header from "./ui/Header";
-import NodeBlueprints from "./ui/NodeBlueprints";
-import AvailableNodes from "./ui/AvailableNodes";
+import NodeBlueprints, {NodeGroups} from "./ui/NodeBlueprints";
 import BlueprintSvg from "./svg/BlueprintSvg";
 import NodeBlueprintConfigEditor from "./node/NodeBlueprintConfigEditor";
 import Taskbar from "./ui/Taskbar";
-import InspectLine from "./svg/InspectLine";
-import {NodeGroups} from "./ui/NodeBlueprints";
 
 
 function App() {

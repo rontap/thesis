@@ -4,6 +4,7 @@ import React, {ReactElement, useState} from "react";
 import {jsobj} from "../util/util";
 import {DndContext, DragEndEvent, useDndMonitor, useDraggable, useDroppable} from '@dnd-kit/core';
 import IO from "./IO";
+import CONST from "../const";
 
 
 const taskbarStyles = {
@@ -28,6 +29,7 @@ export default function Taskbar({items}: { items: Map<string, jsobj> }) {
     const {setNodeRef} = useDroppable({
         id: 'unique-id',
     });
+    if (CONST.dndBypass) return <></>
     return <>
         <div id={"taskbar"}>
             <DndContext onDragEnd={dragend}>

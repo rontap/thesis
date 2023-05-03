@@ -26,7 +26,8 @@ const CONST = {
         width: 200, //px
         pointTop: 28,
         padLeft : 5
-    }
+    },
+    dndBypass: false
 }
 
 export default CONST;

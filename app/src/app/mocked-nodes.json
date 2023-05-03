@@ -206,9 +206,12 @@
             "default": "/*/"
           },
           "threshold": {
-            "type": "threshold"
+            "type": "json"
           }
         }
+      },
+      "additionalProps" : {
+        "height": 50
       }
     }
   ],
@@ -226,8 +229,17 @@
     {
       "name": "join",
       "type": "join",
-      "className": "orange"
+      "className": "orange",
+      "config":{
+        "self": "join",
+        "data" : {
+          "restr" : {
+            "type": "binary"
+          }
+        }
+      }
     }
+
   ],
   [
     "./line_cross.json",

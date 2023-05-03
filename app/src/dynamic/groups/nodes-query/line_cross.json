@@ -2,6 +2,8 @@
   "name": "line_cross",
   "type": "graphic",
   "className": "green",
+  "outputs": [],
+  "inputs": [],
   "config": {
     "self": "line_cross",
     "data": {

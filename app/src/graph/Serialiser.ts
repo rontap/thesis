@@ -50,7 +50,6 @@ class Serialiser {
     }
 
     exportJSON(download: boolean) {
-
         createFile(this.toJSON(), 'txt', 'temp.txt', download);
     }
 
@@ -142,13 +141,10 @@ class Serialiser {
         } catch (e) {
             throw Error('Value is not valid JSON');
         }
-
         const {query} = rootJSONObj;
-
         if (!query) {
             throw  Error('Wrong {Query} Formatting')
         }
-
         return rootJSONObj;
     }
 
@@ -156,9 +152,7 @@ class Serialiser {
         const svgDocument = document.createElement('div');
         svgDocument.innerHTML = rootObj;
         const jsonCtnr = svgDocument.querySelector("#jsonCodeInner");
-
         const svgHint = svgDocument.querySelector("div > svg");
-        console.log(svgDocument)
         if (!jsonCtnr) throw Error("This is not a valid .SVG file")
 
         getState().resetStore();
@@ -190,6 +184,12 @@ class Serialiser {
 
         // getting all lines
         transform.forEach((nodeSdRoot: NodeSerialised) => {
+            // @ref(uq)
+            // @compatibility for output type string
+            if (!Array.isArray(nodeSdRoot.output)) {
+                nodeSdRoot.output = [nodeSdRoot.output];
+            }
+
             nodeSdRoot.output?.forEach(output => {
                 const toNodes = transform
                     .filter((nodeSd: NodeSerialised) => {

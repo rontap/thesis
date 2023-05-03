@@ -62,11 +62,16 @@ class MovableStateClass {
         ) return false;
 
         svgImageAct = document.querySelector(".svgRoot")!;
+
+        // svg viewbox visszaállítása az alapértelmezetre
         svgImageAct?.setAttribute('viewBox', Geom.viewBox(viewBox));
+        // dw és dh zoom méretét szabják meg. A direction az -1 vagy +1
         let dw = viewBox.w * direction * CONST.zoom.speed;
         let dh = viewBox.h * direction * CONST.zoom.speed;
+        // mx és my értékek a kurzor jelenelegi pozíciója. Így érhető el az, hogy a zoomolás az a kurzor felé történjen
         let dx = dw * mx / svgSize.w;
         let dy = dh * my / svgSize.h;
+        // az új viewbox kiszámolása az alapértelmezett viewboxtól
         viewBox = {
             x: viewBox.x + dx,
             y: viewBox.y + dy,

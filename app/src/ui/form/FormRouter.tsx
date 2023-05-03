@@ -1,7 +1,7 @@
 import Atoms from "./atoms";
 import React, {useState} from "react";
 import {configTypes, FormAtoms, FormRouteProps, IsFormAtom} from "../../app/EdgeLoader";
-import Widgets from "./widgets";
+// import Widgets from "./widgets";
 
 type FormRouteComponentProps = FormRouteProps & {
     item: string,
@@ -11,17 +11,17 @@ type FormRouteComponentProps = FormRouteProps & {
     value: any
 };
 
-function WidgetFactory(props: FormRouteComponentProps & { Component: JSX.Element }) {
-
-    const componentFromName: any = Widgets[(props.widget || "Invalid")];
-
-    if (!componentFromName || !props.widget) {
-        console.error("[Form Router]", props);
-        throw Error("[Form Router] Undefined Widget " + props.type + " cannot be displayed");
-    }
-
-    return React.createElement(componentFromName, props);
-}
+// function WidgetFactory(props: FormRouteComponentProps & { Component: JSX.Element }) {
+//
+//     const componentFromName: any = Widgets[(props.widget || "Invalid")];
+//
+//     if (!componentFromName || !props.widget) {
+//         console.error("[Form Router]", props);
+//         throw Error("[Form Router] Undefined Widget " + props.type + " cannot be displayed");
+//     }
+//
+//     return React.createElement(componentFromName, props);
+// }
 
 const getComponentFromName = (name: FormAtoms | string): JSX.Element => {
     return <></>
@@ -34,7 +34,8 @@ export default function FormRouter(props: FormRouteComponentProps) {
     // @ts-ignore
     const {renderAs} = window;
     if (props.widget) {
-        return <WidgetFactory Component={getComponentFromName(props.widget)} {...props}/>
+        // disabled widget factory for now
+        //   return <WidgetFactory Component={getComponentFromName(props.widget)} {...props}/>
     }
 
     const passProps = {...props};

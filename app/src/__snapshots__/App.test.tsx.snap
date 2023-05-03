@@ -456,3 +456,2378 @@ exports[`Renders <App/> without issues 1`] = `
   </div>
 </div>
 `;
+
+exports[`Renders <App/> without issues 2`] = `
+<div
+  className="App "
+>
+  <nav>
+    <span
+      id="titlemark"
+    >
+      GRAPHENE
+    </span>
+    <button
+      className=" btn blue"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Edit Group
+    </button>
+    <button
+      className=" btn blue"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Edit Graph
+    </button>
+    <span
+      id="header"
+    >
+        
+      <div
+        className="btnGroup undefined"
+      >
+        <button
+          className=" btn "
+          onClick={[Function]}
+        >
+          Undo
+        </button>
+        <button
+          className=" btn "
+          onClick={[Function]}
+        >
+          Redo
+        </button>
+      </div>
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Auto Layout
+      </button>
+       
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Toggle Theme
+      </button>
+       
+      version 1.0
+    </span>
+  </nav>
+  <div
+    className="hiddenCtx"
+    id="ctxMenu"
+    style={
+      Object {
+        "top": "-10px",
+      }
+    }
+  />
+  <div
+    className="majorElement no-border"
+    id="zoomCtn"
+  >
+    <div
+      className="btnGroup undefined"
+    >
+      <button
+        className=" btn "
+        disabled={false}
+        onClick={[Function]}
+      >
+        -
+      </button>
+      <button
+        className=" btn "
+        disabled={true}
+        onClick={[Function]}
+        title="Reset zoom"
+      >
+        Zoom 
+        100
+        %
+      </button>
+      <button
+        className=" btn "
+        disabled={false}
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </div>
+  </div>
+  <div
+    id="svgRootCont"
+    onClick={[Function]}
+    onContextMenu={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
+    onWheel={[Function]}
+  >
+    <svg
+      className="svgRoot"
+      clientHeight={768}
+      clientWidth={1024}
+      height={768}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseMove={[Function]}
+      onMouseUp={[Function]}
+      width={1024}
+      x={0}
+      xmlns="http://www.w3.org/2000/svg"
+      y={0}
+    >
+      <defs>
+        <pattern
+          height="8"
+          id="smallGrid"
+          patternUnits="userSpaceOnUse"
+          width="8"
+        >
+          <path
+            d="M 8 0 L 0 0 0 8"
+            fill="none"
+            stroke="#384850"
+            strokeWidth="0.5"
+          />
+        </pattern>
+        <pattern
+          height="80"
+          id="grid"
+          patternUnits="userSpaceOnUse"
+          width="80"
+        >
+          <rect
+            fill="url(#smallGrid)"
+            height="80"
+            width="80"
+          />
+          <path
+            d="M 80 0 L 0 0 0 80"
+            fill="none"
+            stroke="#5b6d76"
+            strokeWidth="1"
+          />
+        </pattern>
+      </defs>
+      <defs>
+        <marker
+          id="dot"
+          markerHeight="5"
+          markerWidth="5"
+          refX="5"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <circle
+            cx="5"
+            cy="20"
+            fill="red"
+            r="20"
+          />
+        </marker>
+      </defs>
+      <rect
+        fill="url(#grid)"
+        height="10000%"
+        id="bgRectSvg"
+        width="1000%"
+        x="-100%"
+        y="-100%"
+      />
+      <foreignObject
+        className="fo void data-node-1 white"
+        data-id={1}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            det_reader
+             [
+            1
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-1"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                index_path
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-2 purple"
+        data-id={2}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            fv_classify
+             [
+            2
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-2"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                threshold
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-3 purple"
+        data-id={3}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            fv_cluster
+             [
+            3
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-3"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                threshold
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-4 purple"
+        data-id={4}
+        height={150}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            fv_sim
+             [
+            4
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-4"
+              style={
+                Object {
+                  "maxHeight": "150px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                fv_path
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                value="/*/"
+              />
+              <br />
+            </span>
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                threshold
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-5 orange"
+        data-id={5}
+        height={40}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            join
+             [
+            5
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-5"
+              style={
+                Object {
+                  "maxHeight": "40px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          />
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-6 green"
+        data-id={6}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            line_cross
+             [
+            6
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-6"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                line
+              </span>
+              Static value.
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-7 white"
+        data-id={7}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            print
+             [
+            7
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-7"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          />
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-8 red"
+        data-id={8}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            SQL
+             [
+            8
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-8"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                query
+              </span>
+              <button
+                className="configButtonItem etc"
+              >
+                ...
+              </button>
+              <textarea
+                className="configInputItem"
+                onChange={[Function]}
+                rows={3}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-9 blue"
+        data-id={9}
+        height={205}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            window
+             [
+            9
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-9"
+              style={
+                Object {
+                  "maxHeight": "205px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                global
+              </span>
+              <input
+                className="configInputCb"
+                data-svg-checked={false}
+                defaultChecked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <br />
+            </span>
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                len_in_milliseconds
+              </span>
+              <input
+                className="configInputItem"
+                defaultValue={1000}
+                onChange={[Function]}
+                type="number"
+                value={1000}
+              />
+              <br />
+            </span>
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                step_in_milliseconds
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+    </svg>
+  </div>
+  <div
+    id="taskbar"
+  >
+    <div
+      className="taskbarElement"
+      style={
+        Object {
+          "height": "200px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "350px",
+        }
+      }
+    >
+      <div
+        aria-describedby="DndDescribedBy-1"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
+      >
+        _
+      </button>
+      <div>
+        <div
+          id="availableNodes"
+        >
+          <h3>
+            Add Node
+          </h3>
+          <div
+            className="dnodes"
+          >
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + det_reader
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + fv_classify
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + fv_cluster
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + fv_sim
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + join
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + line_cross
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + print
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + SQL
+            </button>
+            <button
+              className="btnSmall btn "
+              onClick={[Function]}
+            >
+              + window
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="taskbarElement"
+      style={
+        Object {
+          "right": "0px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "450px",
+        }
+      }
+    >
+      <div
+        aria-describedby="DndDescribedBy-1"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
+      >
+        _
+      </button>
+      <div>
+        <h3>
+          Select a node to view it's properties
+        </h3>
+        <div>
+          <h3>
+            Current Nodes
+          </h3>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              1
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              det_reader
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              2
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              fv_classify
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              3
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              fv_cluster
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              4
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              fv_sim
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              5
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              join
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              6
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              line_cross
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              7
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              print
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              8
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              SQL
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <div
+            className="nodeListItem"
+          >
+            <code
+              style={
+                Object {
+                  "display": "inline-block",
+                  "width": "15px",
+                }
+              }
+            >
+              9
+            </code>
+             | 
+            <span
+              className="listItemDescr"
+            >
+              window
+            </span>
+             
+            <div
+              className="btnGroup undefined"
+            >
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Select
+              </button>
+              <button
+                className=" btn "
+                onClick={[Function]}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div
+      className="taskbarElement"
+      style={
+        Object {
+          "top": "300px",
+          "transform": "translate3d(0px, 0px, 0)",
+          "width": "300px",
+        }
+      }
+    >
+      <div
+        aria-describedby="DndDescribedBy-1"
+        aria-disabled={false}
+        aria-roledescription="draggable"
+        className="taskbarHeader"
+        onKeyDown={[Function]}
+        onPointerDown={[Function]}
+        role="button"
+        tabIndex={0}
+        title="Drag Element"
+      />
+      <button
+        className="minimiseButton"
+        onClick={[Function]}
+      >
+        _
+      </button>
+      <div>
+        <div
+          className=""
+        >
+          <h3>
+            Import & Export Graph
+          </h3>
+          <button
+            className=" btn "
+            onClick={[Function]}
+          >
+            Paste JSON code
+          </button>
+          <button
+            className=" btn "
+            onClick={[Function]}
+          >
+            Paste SVG code
+          </button>
+          <div
+            className="dragTarget"
+            onDragEnter={[Function]}
+            onDragExit={[Function]}
+            onDragOver={[Function]}
+            onDrop={[Function]}
+          >
+            <div>
+              <p>
+                Drag an SVG or JSON file here to load.
+              </p>
+            </div>
+          </div>
+          <hr />
+          <div
+            className="btnGroup undefined"
+          >
+            <button
+              className=" btn "
+              onClick={[Function]}
+            >
+              Save JSON
+            </button>
+            <button
+              className=" btn "
+              onClick={[Function]}
+            >
+              Export SVG
+            </button>
+          </div>
+          <br />
+          <br />
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox"
+            />
+             Open in new window instead of downloading
+          </label>
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+    <div
+      id="ddctx"
+    />
+    <div
+      id="DndDescribedBy-1"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      
+    To pick up a draggable item, press the space bar.
+    While dragging, use the arrow keys to move the item.
+    Press space again to drop the item in its new position, or press escape to cancel.
+  
+    </div>
+    <div
+      aria-atomic={true}
+      aria-live="assertive"
+      id="DndLiveRegion-1"
+      role="status"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0 0 0 0)",
+          "clipPath": "inset(100%)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "fixed",
+          "whiteSpace": "nowrap",
+          "width": 1,
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`Renders <BlueprintSVG/> without issues 1`] = `"No nodes defined."`;
+
+exports[`Renders App and base Graph 1`] = `
+<div
+  className="App "
+>
+  <nav>
+    <span
+      id="titlemark"
+    >
+      GRAPHENE
+    </span>
+    <button
+      className=" btn blue"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Edit Group
+    </button>
+    <button
+      className=" btn blue"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Edit Graph
+    </button>
+    <span
+      id="header"
+    >
+        
+      <div
+        className="btnGroup undefined"
+      >
+        <button
+          className=" btn "
+          onClick={[Function]}
+        >
+          Undo
+        </button>
+        <button
+          className=" btn "
+          onClick={[Function]}
+        >
+          Redo
+        </button>
+      </div>
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Auto Layout
+      </button>
+       
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Toggle Theme
+      </button>
+       
+      version 1.0
+    </span>
+  </nav>
+  <div
+    className="hiddenCtx"
+    id="ctxMenu"
+    style={
+      Object {
+        "top": "-10px",
+      }
+    }
+  />
+  <div
+    className="majorElement no-border"
+    id="zoomCtn"
+  >
+    <div
+      className="btnGroup undefined"
+    >
+      <button
+        className=" btn "
+        disabled={false}
+        onClick={[Function]}
+      >
+        -
+      </button>
+      <button
+        className=" btn "
+        disabled={true}
+        onClick={[Function]}
+        title="Reset zoom"
+      >
+        Zoom 
+        100
+        %
+      </button>
+      <button
+        className=" btn "
+        disabled={false}
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </div>
+  </div>
+  <div
+    id="svgRootCont"
+    onClick={[Function]}
+    onContextMenu={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
+    onWheel={[Function]}
+  >
+    <svg
+      className="svgRoot"
+      clientHeight={768}
+      clientWidth={1024}
+      height={768}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseMove={[Function]}
+      onMouseUp={[Function]}
+      width={1024}
+      x={0}
+      xmlns="http://www.w3.org/2000/svg"
+      y={0}
+    >
+      <defs>
+        <pattern
+          height="8"
+          id="smallGrid"
+          patternUnits="userSpaceOnUse"
+          width="8"
+        >
+          <path
+            d="M 8 0 L 0 0 0 8"
+            fill="none"
+            stroke="#384850"
+            strokeWidth="0.5"
+          />
+        </pattern>
+        <pattern
+          height="80"
+          id="grid"
+          patternUnits="userSpaceOnUse"
+          width="80"
+        >
+          <rect
+            fill="url(#smallGrid)"
+            height="80"
+            width="80"
+          />
+          <path
+            d="M 80 0 L 0 0 0 80"
+            fill="none"
+            stroke="#5b6d76"
+            strokeWidth="1"
+          />
+        </pattern>
+      </defs>
+      <defs>
+        <marker
+          id="dot"
+          markerHeight="5"
+          markerWidth="5"
+          refX="5"
+          refY="5"
+          viewBox="0 0 10 10"
+        >
+          <circle
+            cx="5"
+            cy="20"
+            fill="red"
+            r="20"
+          />
+        </marker>
+      </defs>
+      <rect
+        fill="url(#grid)"
+        height="10000%"
+        id="bgRectSvg"
+        width="1000%"
+        x="-100%"
+        y="-100%"
+      />
+      <foreignObject
+        className="fo void data-node-1 white"
+        data-id={1}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            det_reader
+             [
+            1
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-1"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                index_path
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-2 purple"
+        data-id={2}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            fv_classify
+             [
+            2
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-2"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                threshold
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-3 purple"
+        data-id={3}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            fv_cluster
+             [
+            3
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-3"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                threshold
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-4 purple"
+        data-id={4}
+        height={150}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            fv_sim
+             [
+            4
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-4"
+              style={
+                Object {
+                  "maxHeight": "150px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                fv_path
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                value="/*/"
+              />
+              <br />
+            </span>
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                threshold
+              </span>
+              <button
+                className="configButtonItem etc"
+              >
+                ...
+              </button>
+              <textarea
+                className="configInputItem"
+                onChange={[Function]}
+                rows={3}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-5 orange"
+        data-id={5}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            join
+             [
+            5
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-5"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                restr
+              </span>
+              Restr.
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-6 green"
+        data-id={6}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            line_cross
+             [
+            6
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-6"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                line
+              </span>
+              Static value.
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-7 white"
+        data-id={7}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            print
+             [
+            7
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-7"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          />
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-8 red"
+        data-id={8}
+        height={95}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            SQL
+             [
+            8
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-8"
+              style={
+                Object {
+                  "maxHeight": "95px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                query
+              </span>
+              <button
+                className="configButtonItem etc"
+              >
+                ...
+              </button>
+              <textarea
+                className="configInputItem"
+                onChange={[Function]}
+                rows={3}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+      <foreignObject
+        className="fo void data-node-9 blue"
+        data-id={9}
+        height={205}
+        onClick={[Function]}
+        width={210}
+        x={400}
+        y={400}
+      >
+        <div
+          className="boxedItem"
+          xmlns="http://www.w3.org/1999/xhtml"
+        >
+          <div
+            className="title"
+          >
+            window
+             [
+            9
+            ]
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-code showCodeToggle"
+              data-icon="code"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 640 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            <code
+              className="boxedCode boxedCode-9"
+              style={
+                Object {
+                  "maxHeight": "205px",
+                }
+              }
+            />
+          </div>
+          <button
+            className="nodeConnection nodeConnectionStart"
+            onClick={[Function]}
+          />
+          <button
+            className="nodeConnection nodeConnectionEnd"
+            onClick={[Function]}
+          />
+          <div
+            className="configCtn"
+          >
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                global
+              </span>
+              <input
+                className="configInputCb"
+                data-svg-checked={false}
+                defaultChecked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <br />
+            </span>
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                len_in_milliseconds
+              </span>
+              <input
+                className="configInputItem"
+                defaultValue={1000}
+                onChange={[Function]}
+                type="number"
+                value={1000}
+              />
+              <br />
+            </span>
+            <span
+              className="configPropertyListItem"
+            >
+              <span
+                className="configTitle"
+              >
+                step_in_milliseconds
+              </span>
+              <input
+                className="configInputItem"
+                onChange={[Function]}
+                type="number"
+                value={0}
+              />
+              <br />
+            </span>
+          </div>
+        </div>
+      </foreignObject>
+    </svg>
+  </div>
+</div>
+`;

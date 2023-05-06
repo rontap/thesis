@@ -8,8 +8,9 @@ import {GraphUtilInst} from "../graph/GraphUtil";
 import PositionInst from "../svg/Positioning";
 /* eslint import/no-webpack-loader-syntax: off */
 // @ts-ignore
-import query_str from "!!raw-loader!../dynamic/groups/nodes-query/__chatgpt.txt";
 import {SerialiserInst} from "../graph/Serialiser";
+import {NodeGroup} from "../app/DynamicReader";
+import CONST from "../const";
 
 enum GPTStatus {
     IDLE,
@@ -39,40 +40,35 @@ export default function Header({toggleBg, graph}: {
         GraphUtilInst.detectCircles();
     }
 
+    if (document.getElementById("gptCode")) {
+        document.getElementById("gptCode")!.scrollTop = 9999;
+    }
+
     const initGPT = async () => {
         setUseGPT(GPTStatus.PREPARING);
-        let prompt = window.prompt("GPT_PROMPT")
-        if (!prompt) return;
+        let userPrompt = window.prompt("Write ChatGPT prompt here...");
+        if (!userPrompt) return;
         try {
-            const baseprompt = await fetch(window.location.origin + query_str)
-            const baseprompt_data = await baseprompt.text();
-            const myQuery = baseprompt_data.slice(16).replace("%QUERY%", prompt);
-            // console.log(baseprompt_data, myQuery);
-            // setUseGPT(GPTStatus.WORKING);
-            // const r = await fetch("http://localhost:8080?" + (new URLSearchParams({gpt_q: myQuery})))
-            // const data = await r.text()
+            setGptContent("Initialising...");
+            const basePromptPath = await NodeGroup.fetchCurrentGPTPrompt();
 
-            const wsc = new WebSocket("ws://localhost:8765/")
+            const basePrompt = await basePromptPath.text();
+            const finalQuery = basePrompt.slice(16).replace("%QUERY%", userPrompt);
+
+            const wsc = new WebSocket(CONST.chatGPTWS)
             setUseGPT(GPTStatus.WORKING);
             let allData = ""
             wsc.onmessage = (msg) => {
                 if (!msg.data) return;
-
                 allData += msg.data;
-
                 setGptContent(allData);
-                console.log(msg.data, "|", allData.replace(/EOF/g, ""));
-
                 try {
-
                     const adJSON = JSON.parse(allData.replace(/EOF/g, ""))
-                    console.log('???adJSON', adJSON);
                     SerialiserInst.fromJSON({
                         query: adJSON
                     })
-
+                    setUseGPT(GPTStatus.DONE);
                     setTimeout(() => PositionInst.orderNodes(), 10);
-
                 } catch (e) {
                     try {
                         for (let i = 0; i < 5; i++) {
@@ -86,20 +82,21 @@ export default function Header({toggleBg, graph}: {
                             } catch (e) {
                             }
                         }
-
                     } catch (e) {
-                        console.log('could not render', e);
                     }
                 }
             }
             wsc.onopen = () => {
-                wsc.send(myQuery);
+                setGptContent("");
+                wsc.send(finalQuery);
             }
-
+            wsc.onerror = (error) => {
+                setGptContent("A websocket Error occurred");
+            }
 
         } catch
             (e) {
-            console.log("E??", e)
+            window.alert("Error!\n" + e);
             setUseGPT(GPTStatus.ERROR);
         }
 
@@ -122,23 +119,24 @@ export default function Header({toggleBg, graph}: {
             <Button onClick={toggleBg}>
                 Toggle Theme
             </Button>
-            {/*<Button onClick={toggleBg}>*/}
-            {/*    FRF*/}
-            {/*</Button>*/}
+
             {" "}
             <Button onClick={initGPT}>
-                Use GPT [{useGPT}]
+                Use GPT
             </Button>
 
-            {useGPT === GPTStatus.WORKING && <div className={"gptContent"}>
-                {/*{gptContent}*/}
+            <div className={"gptContent " + (useGPT === GPTStatus.WORKING ? "show" : "hide")}>
+                <div className={"gptTitle"}>
+                    Generating Graph... ({gptContent.length}) characters
+                </div>
+                <br/>
+                <div className={"animateRow"}>&nbsp;</div>
+                <br/>
+                <code id={"gptCode"}>
+                    {gptContent}
+                </code>
             </div>
-            }
         </>}
-
-        {/*<Button>*/}
-        {/*    GPT*/}
-        {/*</Button>*/}
 
     </span>
 

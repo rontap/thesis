@@ -27,6 +27,7 @@ export class Node {
     public connectedNodeInputs: NodeEdgeRef[] = [];
     output: Output = Node.ID;
 
+    public _positionPart : number = 0;
     constructor(nodeType: string) {
         this.nodeType = nodeType;
         this.ID = Node.ID++;

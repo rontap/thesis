@@ -9,25 +9,28 @@ const CONST = {
         clientWidth: window.innerWidth - _pad,
         clientHeight: window.innerHeight - _padh
     },
-    blueprintRectSize : {
+    blueprintRectSize: {
         y: 0,
         x: 0,
         height: 200,
         width: 400,
-        clientWidth:  window.innerWidth,
-        clientHeight:  window.innerHeight
+        clientWidth: window.innerWidth,
+        clientHeight: window.innerHeight
     },
-    zoom :{
-        min:  0.4,
+    zoom: {
+        min: 0.4,
         max: 5.5,
-        speed:0.05
+        speed: 0.05
     },
     box: {
         width: 200, //px
         pointTop: 28,
-        padLeft : 5
+        padLeft: 5
     },
-    dndBypass: false
+    dndBypass: false,
+    chatGPTWS: "ws://localhost:8765/"
 }
 
+// @ts-ignore
+window._GRAPHENE_CONST = CONST;
 export default CONST;

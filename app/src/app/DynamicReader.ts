@@ -7,7 +7,7 @@ class NodeGroup {
     static default: string = "nodes-query";
     static activeNodeGroup: string = "nodes-query"; // todo setter that actually checks
     static loadDebugNodes: boolean = false;
-
+    static gptItems: Map<string, string> = new Map();
     static #nodeGroupDefinitions: NodeTemplateMapGroup | null = null;
 
     static getEveryNodeGroupDefinition(): NodeTemplateMapGroup {
@@ -26,11 +26,25 @@ class NodeGroup {
                 NodeGroup.activeNodeGroup)!;
     }
 
+    static async fetchCurrentGPTPrompt() {
+        if (!NodeGroup.gptItems.get(NodeGroup.activeNodeGroup)) {
+            return Promise.reject("No chatgpt.prompt file found for this node group.\nTo be able to use chatGPT, please try to write one first.");
+        }
+        return fetch(window.location.origin + NodeGroup.gptItems.get(NodeGroup.activeNodeGroup))
+    }
+
     static everyNodeGroupDefinition(): NodeTemplateMapGroup {
         let context: any;
+        let gpt: any;
 
         try {
             context = require.context(`../dynamic/groups/`, true, /.(json)$/);
+            gpt = require.context(`../dynamic/groups/`, true, /.(prompt)$/);
+            gpt.keys().forEach((filename: string) => {
+                const items = filename.split("/")
+                NodeGroup.gptItems.set(items[1], gpt(filename));
+            })
+
             let filesGroups: Map<string, Map<string, NodeTemplate>> = new Map();
             context.keys().forEach((filename: string) => {
                 const [pre, group, item] = filename.split("/");

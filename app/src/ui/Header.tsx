@@ -28,6 +28,7 @@ export default function Header({toggleBg, graph}: {
         redo,
     } = useTemporalStore((state) => state);
     const [useGPT, setUseGPT] = useState(GPTStatus.IDLE)
+    const [gptContent, setGptContent] = useState("")
 
     const undoWrap = () => {
         undo();
@@ -46,18 +47,59 @@ export default function Header({toggleBg, graph}: {
             const baseprompt = await fetch(window.location.origin + query_str)
             const baseprompt_data = await baseprompt.text();
             const myQuery = baseprompt_data.slice(16).replace("%QUERY%", prompt);
-            console.log(baseprompt_data, myQuery);
+            // console.log(baseprompt_data, myQuery);
+            // setUseGPT(GPTStatus.WORKING);
+            // const r = await fetch("http://localhost:8080?" + (new URLSearchParams({gpt_q: myQuery})))
+            // const data = await r.text()
+
+            const wsc = new WebSocket("ws://localhost:8765/")
             setUseGPT(GPTStatus.WORKING);
-            const r = await fetch("http://localhost:8080?" + (new URLSearchParams({gpt_q: myQuery})))
-            const data = await r.text()
-            setUseGPT(GPTStatus.PREPARING);
-            const query = JSON.parse(data);
-            SerialiserInst.fromJSON({
-                query
-            })
-            setUseGPT(GPTStatus.IDLE);
-            setTimeout(() => PositionInst.orderNodes(), 100);
-        } catch (e) {
+            let allData = ""
+            wsc.onmessage = (msg) => {
+                if (!msg.data) return;
+
+                allData += msg.data;
+
+                setGptContent(allData);
+                console.log(msg.data, "|", allData.replace(/EOF/g, ""));
+
+                try {
+
+                    const adJSON = JSON.parse(allData.replace(/EOF/g, ""))
+                    console.log('???adJSON', adJSON);
+                    SerialiserInst.fromJSON({
+                        query: adJSON
+                    })
+
+                    setTimeout(() => PositionInst.orderNodes(), 10);
+
+                } catch (e) {
+                    try {
+                        for (let i = 0; i < 5; i++) {
+                            try {
+                                const adJSON = JSON.parse(allData.slice(0, -i) + "]}")
+                                SerialiserInst.fromJSON({
+                                    query: adJSON
+                                })
+                                setTimeout(() => PositionInst.orderNodes(), 10);
+                                break;
+                            } catch (e) {
+                            }
+                        }
+
+                    } catch (e) {
+                        console.log('could not render', e);
+                    }
+                }
+            }
+            wsc.onopen = () => {
+                wsc.send(myQuery);
+            }
+
+
+        } catch
+            (e) {
+            console.log("E??", e)
             setUseGPT(GPTStatus.ERROR);
         }
 
@@ -87,6 +129,11 @@ export default function Header({toggleBg, graph}: {
             <Button onClick={initGPT}>
                 Use GPT [{useGPT}]
             </Button>
+
+            {useGPT === GPTStatus.WORKING && <div className={"gptContent"}>
+                {/*{gptContent}*/}
+            </div>
+            }
         </>}
 
         {/*<Button>*/}
@@ -94,4 +141,5 @@ export default function Header({toggleBg, graph}: {
         {/*</Button>*/}
 
     </span>
+
 };

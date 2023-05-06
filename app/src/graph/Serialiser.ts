@@ -134,8 +134,11 @@ class Serialiser {
     /**
      * FROM SVG
      */
-    fromJSONParse(root: string): jsobj {
+    fromJSONParse(root: string | jsobj): jsobj {
         let rootJSONObj: jsobj;
+        if (typeof root === "object") {
+            return root as jsobj;
+        }
         try {
             rootJSONObj = JSON.parse(root)
         } catch (e) {
@@ -161,7 +164,7 @@ class Serialiser {
 
     }
 
-    fromJSON(rootObj: string, svgHint?: Element | null) {
+    fromJSON(rootObj: string | jsobj, svgHint?: Element | null) {
         const json = this.fromJSONParse(rootObj);
         let processedNodeNth = 0;
 

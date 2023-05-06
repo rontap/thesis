@@ -1,6 +1,6 @@
 {
   "name": "fv_cluster",
-  "type": "fv",
+  "type": "fv_cluster",
   "className": "purple",
   "inputs": [
     {

@@ -17,10 +17,18 @@ if ORG is None or KEY is None:
 
 
 async def echo(websocket, path):
-    async for message in websocket:
-        print(message)
-        await  gpt_chat_int(message, websocket)
-        await websocket.send("EOF")
+    try:
+        async for message in websocket:
+            print(message)
+            await gpt_chat_int(message, websocket)
+            await websocket.send("EOF")
+            await asyncio.run(main())
+    except websockets.ConnectionClosedError:
+        print("\nWS connection closed unexpectedly.")
+        print("\nRestarting middleware...")
+
+    except Exception as e:
+        print(f"\nUnexpected error: {e}")
 
 
 async def send_messages(websocket, message_queue):
@@ -37,7 +45,7 @@ async def gpt_chat_int(prompt, websocket):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[{'role': 'user', 'content': prompt}],
-        temperature=0,
+        temperature=1,
         stream=True
     )
     collected_chunks = []

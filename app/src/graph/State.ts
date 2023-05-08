@@ -8,7 +8,7 @@ import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
 import {Point} from "../util/Geom";
-import {NodeGroup} from "../app/DynamicReader";
+import {NodeGroup} from "../app/NodeGroupLoader";
 
 // export default class State {
 //     static nodes: Node[] = [];
@@ -154,7 +154,6 @@ const useTemporalStore = <T, >(
 ) => useStore(State.temporal, selector, equality);
 
 const handleLineSideEffect = () => {
-    console.log('++--');
     GraphUtilInst.detectCircles();
     GraphUtilInst.rippleNodeEdgeRefs();
 }

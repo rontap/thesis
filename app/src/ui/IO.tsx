@@ -99,7 +99,7 @@ export default function IO() {
             <Button onClick={() => SerialiserInst.exportJSON(shouldDownload)}>
                 Save JSON
             </Button>
-            <Button onClick={() => SerialiserInst.toSvg(shouldDownload)}>
+            <Button onClick={() => SerialiserInst.exportSVG(shouldDownload)}>
                 Export SVG
             </Button>
         </BtnGroup>

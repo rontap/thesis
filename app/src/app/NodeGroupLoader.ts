@@ -1,11 +1,46 @@
 import {jsobj} from "../util/util";
 import {NodeEdgeRef} from "./EdgeLoader";
 import {Node} from "../node/Node";
+import CONST from "../const";
+
+type NodeTemplateModifiers = "wide" | string;
+export type NodeTemplate = {
+    hide?: boolean,
+    name: string,
+    className?: string,
+    type: string,
+    description?: string,
+    // false means this node cannot have outputs
+    outputs: NodeEdgeRef[] | false,
+    // false means this node cannot have inputs
+    inputs: NodeEdgeRef[] | false,
+    modifiers?: NodeTemplateModifiers[],
+
+    config?: NodeTemplateConfig
+}
+
+export type NodeTemplateConfig = {
+    self: string,
+    data: jsobj
+}
+
+export type NodeIdSerialised = string;
+export type NodeSerialised = {
+    name: string,
+    input: NodeIdSerialised[],
+    output: NodeIdSerialised[],
+    hide?: boolean,
+    ref?: Node, // dynamically added
+    [key: string]: jsobj | string | boolean | undefined
+}
+export const NodeSerialisedSureProperties = ["name", "output", "hide", "input"];
+export type NodeTemplateMap = Map<string, NodeTemplate>;
+export type NodeTemplateMapGroup = Map<string, NodeTemplateMap>;
 
 
 class NodeGroup {
-    static default: string = "nodes-query";
-    static activeNodeGroup: string = "nodes-query"; // todo setter that actually checks
+    static default: string = CONST.defaultNodeGroup;
+    static activeNodeGroup: string = "nodes-query";
     static loadDebugNodes: boolean = false;
     static gptItems: Map<string, string> = new Map();
     static #nodeGroupDefinitions: NodeTemplateMapGroup | null = null;
@@ -72,37 +107,3 @@ export {NodeGroup}
 export function loadJsonNodeDefinitions(): NodeTemplateMap {
     return NodeGroup.getCurrentNodeGroupDefinition();
 }
-
-type NodeTemplateModifiers = "wide" | string;
-export type NodeTemplate = {
-    hide?: boolean,
-    name: string,
-    className?: string,
-    type: string,
-    description?: string,
-    // false means this node cannot have outputs
-    outputs: NodeEdgeRef[] | false,
-    // false means this node cannot have inputs
-    inputs: NodeEdgeRef[] | false,
-    modifiers?: NodeTemplateModifiers[],
-
-    config?: NodeTemplateConfig
-}
-
-export type NodeTemplateConfig = {
-    self: string,
-    data: jsobj
-}
-
-export type NodeIdSerialised = string;
-export type NodeSerialised = {
-    name: string,
-    input: NodeIdSerialised[],
-    output: NodeIdSerialised[],
-    hide?: boolean,
-    ref?: Node, // dynamically added
-    [key: string]: jsobj | string | boolean | undefined
-}
-export const NodeSerialisedSureProperties = ["name", "output", "hide", "input"];
-export type NodeTemplateMap = Map<string, NodeTemplate>;
-export type NodeTemplateMapGroup = Map<string, NodeTemplateMap>;

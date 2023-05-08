@@ -28,12 +28,17 @@ export class GraphUtil {
             .filter(node => node.nextNodes.length === 0);
     }
 
-    detectCircles(): Line[][] {
-        this.forEachInOrder(() => false);
-        getState().doSvgRender();
-        return this.circleElementsInGraph;
-    }
 
+    /**
+     * Simple .forEach equivalent for graph traversal. If a node can be reached in more than two ways,
+     * it will be called twice, this is intentional.
+     * Iterates through every node in the graph in order and calls the provided function on each node.
+     * If a circle is detected, it returns false and does not continue.
+     *
+     * @param {Function} callbackFn - The function to call on each node.
+     * @param {boolean} [doSvgRender=false] - Whether to update the SVG render with the new order.
+     * @returns {boolean} Returns true if the iteration was successful and false if a circle was detected.
+     */
     forEachInOrder(callbackFn: Function, doSvgRender = false) {
         getState().nodes.forEach(node => node.orderedNode = []);
         this.circleElementsInGraph = [];
@@ -42,12 +47,10 @@ export class GraphUtil {
             console.log('There are no nodes that are source nodes');
             return false;
         }
-
         this.sourceNodes
             .forEach(node => {
                 this.forEachInOrderRecurse(node, node.ID, [], [null, 0], callbackFn);
             });
-
         if (doSvgRender) {
             getState().doSvgRender();
         }
@@ -57,19 +60,24 @@ export class GraphUtil {
     public circleElementsInGraph: Line[][] = [];
 
 
+    /**
+     * Called by .forEachInOrder
+     * Recursively iterates through nodes and lines in the graph in order and calls the provided function on each node.
+     * If a circle is detected, the circleDetectedInRecurse() function is called.
+     *
+     * @param {Node} currentNode - The current node being processed.
+     * @param {NodeId} initialSourceNode - The ID of the initial source node.
+     * @param {Line[]} visitedLines - An array of all lines visited so far.
+     * @param {prevNodeIterator} prevNode - An array of the previous node and line index.
+     * @param {Function} callbackFn - The function to call on each node.
+     */
     forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: prevNodeIterator, callbackFn: Function) {
         currentNode.orderedNode.push(initialSourceNode);
-
         callbackFn && callbackFn(currentNode, initialSourceNode, visitedLines, prevNode);
 
         // detect a circle in this path
         if (visitedLines.map(line => line.from).includes(currentNode.ID)) {
-            // slice only the actual circle out and report it
-            const circleLine = visitedLines.slice(
-                visitedLines.findIndex(line => line.from === currentNode.ID),
-                visitedLines.length
-            )
-            this.circleElementsInGraph.push(circleLine);
+            this.circleDetectedInRecurse(visitedLines, currentNode);
             return;
         }
 
@@ -84,6 +92,36 @@ export class GraphUtil {
         );
     }
 
+    /**
+     * Called when a circle is detected during recursion, stores the detected circle segments in
+     * this.circleElementsInGraph
+     * @param {Line[]} visitedLines - An array of all visited lines.
+     * @param {Node} currentNode - The current node being processed.
+     */
+    private circleDetectedInRecurse(visitedLines: Line[], currentNode: Node) {
+        // slice only the actual circle out and report it
+        const circleLine = visitedLines.slice(
+            visitedLines.findIndex(line => line.from === currentNode.ID),
+            visitedLines.length
+        )
+        this.circleElementsInGraph.push(circleLine);
+        // break the function; it is not a valid graph anyway
+    }
+
+    /**
+     * Top level function for detecting circles.
+     */
+    detectCircles(): Line[][] {
+        this.forEachInOrder(() => false);
+        getState().doSvgRender();
+        return this.circleElementsInGraph;
+    }
+
+
+    /**
+     * Each node's output properties' are "rippled" through the graph.
+     * This function modifies the current graph, resets and then rewrites Node.connectedNodeInputs[]
+     */
     rippleNodeEdgeRefs() {
         this.everyNode.forEach(node => node.connectedNodeInputs = []);
 
@@ -106,4 +144,4 @@ const GraphUtilInst = new GraphUtil();
 export {GraphUtilInst};
 
 // @ts-ignore
-window._GU = GraphUtilInst;
+window._GraphUtilInst = GraphUtilInst;

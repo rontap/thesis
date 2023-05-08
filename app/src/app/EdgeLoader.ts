@@ -1,13 +1,24 @@
 import {NodeBuilder} from "../node/Builder";
 import {jsobj} from "../util/util";
 
+/**
+ * The type of the edge is not pre defined.
+ */
 export type EdgePrimitive = "any" | string;
+
+/**
+ * Single value of an edge type
+ */
 export type EdgeType = {
     type: EdgePrimitive,
     color: "red" | "green" | "orange" | "blue" | "gray"
 }
 export type ETypeMap = Map<string, EdgeType>;
 
+/**
+ * Basic building blocks of the form type system:
+ * only these form types can be used in the form renderer.
+ */
 export enum FormAtoms {
     NUMBER = "number",
     STRING = "string",
@@ -24,14 +35,13 @@ export const IsFormAtom = (value: string) => {
     return Object.values(FormAtoms).includes(value as FormAtoms)
 }
 
-
 export type FormRouteProps = {
     type: FormAtoms,
     widget?: string
 }
 
-
 export type ConfigTypeMap = Map<string, FormRouteProps>;
+
 export type NodeEdgeRef = {
     type: EdgePrimitive,
     name?: string,
@@ -44,14 +54,15 @@ export type NodeEdgeRef = {
 /**
  * Loading dynamically what kind of edge types we have.
  * The nodes _can_ have dynamic edge types,
- * however only withing the base range
+ * however only withing the base range; types.json defines the mapping
  * @constructor
  */
-
 const types = require('../dynamic/types.json');
 
 const edgeTypes: ETypeMap = new Map(Object.entries(types.connections));
 const configTypes: ConfigTypeMap = new Map(Object.entries(types.config));
+
+
 Object.freeze(edgeTypes);
 Object.seal(edgeTypes);
 
@@ -59,6 +70,11 @@ export function EdgeLoader() {
 
 }
 
+/**
+ * This is a checking only function for the programmer /developer to see improperly formatted JSON-s
+ * @param verbose
+ * @constructor
+ */
 export function EdgeInvariant(verbose = false) {
     const log = function (...rest: Array<any>) {
         return console.log('[Edge Invariant Violation]', ...arguments);

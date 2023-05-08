@@ -45,17 +45,17 @@ export default function Header({toggleBg, graph}: {
     }
 
     const initGPT = async () => {
-        setUseGPT(GPTStatus.PREPARING);
-        let userPrompt = window.prompt("Write ChatGPT prompt here...");
-        if (!userPrompt) return;
         try {
-            setGptContent("Initialising...");
-            const basePromptPath = await NodeGroup.fetchCurrentGPTPrompt();
 
+            const basePromptPath = await NodeGroup.fetchCurrentGPTPrompt();
             const basePrompt = await basePromptPath.text();
+            const wsc = new WebSocket(CONST.chatGPTWS)
+            let userPrompt = window.prompt("Write ChatGPT prompt here...");
+
+            if (!userPrompt) return;
             const finalQuery = basePrompt.slice(16).replace("%QUERY%", userPrompt);
 
-            const wsc = new WebSocket(CONST.chatGPTWS)
+            setGptContent("Initialising...");
             setUseGPT(GPTStatus.WORKING);
             let allData = ""
             wsc.onmessage = (msg) => {
@@ -91,7 +91,8 @@ export default function Header({toggleBg, graph}: {
                 wsc.send(finalQuery);
             }
             wsc.onerror = (error) => {
-                setGptContent("A websocket Error occurred");
+                setGptContent("A websocket Error occurred. Is the middleware running?");
+                setUseGPT(GPTStatus.ERROR);
             }
 
         } catch
@@ -105,7 +106,6 @@ export default function Header({toggleBg, graph}: {
 
     return <span id={"header"}>
 
-        {/*<Button className={"blue"}>Run</Button>*/}
         &nbsp;&nbsp;
         {graph && <>
             <BtnGroup>
@@ -121,16 +121,21 @@ export default function Header({toggleBg, graph}: {
             </Button>
 
             {" "}
-            <Button onClick={initGPT}>
+            <Button onClick={initGPT} disabled={useGPT === GPTStatus.WORKING}>
                 Use GPT
             </Button>
 
-            <div className={"gptContent " + (useGPT === GPTStatus.WORKING ? "show" : "hide")}>
+            <div className={"gptContent " + (useGPT !== GPTStatus.IDLE ? "show" : "hide")}>
                 <div className={"gptTitle"}>
                     Generating Graph... ({gptContent.length}) characters
+                    {useGPT === GPTStatus.ERROR && <>
+                        <Button small className={"ml10 blue"} onClick={() => setUseGPT(GPTStatus.IDLE)}>Close</Button>
+                    </>}
                 </div>
                 <br/>
-                <div className={"animateRow"}>&nbsp;</div>
+                {
+                    useGPT === GPTStatus.WORKING && <div className={"animateRow"}>&nbsp;</div>
+                }
                 <br/>
                 <code id={"gptCode"}>
                     {gptContent}

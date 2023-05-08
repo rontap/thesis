@@ -1,20 +1,8 @@
 import time
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
-import cgi
 from decouple import config
-import requests
 import asyncio
 import websockets
 import openai
-import io
-import os
-import subprocess
-import selectors
-import sys
-from urllib.parse import urlparse, parse_qs
-
-from http.server import BaseHTTPRequestHandler, HTTPServer
 
 ORG = config('GRAPHENE_GPT_ORG')
 KEY = config('GRAPHENE_GPT_KEY')
@@ -23,8 +11,10 @@ KEY = config('GRAPHENE_GPT_KEY')
 openai.organization = ORG
 openai.api_key = KEY
 
-if (ORG is None or KEY is None):
-    raise "No GRAPHENE_GPT_ORG and _KEY are added. Please create a .env-file"
+if ORG is None or KEY is None:
+    raise "No environment variable GRAPHENE_GPT_ORG and _KEY are added. Please create a .env-file and get valid keys " \
+          "from openAI"
+
 
 async def echo(websocket, path):
     async for message in websocket:
@@ -44,12 +34,9 @@ async def send_message(websocket, message):
 
 
 async def gpt_chat_int(prompt, websocket):
-    start_time = time.time()
     response = openai.ChatCompletion.create(
         model="gpt-4",
-        messages=[
-            {'role': 'user', 'content': prompt}
-        ],
+        messages=[{'role': 'user', 'content': prompt}],
         temperature=0,
         stream=True
     )
@@ -67,7 +54,7 @@ async def gpt_chat_int(prompt, websocket):
     print(f"Full response received")
 
 
-def gpt_chat(prompt):
+def gpt_chat_stat(prompt):
     start_time = time.time()
     response = openai.ChatCompletion.create(
         model="gpt-4",
@@ -78,13 +65,15 @@ def gpt_chat(prompt):
         stream=False
     )
     message = response.choices[0].message["content"].strip()
-    print("!! {}", message)
+    print(message)
     return message
 
 
 async def main():
     print("Starting GPT WS Service...")
+    gpt_chat_stat("Write this message back: GPT Connection works.")
     async with websockets.serve(echo, "localhost", 8765, max_size=10 * 1024 * 1024):
+        print("WS Service is active at: ws://localhost:8765")
         await asyncio.Future()
 
 

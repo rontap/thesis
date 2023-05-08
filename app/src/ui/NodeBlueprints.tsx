@@ -4,7 +4,7 @@ import {jsobj} from "../util/util";
 import BtnGroup from "./components/BtnGroup";
 import Button from "./components/Button";
 import State, {getState} from "../graph/State";
-import {NodeGroup} from "../app/DynamicReader";
+import {NodeGroup} from "../app/NodeGroupLoader";
 
 type NodeBlueprintsProps = {
     items: Map<string, jsobj>

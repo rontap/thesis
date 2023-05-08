@@ -2,7 +2,7 @@ import {Node} from "./Node";
 import {getState} from "../graph/State";
 import {NodeBuilder} from "./Builder";
 import 'core-js/stable/structured-clone';
-import {NodeGroup} from "../app/DynamicReader";
+import {NodeGroup} from "../app/NodeGroupLoader";
 
 beforeEach(() => {
     NodeGroup.loadDebugNodes = true;

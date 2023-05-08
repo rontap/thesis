@@ -4,7 +4,7 @@ import {End, getState} from "./State";
 import {GraphUtil, GraphUtilInst} from "./GraphUtil";
 import {Line} from "../node/Line";
 import 'core-js/stable/structured-clone';
-import {NodeGroup} from "../app/DynamicReader";
+import {NodeGroup} from "../app/NodeGroupLoader";
 
 beforeEach(() => {
     buildAllNodes();

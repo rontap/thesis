@@ -12,7 +12,7 @@ import Svg from "./Svg";
 import {NodeBuilder} from "../node/Builder";
 // @ts-ignore
 import renderer from 'react-test-renderer';
-import {NodeGroup} from "../app/DynamicReader";
+import {NodeGroup} from "../app/NodeGroupLoader";
 
 it('Renders <Svg/> without issues', () => {
     NodeGroup.loadDebugNodes = true;

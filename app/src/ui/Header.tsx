@@ -9,7 +9,7 @@ import PositionInst from "../svg/Positioning";
 /* eslint import/no-webpack-loader-syntax: off */
 // @ts-ignore
 import {SerialiserInst} from "../graph/Serialiser";
-import {NodeGroup} from "../app/DynamicReader";
+import {NodeGroup} from "../app/NodeGroupLoader";
 import CONST from "../const";
 
 enum GPTStatus {

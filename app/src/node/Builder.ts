@@ -1,4 +1,4 @@
-import {loadJsonNodeDefinitions, NodeTemplate, NodeTemplateMap} from "../app/DynamicReader";
+import {loadJsonNodeDefinitions, NodeTemplate, NodeTemplateMap} from "../app/NodeGroupLoader";
 import {EdgeInvariant, EdgeLoader, edgeTypes} from "../app/EdgeLoader";
 import {jsobj} from "../util/util";
 import {Node} from './Node';

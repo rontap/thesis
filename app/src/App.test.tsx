@@ -2,7 +2,7 @@
 import renderer from "react-test-renderer";
 import App from "./App";
 import {getState} from "./graph/State";
-import {NodeGroup} from "./app/DynamicReader";
+import {NodeGroup} from "./app/NodeGroupLoader";
 import {buildAllNodes} from "../tests/common";
 import 'core-js/stable/structured-clone';
 import CONST from "./const";

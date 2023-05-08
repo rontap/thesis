@@ -5,7 +5,7 @@ import {Point} from "../util/Geom";
 import {Line, NodeId} from "./Line";
 import {jsobj} from "../util/util";
 import {configTypes, NodeEdgeRef} from "../app/EdgeLoader";
-import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate, NodeTemplateConfig} from "../app/DynamicReader";
+import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate, NodeTemplateConfig} from "../app/NodeGroupLoader";
 import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
 import Serialiser from "../graph/Serialiser";

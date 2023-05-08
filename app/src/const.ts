@@ -37,7 +37,8 @@ const CONST = {
     /**
      * default chatGPT connection. websocket URL.
      */
-    chatGPTWS: "ws://localhost:8765/"
+    chatGPTWS: "ws://localhost:8765/",
+    verbose: false
 }
 
 // @ts-ignore

@@ -7,9 +7,6 @@ import State from "../graph/State";
 EdgeLoader();
 
 export class NodeBuilder {
-    static get rawTypes(): NodeTemplateMap {
-        return this._rawTypes;
-    }
 
     static get types(): NodeTemplateMap {
         return this._types;

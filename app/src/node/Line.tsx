@@ -27,6 +27,12 @@ export class Line {
         this.to = to;
     }
 
+    /**
+     * create line methodically from UI. If the said line already exists, it is removed instead.
+     * @param from
+     * @param to
+     * @constructor
+     */
     static New(from: number, to: number) {
         if (from === to) {
             console.error("Cannot create line between self");
@@ -46,8 +52,6 @@ export class Line {
             getState().removeLine(preexistingLine.ID);
             return;
         }
-
-
         getState().addLine(new Line(from, to));
     }
 
@@ -70,7 +74,6 @@ export class Line {
     showLineInfo(evt: jsobj) {
         const leftSpawn = DragHandlerInst.getCursor(evt)
             .add(-90, 50);
-
         getState().setInspectLine(this, leftSpawn);
     }
 
@@ -101,8 +104,6 @@ export class Line {
 
     getSvg(tempSvgRender: number): ReactElement {
         try {
-            // const fromPoint = DragHandler.getCoords(this.fromNode.selfSvg).add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
-            // const toPoint = DragHandler.getCoords(this.toNode.selfSvg).add(CONST.box.padLeft, CONST.box.pointTop);
             const fromPoint = (this.fromNode.coords).add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
             const toPoint = (this.toNode.coords).add(CONST.box.padLeft, CONST.box.pointTop);
             const isLinePartOfInvalidPath = GraphUtilInst.circleElementsInGraph
@@ -112,7 +113,7 @@ export class Line {
             if (isLinePartOfInvalidPath) {
                 return <path d={Geom.bezierSvgD(fromPoint, toPoint)}
                              key={this.from + this.to + tempSvgRender}
-                             className={`data-curve data-curve-danger data-curve-from-${this.from} data-curve-to-${this.to}`}
+                             className={`data-curve data-curve-danger data-curve-from-${this.from} data-curve-to-${this.to} `}
                              x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
                              style={{fill: 'transparent', stroke: '#f44336', strokeWidth: '3px'}}/>
             }
@@ -122,7 +123,6 @@ export class Line {
                    onClick={evt => this.showLineInfo(evt)}
                 >
                     <path d={Geom.bezierSvgD(fromPoint, toPoint)}
-
                           key={this.from + this.to + tempSvgRender}
                           className={`data-curve data-curve-from-${this.from} data-curve-to-${this.to}`}
                           x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}

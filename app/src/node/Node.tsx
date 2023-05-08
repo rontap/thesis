@@ -26,17 +26,15 @@ export class Node {
     public orderedNode: NodeId[] = [];
     public connectedNodeInputs: NodeEdgeRef[] = [];
     output: Output = Node.ID;
+    public _positionPart: number = 0;
 
-    public _positionPart : number = 0;
     constructor(nodeType: string) {
         this.nodeType = nodeType;
         this.ID = Node.ID++;
-
         this.coords = this.initialCoords;
         this.configParams = this.nodeProps?.config?.data || {};
 
         const configParamKeys = Object.keys(this.configParams);
-
         this.configValues = {};
         configParamKeys.forEach(key => {
             const aDefault = this.configParams[key].default;
@@ -54,7 +52,6 @@ export class Node {
             ]);
 
         this.configurableInputValues = new Map(window.structuredClone(everyConfigurableInput));
-
     }
 
     static fromSerialised(nodeSd: NodeSerialised, svgFO: Element | null | undefined) {
@@ -126,16 +123,15 @@ export class Node {
 
     getConnectedInputIfAnyByName(name: string | undefined): NodeEdgeRef | undefined {
         if (!name) return undefined;
-        return this.connectedNodeInputs.find(nodeInput => nodeInput.name === name);
+        return this.connectedNodeInputs
+            .find(nodeInput => nodeInput.name === name);
     }
 
     get nodeConfigTypes() {
         if (this.nodeConfig?.self) {
             return configTypes.get(this.nodeConfig.self);
-        } else {
-            return [];
         }
-
+        return [];
     }
 
     get nodeOutputs(): NodeEdgeRef[] {
@@ -176,12 +172,12 @@ export class Node {
 
     get initialCoords(): Point {
         const context = getState().contextMenu;
+        // if we add a node using the context menu, we should be adding it relative to the cursor.
         if (context?.type === "contextmenu") {
             return DragHandlerInst.getCursor(context).subtract(110 - 20, 75 - 20);
         }
-        return new Point(400, 400);
+        return new Point(400, 400 + getState().nodes.length * 110);
     }
-
 
     removeSelf() {
         State.getState().removeNode(this.ID);

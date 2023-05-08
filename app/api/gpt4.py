@@ -26,7 +26,7 @@ async def echo(websocket, path):
     except websockets.ConnectionClosedError:
         print("\nWS connection closed unexpectedly.")
         print("\nRestarting middleware...")
-
+        asyncio.create_task(main())
     except Exception as e:
         print(f"\nUnexpected error: {e}")
 
@@ -77,12 +77,24 @@ def gpt_chat_stat(prompt):
     return message
 
 
+server = None
+
+
 async def main():
     print("Starting GPT WS Service...")
-    gpt_chat_stat("Write this message back: GPT Connection works.")
-    async with websockets.serve(echo, "localhost", 8765, max_size=10 * 1024 * 1024):
+    global server
+    try:
+
+        gpt_chat_stat("Write this message back: GPT Connection works.")
+        server = await websockets.serve(echo, "localhost", 8765, max_size=10 * 1024 * 1024)
         print("WS Service is active at: ws://localhost:8765")
         await asyncio.Future()
+    except OSError:
+
+        if server:
+            server.close()
+            await server.wait_closed()
+            await main()
 
 
 asyncio.run(main())

@@ -62,7 +62,7 @@
     left: 350px;
     top: 120px;
     height: 400px;
-
+    color: #eee;
 }
 
 #activeNodes {
@@ -521,6 +521,14 @@ body:has(._white) {
     border: none;
     margin: 0 auto;
     width: 100%;
+    height: calc(100% - 80px);
+}
+
+._white .blueprintEditor textarea {
+    color: #232323;
+}
+._white {
+    color:#484848;
 }
 
 #ctxMenu button.half {

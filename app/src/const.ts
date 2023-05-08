@@ -1,5 +1,8 @@
 const _pad = 0;
 const _padh = 0;
+/**
+ * common constants
+ */
 const CONST = {
     rectSize: {
         y: 0,
@@ -17,6 +20,9 @@ const CONST = {
         clientWidth: window.innerWidth,
         clientHeight: window.innerHeight
     },
+    /**
+     * min and max are the outer values of accepted zoom level, speed is the zooming speed: (speed)**zoomLevel
+     */
     zoom: {
         min: 0.4,
         max: 5.5,
@@ -28,6 +34,9 @@ const CONST = {
         padLeft: 5
     },
     dndBypass: false,
+    /**
+     * default chatGPT connection. websocket URL.
+     */
     chatGPTWS: "ws://localhost:8765/"
 }
 

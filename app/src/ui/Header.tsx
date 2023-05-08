@@ -61,7 +61,10 @@ export default function Header({toggleBg, graph}: {
             wsc.onmessage = (msg) => {
                 if (!msg.data) return;
                 allData += msg.data;
-                setGptContent(allData);
+                setGptContent(allData.replace("EOF", "\nEnd of GPT-4 message."));
+                if (allData.includes("EOF")) {
+                    setUseGPT(GPTStatus.ERROR);
+                }
                 try {
                     const adJSON = JSON.parse(allData.replace(/EOF/g, ""))
                     SerialiserInst.fromJSON({
@@ -100,8 +103,6 @@ export default function Header({toggleBg, graph}: {
             window.alert("Error!\n" + e);
             setUseGPT(GPTStatus.ERROR);
         }
-
-
     }
 
     return <span id={"header"}>
@@ -116,10 +117,14 @@ export default function Header({toggleBg, graph}: {
                 Auto Layout
             </Button>
             {" "}
-            <Button onClick={toggleBg}>
-                Toggle Theme
-            </Button>
 
+        </>}
+
+        <Button onClick={toggleBg}>
+                Toggle Theme
+        </Button>
+
+        {graph && <>
             {" "}
             <Button onClick={initGPT} disabled={useGPT === GPTStatus.WORKING}>
                 Use GPT
@@ -142,7 +147,5 @@ export default function Header({toggleBg, graph}: {
                 </code>
             </div>
         </>}
-
     </span>
-
 };

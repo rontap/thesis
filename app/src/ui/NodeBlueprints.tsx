@@ -19,19 +19,17 @@ const nodeGroupNames = new Map([
 export function NodeGroups({items}: NodeBlueprintsProps) {
     return <>
         <div id={"nodeGroups"} className={"majorElement"}>
-            <h3 className={"center"}>Node Groups</h3>
+            <h3>Node Groups</h3>
             <p className={"just"}>
                 Switch the list of available nodes from presets<br/>
-                Switching node groups will remove all currently placed nodes in the graph.<br/>
-                Feel free to create and delete nodes in the custom nodes section.
-
+                Switching node groups will remove all currently placed nodes in the graph.
             </p>
             {[...NodeGroup.everyNodeGroupDefinition()]
                 .map(el => <NodeGroupItem name={el[0]}/>)
             }
-            <Button className={"blue"}>
-                Custom Nodes
-            </Button>
+            {/*<Button className={"blue"}>*/}
+            {/*    Custom Nodes*/}
+            {/*</Button>*/}
 
         </div>
     </>
@@ -60,7 +58,7 @@ export default function NodeBlueprints({items}: NodeBlueprintsProps) {
     return <>
         <div id={"nodeBlueprints"} className={"majorElement"}>
             <h3 className={"center"}>Node Blueprints</h3>
-            <Button className={"blue newBtn"}>New Node</Button>
+            {/*<Button className={"blue newBtn"}>New Node</Button>*/}
             {[...items.values()].map((item: jsobj) => {
                 return NodeBlueprintItem(item);
             })}
@@ -76,11 +74,11 @@ function NodeBlueprintItem(item: jsobj) {
 
         <BtnGroup>
             <Button disabled className={"btn-100"}>{item.name}</Button>
-            <Button
-                onClick={() => getState().setBlueprintedNode(item.name)}
-            >Select</Button>
-            <Button>...</Button>
-            <Button>×</Button>
+            <Button onClick={() => getState().setBlueprintedNode(item.name)}>
+                View
+            </Button>
+            {/*<Button>...</Button>*/}
+            {/*<Button>×</Button>*/}
             {/*<Button*/}
             {/*    onClick={() => getState().setActiveNode(node.ID)}*/}
             {/*>focus</Button>*/}

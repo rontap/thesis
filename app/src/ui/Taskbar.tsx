@@ -32,22 +32,16 @@ export default function Taskbar({items}: { items: Map<string, jsobj> }) {
     if (CONST.dndBypass) return <></>
     return <>
         <div id={"taskbar"}>
-            <DndContext onDragEnd={dragend}>
-
+            <DndContext>
                 <WrapToTaskbarItem name="nodes" cid="nodes" element={<AvailableNodes items={items}/>}/>
                 {/*<WrapToTaskbarItem name="active" cid="activeNodes" element={<ActiveNodes/>}/>*/}
                 <WrapToTaskbarItem name="props" cid="properties" element={<PropertyViewer/>}/>
                 <WrapToTaskbarItem name="io" cid="io" element={<IO/>}/>
-
                 <Droppable/>
                 {/*<Draggable/>*/}
             </DndContext>
         </div>
     </>
-}
-
-const dragend = (some: any) => {
-    console.log(some, some.active.id);
 }
 
 

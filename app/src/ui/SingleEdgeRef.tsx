@@ -16,7 +16,7 @@ export default function SingleEdgeRef({
     const actColor = edgeTypes.get(edgeRef.type)?.color || "gray";
     const node = State((state) => state.activeNode);
     const [internalValue, setInternalValue] = useState(
-        node?.configurableInputValues.get(
+        node?.configValuesActual.get(
             edgeRef.configurable_input || "unnamed"
         ) || "unnamed")
     const setName = (evt: ChangeEvent<HTMLInputElement>) => {

@@ -42,11 +42,9 @@ class MovableStateClass {
         State.setState({zoom});
     }
 
-
     public lineAdd: Node | undefined = undefined;
 
-    isPanning: boolean = false;
-
+    public isPanning: boolean = false;
 
     resetZoom() {
         viewBox = {x: 0, y: 0, w: svgImage.clientWidth, h: svgImage.clientHeight};
@@ -113,7 +111,7 @@ class MovableStateClass {
 }
 
 // @ts-ignore
-window.wb = viewBox;
+window._SVGViewBox = viewBox;
 export const MovableState = new MovableStateClass();
 const svgContainer: jsobj = {};
 
@@ -123,12 +121,10 @@ svgContainer.onWheel = function (e: any) {
 
 svgContainer.onContextMenu = function (e: any) {
     e.preventDefault();
-
     if (MovableState.lineAdd) {
         MovableState.endLineAdd();
         return;
     }
-
     State.setState({contextMenu: e});
 }
 
@@ -187,7 +183,11 @@ const setLineAddCoords = (fromNode: Node, toEvt: Event) => {
         .add(CONST.box.padLeft, 0);
 
     document.querySelector('.currentBez')
-        ?.setAttributeNS(null, 'd', Geom.bezierSvgD(fromPoint, toPoint))
+        ?.setAttributeNS(
+            null,
+            'd',
+            Geom.bezierSvgD(fromPoint, toPoint)
+        )
 }
 
 export default svgContainer;

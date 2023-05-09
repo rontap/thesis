@@ -1,15 +1,13 @@
-import State, {getState} from "../graph/State";
-import {Node} from "./Node";
-import Draggable, {DragHandler, DragHandlerInst} from "../svg/Draggable";
+import {getState} from "../graph/State";
+import {Node, NodeId} from "./Node";
+import {DragHandlerInst} from "../svg/Draggable";
 import CONST from "../const";
-import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
-import {MouseEventHandler, ReactElement} from "react";
+import {GraphUtilInst} from "../graph/GraphUtil";
+import {ReactElement} from "react";
 import {Geom, Point} from "../util/Geom";
-import svgContainer from "../svg/Movable";
 import {jsobj} from "../util/util";
 
 export type LineId = number;
-export type NodeId = number;
 
 export class Line {
     public to: NodeId;
@@ -58,7 +56,7 @@ export class Line {
     getNode(id: number): Node {
         const res = getState().getNodeById(id);
         if (!res) {
-            throw `Cannot find node ${id} from line.`;
+            throw Error(`Cannot find node ${id} from line.`);
         }
         return res;
     }

@@ -11,8 +11,10 @@ export default function AddNodes({
                                  }: { onlyInner?: boolean, items: Map<string, jsobj>, vertical?: boolean }) {
     const innerItems = () => [...items.keys()].map(key => {
         const elem = items.get(key)!;
+
         return <Button small={onlyInner} key={elem.name} onClick={(_: any) => NodeBuilder.New(elem.name)}>
             {"+ " + elem!.name}
+            <ColorPreview type={elem.className || ""}/>
         </Button>
     })
 
@@ -24,4 +26,8 @@ export default function AddNodes({
         {innerItems()}
     </BtnGroup>
 
+}
+
+const ColorPreview = ({type}: { type: string }) => {
+    return <span className={"CP " + type}>&nbsp;</span>
 }

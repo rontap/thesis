@@ -11,6 +11,7 @@ type FormRouteComponentProps = FormRouteProps & {
     value: any
 };
 
+// // WidgetFactory is disabled for the thesis release.
 // function WidgetFactory(props: FormRouteComponentProps & { Component: JSX.Element }) {
 //
 //     const componentFromName: any = Widgets[(props.widget || "Invalid")];

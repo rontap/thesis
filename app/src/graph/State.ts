@@ -1,18 +1,12 @@
-import {jsobj} from "../util/util";
 import {create, useStore} from 'zustand'
-import {devtools, persist} from 'zustand/middleware'
-import {Node} from "../node/Node";
-import {Line, LineId, NodeId} from "../node/Line";
-import {unwatchFile} from "fs";
+import {devtools} from 'zustand/middleware'
+import {Node, NodeId} from "../node/Node";
+import {Line, LineId} from "../node/Line";
 import {temporal, TemporalState} from 'zundo'
 import {shallow} from "zustand/shallow";
-import {GraphUtil, GraphUtilInst} from "./GraphUtil";
+import {GraphUtilInst} from "./GraphUtil";
 import {Point} from "../util/Geom";
 import {NodeGroup} from "../app/NodeGroupLoader";
-
-// export default class State {
-//     static nodes: Node[] = [];
-// }
 
 interface AppState {
     nodes: Node[],
@@ -75,7 +69,7 @@ const State = create<AppState>()(
                     set((state) => {
                             const activeNode = state.activeNode;
                             if (!activeNode) return {};
-                            activeNode.configurableInputValues.set(propertyName, to);
+                            activeNode.configValuesActual.set(propertyName, to);
                             return {activeNode}
                         }
                     ),
@@ -105,12 +99,12 @@ const State = create<AppState>()(
                 setActiveNode: (id) => set((state) =>
                     ({activeNode: id ? get().nodes.find(item => item.ID === Number(id)) : undefined})
                 ),
-                setBlueprintedNode: (nodeName: string) => set((state) =>
+                setBlueprintedNode: (nodeName: string) => set(() =>
                     ({blueprintedNode: nodeName})),
                 setNodeGroup: (nodeGroup: string) => {
                     resetIDS();
                     NodeGroup.activeNodeGroup = nodeGroup;
-                    set((state) =>
+                    set(() =>
                         ({...initialState, blueprintedNode: "", nodeGroup: nodeGroup}))
                 },
                 getLinesAtNodeConnection: (id: NodeId | undefined, end: End) => {
@@ -118,12 +112,12 @@ const State = create<AppState>()(
                     const whichJunction = end === End.FROM ? "from" : "to";
                     return get().lines.filter(line => line[whichJunction] === id)
                 },
-                doSvgRender: () => set((state) =>
+                doSvgRender: () => set(() =>
                     ({forceSvgRender: Math.random()})
                 ),
                 resetStore: () => {
                     resetIDS();
-                    return set((state) => initialState)
+                    return set(() => initialState)
                 },
                 setInspectLine: (line: Line, point: Point) => set(() =>
                     ({inspectedLine: {line, point}})),

@@ -1,12 +1,10 @@
 import CONST from "../const";
-import Draggable, {DragHandler, DragHandlerInst} from "./Draggable";
+import Draggable, {DragHandlerInst} from "./Draggable";
 import React, {useEffect} from "react";
 import {jsobj} from "../util/util";
-import State, {getState} from "../graph/State";
-import {Geom, Point} from "../util/Geom";
+import State from "../graph/State";
 import {Node} from "../node/Node";
 import Movable from "./Movable";
-import {Line} from "../node/Line";
 import SvgLines from "./SvgLines";
 import InspectLine from "./InspectLine";
 
@@ -71,8 +69,6 @@ export default function Svg(props: jsobj) {
                 }
 
                 <InspectLine/>
-
-
             </svg>
         </div>
     );

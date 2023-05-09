@@ -323,23 +323,23 @@ COLORED ITEM
     margin-bottom: 3px;
 }
 
-.orange .boxedItem .title {
+.orange .boxedItem .title , .CP.orange{
     background: #ff693e;
 }
 
-.blue .boxedItem .title {
+.blue .boxedItem .title , .CP.blue{
     background: #4488FF;
 }
 
-.red .boxedItem .title {
+.red .boxedItem .title , .CP.red{
     background: #e91e63;
 }
 
-.green .boxedItem .title {
+.green .boxedItem .title , .CP.green{
     background: #4caf50;
 }
 
-.purple .boxedItem .title {
+.purple .boxedItem .title , .CP.purple{
     background: #9c27b0;
 }
 

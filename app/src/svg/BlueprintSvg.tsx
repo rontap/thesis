@@ -1,9 +1,7 @@
 import {jsobj} from "../util/util";
 import {useEffect, useState} from "react";
-import {DragHandlerInst} from "./Draggable";
-import State, {getState} from "../graph/State";
+import State from "../graph/State";
 import {Node} from "../node/Node";
-import {NodeTemplateMap} from "../app/NodeGroupLoader";
 import {NodeBuilder} from "../node/Builder";
 
 export default function BlueprintSvg(props: jsobj) {
@@ -39,8 +37,10 @@ export default function BlueprintSvg(props: jsobj) {
             width="1000%"
             height="10000%" fill="url(#grid)"/>
 
-        {everyNode.find(node => node.nodeType === blueprinted)
-            ?.getSvg(true)}
+        {everyNode
+            .find(node => node.nodeType === blueprinted)
+            ?.getSvg(true)
+        }
     </svg>
 
 }

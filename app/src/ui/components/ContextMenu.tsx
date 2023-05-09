@@ -5,7 +5,7 @@ import {DragHandler} from "../../svg/Draggable";
 import AddNodes from "./AddNodes";
 import BtnGroup from "./BtnGroup";
 import Button from "./Button";
-import {Geom, Point} from "../../util/Geom";
+import {Point} from "../../util/Geom";
 import {GraphUtilInst} from "../../graph/GraphUtil";
 
 export default function ContextMenu({items}: any) {
@@ -87,7 +87,9 @@ const NodeItems = (evt: jsobj) => {
         <BtnGroup vertical={true}>
             <Button onClick={() => {
                 getState().removeNode(Number(id))
-            }}>Remove Node</Button>
+            }}>
+                Remove Node
+            </Button>
         </BtnGroup>
     </>
 }

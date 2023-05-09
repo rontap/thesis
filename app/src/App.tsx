@@ -14,7 +14,6 @@ import ZoomInfo from "./ui/ZoomInfo";
 import State from "./graph/State";
 import Button from "./ui/components/Button";
 import ContextMenu from "./ui/components/ContextMenu";
-import Recenter from "./ui/Recenter";
 import Header from "./ui/Header";
 import NodeBlueprints, {NodeGroups} from "./ui/NodeBlueprints";
 import BlueprintSvg from "./svg/BlueprintSvg";
@@ -28,7 +27,7 @@ function App() {
 
     const [graph, setGraph] = useState(true);
 
-    const [light, setLight] = useState(false);
+    const [light, setLight] = useState(localStorage.getItem("graphene_theme") === "1");
     const toggleBg = () => {
         setLight(now => !now);
     };
@@ -52,7 +51,6 @@ function App() {
             {graph ? <>
                     <ContextMenu items={items}/>
                     <ZoomInfo/>
-                    <Recenter/>
                     <Svg items={items}/>
                     <Taskbar items={items}/>
                 </>

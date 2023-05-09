@@ -1,6 +1,6 @@
-import {Node} from "../node/Node";
+import {Node, NodeId} from "../node/Node";
 import State, {getState} from "./State";
-import {Line, LineId, NodeId} from "../node/Line";
+import {Line, LineId} from "../node/Line";
 
 /**
  * first argument is the node, or if it's a source node, null
@@ -40,7 +40,7 @@ export class GraphUtil {
      * @returns {boolean} Returns true if the iteration was successful and false if a circle was detected.
      */
     forEachInOrder(callbackFn: Function, doSvgRender = false) {
-        getState().nodes.forEach(node => node.orderedNode = []);
+        getState().nodes.forEach(node => node.volatile_previousNodes = []);
         this.circleElementsInGraph = [];
 
         if (this.sourceNodes.length === 0 && this.everyNode.length !== 0) {
@@ -72,7 +72,7 @@ export class GraphUtil {
      * @param {Function} callbackFn - The function to call on each node.
      */
     forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: prevNodeIterator, callbackFn: Function) {
-        currentNode.orderedNode.push(initialSourceNode);
+        currentNode.volatile_previousNodes.push(initialSourceNode);
         callbackFn && callbackFn(currentNode, initialSourceNode, visitedLines, prevNode);
 
         // detect a circle in this path
@@ -123,14 +123,14 @@ export class GraphUtil {
      * This function modifies the current graph, resets and then rewrites Node.connectedNodeInputs[]
      */
     rippleNodeEdgeRefs() {
-        this.everyNode.forEach(node => node.connectedNodeInputs = []);
+        this.everyNode.forEach(node => node.volatile_connectedNodeInputs = []);
 
         this.forEachInOrder(
             (current: Node, initial: NodeId, visited: Line[], [prevNode, item]: prevNodeIterator) => {
                 const prevNodeInputs = prevNode ? prevNode.getConnectedNodeInputs : [];
                 const prevNodeSelfOutputs = prevNode ? prevNode.nodeOutputs : [];
 
-                current.connectedNodeInputs.push(
+                current.volatile_connectedNodeInputs.push(
                     ...prevNodeInputs,
                     ...prevNodeSelfOutputs
                 )

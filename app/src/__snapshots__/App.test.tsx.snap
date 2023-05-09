@@ -217,7 +217,7 @@ exports[`Renders <App/> without issues 1`] = `
       className="taskbarElement"
       style={
         Object {
-          "height": "200px",
+          "height": "240px",
           "transform": "translate3d(0px, 0px, 0)",
           "width": "350px",
         }
@@ -255,54 +255,99 @@ exports[`Renders <App/> without issues 1`] = `
               onClick={[Function]}
             >
               + det_reader
+              <span
+                className="CP white"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + fv_classify
+              <span
+                className="CP purple"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + fv_cluster
+              <span
+                className="CP purple"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + fv_sim
+              <span
+                className="CP purple"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + join
+              <span
+                className="CP orange"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + line_cross
+              <span
+                className="CP green"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + print
+              <span
+                className="CP white"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + SQL
+              <span
+                className="CP red"
+              >
+                 
+              </span>
             </button>
             <button
               className="btnSmall btn "
               onClick={[Function]}
             >
               + window
+              <span
+                className="CP blue"
+              >
+                 
+              </span>
             </button>
           </div>
         </div>
@@ -351,7 +396,7 @@ exports[`Renders <App/> without issues 1`] = `
       className="taskbarElement"
       style={
         Object {
-          "top": "300px",
+          "top": "340px",
           "transform": "translate3d(0px, 0px, 0)",
           "width": "300px",
         }
@@ -431,7 +476,7 @@ exports[`Renders <App/> without issues 1`] = `
               onChange={[Function]}
               type="checkbox"
             />
-             Open in new window instead of downloading
+            Open in new window instead of downloading
           </label>
           <br />
           <br />

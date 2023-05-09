@@ -110,7 +110,8 @@ export default function IO() {
                 type={"checkbox"}
                 onChange={changeDownloadType}
                 checked={!shouldDownload}
-            /> Open in new window instead of downloading
+            />
+            Open in new window instead of downloading
         </label>
         <br/>
         <br/>

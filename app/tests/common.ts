@@ -1,4 +1,4 @@
-import {NodeGroup} from "../src/app/DynamicReader";
+import {NodeGroup} from "../src/app/NodeGroupLoader";
 import {NodeBuilder} from "../src/node/Builder";
 import {Node} from "../src/node/Node";
 import {getState} from "../src/graph/State";

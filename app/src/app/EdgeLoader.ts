@@ -2,7 +2,7 @@ import {NodeBuilder} from "../node/Builder";
 import {jsobj} from "../util/util";
 
 /**
- * The type of the edge is not pre defined.
+ * The type of the edge is not predefined.
  */
 export type EdgePrimitive = "any" | string;
 

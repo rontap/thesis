@@ -68,10 +68,6 @@ export default function NodeBlueprints({items}: NodeBlueprintsProps) {
 
 function NodeBlueprintItem(item: jsobj) {
     return <div key={item.name} className={"nodeListItem"}>
-        {/*<code style={{width: '15px', display: 'inline-block'}}>*/}
-        {/*    {node.}*/}
-        {/*</code>*/}
-
         <BtnGroup>
             <Button disabled className={"btn-100"}>{item.name}</Button>
             <Button onClick={() => getState().setBlueprintedNode(item.name)}>

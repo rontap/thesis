@@ -1,8 +1,8 @@
 import {getState} from "./State";
 import {createFile, jsobj} from "../util/util";
-import {Line, LineId, NodeId} from "../node/Line";
+import {Line, LineId} from "../node/Line";
 import {NodeGroup, NodeSerialised} from "../app/NodeGroupLoader";
-import {Node} from "../node/Node";
+import {Node, NodeId} from "../node/Node";
 // de and re serialise content
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -20,7 +20,7 @@ class Serialiser {
                 name: this.toID(node.ID),
                 [nodeProps.config?.self || "graphene_toJSONRAW_self_not_found"]: {
                     ...node.configValues,
-                    ...Object.fromEntries(node.configurableInputValues)
+                    ...Object.fromEntries(node.configValuesActual)
                 },
                 input: [this.toID(node.ID)],
                 output: node.nextNodes.map(this.toID)

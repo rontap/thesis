@@ -2,7 +2,7 @@ import State, {getState} from "../graph/State";
 import {DragHandlerInst} from "../svg/Draggable";
 import {NodeBuilder} from "./Builder";
 import {Point} from "../util/Geom";
-import {Line, NodeId} from "./Line";
+import {Line} from "./Line";
 import {jsobj} from "../util/util";
 import {configTypes, NodeEdgeRef} from "../app/EdgeLoader";
 import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate, NodeTemplateConfig} from "../app/NodeGroupLoader";
@@ -10,23 +10,22 @@ import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
 import Serialiser from "../graph/Serialiser";
 
-export {};
-
-type Input = number
-type Output = number
+export type NodeId = number;
 
 export class Node {
+    // global autoincremented node ID
+    static ID: NodeId = 1;
+    // instance id
+    public ID: NodeId;
     public nodeType: string;
-    public ID: number;
-    static ID = 1;
     public coords: Point;
     readonly configParams: jsobj;
     public configValues: jsobj;
-    public configurableInputValues: Map<string, string>;
-    public orderedNode: NodeId[] = [];
-    public connectedNodeInputs: NodeEdgeRef[] = [];
-    output: Output = Node.ID;
-    public _positionPart: number = 0;
+    public configValuesActual: Map<string, string>;
+
+    public volatile_connectedNodeInputs: NodeEdgeRef[] = [];
+    public volatile_previousNodes: NodeId[] = [];
+    public volatile_positionPart: number = 0;
 
     constructor(nodeType: string) {
         this.nodeType = nodeType;
@@ -51,11 +50,10 @@ export class Node {
             ).map(value => [value.configurable_input, value.name
             ]);
 
-        this.configurableInputValues = new Map(window.structuredClone(everyConfigurableInput));
+        this.configValuesActual = new Map(window.structuredClone(everyConfigurableInput));
     }
 
     static fromSerialised(nodeSd: NodeSerialised, svgFO: Element | null | undefined) {
-        console.log(svgFO);
         const guessedProperty = Object.keys(nodeSd)
             .find(item => !NodeSerialisedSureProperties.includes(item));
 
@@ -81,10 +79,10 @@ export class Node {
         const configValue = nodeSd[guessedProperty] as jsobj;
 
         // move some values to configurable input values separate value;
-        [...node.configurableInputValues.keys()]
+        [...node.configValuesActual.keys()]
             .forEach(inputValueKey => {
                 if (configValue[inputValueKey]) {
-                    node.configurableInputValues.set(
+                    node.configValuesActual.set(
                         inputValueKey,
                         configValue[inputValueKey]
                     )
@@ -118,12 +116,12 @@ export class Node {
     }
 
     get getConnectedNodeInputs(): NodeEdgeRef[] {
-        return this.connectedNodeInputs || [];
+        return this.volatile_connectedNodeInputs || [];
     }
 
     getConnectedInputIfAnyByName(name: string | undefined): NodeEdgeRef | undefined {
         if (!name) return undefined;
-        return this.connectedNodeInputs
+        return this.volatile_connectedNodeInputs
             .find(nodeInput => nodeInput.name === name);
     }
 
@@ -176,7 +174,7 @@ export class Node {
         if (context?.type === "contextmenu") {
             return DragHandlerInst.getCursor(context).subtract(110 - 20, 75 - 20);
         }
-        return new Point(400, 400 + getState().nodes.length * 110);
+        return new Point(400, 400 + getState().nodes.length * 150);
     }
 
     removeSelf() {

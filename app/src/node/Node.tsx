@@ -6,9 +6,7 @@ import {Line} from "./Line";
 import {jsobj} from "../util/util";
 import {configTypes, NodeEdgeRef} from "../app/EdgeLoader";
 import {NodeSerialised, NodeSerialisedSureProperties, NodeTemplate, NodeTemplateConfig} from "../app/NodeGroupLoader";
-import {GraphUtil, GraphUtilInst} from "../graph/GraphUtil";
 import NodeFC from "./NodeFC";
-import Serialiser from "../graph/Serialiser";
 
 export type NodeId = number;
 
@@ -91,6 +89,8 @@ export class Node {
             })
 
         node.configValues = configValue;
+
+        // if we have a <foreignObject> as a template, set values explicitly
         if (svgFO) {
             node.coords = Point.fromString(
                 svgFO.getAttribute('x'),
@@ -165,7 +165,10 @@ export class Node {
     }
 
     getSvg(blueprint: boolean = false) {
-        return <NodeFC Node={this} blueprint={blueprint}/>
+        return <NodeFC Node={this}
+                       blueprint={blueprint}
+                       key={this.ID + "::nodeFC"}
+        />
     }
 
     get initialCoords(): Point {

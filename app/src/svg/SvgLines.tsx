@@ -12,6 +12,6 @@ export default function SvgLines(props: any) {
     }
 
     return <>
-        {lines.map((node: Line) => node.getSvg(tempSvgRender))}
+        {lines.map((line: Line) => line.getSvg(tempSvgRender))}
     </>
 }

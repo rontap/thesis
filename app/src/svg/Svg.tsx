@@ -24,12 +24,12 @@ export default function Svg(props: jsobj) {
         >
             <svg
                 {...Draggable}
-                {...(blueprint ? CONST.blueprintRectSize : CONST.rectSize)}
+                {...(blueprint ? CONST.blueprintRectSize : CONST.rectSizeHW)}
                 className={"svgRoot"}
                 xmlns="http://www.w3.org/2000/svg"
             >
 
-                <defs>
+                <defs key={"gridRefs"}>
                     <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
                         <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#384850" strokeWidth="0.5"/>
                     </pattern>
@@ -39,7 +39,7 @@ export default function Svg(props: jsobj) {
                     </pattern>
                 </defs>
 
-                <defs>
+                <defs key={"markerDefs"}>
                     <marker
                         id="dot"
                         viewBox="0 0 10 10"
@@ -56,6 +56,7 @@ export default function Svg(props: jsobj) {
                     id={"bgRectSvg"}
                     y="-100%"
                     width="1000%"
+                    key={"bgRectSvg"}
                     height="10000%" fill="url(#grid)"/>
 
                 {

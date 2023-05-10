@@ -10,7 +10,11 @@ const CONST = {
         height: window.innerHeight - _padh,
         width: window.innerWidth - _pad,
         clientWidth: window.innerWidth - _pad,
-        clientHeight: window.innerHeight - _padh
+        clientHeight: window.innerHeight - _padh,
+    },
+    rectSizeHW: {
+        height: window.innerHeight - _padh,
+        width: window.innerWidth - _pad
     },
     blueprintRectSize: {
         y: 0,

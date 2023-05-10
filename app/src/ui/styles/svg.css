@@ -291,6 +291,19 @@ foreignObject:hover .showCodeToggle {
     max-height: 1000px;
     height: calc(100% - 160px);
 }
+.data-curve-danger {
+    fill:transparent;
+    stroke:#f44336;
+    stroke-width:3px;
+}
+.data-curve-circle {
+    fill:#90caf9;
+}
+
+    /************************************************/
+/************************************************/
+/************************************************/
+/************************************************/
 
 /**
 COLORED ITEM

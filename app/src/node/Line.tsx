@@ -10,15 +10,22 @@ import {jsobj} from "../util/util";
 export type LineId = number;
 
 export class Line {
+    // global autoincremented line ID
+    static ID = 1;
+
     public to: NodeId;
     public from: NodeId;
-    static ID = 1;
     public ID: LineId;
 
-
+    /**
+     * Only directly construct if the data is sanitised or you want to surely create a line
+     * Otherwise use static Line::New
+     * @param from
+     * @param to
+     */
     constructor(from: number, to: number) {
         if (from < 0 || to < 0) {
-            throw Error('Invalid Line Ctor');
+            throw Error('Invalid Line::Ctor');
         }
         this.from = from;
         this.ID = Line.ID++;
@@ -27,6 +34,7 @@ export class Line {
 
     /**
      * create line methodically from UI. If the said line already exists, it is removed instead.
+     * If no rigorous checks are needed, use Line::ctor
      * @param from
      * @param to
      * @constructor
@@ -50,6 +58,7 @@ export class Line {
             getState().removeLine(preexistingLine.ID);
             return;
         }
+        // if all checks passed, add the line
         getState().addLine(new Line(from, to));
     }
 
@@ -77,7 +86,7 @@ export class Line {
 
     getSvgAnimation(fromPoint: Point, toPoint: Point, tempSvgRender: number) {
         return <>
-            <circle r="4" fill="#90caf9" className={"data-curve-circle circle-first"}>
+            <circle r="4" className={"data-curve-circle circle-first"} key={this.from + this.to + "::circle::1"}>
                 <animateMotion
                     className={`data-curve-from-${this.from} data-curve-to-${this.to}`}
                     dur="3s"
@@ -87,7 +96,7 @@ export class Line {
                     path={Geom.bezierSvgD(fromPoint, toPoint)}/>
             </circle>
 
-            <circle r="4" fill="#90caf9" className={"data-curve-circle  circle-second"}>
+            <circle r="4" className={"data-curve-circle  circle-second"} key={this.from + this.to + "::circle::1"}>
                 <animateMotion
                     begin="1.5s"
                     key={tempSvgRender}
@@ -102,26 +111,29 @@ export class Line {
 
     getSvg(tempSvgRender: number): ReactElement {
         try {
-            const fromPoint = (this.fromNode.coords).add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
-            const toPoint = (this.toNode.coords).add(CONST.box.padLeft, CONST.box.pointTop);
+            const fromPoint = (this.fromNode.coords)
+                .add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
+            const toPoint = (this.toNode.coords)
+                .add(CONST.box.padLeft, CONST.box.pointTop);
             const isLinePartOfInvalidPath = GraphUtilInst.circleElementsInGraph
                 .flat()
                 .some(line => line.ID === this.ID)
 
             if (isLinePartOfInvalidPath) {
                 return <path d={Geom.bezierSvgD(fromPoint, toPoint)}
-                             key={this.from + this.to + tempSvgRender}
+                             key={this.from + this.to + tempSvgRender + "::1"}
                              className={`data-curve data-curve-danger data-curve-from-${this.from} data-curve-to-${this.to} `}
                              x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
-                             style={{fill: 'transparent', stroke: '#f44336', strokeWidth: '3px'}}/>
+                />
             }
 
             return <>
                 <g className={"data-curve-group"}
+                   key={this.from + this.to + "::root"}
                    onClick={evt => this.showLineInfo(evt)}
                 >
                     <path d={Geom.bezierSvgD(fromPoint, toPoint)}
-                          key={this.from + this.to + tempSvgRender}
+                          key={this.from + this.to + tempSvgRender + "::2"}
                           className={`data-curve data-curve-from-${this.from} data-curve-to-${this.to}`}
                           x1={fromPoint.x} y1={fromPoint.y} x2={toPoint.x} y2={toPoint.y}
                           markerMid="url(#dot)"

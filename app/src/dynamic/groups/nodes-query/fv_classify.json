@@ -29,7 +29,10 @@
         "type": "threshold"
       },
       "classes": {
-        "type": "json"
+        "type": "json",
+        "additionalProps": {
+          "height": 65
+        }
       }
     }
   }

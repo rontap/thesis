@@ -19,7 +19,7 @@ const NodeFC = (props: { Node: Node, blueprint: boolean }) => {
     const height = 40 + (noProperties * 55) + sumAdditionalHeight;
     const tempSvgRender = State((state) => state.forceSvgRender)
     const a = that.nodeConfigTypes;
-    return (<foreignObject key={that.ID}
+    return (<foreignObject key={that.ID + "::nodeFC"}
 
                            onClick={() => getState().setActiveNode(that.ID)}
                            className={`fo void data-node-${that.ID} ${that.nodeProps.className}`}

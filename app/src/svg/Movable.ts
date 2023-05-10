@@ -7,12 +7,10 @@ import {Node} from "../node/Node";
 import {DragHandler, DragHandlerInst} from "./Draggable";
 import {Geom, Point} from '../util/Geom';
 
-function initMovable() {
-
-}
-
+/*
+ * Class can for now only implement movable for one class
+ */
 let svgImageAct = document.querySelector(".svgRoot")!;
-//const svgContainer = document.getElementById("svgContainer");
 const svgImage = CONST.rectSize;
 let viewBox = {
     x: 0,
@@ -25,13 +23,16 @@ const svgSize = {
     w: svgImage.clientWidth,
     h: svgImage.clientHeight
 };
+
+/**
+ * Storing the drag start and end points
+ */
 let startPoint = Point.Origin;
 let endPoint = Point.Origin;
 let scale = 1;
 
 class MovableStateClass {
     constructor() {
-
     }
 
     get zoomLevel(): number {
@@ -54,22 +55,22 @@ class MovableStateClass {
 
     zoom(mx: number, my: number, direction: number) {
 
-        // prevent uner and over zooming.
+        // prevent under and over zooming.
         if ((MovableState.zoomLevel < CONST.zoom.min && direction === -1)
             || (MovableState.zoomLevel > CONST.zoom.max && direction === 1)
         ) return false;
 
         svgImageAct = document.querySelector(".svgRoot")!;
 
-        // svg viewbox visszaállítása az alapértelmezetre
+        // reset viewbox to default value first
         svgImageAct?.setAttribute('viewBox', Geom.viewBox(viewBox));
-        // dw és dh zoom méretét szabják meg. A direction az -1 vagy +1
+        // set dw and dh, direction is either -1 or 1 for zooming out and in.
         let dw = viewBox.w * direction * CONST.zoom.speed;
         let dh = viewBox.h * direction * CONST.zoom.speed;
-        // mx és my értékek a kurzor jelenelegi pozíciója. Így érhető el az, hogy a zoomolás az a kurzor felé történjen
+        // mx and my are the cursors current position. With resizing the svg, it zooms towards the svg
         let dx = dw * mx / svgSize.w;
         let dy = dh * my / svgSize.h;
-        // az új viewbox kiszámolása az alapértelmezett viewboxtól
+        // new viewbox
         viewBox = {
             x: viewBox.x + dx,
             y: viewBox.y + dy,
@@ -116,11 +117,16 @@ export const MovableState = new MovableStateClass();
 const svgContainer: jsobj = {};
 
 svgContainer.onWheel = function (e: any) {
-    MovableState.zoom(e.nativeEvent.offsetX, e.nativeEvent.offsetY, Math.sign(-e.deltaY))
+    // only zoom when cursor is over the SVG directly.
+    // this prevents accidental zoom and bad zooming experiences.
+    if (e.target.id === "bgRectSvg") {
+        MovableState.zoom(e.nativeEvent.offsetX, e.nativeEvent.offsetY, Math.sign(-e.deltaY))
+    }
 }
 
 svgContainer.onContextMenu = function (e: any) {
     e.preventDefault();
+    MovableState.isPanning = false;
     if (MovableState.lineAdd) {
         MovableState.endLineAdd();
         return;
@@ -143,10 +149,12 @@ svgContainer.onMouseMove = function ({nativeEvent: e}: any) {
         let dy = (startPoint.y - endPoint.y) / scale;
         let movedViewBox = {x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h};
         svgImageAct?.setAttribute('viewBox', Geom.viewBox(movedViewBox));
+        return;
     }
 
     if (MovableState.lineAdd) {
         setLineAddCoords(MovableState.lineAdd, e);
+        return;
     }
 }
 
@@ -174,6 +182,13 @@ svgContainer.onMouseLeave = function (e: any) {
     MovableState.isPanning = false;
 }
 
+/**
+ * Sets the coordinates of the line that connects a given node to the current mouseMoveEvent
+ * This function re-renders some parts of the document, and changes DOM directly.
+ * Make sure this fn does consume state, as it would slow line drawing down significantly.
+ * @param fromNode
+ * @param toEvt
+ */
 const setLineAddCoords = (fromNode: Node, toEvt: Event) => {
     const fromPoint = DragHandler
         .getCoords(fromNode.selfSvg)

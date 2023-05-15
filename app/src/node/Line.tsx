@@ -96,7 +96,7 @@ export class Line {
                     path={Geom.bezierSvgD(fromPoint, toPoint)}/>
             </circle>
 
-            <circle r="4" className={"data-curve-circle  circle-second"} key={this.from + this.to + "::circle::1"}>
+            <circle r="4" className={"data-curve-circle  circle-second"} key={this.from + this.to + "::circle::2"}>
                 <animateMotion
                     begin="1.5s"
                     key={tempSvgRender}

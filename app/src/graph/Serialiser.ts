@@ -47,9 +47,26 @@ class Serialiser {
         }
     }
 
+    private toJSONShrinkWrapGPT(transform: jsobj[]): jsobj {
+        return {
+                transform,
+                node_group_used: getState().nodeGroup,
+        }
+    }
+
     toJSON() {
         return JSON.stringify(
             this.toJSONShrinkWrap(
+                this.dropPtrFromJSON(
+                    this.toJSONRaw()
+                )
+            )
+            , null, 1);
+    }
+
+    toJSONForGPT() {
+        return JSON.stringify(
+            this.toJSONShrinkWrapGPT(
                 this.dropPtrFromJSON(
                     this.toJSONRaw()
                 )
@@ -169,7 +186,7 @@ class Serialiser {
         const {query} = json;
         const {transform, node_group_used} = query;
 
-        getState().setNodeGroup(node_group_used || NodeGroup.default);
+        getState().setNodeGroup(node_group_used || NodeGroup.activeNodeGroup);
 
         transform.forEach((nodeSd: NodeSerialised) => {
                 nodeSd.ref = Node.fromSerialised(

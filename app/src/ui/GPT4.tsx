@@ -91,7 +91,7 @@ export default function GPT4(props: jsobj) {
                     setTimeout(() => PositionInst.orderNodes(), 10);
                 } catch (e) {
                     try {
-                        for (let i = 0; i < 2; i++) {
+                        for (let i = 0; i < 5; i++) {
                             try {
                                 const adJSON = JSON.parse(allData.slice(0, -i) + "]}")
                                 SerialiserInst.fromJSON({

@@ -2,7 +2,7 @@
 
 exports[`Renders <App/> without issues 1`] = `
 <div
-  className="App "
+  className="App  "
 >
   <nav>
     <span
@@ -15,14 +15,14 @@ exports[`Renders <App/> without issues 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      Edit Group
+      Group
     </button>
     <button
       className=" btn blue"
       disabled={true}
       onClick={[Function]}
     >
-      Edit Graph
+      Graph
     </button>
     <span
       id="header"
@@ -56,6 +56,12 @@ exports[`Renders <App/> without issues 1`] = `
         onClick={[Function]}
       >
         Toggle Theme
+      </button>
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Minimise
       </button>
        
       <button
@@ -544,7 +550,7 @@ exports[`Renders <BlueprintSVG/> without issues 1`] = `"No nodes defined."`;
 
 exports[`Renders App and base Graph 1`] = `
 <div
-  className="App "
+  className="App  "
 >
   <nav>
     <span
@@ -557,14 +563,14 @@ exports[`Renders App and base Graph 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      Edit Group
+      Group
     </button>
     <button
       className=" btn blue"
       disabled={true}
       onClick={[Function]}
     >
-      Edit Graph
+      Graph
     </button>
     <span
       id="header"
@@ -598,6 +604,12 @@ exports[`Renders App and base Graph 1`] = `
         onClick={[Function]}
       >
         Toggle Theme
+      </button>
+      <button
+        className=" btn "
+        onClick={[Function]}
+      >
+        Minimise
       </button>
        
       <button

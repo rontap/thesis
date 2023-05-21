@@ -28,23 +28,29 @@ function App() {
     const [graph, setGraph] = useState(true);
 
     const [light, setLight] = useState(localStorage.getItem("graphene_theme") === "1");
+    const [min, setMin] = useState(false);
     const toggleBg = () => {
         setLight(now => !now);
     };
+    const toggleMin = () => {
+        setMin(now => !now);
+    }
 
     return (
-        <div className={`App ${light ? "_white" : ""}`}>
+        <div className={`App ${light ? "_white" : ""} ${min? "_min":""}`}>
             <nav>
                 <span id={"titlemark"}>GRAPHENE</span>
                 <Button
                     className={"blue"}
                     disabled={!graph}
-                    onClick={() => setGraph(false)}>Edit Group</Button>
+                    onClick={() => setGraph(false)}>Group</Button>
                 <Button
                     disabled={graph}
                     className={"blue"}
-                    onClick={() => setGraph(true)}>Edit Graph</Button>
-                <Header toggleBg={toggleBg} graph={graph}/>
+                    onClick={() => setGraph(true)}>Graph</Button>
+                <Header toggleBg={toggleBg}
+                        toggleMin={toggleMin}
+                        graph={graph}/>
 
             </nav>
 

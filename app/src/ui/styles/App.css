@@ -696,3 +696,16 @@ GPT
     }
 
 }
+ foreignObject.fo {
+    transition: all .4s;
+
+}
+._min foreignObject.fo {
+    height: 60px;
+}
+ foreignObject > div {
+    transition: background .2s;
+}
+._min .configPropertyListItem {
+    display: none;
+}

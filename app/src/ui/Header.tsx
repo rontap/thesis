@@ -12,8 +12,8 @@ import {SerialiserInst} from "../graph/Serialiser";
 import GPT4 from "./GPT4";
 
 
-export default function Header({toggleBg, graph}: {
-    toggleBg: Function, graph: boolean
+export default function Header({toggleBg, graph,toggleMin}: {
+    toggleBg: Function, graph: boolean,toggleMin:Function
 
 }) {
     const {
@@ -49,6 +49,10 @@ export default function Header({toggleBg, graph}: {
 
         <Button onClick={toggleBg}>
                 Toggle Theme
+        </Button>
+
+        <Button onClick={toggleMin}>
+                Minimise
         </Button>
 
           <GPT4 graph={graph}/>

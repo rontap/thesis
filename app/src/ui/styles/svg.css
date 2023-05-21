@@ -358,22 +358,27 @@ COLORED ITEM
 
 /***n extimee*/
 
+._min foreignObject.green > div,
 ._white foreignObject.green > div {
     background: #4caf50;
 }
 
+._min  foreignObject.purple > div,
 ._white foreignObject.purple > div {
     background: #9c27b0;
 }
 
+._min  foreignObject.blue > div,
 ._white foreignObject.blue > div {
     background: #4488FF;
 }
 
+._min  foreignObject.red > div,
 ._white foreignObject.red > div {
     background: #e91e63;
 }
 
+._min  foreignObject.orange > div,
 ._white foreignObject.orange > div {
     background: #ff693e;
 }

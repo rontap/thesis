@@ -109,6 +109,11 @@ export default function GPT4(props: jsobj) {
             wsc.onopen = () => {
                 setGptContent("");
                 wsc.send(finalQuery);
+
+                wsc.onclose = (error) => {
+                    alert("The websocket connection closed unexpectedly.");
+                    setUseGPT(GPTStatus.ERROR);
+                }
             }
             wsc.onerror = (error) => {
                 setGptContent("A websocket Error occurred. Is the middleware running?");
@@ -144,7 +149,9 @@ export default function GPT4(props: jsobj) {
                         Generating Graph... ({gptContent.length}) characters
 
                         <Button small className={"ml10 blue"}
-                                onClick={closeGPT}>Close</Button>
+                                onClick={closeGPT}>
+                            Close
+                        </Button>
                     </div>}
                 <br/>
                 {
@@ -163,11 +170,13 @@ export default function GPT4(props: jsobj) {
                         placeholder={"Write query in english..."}/>
                     <br/>
                     {useGPT === GPTStatus.PREPARING && <>
-                        <Button small onClick={addCurrentContent}>Add Current Graph</Button>
+                        <Button small onClick={addCurrentContent}>
+                            Add Current Graph
+                        </Button>
                         <br/>
-                        <Button>Send</Button>
-
-
+                        <Button>
+                            Send
+                        </Button>
                     </>}
                 </form>
 

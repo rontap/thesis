@@ -74,9 +74,29 @@ exports[`Renders <App/> without issues 1`] = `
           Generating Graph... (
           0
           ) characters
+          <button
+            className="btnSmall btn ml10 blue"
+            onClick={[Function]}
+          >
+            Close
+          </button>
         </div>
         <br />
         <br />
+        <form
+          onSubmit={[Function]}
+          target=""
+        >
+          <input
+            className="gptArea"
+            disabled={true}
+            name="gptStr"
+            onChange={[Function]}
+            placeholder="Write query in english..."
+            value=""
+          />
+          <br />
+        </form>
         <code
           id="gptCode"
         />
@@ -596,9 +616,29 @@ exports[`Renders App and base Graph 1`] = `
           Generating Graph... (
           0
           ) characters
+          <button
+            className="btnSmall btn ml10 blue"
+            onClick={[Function]}
+          >
+            Close
+          </button>
         </div>
         <br />
         <br />
+        <form
+          onSubmit={[Function]}
+          target=""
+        >
+          <input
+            className="gptArea"
+            disabled={true}
+            name="gptStr"
+            onChange={[Function]}
+            placeholder="Write query in english..."
+            value=""
+          />
+          <br />
+        </form>
         <code
           id="gptCode"
         />

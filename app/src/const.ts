@@ -43,7 +43,7 @@ const CONST = {
      */
     chatGPTWS: "ws://localhost:8765/",
     verbose: false,
-    defaultNodeGroup: "nodes-query"
+    defaultNodeGroup: "nodes-elteikth"
 }
 
 // @ts-ignore

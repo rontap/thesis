@@ -193,6 +193,7 @@ const setLineAddCoords = (fromNode: Node, toEvt: Event) => {
     const fromPoint = DragHandler
         .getCoords(fromNode.selfSvg)
         .add(CONST.box.width + CONST.box.padLeft, CONST.box.pointTop);
+
     const toPoint = DragHandlerInst
         .getCursor(toEvt)
         .add(CONST.box.padLeft, 0);

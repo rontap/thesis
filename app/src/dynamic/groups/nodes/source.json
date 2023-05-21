@@ -3,7 +3,20 @@
   "type": "test",
   "className": "",
   "inputs": false,
-  "outputs" : [],
+  "outputs" : [
+    {
+      "type": "number",
+      "name" : "value_dominant"
+    },
+    {
+      "type": "number",
+      "name" : "value_supressed"
+    },
+    {
+      "type": "string",
+      "name" : "source_file"
+    }
+  ],
   "config" : {
     "self" : "source",
     "data": {}

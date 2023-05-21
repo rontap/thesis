@@ -4,27 +4,40 @@ import {Node} from "../node/Node";
 import CONST from "../const";
 
 type NodeTemplateModifiers = "wide" | string;
+/**
+ * This is the main outline of each node type. When loading from /dynamic/
+ * The nodes wil lbe stored in this container
+ */
 export type NodeTemplate = {
-    hide?: boolean,
     name: string,
-    className?: string,
     type: string,
     description?: string,
     // false means this node cannot have outputs
     outputs: NodeEdgeRef[] | false,
     // false means this node cannot have inputs
     inputs: NodeEdgeRef[] | false,
-    modifiers?: NodeTemplateModifiers[],
 
+    className?: string,
+    hide?: boolean,
+    modifiers?: NodeTemplateModifiers[],
     config?: NodeTemplateConfig
 }
 
+/**
+ * Wrapping the actual serialisable data. When serialised, it will conform to the following shape:
+ * [self] : { ...data }
+ * This means, self will be the key of the object, and data will be the content of the object
+ */
 export type NodeTemplateConfig = {
     self: string,
     data: jsobj
 }
 
 export type NodeIdSerialised = string;
+
+/**
+ * during serialisation, this is the inbetween state of a node. ref links to an actual instance of a node
+ */
 export type NodeSerialised = {
     name: string,
     input: NodeIdSerialised[],
@@ -33,10 +46,16 @@ export type NodeSerialised = {
     ref?: Node, // dynamically added
     [key: string]: jsobj | string | boolean | undefined
 }
+
+/**
+ * When deserialising, the algorithm needs to guess which property is the "self" value, seen in NodeTemplateConfig
+ * The below values are surely not that, so we ignore them.
+ */
 export const NodeSerialisedSureProperties = ["name", "output", "hide", "input"];
+
+
 export type NodeTemplateMap = Map<string, NodeTemplate>;
 export type NodeTemplateMapGroup = Map<string, NodeTemplateMap>;
-
 
 class NodeGroup {
     static default: string = CONST.defaultNodeGroup;
@@ -104,6 +123,9 @@ class NodeGroup {
 window.NG = NodeGroup;
 export {NodeGroup}
 
+/**
+ * @deprecated
+ */
 export function loadJsonNodeDefinitions(): NodeTemplateMap {
     return NodeGroup.getCurrentNodeGroupDefinition();
 }

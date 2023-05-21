@@ -32,7 +32,7 @@ export class GraphUtil {
     /**
      * Simple .forEach equivalent for graph traversal. If a node can be reached in more than two ways,
      * it will be called twice, this is intentional.
-     * Iterates through every node in the graph in order and calls the provided function on each node.
+     * Iterates through every node in the graph in order and calls the given function on the nodes.
      * If a circle is detected, it returns false and does not continue.
      *
      * @param {Function} callbackFn - The function to call on each node.

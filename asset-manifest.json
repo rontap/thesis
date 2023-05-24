@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/thesis/static/css/main.e215e298.css",
-    "main.js": "/thesis/static/js/main.ef309b73.js",
+    "main.css": "/thesis/static/css/main.3d86f98b.css",
+    "main.js": "/thesis/static/js/main.4d368958.js",
     "static/media/chatgpt.prompt": "/thesis/static/media/chatgpt.a247c44fb328047e4ddc.prompt",
     "index.html": "/thesis/index.html",
-    "main.e215e298.css.map": "/thesis/static/css/main.e215e298.css.map",
-    "main.ef309b73.js.map": "/thesis/static/js/main.ef309b73.js.map"
+    "main.3d86f98b.css.map": "/thesis/static/css/main.3d86f98b.css.map",
+    "main.4d368958.js.map": "/thesis/static/js/main.4d368958.js.map"
   },
   "entrypoints": [
-    "static/css/main.e215e298.css",
-    "static/js/main.ef309b73.js"
+    "static/css/main.3d86f98b.css",
+    "static/js/main.4d368958.js"
   ]
 }

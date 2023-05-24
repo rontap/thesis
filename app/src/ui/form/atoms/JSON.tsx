@@ -21,7 +21,7 @@ export default function _JSON(props: any) {
 
     return <>
         <button className={"configButtonItem etc"}>...</button>
-        {error && "e"}
+        {error && "invalid JSON"}
         <textarea
             className={"configInputItem"}
             onChange={onBeforeChange}

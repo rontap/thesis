@@ -49,7 +49,7 @@ export class GraphUtil {
         }
         this.sourceNodes
             .forEach(node => {
-                this.forEachInOrderRecurse(node, node.ID, [], [null, 0], callbackFn);
+                this.#forEachInOrderRecurse(node, node.ID, [], [null, 0], callbackFn);
             });
         if (doSvgRender) {
             getState().doSvgRender();
@@ -71,7 +71,7 @@ export class GraphUtil {
      * @param {prevNodeIterator} prevNode - An array of the previous node and line index.
      * @param {Function} callbackFn - The function to call on each node.
      */
-    forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: prevNodeIterator, callbackFn: Function) {
+    #forEachInOrderRecurse(currentNode: Node, initialSourceNode: NodeId, visitedLines: Line[], prevNode: prevNodeIterator, callbackFn: Function) {
         currentNode.volatile_previousNodes.push(initialSourceNode);
         callbackFn && callbackFn(currentNode, initialSourceNode, visitedLines, prevNode);
 
@@ -82,7 +82,7 @@ export class GraphUtil {
         }
 
         currentNode.linesFromNode.forEach((line, i) =>
-            this.forEachInOrderRecurse(
+            this.#forEachInOrderRecurse(
                 getState().getNodeById(line.to)!,
                 initialSourceNode,
                 visitedLines.concat(line),

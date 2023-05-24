@@ -1,4 +1,11 @@
 
+.showCodeToggle:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+foreignObject:hover .showCodeToggle {
+    opacity:.8;
+}
 .boxedCode:hover, .showCodeToggle:hover + .boxedCode {
     position: absolute;
     background: #222222;

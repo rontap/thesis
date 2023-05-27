@@ -72,7 +72,7 @@ In this I provide advices and example how to build good queries.
 Always start your graph with one or more DetReaderCfg transformations and end with one or more PrintCfg transformations.
 The following example has 3 classes, each from a different category. Class Programming in C is dependent on class Linear Algebra.
 {
- "query": {
+
   "transform": [
    {
     "name": "node-b",
@@ -108,9 +108,7 @@ The following example has 3 classes, each from a different category. Class Progr
     "output": []
    }
   ],
-  "node_group_used": "nodes-elteikth",
-  "graphene_version": 2
- }
+
 }
 When asked for exmples, dont give this graph back, be more creative.
 

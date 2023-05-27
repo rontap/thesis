@@ -111,8 +111,8 @@ export default function GPT4(props: jsobj) {
                 wsc.send(finalQuery);
 
                 wsc.onclose = (error) => {
-                    alert("The websocket connection closed unexpectedly.");
-                    setUseGPT(GPTStatus.ERROR);
+                    // alert("The websocket connection closed unexpectedly.");
+                    // setUseGPT(GPTStatus.ERROR);
                 }
             }
             wsc.onerror = (error) => {

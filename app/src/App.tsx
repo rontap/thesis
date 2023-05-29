@@ -37,7 +37,7 @@ function App() {
     }
 
     return (
-        <div className={`App ${light ? "_white" : ""} ${min? "_min":""}`}>
+        <div className={`App ${light ? "_white" : ""} ${min ? "_min" : ""}`}>
             <nav>
                 <span id={"titlemark"}>GRAPHENE</span>
                 <Button
@@ -51,6 +51,11 @@ function App() {
                 <Header toggleBg={toggleBg}
                         toggleMin={toggleMin}
                         graph={graph}/>
+                <a id={"vers"}
+                   target={"_blank"}
+                   href={"https://github.com/rontap/thesis"}
+                   title={"Github Source"}
+                >1.0 Thesis release</a>
 
             </nav>
 

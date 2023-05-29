@@ -3,6 +3,18 @@
     text-align: center;
 }
 
+#vers {
+    color: #959595;
+    position: fixed;
+    right: 10px;
+    top: 13px;
+    font-family: "Bahnschrift";
+}
+#vers:hover {
+    color:#dedede;
+    text-shadow:0px 0px 2px #444;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -549,20 +561,22 @@ body:has(._white) {
     width: calc(100% - 25px);
     border-radius: 8px;
     margin-bottom: 8px;
-    border:1px solid #aaa;
-    margin-top:-8px;
+    border: 1px solid #aaa;
+    margin-top: -8px;
     padding: 12px 10px;
-    font-size:16px;
+    font-size: 16px;
     font-family: "Bahnschrift", sans-serif;
 }
+
 .gptArea[disabled] {
     transition: all .5s;
-    border:1px solid #888;
-    color:#e5e5e5;
+    border: 1px solid #888;
+    color: #e5e5e5;
     border-radius: 16px 16px 16px 0px;
-    margin-top:-8px;
+    margin-top: -8px;
     min-height: 20px;
 }
+
 /**
 GPT
  */
@@ -696,16 +710,20 @@ GPT
     }
 
 }
- foreignObject.fo {
+
+foreignObject.fo {
     transition: height .4s;
 
 }
+
 ._min foreignObject.fo {
     height: 60px;
 }
- foreignObject > div {
+
+foreignObject > div {
     transition: background .2s;
 }
+
 ._min .configPropertyListItem {
     display: none;
 }

@@ -52,7 +52,6 @@ export default function PropertyViewer() {
         <hr/>
         <div className={"grid gtc-2 gtc-m-10"}>
             <div className={"gridItem"}>
-                {/*todo editable props dont work well*/}
                 MISSING INPUTS
                 <br/>
                 {node.nodeInputs

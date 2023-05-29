@@ -108,6 +108,14 @@ exports[`Renders <App/> without issues 1`] = `
         />
       </div>
     </span>
+    <a
+      href="https://github.com/rontap/thesis"
+      id="vers"
+      target="_blank"
+      title="Github Source"
+    >
+      1.0 Thesis release
+    </a>
   </nav>
   <div
     className="hiddenCtx"
@@ -656,6 +664,14 @@ exports[`Renders App and base Graph 1`] = `
         />
       </div>
     </span>
+    <a
+      href="https://github.com/rontap/thesis"
+      id="vers"
+      target="_blank"
+      title="Github Source"
+    >
+      1.0 Thesis release
+    </a>
   </nav>
   <div
     className="hiddenCtx"

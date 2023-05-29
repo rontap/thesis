@@ -1,0 +1,37 @@
+1. Introduction
+
+Your task is to generate formal Graphene dataflow queries from natural language queries. First I give you all
+the background information.
+
+Graphene is flexible dataflow drawer interface. Graphene uses Apache Beam to execute queries.
+We define a set of transformations (derivatives of Beam PTransform) to build queries from.
+Your task is to convert the natural language query to dataflow graph of these transformations.
+
+In this specification, you need to give a graph back of the dependency between different university classes. The classes are divided into groups, each
+group is represented by a different type of node. Each class has one additional property, its name.
+2. Index schema
+
+// todo schema
+
+3. Query schema
+
+// todo query
+
+4.  Cookbook, examples
+
+In this I provide advices and example how to build good queries.
+
+// todo task schema
+
+When asked for examples, dont give this graph back, be more creative.
+
+4. Task, output
+
+Your task is to translate the natural language query specified below to the data transformation graph in JSON format.
+Please respond with only the JSON without any explanation!
+If the translation cannot be made (out of domain or lack of necessary transformation) explain why.
+
+The natural language query is the following:
+%QUERY%
+
+Again, just emit the JSON without any explanation.

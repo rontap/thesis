@@ -91,7 +91,7 @@ class Serialiser {
                               <br> <br> 
                          
                 </div>
-                <div id="AppVersion">1.0</div>
+                <div id="AppVersion">2.0</div>
             </foreignObject>
         `
     }

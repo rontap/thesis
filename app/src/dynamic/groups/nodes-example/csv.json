@@ -1,0 +1,32 @@
+{
+  "name": "csv",
+  "type": "test",
+  "className": "green",
+  "inputs": [
+    {
+      "type": "string",
+      "name": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "table",
+      "name": "table"
+    },
+    {
+      "type": "string",
+      "name": "csv_properties"
+    }
+  ],
+  "config": {
+    "self": "csv",
+    "data": {
+      "delimiter": {
+        "type": "string"
+      },
+      "max_length": {
+        "type": "number"
+      }
+    }
+  }
+}

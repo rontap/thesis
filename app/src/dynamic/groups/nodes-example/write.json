@@ -1,0 +1,21 @@
+{
+  "name": "write",
+  "type": "test",
+  "className": "white",
+  "inputs": [
+    {
+      "type": "string",
+      "name": "string"
+    },
+    {
+      "type": "string",
+      "name": "stderr",
+      "optional": true
+    }
+  ],
+  "outputs": false,
+  "config": {
+    "self": "source",
+    "data": {}
+  }
+}

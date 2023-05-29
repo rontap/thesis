@@ -1,0 +1,32 @@
+{
+  "name": "regex",
+  "type": "test",
+  "className": "red",
+  "inputs": [
+    {
+      "type": "string",
+      "name": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "string",
+      "name": "string"
+    },
+    {
+      "type": "boolean",
+      "name": "has_match"
+    }
+  ],
+  "config": {
+    "self": "forger",
+    "data": {
+      "global": {
+        "type": "boolean"
+      },
+      "match": {
+        "type": "string"
+      }
+    }
+  }
+}

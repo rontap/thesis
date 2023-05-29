@@ -1,0 +1,29 @@
+{
+  "name": "sql",
+  "type": "test",
+  "className": "orange",
+  "inputs": [
+    {
+      "type": "table",
+      "name": "any"
+    },
+    {
+      "type": "string",
+      "name": "target",
+      "optional": true
+    }
+  ],
+  "outputs": [],
+  "config": {
+    "self": "sql",
+    "data": {
+      "query": {
+        "type": "sql",
+        "_widget": "Popup",
+        "additionalProps": {
+          "height": 70
+        }
+      }
+    }
+  }
+}

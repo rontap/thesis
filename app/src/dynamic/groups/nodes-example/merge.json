@@ -1,0 +1,19 @@
+{
+  "name": "merge",
+  "type": "test",
+  "className": "blue",
+  "inputs": [    {
+    "type": "string",
+    "name": "string"
+  }
+  ],
+  "outputs": [    {
+    "type": "string",
+    "name": "string"
+  }
+  ],
+  "config": {
+    "self": "adder",
+    "data": {}
+  }
+}
